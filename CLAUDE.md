@@ -6,6 +6,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 If the running model is Opus, it may only brainstorm and plan. It must never write or edit code itself. Any coding task is delegated to a subagent running on a weaker model (the Agent tool's `model: "sonnet" | "haiku"`).
 
+**Spec → code, no plan by default.** A feature gets a written spec (decisions, contract, files to touch, tests) and goes straight to the subagent, which writes its own tests and code from it. Write an implementation plan only when the work is split across several subagents, and then as a short task list (task, files, dependencies) — **never code in a plan**: a plan with full code is the implementation written twice, in Opus tokens. This overrides the superpowers `brainstorming` → `writing-plans` handoff.
+
 ## Code quality
 
 Code must be clean. No god-files: one file, one responsibility. A file that mixes several sections, components or concerns must be split before it grows (rule of thumb: around 150 lines or more than one exported component per concern is the signal), and `routes/` files stay thin. Do not leave dead code, unused exports or commented-out code behind.
