@@ -36,11 +36,11 @@ export function useReviewActions(restaurantId: string) {
     ])
   const restaurant = useMutation({
     ...reviewRestaurantAdminRestaurantsRestaurantIdReviewPostMutation(),
-    onSuccess: refresh,
+    onSettled: refresh,
   })
   const dish = useMutation({
     ...reviewDishAdminDishesDishIdReviewPostMutation(),
-    onSuccess: refresh,
+    onSettled: refresh,
   })
 
   return {

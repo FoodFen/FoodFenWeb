@@ -1,4 +1,3 @@
-import { parseApiError } from '@/api/errors'
 import { FormField } from '@/components/form-field'
 import { Button } from '@/components/ui/button'
 import {
@@ -11,6 +10,7 @@ import {
 } from '@/components/ui/dialog'
 import { Textarea } from '@/components/ui/textarea'
 import { useState } from 'react'
+import { reviewErrorMessage } from './review-error'
 
 type Props = {
   open: boolean
@@ -35,7 +35,7 @@ export function RejectDialog({ open, onOpenChange, subject, onReject }: Props) {
       setReason('')
       onOpenChange(false)
     } catch (failure) {
-      setError(parseApiError(failure).message)
+      setError(reviewErrorMessage(failure))
     } finally {
       setBusy(false)
     }

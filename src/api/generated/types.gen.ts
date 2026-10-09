@@ -1109,6 +1109,197 @@ export type PlansResponse = {
 };
 
 /**
+ * PublicDishListResponse
+ */
+export type PublicDishListResponse = {
+    /**
+     * Remainingkcal
+     */
+    remainingKcal: number | null;
+    /**
+     * Dishes
+     */
+    dishes: Array<PublicFitDishResponse>;
+};
+
+/**
+ * PublicDishResponse
+ */
+export type PublicDishResponse = {
+    /**
+     * Id
+     */
+    id: string;
+    /**
+     * Name
+     */
+    name: string;
+    /**
+     * Description
+     */
+    description: string | null;
+    /**
+     * Imageurl
+     */
+    imageUrl: string | null;
+    /**
+     * Price
+     */
+    price: number;
+    /**
+     * Servingg
+     */
+    servingG: number;
+    /**
+     * Kcal
+     */
+    kcal: number;
+    /**
+     * Proteing
+     */
+    proteinG: number;
+    /**
+     * Carbsg
+     */
+    carbsG: number;
+    /**
+     * Fatg
+     */
+    fatG: number;
+    /**
+     * Fiberg
+     */
+    fiberG: number | null;
+};
+
+/**
+ * PublicFitDishResponse
+ */
+export type PublicFitDishResponse = {
+    /**
+     * Id
+     */
+    id: string;
+    /**
+     * Name
+     */
+    name: string;
+    /**
+     * Description
+     */
+    description: string | null;
+    /**
+     * Imageurl
+     */
+    imageUrl: string | null;
+    /**
+     * Price
+     */
+    price: number;
+    /**
+     * Servingg
+     */
+    servingG: number;
+    /**
+     * Kcal
+     */
+    kcal: number;
+    /**
+     * Proteing
+     */
+    proteinG: number;
+    /**
+     * Carbsg
+     */
+    carbsG: number;
+    /**
+     * Fatg
+     */
+    fatG: number;
+    /**
+     * Fiberg
+     */
+    fiberG: number | null;
+    /**
+     * Fits
+     */
+    fits: boolean;
+    restaurant: PublicRestaurantSummaryResponse;
+};
+
+/**
+ * PublicRestaurantResponse
+ */
+export type PublicRestaurantResponse = {
+    /**
+     * Id
+     */
+    id: string;
+    /**
+     * Name
+     */
+    name: string;
+    /**
+     * Description
+     */
+    description: string | null;
+    /**
+     * Address
+     */
+    address: string;
+    /**
+     * Phone
+     */
+    phone: string;
+    /**
+     * Openinghours
+     */
+    openingHours: string;
+    /**
+     * Latitude
+     */
+    latitude: number;
+    /**
+     * Longitude
+     */
+    longitude: number;
+    /**
+     * Imageurl
+     */
+    imageUrl: string | null;
+    /**
+     * Dishes
+     */
+    dishes: Array<PublicDishResponse>;
+};
+
+/**
+ * PublicRestaurantSummaryResponse
+ */
+export type PublicRestaurantSummaryResponse = {
+    /**
+     * Id
+     */
+    id: string;
+    /**
+     * Name
+     */
+    name: string;
+    /**
+     * Address
+     */
+    address: string;
+    /**
+     * Latitude
+     */
+    latitude: number;
+    /**
+     * Longitude
+     */
+    longitude: number;
+};
+
+/**
  * QuestCadence
  *
  * `daily` quests are issued fresh each day; `weekly` once per calendar week.
@@ -1499,6 +1690,10 @@ export type ReviewDecision = 'approved' | 'rejected';
  */
 export type ReviewRequest = {
     decision: ReviewDecision;
+    /**
+     * Expectedupdatedat
+     */
+    expectedUpdatedAt?: string | null;
     /**
      * Reason
      */
@@ -3311,6 +3506,36 @@ export type SubmitQuizQuizzesQuizIdSubmitPostResponses = {
 
 export type SubmitQuizQuizzesQuizIdSubmitPostResponse = SubmitQuizQuizzesQuizIdSubmitPostResponses[keyof SubmitQuizQuizzesQuizIdSubmitPostResponses];
 
+export type ListDishesDishesGetData = {
+    body?: never;
+    path?: never;
+    query?: {
+        /**
+         * Date
+         */
+        date?: string | null;
+    };
+    url: '/dishes';
+};
+
+export type ListDishesDishesGetErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type ListDishesDishesGetError = ListDishesDishesGetErrors[keyof ListDishesDishesGetErrors];
+
+export type ListDishesDishesGetResponses = {
+    /**
+     * Successful Response
+     */
+    200: PublicDishListResponse;
+};
+
+export type ListDishesDishesGetResponse = ListDishesDishesGetResponses[keyof ListDishesDishesGetResponses];
+
 export type CreateRestaurantRestaurantsPostData = {
     body: CreateRestaurantRequest;
     path?: never;
@@ -3504,6 +3729,36 @@ export type UpdateDishRestaurantsMineDishesDishIdPatchResponses = {
 };
 
 export type UpdateDishRestaurantsMineDishesDishIdPatchResponse = UpdateDishRestaurantsMineDishesDishIdPatchResponses[keyof UpdateDishRestaurantsMineDishesDishIdPatchResponses];
+
+export type GetPublicRestaurantRestaurantsRestaurantIdGetData = {
+    body?: never;
+    path: {
+        /**
+         * Restaurant Id
+         */
+        restaurant_id: string;
+    };
+    query?: never;
+    url: '/restaurants/{restaurant_id}';
+};
+
+export type GetPublicRestaurantRestaurantsRestaurantIdGetErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type GetPublicRestaurantRestaurantsRestaurantIdGetError = GetPublicRestaurantRestaurantsRestaurantIdGetErrors[keyof GetPublicRestaurantRestaurantsRestaurantIdGetErrors];
+
+export type GetPublicRestaurantRestaurantsRestaurantIdGetResponses = {
+    /**
+     * Successful Response
+     */
+    200: PublicRestaurantResponse;
+};
+
+export type GetPublicRestaurantRestaurantsRestaurantIdGetResponse = GetPublicRestaurantRestaurantsRestaurantIdGetResponses[keyof GetPublicRestaurantRestaurantsRestaurantIdGetResponses];
 
 export type ListRestaurantsAdminRestaurantsGetData = {
     body?: never;
