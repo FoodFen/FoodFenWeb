@@ -1,4 +1,5 @@
 import { Badge } from '@/components/ui/badge'
+import { Skeleton } from '@/components/ui/skeleton'
 import {
   Table,
   TableBody,
@@ -7,9 +8,18 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
-import { quizzes } from './mock-content'
+import { QueryError } from './query-error'
+import { useQuizzes } from './use-content'
 
 export function QuizList() {
+  const quizzes = useQuizzes()
+
+  if (quizzes.isPending) return <Skeleton className="h-40 w-full" aria-busy />
+  if (quizzes.isError)
+    return <QueryError error={quizzes.error} onRetry={() => void quizzes.refetch()} />
+  if (quizzes.data.length === 0)
+    return <p className="text-muted-foreground py-12 text-center">Chưa có câu hỏi nào.</p>
+
   return (
     <Table>
       <TableHeader>
@@ -20,7 +30,7 @@ export function QuizList() {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {quizzes.map((quiz) => (
+        {quizzes.data.map((quiz) => (
           <TableRow key={quiz.id}>
             <TableCell className="max-w-md font-medium whitespace-normal">
               {quiz.question}

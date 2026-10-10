@@ -8,6 +8,7 @@ import {
   ChartTooltipContent,
   type ChartConfig,
 } from '@/components/ui/chart'
+import { formatShortDate } from '@/lib/format'
 import { Area, AreaChart, CartesianGrid, XAxis } from 'recharts'
 
 type Series = { key: Exclude<keyof DashboardDayResponse, 'date'>; label: string; color: string }
@@ -19,11 +20,6 @@ type Props = {
   series: Series[]
   /** Stack the series on top of each other (parts of one total, like revenue sources). */
   stacked?: boolean
-}
-
-const shortDate = (iso: string) => {
-  const [, month, day] = iso.split('-')
-  return `${day}/${month}`
 }
 
 export function DailyChart({ title, description, rows, series, stacked = false }: Props) {
@@ -47,14 +43,14 @@ export function DailyChart({ title, description, rows, series, stacked = false }
               axisLine={false}
               tickMargin={8}
               interval="preserveStartEnd"
-              tickFormatter={shortDate}
+              tickFormatter={formatShortDate}
             />
             <ChartTooltip
               cursor={false}
               content={
                 <ChartTooltipContent
                   indicator="line"
-                  labelFormatter={(label) => shortDate(String(label))}
+                  labelFormatter={(label) => formatShortDate(String(label))}
                 />
               }
             />

@@ -9,12 +9,12 @@ export function ContentPage() {
     <div className="space-y-6">
       <PageHeader
         title="Nội dung"
-        description="Câu hỏi quiz và nhiệm vụ tuần hiển thị trong ứng dụng."
+        description="Câu hỏi quiz và nhiệm vụ có trong ứng dụng (chỉ xem)."
       />
       <Tabs defaultValue="quiz" className="space-y-4">
         <TabsList>
           <TabsTrigger value="quiz">Câu hỏi quiz</TabsTrigger>
-          <TabsTrigger value="quest">Nhiệm vụ tuần</TabsTrigger>
+          <TabsTrigger value="quest">Nhiệm vụ</TabsTrigger>
         </TabsList>
         <Card className="rounded-2xl p-2">
           <TabsContent value="quiz">
