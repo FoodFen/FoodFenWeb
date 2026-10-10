@@ -1,11 +1,10 @@
-import { parseApiError } from '@/api/errors'
-import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { useNavigate } from '@tanstack/react-router'
 import { useState } from 'react'
 import { PageHeader } from './page-header'
+import { QueryError } from './query-error'
 import { ReviewQueueTable } from './review-queue-table'
 import { useReviewQueue, type QueueFilter } from './use-moderation'
 
@@ -39,12 +38,7 @@ export function ReviewQueuePage() {
         {queue.isPending ? (
           <Skeleton className="h-40 w-full" aria-busy />
         ) : queue.isError ? (
-          <div className="flex flex-col items-center gap-3 py-12">
-            <p role="alert">{parseApiError(queue.error).message}</p>
-            <Button variant="outline" className="h-11 px-4" onClick={() => void queue.refetch()}>
-              Thử lại
-            </Button>
-          </div>
+          <QueryError error={queue.error} onRetry={() => void queue.refetch()} />
         ) : (
           <ReviewQueueTable
             rows={queue.data}

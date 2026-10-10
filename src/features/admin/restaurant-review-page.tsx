@@ -1,9 +1,9 @@
-import { parseApiError } from '@/api/errors'
 import { FormError } from '@/components/form-parts'
-import { Button, buttonVariants } from '@/components/ui/button'
+import { buttonVariants } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Link, getRouteApi } from '@tanstack/react-router'
 import { ArrowLeft } from 'lucide-react'
+import { QueryError } from './query-error'
 import { RestaurantReview } from './restaurant-review'
 import { reviewErrorMessage } from './review-error'
 import { useAdminRestaurant, useReviewActions } from './use-moderation'
@@ -27,12 +27,7 @@ export function RestaurantReviewPage() {
       {detail.isPending ? (
         <Skeleton className="h-64 w-full rounded-2xl" aria-busy />
       ) : detail.isError ? (
-        <div className="space-y-3">
-          <p role="alert">{parseApiError(detail.error).message}</p>
-          <Button variant="outline" className="h-11 px-4" onClick={() => void detail.refetch()}>
-            Thử lại
-          </Button>
-        </div>
+        <QueryError error={detail.error} onRetry={() => void detail.refetch()} />
       ) : (
         <>
           <FormError message={error ? reviewErrorMessage(error) : null} />
