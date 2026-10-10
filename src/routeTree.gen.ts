@@ -21,8 +21,8 @@ import { Route as AdminContentRouteImport } from './routes/admin/content'
 import { Route as AdminDashboardRouteImport } from './routes/admin/dashboard'
 import { Route as AdminUsersRouteImport } from './routes/admin/users'
 import { Route as AppIndexRouteImport } from './routes/app/index'
-import { Route as AppAchievementsRouteImport } from './routes/app/achievements'
-import { Route as AppStatsRouteImport } from './routes/app/stats'
+import { Route as AuthResetPasswordRouteImport } from './routes/auth/reset-password'
+import { Route as AuthVerifyEmailRouteImport } from './routes/auth/verify-email'
 import { Route as RestaurantIndexRouteImport } from './routes/restaurant/index'
 import { Route as AdminRestaurantsIndexRouteImport } from './routes/admin/restaurants/index'
 import { Route as AdminRestaurantsRestaurantIdRouteImport } from './routes/admin/restaurants/$restaurantId'
@@ -87,15 +87,15 @@ const AppIndexRoute = AppIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AppRoute,
 } as any)
-const AppAchievementsRoute = AppAchievementsRouteImport.update({
-  id: '/achievements',
-  path: '/achievements',
-  getParentRoute: () => AppRoute,
+const AuthResetPasswordRoute = AuthResetPasswordRouteImport.update({
+  id: '/auth/reset-password',
+  path: '/auth/reset-password',
+  getParentRoute: () => rootRouteImport,
 } as any)
-const AppStatsRoute = AppStatsRouteImport.update({
-  id: '/stats',
-  path: '/stats',
-  getParentRoute: () => AppRoute,
+const AuthVerifyEmailRoute = AuthVerifyEmailRouteImport.update({
+  id: '/auth/verify-email',
+  path: '/auth/verify-email',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const RestaurantIndexRoute = RestaurantIndexRouteImport.update({
   id: '/',
@@ -125,8 +125,8 @@ export interface FileRoutesByFullPath {
   '/admin/content': typeof AdminContentRoute
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/users': typeof AdminUsersRoute
-  '/app/achievements': typeof AppAchievementsRoute
-  '/app/stats': typeof AppStatsRoute
+  '/auth/reset-password': typeof AuthResetPasswordRoute
+  '/auth/verify-email': typeof AuthVerifyEmailRoute
   '/admin/': typeof AdminIndexRoute
   '/app/': typeof AppIndexRoute
   '/restaurant/': typeof RestaurantIndexRoute
@@ -141,8 +141,8 @@ export interface FileRoutesByTo {
   '/admin/content': typeof AdminContentRoute
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/users': typeof AdminUsersRoute
-  '/app/achievements': typeof AppAchievementsRoute
-  '/app/stats': typeof AppStatsRoute
+  '/auth/reset-password': typeof AuthResetPasswordRoute
+  '/auth/verify-email': typeof AuthVerifyEmailRoute
   '/admin': typeof AdminIndexRoute
   '/app': typeof AppIndexRoute
   '/restaurant': typeof RestaurantIndexRoute
@@ -161,8 +161,8 @@ export interface FileRoutesById {
   '/admin/content': typeof AdminContentRoute
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/users': typeof AdminUsersRoute
-  '/app/achievements': typeof AppAchievementsRoute
-  '/app/stats': typeof AppStatsRoute
+  '/auth/reset-password': typeof AuthResetPasswordRoute
+  '/auth/verify-email': typeof AuthVerifyEmailRoute
   '/admin/': typeof AdminIndexRoute
   '/app/': typeof AppIndexRoute
   '/restaurant/': typeof RestaurantIndexRoute
@@ -182,8 +182,8 @@ export interface FileRouteTypes {
     | '/admin/content'
     | '/admin/dashboard'
     | '/admin/users'
-    | '/app/achievements'
-    | '/app/stats'
+    | '/auth/reset-password'
+    | '/auth/verify-email'
     | '/admin/'
     | '/app/'
     | '/restaurant/'
@@ -198,8 +198,8 @@ export interface FileRouteTypes {
     | '/admin/content'
     | '/admin/dashboard'
     | '/admin/users'
-    | '/app/achievements'
-    | '/app/stats'
+    | '/auth/reset-password'
+    | '/auth/verify-email'
     | '/admin'
     | '/app'
     | '/restaurant'
@@ -217,8 +217,8 @@ export interface FileRouteTypes {
     | '/admin/content'
     | '/admin/dashboard'
     | '/admin/users'
-    | '/app/achievements'
-    | '/app/stats'
+    | '/auth/reset-password'
+    | '/auth/verify-email'
     | '/admin/'
     | '/app/'
     | '/restaurant/'
@@ -234,6 +234,8 @@ export interface RootRouteChildren {
   LoginRoute: typeof LoginRoute
   RegisterRoute: typeof RegisterRoute
   RestaurantRoute: typeof RestaurantRouteWithChildren
+  AuthResetPasswordRoute: typeof AuthResetPasswordRoute
+  AuthVerifyEmailRoute: typeof AuthVerifyEmailRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -322,19 +324,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppIndexRouteImport
       parentRoute: typeof AppRoute
     }
-    '/app/achievements': {
-      id: '/app/achievements'
-      path: '/achievements'
-      fullPath: '/app/achievements'
-      preLoaderRoute: typeof AppAchievementsRouteImport
-      parentRoute: typeof AppRoute
+    '/auth/reset-password': {
+      id: '/auth/reset-password'
+      path: '/auth/reset-password'
+      fullPath: '/auth/reset-password'
+      preLoaderRoute: typeof AuthResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/app/stats': {
-      id: '/app/stats'
-      path: '/stats'
-      fullPath: '/app/stats'
-      preLoaderRoute: typeof AppStatsRouteImport
-      parentRoute: typeof AppRoute
+    '/auth/verify-email': {
+      id: '/auth/verify-email'
+      path: '/auth/verify-email'
+      fullPath: '/auth/verify-email'
+      preLoaderRoute: typeof AuthVerifyEmailRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/restaurant/': {
       id: '/restaurant/'
@@ -381,14 +383,10 @@ const AdminRouteChildren: AdminRouteChildren = {
 const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 
 interface AppRouteChildren {
-  AppAchievementsRoute: typeof AppAchievementsRoute
-  AppStatsRoute: typeof AppStatsRoute
   AppIndexRoute: typeof AppIndexRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
-  AppAchievementsRoute: AppAchievementsRoute,
-  AppStatsRoute: AppStatsRoute,
   AppIndexRoute: AppIndexRoute,
 }
 
@@ -414,6 +412,8 @@ const rootRouteChildren: RootRouteChildren = {
   LoginRoute: LoginRoute,
   RegisterRoute: RegisterRoute,
   RestaurantRoute: RestaurantRouteWithChildren,
+  AuthResetPasswordRoute: AuthResetPasswordRoute,
+  AuthVerifyEmailRoute: AuthVerifyEmailRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

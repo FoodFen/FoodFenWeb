@@ -1,6 +1,7 @@
 import type { AuthSessionResponse } from '@/api/generated'
 import {
   passwordResetAuthPasswordResetPostMutation,
+  resetPasswordAuthResetPasswordPostMutation,
   signInAuthSignInPostMutation,
   signOutAuthSignOutPostMutation,
   signUpAuthSignUpPostMutation,
@@ -19,6 +20,8 @@ export const useSignUp = () =>
   useMutation({ ...signUpAuthSignUpPostMutation(), onSuccess: startSession })
 
 export const usePasswordReset = () => useMutation(passwordResetAuthPasswordResetPostMutation())
+
+export const useResetPassword = () => useMutation(resetPasswordAuthResetPasswordPostMutation())
 
 // Ending the session must never depend on the network: the local state is cleared either way.
 export function useSignOut() {
