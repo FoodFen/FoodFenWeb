@@ -73,7 +73,7 @@ export function LoginForm() {
         <FormError message={formError} />
         <SubmitButton loading={isSubmitting}>Đăng nhập</SubmitButton>
       </form>
-      <SwitchLink text="Chưa có tài khoản?" to="/register" label="Đăng ký" />
+      <SwitchLink text="Chưa có tài khoản?" to="/register" label="Đăng ký" redirect={redirect} />
     </AuthLayout>
   )
 }

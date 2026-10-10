@@ -1,6 +1,6 @@
 import { ids } from '@/lib/photos'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useRouter } from '@tanstack/react-router'
+import { getRouteApi, useRouter } from '@tanstack/react-router'
 import { Lock, Mail, User } from 'lucide-react'
 import { useState } from 'react'
 import { useForm, useWatch } from 'react-hook-form'
@@ -10,6 +10,7 @@ import { FormError, SubmitButton } from '@/components/form-parts'
 import { SwitchLink } from './auth-parts'
 import { Field } from './field'
 import { PasswordStrength } from './password-strength'
+import { safeTarget } from './redirect'
 import { registerSchema, type RegisterValues } from './schemas'
 import { useSignUp } from './use-auth'
 
@@ -25,12 +26,13 @@ export function RegisterForm() {
   const [formError, setFormError] = useState<string | null>(null)
   const signUp = useSignUp()
   const router = useRouter()
+  const { redirect } = getRouteApi('/register').useSearch()
 
   const onSubmit = handleSubmit(async ({ displayName, ...values }) => {
     setFormError(null)
     try {
       await signUp.mutateAsync({ body: { ...values, displayName: displayName || null } })
-      router.navigate({ to: '/app' })
+      router.history.push(safeTarget(redirect))
     } catch (error) {
       setFormError(applyApiError(error, setError, ['displayName', 'email', 'password']))
     }
@@ -76,7 +78,7 @@ export function RegisterForm() {
         <FormError message={formError} />
         <SubmitButton loading={isSubmitting}>Tạo tài khoản</SubmitButton>
       </form>
-      <SwitchLink text="Đã có tài khoản?" to="/login" label="Đăng nhập" />
+      <SwitchLink text="Đã có tài khoản?" to="/login" label="Đăng nhập" redirect={redirect} />
     </AuthLayout>
   )
 }

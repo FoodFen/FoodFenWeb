@@ -14,12 +14,16 @@ export function RestaurantProfile({ restaurant, upload }: Props) {
   const update = useUpdateRestaurant()
 
   if (editing) {
+    const rejected = restaurant.status === 'rejected'
     return (
       <div className="space-y-4">
         <h2 className="text-xl font-semibold">Sửa thông tin quán</h2>
+        {rejected && (
+          <p className="text-muted-foreground text-sm">Sau khi lưu, quán sẽ được gửi duyệt lại.</p>
+        )}
         <RestaurantForm
           defaultValues={toRestaurantValues(restaurant)}
-          submitLabel="Lưu thay đổi"
+          submitLabel={rejected ? 'Lưu và gửi duyệt lại' : 'Lưu thay đổi'}
           upload={upload}
           onSubmit={async (values) => {
             await update(values)

@@ -96,6 +96,15 @@ export function Nav() {
             Đăng nhập
           </Link>
           <Link
+            to="/restaurant"
+            className={buttonVariants({
+              variant: 'ghost',
+              className: 'hidden h-11 px-3 text-sm sm:inline-flex',
+            })}
+          >
+            Đăng ký quán
+          </Link>
+          <Link
             to="/register"
             className={buttonVariants({
               className:
