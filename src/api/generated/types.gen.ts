@@ -306,6 +306,58 @@ export type CancelPaymentRequest = {
 };
 
 /**
+ * ChatDishResponse
+ */
+export type ChatDishResponse = {
+    /**
+     * Id
+     */
+    id: string;
+    /**
+     * Name
+     */
+    name: string;
+    /**
+     * Description
+     */
+    description: string | null;
+    /**
+     * Imageurl
+     */
+    imageUrl: string | null;
+    /**
+     * Price
+     */
+    price: number;
+    /**
+     * Servingg
+     */
+    servingG: number;
+    /**
+     * Kcal
+     */
+    kcal: number;
+    /**
+     * Proteing
+     */
+    proteinG: number;
+    /**
+     * Carbsg
+     */
+    carbsG: number;
+    /**
+     * Fatg
+     */
+    fatG: number;
+    /**
+     * Fiberg
+     */
+    fiberG: number | null;
+    dietTag: DishDiet;
+    restaurant: PublicRestaurantSummaryResponse;
+};
+
+/**
  * ChatHistoryResponse
  */
 export type ChatHistoryResponse = {
@@ -339,6 +391,10 @@ export type ChatMessageResponse = {
      * Createdat
      */
     createdAt: string;
+    /**
+     * Dishes
+     */
+    dishes?: Array<ChatDishResponse>;
 };
 
 /**
