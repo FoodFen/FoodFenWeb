@@ -1,4 +1,5 @@
 import type { DishResponse } from '@/api/generated'
+import { DIET_TAGS } from '@/lib/diet-tag'
 import { z } from 'zod'
 
 // Form fields stay strings (what inputs hold); `toDishBody` turns them into the numbers the BE wants.
@@ -32,6 +33,7 @@ export const dishSchema = z.object({
   carbsG: grams('Tinh bột'),
   fatG: grams('Chất béo'),
   fiberG: grams('Chất xơ').or(z.literal('')),
+  dietTag: z.enum(DIET_TAGS),
 })
 
 export type DishValues = z.infer<typeof dishSchema>
@@ -47,6 +49,7 @@ export const emptyDish: DishValues = {
   carbsG: '',
   fatG: '',
   fiberG: '',
+  dietTag: 'none',
 }
 
 /** Request body for create and update; `null` clears an optional field on PATCH. */
@@ -62,6 +65,7 @@ export function toDishBody(values: DishValues) {
     carbsG: toNumber(values.carbsG),
     fatG: toNumber(values.fatG),
     fiberG: values.fiberG === '' ? null : toNumber(values.fiberG),
+    dietTag: values.dietTag,
   }
 }
 
@@ -77,6 +81,7 @@ export function toDishValues(dish: DishResponse): DishValues {
     carbsG: String(dish.carbsG),
     fatG: String(dish.fatG),
     fiberG: dish.fiberG === null ? '' : String(dish.fiberG),
+    dietTag: dish.dietTag,
   }
 }
 

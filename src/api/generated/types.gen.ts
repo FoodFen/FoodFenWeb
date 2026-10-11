@@ -514,6 +514,7 @@ export type CreateDishRequest = {
      * Fiberg
      */
     fiberG?: number | null;
+    dietTag?: DishDiet;
 };
 
 /**
@@ -803,6 +804,11 @@ export type DashboardTotalsResponse = {
 export type DietType = 'balanced' | 'keto' | 'low_carb' | 'high_protein' | 'vegetarian' | 'vegan';
 
 /**
+ * DishDiet
+ */
+export type DishDiet = 'none' | 'vegetarian' | 'vegan';
+
+/**
  * DishResponse
  */
 export type DishResponse = {
@@ -854,6 +860,7 @@ export type DishResponse = {
      * Fiberg
      */
     fiberG: number | null;
+    dietTag: DishDiet;
     status: ModerationStatus;
     /**
      * Rejectionreason
@@ -1285,6 +1292,7 @@ export type PublicDishResponse = {
      * Fiberg
      */
     fiberG: number | null;
+    dietTag: DishDiet;
 };
 
 /**
@@ -1335,10 +1343,15 @@ export type PublicFitDishResponse = {
      * Fiberg
      */
     fiberG: number | null;
+    dietTag: DishDiet;
     /**
      * Fits
      */
     fits: boolean;
+    /**
+     * Reasons
+     */
+    reasons: Array<string>;
     restaurant: PublicRestaurantSummaryResponse;
 };
 
@@ -2044,6 +2057,7 @@ export type UpdateDishRequest = {
      * Fiberg
      */
     fiberG?: number | null;
+    dietTag?: DishDiet | null;
 };
 
 /**

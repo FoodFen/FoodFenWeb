@@ -1,5 +1,12 @@
-import type { RestaurantResponse } from '@/api/generated'
-import { dishSchema, emptyDish, toDishBody, toDishPatch, type DishValues } from './dish-schema'
+import type { DishResponse, RestaurantResponse } from '@/api/generated'
+import {
+  dishSchema,
+  emptyDish,
+  toDishBody,
+  toDishPatch,
+  toDishValues,
+  type DishValues,
+} from './dish-schema'
 import {
   emptyRestaurant,
   restaurantSchema,
@@ -16,6 +23,7 @@ const dish: DishValues = {
   proteinG: '25,5',
   carbsG: '60',
   fatG: '10',
+  dietTag: 'vegan',
 }
 
 test('a complete dish passes and maps to numbers, with the comma read as a decimal point', () => {
@@ -88,4 +96,20 @@ test('a dish patch carries only the edited fields', () => {
     description: null,
     fiberG: null,
   })
+})
+
+test('diet tag defaults to none, rejects unknown values and passes through to the body', () => {
+  expect(emptyDish.dietTag).toBe('none')
+  expect(dishSchema.safeParse({ ...dish, dietTag: 'keto' }).success).toBe(false)
+  expect(toDishBody(dish).dietTag).toBe('vegan')
+})
+
+test('editing a saved dish reads its diet tag back', () => {
+  const saved = { ...toDishBody(dish), id: 'x', status: 'approved' } as unknown as DishResponse
+  expect(toDishValues(saved).dietTag).toBe('vegan')
+})
+
+test('a dish patch includes the diet tag only when it is dirty', () => {
+  expect(toDishPatch(dish, { dietTag: true })).toEqual({ dietTag: 'vegan' })
+  expect(toDishPatch(dish, { kcal: true })).not.toHaveProperty('dietTag')
 })

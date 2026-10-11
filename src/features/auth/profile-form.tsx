@@ -2,6 +2,7 @@ import type { UserResponse } from '@/api/generated'
 import { applyApiError } from '@/api/form-errors'
 import { FormField } from '@/components/form-field'
 import { FormError, SubmitButton } from '@/components/form-parts'
+import { selectClass } from '@/components/select-class'
 import { Input } from '@/components/ui/input'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useState } from 'react'
@@ -14,9 +15,6 @@ import {
   type ProfileValues,
 } from './profile-schema'
 import { useUpdateProfile } from './use-profile'
-
-const selectClass =
-  'border-input dark:bg-input/30 focus-visible:border-ring focus-visible:ring-ring/50 h-11 w-full rounded-lg border bg-transparent px-2.5 text-base outline-none focus-visible:ring-3 md:text-sm'
 
 export function ProfileForm({ user }: { user: UserResponse }) {
   const [saved, setSaved] = useState(false)

@@ -1,9 +1,11 @@
 import { applyApiError } from '@/api/form-errors'
 import { FormField } from '@/components/form-field'
 import { FormError, SubmitButton } from '@/components/form-parts'
+import { selectClass } from '@/components/select-class'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
+import { DIET_TAG_LABELS } from '@/lib/diet-tag'
 import { kcalLooksOff } from '@/lib/nutrition'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { TriangleAlert } from 'lucide-react'
@@ -67,6 +69,20 @@ export function DishForm({ defaultValues, submitLabel, onSubmit, upload }: Props
         error={errors.description?.message}
       >
         <Textarea id="description" rows={2} {...register('description')} />
+      </FormField>
+      <FormField
+        id="dietTag"
+        label="Chế độ ăn"
+        error={errors.dietTag?.message}
+        hint="Chay: không thịt, cá (có thể có trứng, sữa). Thuần chay: không có sản phẩm từ động vật."
+      >
+        <select id="dietTag" className={selectClass} {...register('dietTag')}>
+          {Object.entries(DIET_TAG_LABELS).map(([value, label]) => (
+            <option key={value} value={value}>
+              {label}
+            </option>
+          ))}
+        </select>
       </FormField>
       <div className="grid gap-5 sm:grid-cols-2">
         <NumberField
