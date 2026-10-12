@@ -2,7 +2,7 @@ import { AppShell } from '@/components/app-shell'
 import { requireAdmin } from '@/features/auth/guards'
 import { UserMenu } from '@/features/auth/user-menu'
 import { createFileRoute } from '@tanstack/react-router'
-import { LayoutDashboard, ListChecks, Store, Users, Wallet } from 'lucide-react'
+import { LayoutDashboard, ListChecks, Megaphone, Store, Users, Wallet } from 'lucide-react'
 
 const nav = [
   { to: '/admin', label: 'Tổng quan', icon: LayoutDashboard, exact: true },
@@ -10,6 +10,7 @@ const nav = [
   { to: '/admin/restaurants', label: 'Duyệt quán', icon: Store },
   { to: '/admin/users', label: 'Người dùng', icon: Users },
   { to: '/admin/content', label: 'Nội dung', icon: ListChecks },
+  { to: '/admin/ad-packages', label: 'Gói quảng cáo', icon: Megaphone },
 ]
 
 export const Route = createFileRoute('/admin')({

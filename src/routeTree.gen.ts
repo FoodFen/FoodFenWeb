@@ -17,6 +17,7 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as RegisterRouteImport } from './routes/register'
 import { Route as RestaurantRouteImport } from './routes/restaurant'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
+import { Route as AdminAdPackagesRouteImport } from './routes/admin/ad-packages'
 import { Route as AdminContentRouteImport } from './routes/admin/content'
 import { Route as AdminDashboardRouteImport } from './routes/admin/dashboard'
 import { Route as AdminUsersRouteImport } from './routes/admin/users'
@@ -66,6 +67,11 @@ const RestaurantRoute = RestaurantRouteImport.update({
 const AdminIndexRoute = AdminIndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminAdPackagesRoute = AdminAdPackagesRouteImport.update({
+  id: '/ad-packages',
+  path: '/ad-packages',
   getParentRoute: () => AdminRoute,
 } as any)
 const AdminContentRoute = AdminContentRouteImport.update({
@@ -128,6 +134,7 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
   '/restaurant': typeof RestaurantRouteWithChildren
+  '/admin/ad-packages': typeof AdminAdPackagesRoute
   '/admin/content': typeof AdminContentRoute
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/users': typeof AdminUsersRoute
@@ -145,6 +152,7 @@ export interface FileRoutesByTo {
   '/forgot-password': typeof ForgotPasswordRoute
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
+  '/admin/ad-packages': typeof AdminAdPackagesRoute
   '/admin/content': typeof AdminContentRoute
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/users': typeof AdminUsersRoute
@@ -166,6 +174,7 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
   '/restaurant': typeof RestaurantRouteWithChildren
+  '/admin/ad-packages': typeof AdminAdPackagesRoute
   '/admin/content': typeof AdminContentRoute
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/users': typeof AdminUsersRoute
@@ -188,6 +197,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/register'
     | '/restaurant'
+    | '/admin/ad-packages'
     | '/admin/content'
     | '/admin/dashboard'
     | '/admin/users'
@@ -205,6 +215,7 @@ export interface FileRouteTypes {
     | '/forgot-password'
     | '/login'
     | '/register'
+    | '/admin/ad-packages'
     | '/admin/content'
     | '/admin/dashboard'
     | '/admin/users'
@@ -225,6 +236,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/register'
     | '/restaurant'
+    | '/admin/ad-packages'
     | '/admin/content'
     | '/admin/dashboard'
     | '/admin/users'
@@ -308,6 +320,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminIndexRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/ad-packages': {
+      id: '/admin/ad-packages'
+      path: '/ad-packages'
+      fullPath: '/admin/ad-packages'
+      preLoaderRoute: typeof AdminAdPackagesRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/content': {
       id: '/admin/content'
       path: '/content'
@@ -382,6 +401,7 @@ declare module '@tanstack/react-router' {
 }
 
 interface AdminRouteChildren {
+  AdminAdPackagesRoute: typeof AdminAdPackagesRoute
   AdminContentRoute: typeof AdminContentRoute
   AdminDashboardRoute: typeof AdminDashboardRoute
   AdminUsersRoute: typeof AdminUsersRoute
@@ -391,6 +411,7 @@ interface AdminRouteChildren {
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
+  AdminAdPackagesRoute: AdminAdPackagesRoute,
   AdminContentRoute: AdminContentRoute,
   AdminDashboardRoute: AdminDashboardRoute,
   AdminUsersRoute: AdminUsersRoute,
