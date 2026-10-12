@@ -24,6 +24,7 @@ import { Route as AppIndexRouteImport } from './routes/app/index'
 import { Route as AuthResetPasswordRouteImport } from './routes/auth/reset-password'
 import { Route as AuthVerifyEmailRouteImport } from './routes/auth/verify-email'
 import { Route as RestaurantIndexRouteImport } from './routes/restaurant/index'
+import { Route as RestaurantAdsRouteImport } from './routes/restaurant/ads'
 import { Route as AdminRestaurantsIndexRouteImport } from './routes/admin/restaurants/index'
 import { Route as AdminRestaurantsRestaurantIdRouteImport } from './routes/admin/restaurants/$restaurantId'
 
@@ -102,6 +103,11 @@ const RestaurantIndexRoute = RestaurantIndexRouteImport.update({
   path: '/',
   getParentRoute: () => RestaurantRoute,
 } as any)
+const RestaurantAdsRoute = RestaurantAdsRouteImport.update({
+  id: '/ads',
+  path: '/ads',
+  getParentRoute: () => RestaurantRoute,
+} as any)
 const AdminRestaurantsIndexRoute = AdminRestaurantsIndexRouteImport.update({
   id: '/restaurants/',
   path: '/restaurants/',
@@ -127,6 +133,7 @@ export interface FileRoutesByFullPath {
   '/admin/users': typeof AdminUsersRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/auth/verify-email': typeof AuthVerifyEmailRoute
+  '/restaurant/ads': typeof RestaurantAdsRoute
   '/admin/': typeof AdminIndexRoute
   '/app/': typeof AppIndexRoute
   '/restaurant/': typeof RestaurantIndexRoute
@@ -143,6 +150,7 @@ export interface FileRoutesByTo {
   '/admin/users': typeof AdminUsersRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/auth/verify-email': typeof AuthVerifyEmailRoute
+  '/restaurant/ads': typeof RestaurantAdsRoute
   '/admin': typeof AdminIndexRoute
   '/app': typeof AppIndexRoute
   '/restaurant': typeof RestaurantIndexRoute
@@ -163,6 +171,7 @@ export interface FileRoutesById {
   '/admin/users': typeof AdminUsersRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/auth/verify-email': typeof AuthVerifyEmailRoute
+  '/restaurant/ads': typeof RestaurantAdsRoute
   '/admin/': typeof AdminIndexRoute
   '/app/': typeof AppIndexRoute
   '/restaurant/': typeof RestaurantIndexRoute
@@ -184,6 +193,7 @@ export interface FileRouteTypes {
     | '/admin/users'
     | '/auth/reset-password'
     | '/auth/verify-email'
+    | '/restaurant/ads'
     | '/admin/'
     | '/app/'
     | '/restaurant/'
@@ -200,6 +210,7 @@ export interface FileRouteTypes {
     | '/admin/users'
     | '/auth/reset-password'
     | '/auth/verify-email'
+    | '/restaurant/ads'
     | '/admin'
     | '/app'
     | '/restaurant'
@@ -219,6 +230,7 @@ export interface FileRouteTypes {
     | '/admin/users'
     | '/auth/reset-password'
     | '/auth/verify-email'
+    | '/restaurant/ads'
     | '/admin/'
     | '/app/'
     | '/restaurant/'
@@ -345,6 +357,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RestaurantIndexRouteImport
       parentRoute: typeof RestaurantRoute
     }
+    '/restaurant/ads': {
+      id: '/restaurant/ads'
+      path: '/ads'
+      fullPath: '/restaurant/ads'
+      preLoaderRoute: typeof RestaurantAdsRouteImport
+      parentRoute: typeof RestaurantRoute
+    }
     '/admin/restaurants/': {
       id: '/admin/restaurants/'
       path: '/restaurants'
@@ -393,10 +412,12 @@ const AppRouteChildren: AppRouteChildren = {
 const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
 
 interface RestaurantRouteChildren {
+  RestaurantAdsRoute: typeof RestaurantAdsRoute
   RestaurantIndexRoute: typeof RestaurantIndexRoute
 }
 
 const RestaurantRouteChildren: RestaurantRouteChildren = {
+  RestaurantAdsRoute: RestaurantAdsRoute,
   RestaurantIndexRoute: RestaurantIndexRoute,
 }
 

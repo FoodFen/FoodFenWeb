@@ -14,3 +14,7 @@ export const formatShortDate = (iso: string) => {
 const date = new Intl.DateTimeFormat('vi-VN', { day: '2-digit', month: '2-digit', year: 'numeric' })
 
 export const formatDate = (iso: string) => date.format(new Date(iso))
+
+const dateTime = new Intl.DateTimeFormat('vi-VN', { dateStyle: 'short', timeStyle: 'short' })
+
+export const formatDateTime = (iso: string) => dateTime.format(new Date(iso))
