@@ -1,4 +1,3 @@
-import type { DashboardDayResponse } from '@/api/generated'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import {
   ChartContainer,
@@ -11,18 +10,24 @@ import {
 import { formatShortDate } from '@/lib/format'
 import { Area, AreaChart, CartesianGrid, XAxis } from 'recharts'
 
-type Series = { key: Exclude<keyof DashboardDayResponse, 'date'>; label: string; color: string }
+type Series<Row> = { key: Exclude<keyof Row, 'date'> & string; label: string; color: string }
 
-type Props = {
+type Props<Row extends { date: string }> = {
   title: string
   description: string
-  rows: DashboardDayResponse[]
-  series: Series[]
+  rows: Row[]
+  series: Series<Row>[]
   /** Stack the series on top of each other (parts of one total, like revenue sources). */
   stacked?: boolean
 }
 
-export function DailyChart({ title, description, rows, series, stacked = false }: Props) {
+export function DailyChart<Row extends { date: string }>({
+  title,
+  description,
+  rows,
+  series,
+  stacked = false,
+}: Props<Row>) {
   const config = Object.fromEntries(
     series.map(({ key, label, color }) => [key, { label, color }]),
   ) satisfies ChartConfig

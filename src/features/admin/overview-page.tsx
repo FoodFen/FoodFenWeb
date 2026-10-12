@@ -1,7 +1,7 @@
 import type { DashboardResponse } from '@/api/generated'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Crown, UserPlus, UtensilsCrossed } from 'lucide-react'
-import { DailyChart } from './daily-chart'
+import { DailyChart } from '@/components/daily-chart'
 import { PageHeader } from './page-header'
 import { percentChange } from './percent-change'
 import { QueryError } from './query-error'

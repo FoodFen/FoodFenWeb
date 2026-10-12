@@ -1,7 +1,7 @@
 import type { DashboardDayResponse, DashboardTotalsResponse } from '@/api/generated'
 import { formatVnd } from '@/lib/format'
 import { Crown, Megaphone, Store, UserPlus } from 'lucide-react'
-import { DailyChart } from './daily-chart'
+import { DailyChart } from '@/components/daily-chart'
 import { DateRangeFields, type DateRange } from './date-range-fields'
 import { PageHeader } from './page-header'
 import { StatCard } from './stat-card'
