@@ -8,7 +8,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
-import { QueryError } from './query-error'
+import { QueryError } from '@/components/query-error'
 import { useQuizzes } from './use-content'
 
 export function QuizList() {

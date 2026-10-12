@@ -4,7 +4,7 @@ import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { useNavigate } from '@tanstack/react-router'
 import { useState } from 'react'
 import { PageHeader } from './page-header'
-import { QueryError } from './query-error'
+import { QueryError } from '@/components/query-error'
 import { ReviewQueueTable } from './review-queue-table'
 import { useReviewQueue, type QueueFilter } from './use-moderation'
 

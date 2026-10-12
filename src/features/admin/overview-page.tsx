@@ -4,7 +4,7 @@ import { Crown, UserPlus, UtensilsCrossed } from 'lucide-react'
 import { DailyChart } from '@/components/daily-chart'
 import { PageHeader } from './page-header'
 import { percentChange } from './percent-change'
-import { QueryError } from './query-error'
+import { QueryError } from '@/components/query-error'
 import { StatCard } from './stat-card'
 import { useDashboard } from './use-dashboard'
 

@@ -9,7 +9,7 @@ import {
   TableRow,
 } from '@/components/ui/table'
 import { Coins } from 'lucide-react'
-import { QueryError } from './query-error'
+import { QueryError } from '@/components/query-error'
 import { useQuests } from './use-content'
 
 const cadenceLabel = { daily: 'Hằng ngày', weekly: 'Hằng tuần' }
