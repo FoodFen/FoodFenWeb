@@ -1,1 +1,46 @@
-{}
+{
+  "title": "Advertising on FoodFen",
+  "description": "Put your restaurant in the \"Sponsored\" section of the app.",
+  "noRestaurant": {
+    "message": "You need to create your restaurant before buying ads.",
+    "link": "Create your restaurant"
+  },
+  "explainer": {
+    "title": "How advertising works",
+    "rules": {
+      "eligibility": "Your payment makes the whole restaurant eligible to appear in the app's \"Sponsored\" section.",
+      "relevance": "Your dishes are only shown to users whose nutrition goals they fit.",
+      "limit": "At most 3 restaurants are shown at a time, so impressions are not guaranteed.",
+      "extension": "Buying a package while your ad is still running adds time on top of the current end date.",
+      "refund": "No refund if your restaurant is taken down for breaking the moderation rules."
+    }
+  },
+  "status": {
+    "running": "Advertising until {{date}}",
+    "idle": "No ad is running"
+  },
+  "order": {
+    "pendingTitle": "Waiting for payment confirmation",
+    "pendingBody": "This page updates on its own once the payment is done.",
+    "cancel": "Cancel order",
+    "paidTitle": "Payment successful",
+    "paidBody": "Your restaurant's advertising time has been extended.",
+    "failedTitle": "Payment did not go through",
+    "failedBody": "The order was not paid. You can pick a package and try again.",
+    "close": "Close"
+  },
+  "picker": {
+    "title": "Choose a package",
+    "notApproved": "Your restaurant must be approved before you can buy ads.",
+    "none": "There are no ad packages available right now.",
+    "days_one": "{{count}} day",
+    "days_other": "{{count}} days",
+    "buy": "Buy package",
+    "payWith": "Pay with"
+  },
+  "impressions": {
+    "title": "Impressions",
+    "description_one": "{{total}} impression in the last 30 days",
+    "description_other": "{{total}} impressions in the last 30 days"
+  }
+}

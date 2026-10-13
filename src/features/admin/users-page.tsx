@@ -2,6 +2,7 @@ import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { PageHeader } from './page-header'
 import { QueryError } from '@/components/query-error'
 import { useAdminUsers } from './use-admin-users'
@@ -9,6 +10,7 @@ import { UsersTable } from './users-table'
 import { UsersToolbar, type TierFilter } from './users-toolbar'
 
 export function UsersPage() {
+  const { t } = useTranslation('admin')
   const [query, setQuery] = useState('')
   const [debounced, setDebounced] = useState('')
   const [tier, setTier] = useState<TierFilter>('all')
@@ -23,7 +25,7 @@ export function UsersPage() {
 
   return (
     <div className="space-y-6">
-      <PageHeader title="Người dùng" description="Tìm kiếm tài khoản người dùng." />
+      <PageHeader title={t('users.title')} description={t('users.description')} />
       <UsersToolbar query={query} onQuery={setQuery} tier={tier} onTier={setTier} />
       <Card className="rounded-2xl p-2">
         {users.isPending ? (
@@ -37,7 +39,7 @@ export function UsersPage() {
       {users.data && (
         <div className="flex flex-wrap items-center justify-between gap-3">
           <p className="text-muted-foreground text-sm">
-            Hiển thị {rows.length} trên {users.data.pages[0].total} người dùng
+            {t('users.showing', { shown: rows.length, count: users.data.pages[0].total })}
           </p>
           {users.hasNextPage && (
             <Button
@@ -46,7 +48,7 @@ export function UsersPage() {
               disabled={users.isFetchingNextPage}
               onClick={() => void users.fetchNextPage()}
             >
-              Tải thêm
+              {t('users.loadMore')}
             </Button>
           )}
         </div>

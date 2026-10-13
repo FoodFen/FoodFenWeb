@@ -5,6 +5,7 @@ import { Card } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Plus } from 'lucide-react'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { AdPackageDialog } from './ad-package-dialog'
 import { AdPackagesTable } from './ad-packages-table'
 import { PageHeader } from './page-header'
@@ -14,18 +15,19 @@ import { useAdPackages } from './use-ad-packages'
 type Editing = AdPackageResponse | null | undefined
 
 export function AdPackagesPage() {
+  const { t } = useTranslation('admin')
   const packages = useAdPackages()
   const [editing, setEditing] = useState<Editing>(undefined)
 
   return (
     <div className="space-y-6">
       <PageHeader
-        title="Gói quảng cáo"
-        description="Các gói chủ quán có thể mua để quán được tài trợ trong ứng dụng."
+        title={t('adPackages.title')}
+        description={t('adPackages.description')}
         actions={
           <Button className="h-11 px-4" onClick={() => setEditing(null)}>
             <Plus aria-hidden />
-            Thêm gói
+            {t('adPackages.add')}
           </Button>
         }
       />

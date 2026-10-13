@@ -1,13 +1,15 @@
 import { IconBadge } from '@/components/icon-badge'
 import { Card } from '@/components/ui/card'
+import { formatNumber } from '@/lib/format'
 import { TrendingDown, TrendingUp, type LucideIcon } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 
 export function StatCard({
   icon,
   label,
   value,
   delta,
-  format = (n) => n.toLocaleString('vi-VN'),
+  format = formatNumber,
 }: {
   icon: LucideIcon
   label: string
@@ -15,6 +17,7 @@ export function StatCard({
   delta?: number
   format?: (value: number) => string
 }) {
+  const { t } = useTranslation('admin')
   const up = (delta ?? 0) >= 0
   const Trend = up ? TrendingUp : TrendingDown
   return (
@@ -27,7 +30,7 @@ export function StatCard({
           >
             <Trend className="size-4" aria-hidden />
             {up ? '+' : ''}
-            {delta.toLocaleString('vi-VN')} %<span className="sr-only">so với hôm qua</span>
+            {formatNumber(delta)} %<span className="sr-only">{t('vsYesterday')}</span>
           </span>
         )}
       </div>

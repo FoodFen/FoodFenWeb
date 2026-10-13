@@ -13,6 +13,7 @@ import { Input } from '@/components/ui/input'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import {
   adPackageSchema,
   emptyAdPackage,
@@ -31,6 +32,7 @@ type Props = {
 const FIELDS = ['days', 'priceVnd', 'active'] as const
 
 export function AdPackageDialog({ open, onOpenChange, editing }: Props) {
+  const { t } = useTranslation('admin')
   const save = useSaveAdPackage(editing)
   const [formError, setFormError] = useState<string | null>(null)
   const {
@@ -57,14 +59,13 @@ export function AdPackageDialog({ open, onOpenChange, editing }: Props) {
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>{editing ? 'Sửa gói quảng cáo' : 'Thêm gói quảng cáo'}</DialogTitle>
-          <DialogDescription>
-            Gói đã bán không bị xoá: bỏ chọn "Đang bán" để ẩn gói khỏi chủ quán, các đơn cũ vẫn giữ
-            nguyên gói.
-          </DialogDescription>
+          <DialogTitle>
+            {editing ? t('adPackages.dialog.editTitle') : t('adPackages.dialog.createTitle')}
+          </DialogTitle>
+          <DialogDescription>{t('adPackages.dialog.description')}</DialogDescription>
         </DialogHeader>
         <form onSubmit={submit} noValidate className="space-y-5">
-          <FormField id="days" label="Số ngày" error={errors.days?.message}>
+          <FormField id="days" label={t('adPackages.dialog.days')} error={errors.days?.message}>
             <Input
               id="days"
               inputMode="numeric"
@@ -75,8 +76,8 @@ export function AdPackageDialog({ open, onOpenChange, editing }: Props) {
           </FormField>
           <FormField
             id="priceVnd"
-            label="Giá (đồng)"
-            hint="Ví dụ: 99.000"
+            label={t('adPackages.dialog.price')}
+            hint={t('adPackages.dialog.priceHint')}
             error={errors.priceVnd?.message}
           >
             <Input
@@ -89,11 +90,11 @@ export function AdPackageDialog({ open, onOpenChange, editing }: Props) {
           </FormField>
           <label className="flex min-h-11 items-center gap-2">
             <input type="checkbox" className="accent-primary size-4" {...register('active')} />
-            Đang bán
+            {t('adPackages.onSale')}
           </label>
           <FormError message={formError} />
           <SubmitButton loading={isSubmitting} disabled={!isDirty}>
-            Lưu
+            {t('adPackages.dialog.save')}
           </SubmitButton>
         </form>
       </DialogContent>

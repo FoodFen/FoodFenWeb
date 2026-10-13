@@ -8,25 +8,27 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
+import { useTranslation } from 'react-i18next'
 import { QueryError } from '@/components/query-error'
 import { useQuizzes } from './use-content'
 
 export function QuizList() {
+  const { t } = useTranslation('admin')
   const quizzes = useQuizzes()
 
   if (quizzes.isPending) return <Skeleton className="h-40 w-full" aria-busy />
   if (quizzes.isError)
     return <QueryError error={quizzes.error} onRetry={() => void quizzes.refetch()} />
   if (quizzes.data.length === 0)
-    return <p className="text-muted-foreground py-12 text-center">Chưa có câu hỏi nào.</p>
+    return <p className="text-muted-foreground py-12 text-center">{t('content.quiz.empty')}</p>
 
   return (
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead>Câu hỏi</TableHead>
-          <TableHead className="hidden sm:table-cell">Chủ đề</TableHead>
-          <TableHead>Trạng thái</TableHead>
+          <TableHead>{t('content.quiz.question')}</TableHead>
+          <TableHead className="hidden sm:table-cell">{t('content.quiz.topic')}</TableHead>
+          <TableHead>{t('table.status')}</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -40,7 +42,7 @@ export function QuizList() {
             </TableCell>
             <TableCell>
               <Badge variant={quiz.active ? 'outline' : 'secondary'}>
-                {quiz.active ? 'Đang dùng' : 'Đã tắt'}
+                {quiz.active ? t('content.active') : t('content.inactive')}
               </Badge>
             </TableCell>
           </TableRow>

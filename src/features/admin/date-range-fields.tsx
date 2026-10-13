@@ -1,5 +1,6 @@
 import { FormField } from '@/components/form-field'
 import { Input } from '@/components/ui/input'
+import { useTranslation } from 'react-i18next'
 
 export type DateRange = { from: string; to: string }
 
@@ -11,9 +12,10 @@ export function DateRangeFields({
   value: DateRange
   onChange: (range: DateRange) => void
 }) {
+  const { t } = useTranslation('admin')
   return (
     <div className="flex flex-wrap gap-4">
-      <FormField id="range-from" label="Từ ngày">
+      <FormField id="range-from" label={t('dashboard.from')}>
         <Input
           id="range-from"
           type="date"
@@ -25,7 +27,7 @@ export function DateRangeFields({
           }
         />
       </FormField>
-      <FormField id="range-to" label="Đến ngày">
+      <FormField id="range-to" label={t('dashboard.to')}>
         <Input
           id="range-to"
           type="date"

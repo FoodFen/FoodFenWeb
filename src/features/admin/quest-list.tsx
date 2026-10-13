@@ -9,29 +9,29 @@ import {
   TableRow,
 } from '@/components/ui/table'
 import { Coins } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { QueryError } from '@/components/query-error'
 import { useQuests } from './use-content'
 
-const cadenceLabel = { daily: 'Hằng ngày', weekly: 'Hằng tuần' }
-
 export function QuestList() {
+  const { t } = useTranslation('admin')
   const quests = useQuests()
 
   if (quests.isPending) return <Skeleton className="h-40 w-full" aria-busy />
   if (quests.isError)
     return <QueryError error={quests.error} onRetry={() => void quests.refetch()} />
   if (quests.data.length === 0)
-    return <p className="text-muted-foreground py-12 text-center">Chưa có nhiệm vụ nào.</p>
+    return <p className="text-muted-foreground py-12 text-center">{t('content.quest.empty')}</p>
 
   return (
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead>Nhiệm vụ</TableHead>
-          <TableHead className="hidden sm:table-cell">Chu kỳ</TableHead>
-          <TableHead className="hidden sm:table-cell">Mục tiêu</TableHead>
-          <TableHead>Thưởng</TableHead>
-          <TableHead>Trạng thái</TableHead>
+          <TableHead>{t('content.quest.quest')}</TableHead>
+          <TableHead className="hidden sm:table-cell">{t('content.quest.cadence')}</TableHead>
+          <TableHead className="hidden sm:table-cell">{t('content.quest.target')}</TableHead>
+          <TableHead>{t('content.quest.reward')}</TableHead>
+          <TableHead>{t('table.status')}</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -39,7 +39,7 @@ export function QuestList() {
           <TableRow key={quest.id}>
             <TableCell className="max-w-md font-medium whitespace-normal">{quest.title}</TableCell>
             <TableCell className="hidden sm:table-cell">
-              <Badge variant="secondary">{cadenceLabel[quest.cadence]}</Badge>
+              <Badge variant="secondary">{t(`content.cadence.${quest.cadence}`)}</Badge>
             </TableCell>
             <TableCell className="text-muted-foreground hidden tabular-nums sm:table-cell">
               {quest.target}
@@ -47,12 +47,12 @@ export function QuestList() {
             <TableCell>
               <span className="flex items-center gap-1.5 tabular-nums">
                 <Coins className="text-muted-foreground size-4" aria-hidden />
-                {quest.rewardCoins} xu
+                {t('content.coins', { count: quest.rewardCoins })}
               </span>
             </TableCell>
             <TableCell>
               <Badge variant={quest.active ? 'outline' : 'secondary'}>
-                {quest.active ? 'Đang dùng' : 'Đã tắt'}
+                {quest.active ? t('content.active') : t('content.inactive')}
               </Badge>
             </TableCell>
           </TableRow>

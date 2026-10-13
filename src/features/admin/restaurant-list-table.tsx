@@ -9,8 +9,10 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
+import { formatDate } from '@/lib/format'
 import { CircleCheck, Eye } from 'lucide-react'
-import { emptyMessages, type RestaurantTab } from './restaurant-tabs'
+import { useTranslation } from 'react-i18next'
+import type { RestaurantTab } from './restaurant-tabs'
 
 type Props = {
   rows: AdminRestaurantRowResponse[]
@@ -19,12 +21,13 @@ type Props = {
 }
 
 export function RestaurantListTable({ rows, tab, onOpen }: Props) {
+  const { t } = useTranslation('admin')
   if (rows.length === 0) {
     return (
       <div className="flex flex-col items-center gap-2 py-16 text-center">
         <CircleCheck className="text-muted-foreground size-10" aria-hidden />
-        <p className="font-medium">Chưa có quán nào ở mục này</p>
-        <p className="text-muted-foreground text-sm">{emptyMessages[tab]}</p>
+        <p className="font-medium">{t('restaurants.empty.title')}</p>
+        <p className="text-muted-foreground text-sm">{t(`restaurants.empty.${tab}`)}</p>
       </div>
     )
   }
@@ -33,12 +36,14 @@ export function RestaurantListTable({ rows, tab, onOpen }: Props) {
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead>Quán</TableHead>
-          <TableHead>Trạng thái</TableHead>
-          <TableHead className="hidden md:table-cell">Món chờ duyệt</TableHead>
-          <TableHead className="hidden lg:table-cell">Cập nhật</TableHead>
+          <TableHead>{t('restaurants.columns.restaurant')}</TableHead>
+          <TableHead>{t('table.status')}</TableHead>
+          <TableHead className="hidden md:table-cell">
+            {t('restaurants.columns.pendingDishes')}
+          </TableHead>
+          <TableHead className="hidden lg:table-cell">{t('restaurants.columns.updated')}</TableHead>
           <TableHead className="w-28">
-            <span className="sr-only">Thao tác</span>
+            <span className="sr-only">{t('table.actions')}</span>
           </TableHead>
         </TableRow>
       </TableHeader>
@@ -58,17 +63,17 @@ export function RestaurantListTable({ rows, tab, onOpen }: Props) {
               {row.pendingDishCount} / {row.dishCount}
             </TableCell>
             <TableCell className="text-muted-foreground hidden tabular-nums lg:table-cell">
-              {new Date(row.updatedAt).toLocaleDateString('vi-VN')}
+              {formatDate(row.updatedAt)}
             </TableCell>
             <TableCell>
               <Button
                 variant="outline"
                 className="h-11 px-4"
                 onClick={() => onOpen(row.id)}
-                aria-label={`Xem ${row.name}`}
+                aria-label={t('restaurants.viewNamed', { name: row.name })}
               >
                 <Eye aria-hidden />
-                Xem
+                {t('restaurants.view')}
               </Button>
             </TableCell>
           </TableRow>

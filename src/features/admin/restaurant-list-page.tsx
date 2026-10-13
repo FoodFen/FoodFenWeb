@@ -4,14 +4,16 @@ import { Card } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { getRouteApi, useNavigate } from '@tanstack/react-router'
+import { useTranslation } from 'react-i18next'
 import { PageHeader } from './page-header'
 import { RestaurantListTable } from './restaurant-list-table'
-import { restaurantTabs, tabLabels, type RestaurantTab } from './restaurant-tabs'
+import { restaurantTabs, type RestaurantTab } from './restaurant-tabs'
 import { useRestaurantList } from './use-moderation'
 
 const route = getRouteApi('/_authed/admin/restaurants/')
 
 export function RestaurantListPage() {
+  const { t } = useTranslation(['admin', 'common'])
   const tab = route.useSearch({ select: (s) => s.tab ?? 'all' })
   const navigate = route.useNavigate()
   const openNavigate = useNavigate()
@@ -20,10 +22,7 @@ export function RestaurantListPage() {
 
   return (
     <div className="space-y-6">
-      <PageHeader
-        title="Quản lý quán"
-        description="Tất cả quán trên FoodFen và các yêu cầu chờ duyệt."
-      />
+      <PageHeader title={t('restaurants.title')} description={t('restaurants.description')} />
       <Tabs
         value={tab}
         onValueChange={(value) =>
@@ -33,7 +32,7 @@ export function RestaurantListPage() {
         <TabsList>
           {restaurantTabs.map((value) => (
             <TabsTrigger key={value} value={value}>
-              {tabLabels[value]}
+              {value === 'all' ? t('restaurants.allTab') : t(`common:status.${value}`)}
               {value === 'pending' && pendingCount > 0 && <Badge>{pendingCount}</Badge>}
             </TabsTrigger>
           ))}

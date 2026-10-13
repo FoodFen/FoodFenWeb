@@ -7,8 +7,8 @@ const money = (text: string) => digits(text.replace(/[.\s]/g, ''))
 const positive = (value: number) => Number.isSafeInteger(value) && value > 0
 
 export const adPackageSchema = z.object({
-  days: z.string().refine((text) => positive(digits(text)), 'Số ngày là số nguyên lớn hơn 0'),
-  priceVnd: z.string().refine((text) => positive(money(text)), 'Giá là số nguyên đồng lớn hơn 0'),
+  days: z.string().refine((text) => positive(digits(text)), 'admin:validation.daysPositive'),
+  priceVnd: z.string().refine((text) => positive(money(text)), 'admin:validation.pricePositive'),
   active: z.boolean(),
 })
 

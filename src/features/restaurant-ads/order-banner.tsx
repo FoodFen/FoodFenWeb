@@ -2,10 +2,12 @@ import { FormError } from '@/components/form-parts'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Button } from '@/components/ui/button'
 import { CircleCheck, CircleX, LoaderCircle } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { usePaymentOrder } from './use-ads'
 
 /** Shows the order the owner just paid for: waiting, or how it ended. Renders nothing without one. */
 export function OrderBanner() {
+  const { t } = useTranslation('ads')
   const { status, cancel, cancelling, cancelError, dismiss } = usePaymentOrder()
 
   if (!status) return null
@@ -14,9 +16,9 @@ export function OrderBanner() {
     return (
       <Alert>
         <LoaderCircle className="animate-spin" aria-hidden />
-        <AlertTitle>Đang chờ xác nhận thanh toán</AlertTitle>
+        <AlertTitle>{t('order.pendingTitle')}</AlertTitle>
         <AlertDescription>
-          <p>Trang sẽ tự cập nhật khi thanh toán xong.</p>
+          <p>{t('order.pendingBody')}</p>
           <FormError message={cancelError} />
           <Button
             variant="outline"
@@ -24,7 +26,7 @@ export function OrderBanner() {
             disabled={cancelling}
             onClick={cancel}
           >
-            Huỷ đơn
+            {t('order.cancel')}
           </Button>
         </AlertDescription>
       </Alert>
@@ -36,15 +38,11 @@ export function OrderBanner() {
   return (
     <Alert variant={paid ? 'default' : 'destructive'}>
       <Icon aria-hidden />
-      <AlertTitle>{paid ? 'Thanh toán thành công' : 'Thanh toán chưa thành công'}</AlertTitle>
+      <AlertTitle>{paid ? t('order.paidTitle') : t('order.failedTitle')}</AlertTitle>
       <AlertDescription>
-        <p>
-          {paid
-            ? 'Quán của bạn đã được gia hạn thời gian quảng cáo.'
-            : 'Đơn chưa được thanh toán. Bạn có thể chọn gói và thử lại.'}
-        </p>
+        <p>{paid ? t('order.paidBody') : t('order.failedBody')}</p>
         <Button variant="outline" className="mt-3 h-11 px-4" onClick={dismiss}>
-          Đóng
+          {t('order.close')}
         </Button>
       </AlertDescription>
     </Alert>

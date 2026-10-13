@@ -1,1 +1,176 @@
-{}
+{
+  "vsYesterday": "so với hôm qua",
+  "days_one": "{{count}} ngày",
+  "days_other": "{{count}} ngày",
+  "table": {
+    "status": "Trạng thái",
+    "actions": "Thao tác"
+  },
+  "validation": {
+    "daysPositive": "Số ngày là số nguyên lớn hơn 0",
+    "pricePositive": "Giá là số nguyên đồng lớn hơn 0"
+  },
+  "overview": {
+    "title": "Tổng quan",
+    "description": "Hoạt động của FoodFen trong ngày hôm nay.",
+    "newUsersToday": "Người dùng mới hôm nay",
+    "mealsToday": "Bữa ăn được ghi hôm nay",
+    "premiumUsers": "Người dùng Premium",
+    "last30Days": "30 ngày gần nhất"
+  },
+  "dashboard": {
+    "title": "Dòng tiền và tăng trưởng",
+    "description": "Doanh thu và lượng người dùng, quán mới theo ngày (giờ Việt Nam).",
+    "backToDefault": "Về 30 ngày gần nhất",
+    "from": "Từ ngày",
+    "to": "Đến ngày",
+    "stats": {
+      "premiumRevenue": "Doanh thu Premium",
+      "adRevenue": "Doanh thu quảng cáo",
+      "newUsers": "Người dùng mới",
+      "newRestaurants": "Quán mới"
+    },
+    "series": {
+      "premium": "Premium",
+      "ads": "Quảng cáo",
+      "newUsers": "Người dùng mới",
+      "newRestaurants": "Quán mới"
+    },
+    "charts": {
+      "revenue": {
+        "title": "Doanh thu theo ngày",
+        "description": "Premium và quảng cáo, đơn vị đồng"
+      },
+      "newUsers": {
+        "title": "Người dùng mới theo ngày",
+        "description": "Tài khoản đăng ký mới"
+      },
+      "newRestaurants": {
+        "title": "Quán mới theo ngày",
+        "description": "Quán đăng ký mới"
+      }
+    }
+  },
+  "restaurants": {
+    "title": "Quản lý quán",
+    "description": "Tất cả quán trên FoodFen và các yêu cầu chờ duyệt.",
+    "allTab": "Tất cả",
+    "empty": {
+      "title": "Chưa có quán nào ở mục này",
+      "all": "Quán mới đăng ký sẽ xuất hiện ở đây.",
+      "pending": "Quán và món mới gửi lên sẽ xuất hiện ở đây để chờ duyệt.",
+      "approved": "Các quán đã được duyệt sẽ xuất hiện ở đây.",
+      "rejected": "Các quán bị từ chối sẽ xuất hiện ở đây."
+    },
+    "columns": {
+      "restaurant": "Quán",
+      "pendingDishes": "Món chờ duyệt",
+      "updated": "Cập nhật"
+    },
+    "view": "Xem",
+    "viewNamed": "Xem {{name}}"
+  },
+  "review": {
+    "approveRestaurant": "Duyệt quán",
+    "takeDownRestaurant": "Gỡ quán",
+    "rejectRestaurant": "Từ chối quán",
+    "menu_one": "Thực đơn ({{count}} món)",
+    "menu_other": "Thực đơn ({{count}} món)",
+    "noDishes": "Quán chưa thêm món nào.",
+    "approve": "Duyệt",
+    "takeDown": "Gỡ món",
+    "reject": "Từ chối",
+    "estimate": "Ước tính từ đạm, tinh bột, béo (4P + 4C + 9F): {{value}} kcal",
+    "conflict": "Chủ quán vừa sửa nội dung này. Trang đã tải bản mới, hãy xem lại rồi duyệt."
+  },
+  "rejectDialog": {
+    "title": "Từ chối {{subject}}",
+    "description": "Chủ quán sẽ thấy lý do này và có thể sửa rồi gửi lại.",
+    "reason": "Lý do",
+    "reasonRequired": "Nhập lý do để chủ quán biết cần sửa gì.",
+    "submit": "Từ chối"
+  },
+  "users": {
+    "title": "Người dùng",
+    "description": "Tìm kiếm tài khoản người dùng.",
+    "searchPlaceholder": "Tìm theo tên hoặc email",
+    "searchLabel": "Tìm người dùng",
+    "tierFilter": "Lọc theo gói",
+    "tiers": {
+      "all": "Tất cả",
+      "free": "Miễn phí",
+      "premium": "Premium"
+    },
+    "showing_one": "Hiển thị {{shown}} trên {{count}} người dùng",
+    "showing_other": "Hiển thị {{shown}} trên {{count}} người dùng",
+    "loadMore": "Tải thêm",
+    "empty": {
+      "title": "Không tìm thấy người dùng",
+      "hint": "Thử đổi từ khóa hoặc bộ lọc gói."
+    },
+    "columns": {
+      "user": "Người dùng",
+      "tier": "Gói",
+      "streak": "Chuỗi ngày",
+      "joined": "Tham gia"
+    },
+    "admin": "Quản trị",
+    "active": "Hoạt động",
+    "locked": "Đã khóa"
+  },
+  "content": {
+    "title": "Nội dung",
+    "description": "Câu hỏi quiz và nhiệm vụ có trong ứng dụng (chỉ xem).",
+    "tabs": {
+      "quiz": "Câu hỏi quiz",
+      "quest": "Nhiệm vụ"
+    },
+    "active": "Đang dùng",
+    "inactive": "Đã tắt",
+    "quiz": {
+      "empty": "Chưa có câu hỏi nào.",
+      "question": "Câu hỏi",
+      "topic": "Chủ đề"
+    },
+    "quest": {
+      "empty": "Chưa có nhiệm vụ nào.",
+      "quest": "Nhiệm vụ",
+      "cadence": "Chu kỳ",
+      "target": "Mục tiêu",
+      "reward": "Thưởng"
+    },
+    "cadence": {
+      "daily": "Hằng ngày",
+      "weekly": "Hằng tuần"
+    },
+    "coins_one": "{{count}} xu",
+    "coins_other": "{{count}} xu"
+  },
+  "adPackages": {
+    "title": "Gói quảng cáo",
+    "description": "Các gói chủ quán có thể mua để quán được tài trợ trong ứng dụng.",
+    "add": "Thêm gói",
+    "edit": "Sửa",
+    "editNamed": "Sửa gói {{days}} ngày",
+    "onSale": "Đang bán",
+    "hidden": "Đã ẩn",
+    "empty": {
+      "title": "Chưa có gói quảng cáo nào",
+      "hint": "Nhấn Thêm gói để tạo gói đầu tiên."
+    },
+    "columns": {
+      "days": "Số ngày",
+      "price": "Giá",
+      "created": "Ngày tạo"
+    },
+    "dialog": {
+      "createTitle": "Thêm gói quảng cáo",
+      "editTitle": "Sửa gói quảng cáo",
+      "description": "Gói đã bán không bị xoá: bỏ chọn \"Đang bán\" để ẩn gói khỏi chủ quán, các đơn cũ vẫn giữ nguyên gói.",
+      "days": "Số ngày",
+      "price": "Giá (đồng)",
+      "priceHint": "Ví dụ: 99.000",
+      "save": "Lưu"
+    }
+  }
+}

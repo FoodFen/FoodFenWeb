@@ -6,10 +6,12 @@ import { Button } from '@/components/ui/button'
 import { formatNumber, formatVnd } from '@/lib/format'
 import { estimateKcal, kcalLooksOff } from '@/lib/nutrition'
 import { Check, ImageOff, TriangleAlert, X } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 
 type Props = { dish: DishResponse; busy: boolean; onApprove: () => void; onReject: () => void }
 
 export function ReviewDishRow({ dish, busy, onApprove, onReject }: Props) {
+  const { t } = useTranslation('admin')
   const off = kcalLooksOff(dish.kcal, dish)
   return (
     <li className="flex flex-col gap-3 py-4 sm:flex-row sm:items-start">
@@ -35,7 +37,7 @@ export function ReviewDishRow({ dish, busy, onApprove, onReject }: Props) {
           className={`flex items-center gap-1.5 text-sm tabular-nums ${off ? 'text-destructive' : 'text-muted-foreground'}`}
         >
           {off && <TriangleAlert className="size-4" aria-hidden />}
-          Ước tính từ đạm, tinh bột, béo (4P + 4C + 9F): {formatNumber(estimateKcal(dish))} kcal
+          {t('review.estimate', { value: formatNumber(estimateKcal(dish)) })}
         </p>
         {dish.status === 'rejected' && <RejectionNote reason={dish.rejectionReason} />}
       </div>
@@ -43,12 +45,12 @@ export function ReviewDishRow({ dish, busy, onApprove, onReject }: Props) {
         {dish.status !== 'approved' && (
           <Button className="h-11 px-4" disabled={busy} onClick={onApprove}>
             <Check aria-hidden />
-            Duyệt
+            {t('review.approve')}
           </Button>
         )}
         <Button variant="outline" className="h-11 px-4" disabled={busy} onClick={onReject}>
           <X aria-hidden />
-          {dish.status === 'approved' ? 'Gỡ món' : 'Từ chối'}
+          {dish.status === 'approved' ? t('review.takeDown') : t('review.reject')}
         </Button>
       </div>
     </li>

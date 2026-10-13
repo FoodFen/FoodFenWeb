@@ -3,6 +3,7 @@ import { RestaurantSummary } from '@/components/restaurant-summary'
 import { Button } from '@/components/ui/button'
 import { Check, X } from 'lucide-react'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { RejectDialog } from './reject-dialog'
 import { ReviewDishRow } from './review-dish-row'
 
@@ -27,6 +28,7 @@ export function RestaurantReview({
   onApproveDish,
   onRejectDish,
 }: Props) {
+  const { t } = useTranslation('admin')
   const [target, setTarget] = useState<Target | null>(null)
   const approved = restaurant.status === 'approved'
 
@@ -39,7 +41,7 @@ export function RestaurantReview({
             {!approved && (
               <Button className="h-11 px-4" disabled={busy} onClick={onApproveRestaurant}>
                 <Check aria-hidden />
-                Duyệt quán
+                {t('review.approveRestaurant')}
               </Button>
             )}
             <Button
@@ -49,15 +51,15 @@ export function RestaurantReview({
               onClick={() => setTarget({ kind: 'restaurant' })}
             >
               <X aria-hidden />
-              {approved ? 'Gỡ quán' : 'Từ chối quán'}
+              {approved ? t('review.takeDownRestaurant') : t('review.rejectRestaurant')}
             </Button>
           </div>
         }
       />
       <section className="space-y-2">
-        <h2 className="text-lg font-semibold">Thực đơn ({dishes.length} món)</h2>
+        <h2 className="text-lg font-semibold">{t('review.menu', { count: dishes.length })}</h2>
         {dishes.length === 0 ? (
-          <p className="text-muted-foreground">Quán chưa thêm món nào.</p>
+          <p className="text-muted-foreground">{t('review.noDishes')}</p>
         ) : (
           <ul className="divide-y">
             {dishes.map((dish) => (

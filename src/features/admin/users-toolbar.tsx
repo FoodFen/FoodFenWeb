@@ -1,14 +1,11 @@
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Search } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 
 export type TierFilter = 'all' | 'free' | 'premium'
 
-const tiers: { value: TierFilter; label: string }[] = [
-  { value: 'all', label: 'Tất cả' },
-  { value: 'free', label: 'Miễn phí' },
-  { value: 'premium', label: 'Premium' },
-]
+const tiers: TierFilter[] = ['all', 'free', 'premium']
 
 export function UsersToolbar({
   query,
@@ -21,6 +18,7 @@ export function UsersToolbar({
   tier: TierFilter
   onTier: (value: TierFilter) => void
 }) {
+  const { t } = useTranslation('admin')
   return (
     <div className="flex flex-wrap items-center justify-between gap-3">
       <div className="relative w-full sm:max-w-xs">
@@ -32,13 +30,13 @@ export function UsersToolbar({
           type="search"
           value={query}
           onChange={(e) => onQuery(e.target.value)}
-          placeholder="Tìm theo tên hoặc email"
-          aria-label="Tìm người dùng"
+          placeholder={t('users.searchPlaceholder')}
+          aria-label={t('users.searchLabel')}
           className="h-11 pl-10"
         />
       </div>
-      <div role="group" aria-label="Lọc theo gói" className="flex gap-1.5">
-        {tiers.map(({ value, label }) => (
+      <div role="group" aria-label={t('users.tierFilter')} className="flex gap-1.5">
+        {tiers.map((value) => (
           <Button
             key={value}
             variant={tier === value ? 'default' : 'outline'}
@@ -46,7 +44,7 @@ export function UsersToolbar({
             onClick={() => onTier(value)}
             className="h-11 px-4"
           >
-            {label}
+            {t(`users.tiers.${value}`)}
           </Button>
         ))}
       </div>

@@ -11,16 +11,18 @@ import {
 } from '@/components/ui/table'
 import { formatDate, formatVnd } from '@/lib/format'
 import { Pencil, PackageOpen } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 
 type Props = { rows: AdPackageResponse[]; onEdit: (item: AdPackageResponse) => void }
 
 export function AdPackagesTable({ rows, onEdit }: Props) {
+  const { t } = useTranslation('admin')
   if (rows.length === 0) {
     return (
       <div className="flex flex-col items-center gap-2 py-16 text-center">
         <PackageOpen className="text-muted-foreground size-10" aria-hidden />
-        <p className="font-medium">Chưa có gói quảng cáo nào</p>
-        <p className="text-muted-foreground text-sm">Nhấn Thêm gói để tạo gói đầu tiên.</p>
+        <p className="font-medium">{t('adPackages.empty.title')}</p>
+        <p className="text-muted-foreground text-sm">{t('adPackages.empty.hint')}</p>
       </div>
     )
   }
@@ -29,12 +31,12 @@ export function AdPackagesTable({ rows, onEdit }: Props) {
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead>Số ngày</TableHead>
-          <TableHead>Giá</TableHead>
-          <TableHead>Trạng thái</TableHead>
-          <TableHead className="hidden md:table-cell">Ngày tạo</TableHead>
+          <TableHead>{t('adPackages.columns.days')}</TableHead>
+          <TableHead>{t('adPackages.columns.price')}</TableHead>
+          <TableHead>{t('table.status')}</TableHead>
+          <TableHead className="hidden md:table-cell">{t('adPackages.columns.created')}</TableHead>
           <TableHead className="w-28">
-            <span className="sr-only">Thao tác</span>
+            <span className="sr-only">{t('table.actions')}</span>
           </TableHead>
         </TableRow>
       </TableHeader>
@@ -45,7 +47,7 @@ export function AdPackagesTable({ rows, onEdit }: Props) {
             <TableCell className="tabular-nums">{formatVnd(item.priceVnd)}</TableCell>
             <TableCell>
               <Badge variant={item.active ? 'default' : 'secondary'}>
-                {item.active ? 'Đang bán' : 'Đã ẩn'}
+                {item.active ? t('adPackages.onSale') : t('adPackages.hidden')}
               </Badge>
             </TableCell>
             <TableCell className="text-muted-foreground hidden tabular-nums md:table-cell">
@@ -56,10 +58,10 @@ export function AdPackagesTable({ rows, onEdit }: Props) {
                 variant="outline"
                 className="h-11 px-4"
                 onClick={() => onEdit(item)}
-                aria-label={`Sửa gói ${item.days} ngày`}
+                aria-label={t('adPackages.editNamed', { days: item.days })}
               >
                 <Pencil aria-hidden />
-                Sửa
+                {t('adPackages.edit')}
               </Button>
             </TableCell>
           </TableRow>

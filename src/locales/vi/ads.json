@@ -1,1 +1,46 @@
-{}
+{
+  "title": "Quảng cáo trên FoodFen",
+  "description": "Đưa quán của bạn lên mục \"Được tài trợ\" trong ứng dụng.",
+  "noRestaurant": {
+    "message": "Bạn cần tạo quán trước khi mua quảng cáo.",
+    "link": "Tạo quán của bạn"
+  },
+  "explainer": {
+    "title": "Quảng cáo hoạt động thế nào",
+    "rules": {
+      "eligibility": "Thanh toán để cả quán đủ điều kiện xuất hiện trong mục \"Được tài trợ\" của ứng dụng.",
+      "relevance": "Món của quán chỉ hiện với người dùng phù hợp với mục tiêu dinh dưỡng của họ.",
+      "limit": "Mỗi lần hiển thị tối đa 3 quán, nên lượt hiển thị không được đảm bảo.",
+      "extension": "Mua gói khi quảng cáo còn hạn sẽ cộng thêm thời gian từ ngày hết hạn hiện tại.",
+      "refund": "Không hoàn tiền nếu quán bị gỡ do vi phạm quy định kiểm duyệt."
+    }
+  },
+  "status": {
+    "running": "Đang quảng cáo đến {{date}}",
+    "idle": "Chưa chạy quảng cáo"
+  },
+  "order": {
+    "pendingTitle": "Đang chờ xác nhận thanh toán",
+    "pendingBody": "Trang sẽ tự cập nhật khi thanh toán xong.",
+    "cancel": "Huỷ đơn",
+    "paidTitle": "Thanh toán thành công",
+    "paidBody": "Quán của bạn đã được gia hạn thời gian quảng cáo.",
+    "failedTitle": "Thanh toán chưa thành công",
+    "failedBody": "Đơn chưa được thanh toán. Bạn có thể chọn gói và thử lại.",
+    "close": "Đóng"
+  },
+  "picker": {
+    "title": "Chọn gói",
+    "notApproved": "Quán cần được duyệt trước khi mua quảng cáo.",
+    "none": "Hiện chưa có gói quảng cáo nào.",
+    "days_one": "{{count}} ngày",
+    "days_other": "{{count}} ngày",
+    "buy": "Mua gói",
+    "payWith": "Thanh toán qua"
+  },
+  "impressions": {
+    "title": "Lượt hiển thị",
+    "description_one": "{{total}} lượt trong 30 ngày qua",
+    "description_other": "{{total}} lượt trong 30 ngày qua"
+  }
+}

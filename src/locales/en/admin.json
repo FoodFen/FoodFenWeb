@@ -1,1 +1,176 @@
-{}
+{
+  "vsYesterday": "vs yesterday",
+  "days_one": "{{count}} day",
+  "days_other": "{{count}} days",
+  "table": {
+    "status": "Status",
+    "actions": "Actions"
+  },
+  "validation": {
+    "daysPositive": "Days must be a whole number greater than 0",
+    "pricePositive": "Price must be a whole number of dong greater than 0"
+  },
+  "overview": {
+    "title": "Overview",
+    "description": "FoodFen activity today.",
+    "newUsersToday": "New users today",
+    "mealsToday": "Meals logged today",
+    "premiumUsers": "Premium users",
+    "last30Days": "Last 30 days"
+  },
+  "dashboard": {
+    "title": "Cash flow and growth",
+    "description": "Revenue, new users and new restaurants per day (Vietnam time).",
+    "backToDefault": "Back to the last 30 days",
+    "from": "From",
+    "to": "To",
+    "stats": {
+      "premiumRevenue": "Premium revenue",
+      "adRevenue": "Ad revenue",
+      "newUsers": "New users",
+      "newRestaurants": "New restaurants"
+    },
+    "series": {
+      "premium": "Premium",
+      "ads": "Ads",
+      "newUsers": "New users",
+      "newRestaurants": "New restaurants"
+    },
+    "charts": {
+      "revenue": {
+        "title": "Revenue per day",
+        "description": "Premium and ads, in VND"
+      },
+      "newUsers": {
+        "title": "New users per day",
+        "description": "New sign-ups"
+      },
+      "newRestaurants": {
+        "title": "New restaurants per day",
+        "description": "New restaurant registrations"
+      }
+    }
+  },
+  "restaurants": {
+    "title": "Restaurants",
+    "description": "Every restaurant on FoodFen and the requests waiting for review.",
+    "allTab": "All",
+    "empty": {
+      "title": "No restaurants in this tab",
+      "all": "Newly registered restaurants will show up here.",
+      "pending": "Restaurants and dishes submitted for review will show up here.",
+      "approved": "Approved restaurants will show up here.",
+      "rejected": "Rejected restaurants will show up here."
+    },
+    "columns": {
+      "restaurant": "Restaurant",
+      "pendingDishes": "Dishes to review",
+      "updated": "Updated"
+    },
+    "view": "View",
+    "viewNamed": "View {{name}}"
+  },
+  "review": {
+    "approveRestaurant": "Approve restaurant",
+    "takeDownRestaurant": "Take down restaurant",
+    "rejectRestaurant": "Reject restaurant",
+    "menu_one": "Menu ({{count}} dish)",
+    "menu_other": "Menu ({{count}} dishes)",
+    "noDishes": "This restaurant has not added any dishes yet.",
+    "approve": "Approve",
+    "takeDown": "Take down",
+    "reject": "Reject",
+    "estimate": "Estimated from protein, carbs and fat (4P + 4C + 9F): {{value}} kcal",
+    "conflict": "The owner just edited this. The page has loaded the new version, please review it again before approving."
+  },
+  "rejectDialog": {
+    "title": "Reject {{subject}}",
+    "description": "The owner will see this reason and can fix the issue and resubmit.",
+    "reason": "Reason",
+    "reasonRequired": "Enter a reason so the owner knows what to fix.",
+    "submit": "Reject"
+  },
+  "users": {
+    "title": "Users",
+    "description": "Search user accounts.",
+    "searchPlaceholder": "Search by name or email",
+    "searchLabel": "Search users",
+    "tierFilter": "Filter by plan",
+    "tiers": {
+      "all": "All",
+      "free": "Free",
+      "premium": "Premium"
+    },
+    "showing_one": "Showing {{shown}} of {{count}} user",
+    "showing_other": "Showing {{shown}} of {{count}} users",
+    "loadMore": "Load more",
+    "empty": {
+      "title": "No users found",
+      "hint": "Try a different keyword or plan filter."
+    },
+    "columns": {
+      "user": "User",
+      "tier": "Plan",
+      "streak": "Streak",
+      "joined": "Joined"
+    },
+    "admin": "Admin",
+    "active": "Active",
+    "locked": "Locked"
+  },
+  "content": {
+    "title": "Content",
+    "description": "Quiz questions and quests available in the app (read-only).",
+    "tabs": {
+      "quiz": "Quiz questions",
+      "quest": "Quests"
+    },
+    "active": "In use",
+    "inactive": "Off",
+    "quiz": {
+      "empty": "No questions yet.",
+      "question": "Question",
+      "topic": "Topic"
+    },
+    "quest": {
+      "empty": "No quests yet.",
+      "quest": "Quest",
+      "cadence": "Repeats",
+      "target": "Target",
+      "reward": "Reward"
+    },
+    "cadence": {
+      "daily": "Daily",
+      "weekly": "Weekly"
+    },
+    "coins_one": "{{count}} coin",
+    "coins_other": "{{count}} coins"
+  },
+  "adPackages": {
+    "title": "Ad packages",
+    "description": "Packages restaurant owners can buy to get sponsored placement in the app.",
+    "add": "Add package",
+    "edit": "Edit",
+    "editNamed": "Edit {{days}}-day package",
+    "onSale": "On sale",
+    "hidden": "Hidden",
+    "empty": {
+      "title": "No ad packages yet",
+      "hint": "Press Add package to create the first one."
+    },
+    "columns": {
+      "days": "Days",
+      "price": "Price",
+      "created": "Created"
+    },
+    "dialog": {
+      "createTitle": "Add ad package",
+      "editTitle": "Edit ad package",
+      "description": "Sold packages are never deleted: untick \"On sale\" to hide a package from owners, past orders keep their package.",
+      "days": "Days",
+      "price": "Price (VND)",
+      "priceHint": "Example: 99.000",
+      "save": "Save"
+    }
+  }
+}

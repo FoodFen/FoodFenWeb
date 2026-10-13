@@ -3,6 +3,7 @@ import { buttonVariants } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Link, getRouteApi } from '@tanstack/react-router'
 import { ArrowLeft } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { QueryError } from '@/components/query-error'
 import { RestaurantReview } from './restaurant-review'
 import { reviewErrorMessage } from './review-error'
@@ -11,6 +12,7 @@ import { useAdminRestaurant, useReviewActions } from './use-moderation'
 const route = getRouteApi('/_authed/admin/restaurants/$restaurantId')
 
 export function RestaurantReviewPage() {
+  const { t } = useTranslation('admin')
   const { restaurantId } = route.useParams()
   const detail = useAdminRestaurant(restaurantId)
   const { busy, error, reviewRestaurant, reviewDish } = useReviewActions(restaurantId)
@@ -22,7 +24,7 @@ export function RestaurantReviewPage() {
         className={buttonVariants({ variant: 'ghost', className: 'h-11 px-3' })}
       >
         <ArrowLeft aria-hidden />
-        Quản lý quán
+        {t('restaurants.title')}
       </Link>
       {detail.isPending ? (
         <Skeleton className="h-64 w-full rounded-2xl" aria-busy />

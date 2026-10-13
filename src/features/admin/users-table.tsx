@@ -10,6 +10,7 @@ import {
 } from '@/components/ui/table'
 import { formatDate } from '@/lib/format'
 import { Flame, SearchX } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 
 const initials = (name: string) =>
   name
@@ -20,12 +21,13 @@ const initials = (name: string) =>
     .toUpperCase()
 
 export function UsersTable({ users }: { users: AdminUserRowResponse[] }) {
+  const { t } = useTranslation('admin')
   if (users.length === 0) {
     return (
       <div className="flex flex-col items-center gap-2 py-16 text-center">
         <SearchX className="text-muted-foreground size-10" aria-hidden />
-        <p className="font-medium">Không tìm thấy người dùng</p>
-        <p className="text-muted-foreground text-sm">Thử đổi từ khóa hoặc bộ lọc gói.</p>
+        <p className="font-medium">{t('users.empty.title')}</p>
+        <p className="text-muted-foreground text-sm">{t('users.empty.hint')}</p>
       </div>
     )
   }
@@ -34,11 +36,11 @@ export function UsersTable({ users }: { users: AdminUserRowResponse[] }) {
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead>Người dùng</TableHead>
-          <TableHead>Gói</TableHead>
-          <TableHead className="hidden md:table-cell">Chuỗi ngày</TableHead>
-          <TableHead className="hidden lg:table-cell">Tham gia</TableHead>
-          <TableHead>Trạng thái</TableHead>
+          <TableHead>{t('users.columns.user')}</TableHead>
+          <TableHead>{t('users.columns.tier')}</TableHead>
+          <TableHead className="hidden md:table-cell">{t('users.columns.streak')}</TableHead>
+          <TableHead className="hidden lg:table-cell">{t('users.columns.joined')}</TableHead>
+          <TableHead>{t('table.status')}</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -57,7 +59,7 @@ export function UsersTable({ users }: { users: AdminUserRowResponse[] }) {
                   <span className="min-w-0">
                     <span className="flex items-center gap-2 font-medium">
                       <span className="truncate">{name}</span>
-                      {user.role === 'admin' && <Badge variant="outline">Quản trị</Badge>}
+                      {user.role === 'admin' && <Badge variant="outline">{t('users.admin')}</Badge>}
                     </span>
                     <span className="text-muted-foreground block truncate text-xs">
                       {user.email}
@@ -67,15 +69,15 @@ export function UsersTable({ users }: { users: AdminUserRowResponse[] }) {
               </TableCell>
               <TableCell>
                 {user.tier === 'premium' ? (
-                  <Badge className="bg-cta/15 text-cta">Premium</Badge>
+                  <Badge className="bg-cta/15 text-cta">{t('users.tiers.premium')}</Badge>
                 ) : (
-                  <Badge variant="secondary">Miễn phí</Badge>
+                  <Badge variant="secondary">{t('users.tiers.free')}</Badge>
                 )}
               </TableCell>
               <TableCell className="hidden md:table-cell">
                 <span className="flex items-center gap-1.5 tabular-nums">
                   <Flame className="text-muted-foreground size-4" aria-hidden />
-                  {user.streak} ngày
+                  {t('days', { count: user.streak })}
                 </span>
               </TableCell>
               <TableCell className="text-muted-foreground hidden tabular-nums lg:table-cell">
@@ -83,7 +85,7 @@ export function UsersTable({ users }: { users: AdminUserRowResponse[] }) {
               </TableCell>
               <TableCell>
                 <Badge variant={user.isActive ? 'outline' : 'secondary'}>
-                  {user.isActive ? 'Hoạt động' : 'Đã khóa'}
+                  {user.isActive ? t('users.active') : t('users.locked')}
                 </Badge>
               </TableCell>
             </TableRow>

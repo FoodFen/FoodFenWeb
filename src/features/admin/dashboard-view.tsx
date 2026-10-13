@@ -1,6 +1,7 @@
 import type { DashboardDayResponse, DashboardTotalsResponse } from '@/api/generated'
 import { formatVnd } from '@/lib/format'
 import { Crown, Megaphone, Store, UserPlus } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { DailyChart } from '@/components/daily-chart'
 import { DateRangeFields, type DateRange } from './date-range-fields'
 import { PageHeader } from './page-header'
@@ -14,51 +15,61 @@ type Props = {
 }
 
 export function DashboardView({ totals, daily, range, onRangeChange }: Props) {
+  const { t } = useTranslation('admin')
   return (
     <div className="space-y-6">
-      <PageHeader
-        title="Dòng tiền và tăng trưởng"
-        description="Doanh thu và lượng người dùng, quán mới theo ngày (giờ Việt Nam)."
-      />
+      <PageHeader title={t('dashboard.title')} description={t('dashboard.description')} />
       <DateRangeFields value={range} onChange={onRangeChange} />
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <StatCard
           icon={Crown}
-          label="Doanh thu Premium"
+          label={t('dashboard.stats.premiumRevenue')}
           value={totals.premiumRevenue}
           format={formatVnd}
         />
         <StatCard
           icon={Megaphone}
-          label="Doanh thu quảng cáo"
+          label={t('dashboard.stats.adRevenue')}
           value={totals.adRevenue}
           format={formatVnd}
         />
-        <StatCard icon={UserPlus} label="Người dùng mới" value={totals.newUsers} />
-        <StatCard icon={Store} label="Quán mới" value={totals.newRestaurants} />
+        <StatCard icon={UserPlus} label={t('dashboard.stats.newUsers')} value={totals.newUsers} />
+        <StatCard
+          icon={Store}
+          label={t('dashboard.stats.newRestaurants')}
+          value={totals.newRestaurants}
+        />
       </div>
       <DailyChart
-        title="Doanh thu theo ngày"
-        description="Premium và quảng cáo, đơn vị đồng"
+        title={t('dashboard.charts.revenue.title')}
+        description={t('dashboard.charts.revenue.description')}
         rows={daily}
         stacked
         series={[
-          { key: 'premiumRevenue', label: 'Premium', color: 'var(--chart-1)' },
-          { key: 'adRevenue', label: 'Quảng cáo', color: 'var(--chart-2)' },
+          { key: 'premiumRevenue', label: t('dashboard.series.premium'), color: 'var(--chart-1)' },
+          { key: 'adRevenue', label: t('dashboard.series.ads'), color: 'var(--chart-2)' },
         ]}
       />
       <div className="grid gap-4 lg:grid-cols-2">
         <DailyChart
-          title="Người dùng mới theo ngày"
-          description="Tài khoản đăng ký mới"
+          title={t('dashboard.charts.newUsers.title')}
+          description={t('dashboard.charts.newUsers.description')}
           rows={daily}
-          series={[{ key: 'newUsers', label: 'Người dùng mới', color: 'var(--chart-1)' }]}
+          series={[
+            { key: 'newUsers', label: t('dashboard.series.newUsers'), color: 'var(--chart-1)' },
+          ]}
         />
         <DailyChart
-          title="Quán mới theo ngày"
-          description="Quán đăng ký mới"
+          title={t('dashboard.charts.newRestaurants.title')}
+          description={t('dashboard.charts.newRestaurants.description')}
           rows={daily}
-          series={[{ key: 'newRestaurants', label: 'Quán mới', color: 'var(--chart-3)' }]}
+          series={[
+            {
+              key: 'newRestaurants',
+              label: t('dashboard.series.newRestaurants'),
+              color: 'var(--chart-3)',
+            },
+          ]}
         />
       </div>
     </div>

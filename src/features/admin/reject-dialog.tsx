@@ -10,6 +10,7 @@ import {
 } from '@/components/ui/dialog'
 import { Textarea } from '@/components/ui/textarea'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { reviewErrorMessage } from './review-error'
 
 type Props = {
@@ -22,12 +23,14 @@ type Props = {
 
 /** Rejecting (also used to take an approved item down) needs a reason; approving needs no dialog. */
 export function RejectDialog({ open, onOpenChange, subject, onReject }: Props) {
+  const { t } = useTranslation(['admin', 'common'])
   const [reason, setReason] = useState('')
   const [error, setError] = useState<string | null>(null)
   const [busy, setBusy] = useState(false)
 
   async function submit() {
-    if (!reason.trim()) return setError('Nhập lý do để chủ quán biết cần sửa gì.')
+    // A translation key: FormField translates it when it renders.
+    if (!reason.trim()) return setError('admin:rejectDialog.reasonRequired')
     setError(null)
     setBusy(true)
     try {
@@ -45,12 +48,10 @@ export function RejectDialog({ open, onOpenChange, subject, onReject }: Props) {
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Từ chối {subject}</DialogTitle>
-          <DialogDescription>
-            Chủ quán sẽ thấy lý do này và có thể sửa rồi gửi lại.
-          </DialogDescription>
+          <DialogTitle>{t('rejectDialog.title', { subject })}</DialogTitle>
+          <DialogDescription>{t('rejectDialog.description')}</DialogDescription>
         </DialogHeader>
-        <FormField id="reason" label="Lý do" error={error ?? undefined}>
+        <FormField id="reason" label={t('rejectDialog.reason')} error={error ?? undefined}>
           <Textarea
             id="reason"
             rows={3}
@@ -62,10 +63,10 @@ export function RejectDialog({ open, onOpenChange, subject, onReject }: Props) {
         </FormField>
         <DialogFooter>
           <Button variant="outline" className="h-11 px-4" onClick={() => onOpenChange(false)}>
-            Huỷ
+            {t('common:cancel')}
           </Button>
           <Button variant="destructive" className="h-11 px-4" disabled={busy} onClick={submit}>
-            Từ chối
+            {t('rejectDialog.submit')}
           </Button>
         </DialogFooter>
       </DialogContent>

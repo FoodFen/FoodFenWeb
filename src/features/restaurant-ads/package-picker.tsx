@@ -6,12 +6,14 @@ import { Card, CardContent } from '@/components/ui/card'
 import { formatVnd } from '@/lib/format'
 import { LoaderCircle } from 'lucide-react'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { ProviderChoice } from './provider-choice'
 import { useAdCheckout } from './use-ads'
 
 type Props = { packages: OwnerAdPackageResponse[]; approved: boolean }
 
 export function PackagePicker({ packages, approved }: Props) {
+  const { t } = useTranslation('ads')
   const checkout = useAdCheckout()
   const [provider, setProvider] = useState<PaymentProvider>('payos')
   const [buying, setBuying] = useState<string | null>(null)
@@ -30,14 +32,10 @@ export function PackagePicker({ packages, approved }: Props) {
 
   return (
     <section className="space-y-4">
-      <h2 className="text-xl font-semibold">Chọn gói</h2>
-      {!approved && (
-        <p className="text-muted-foreground text-sm">
-          Quán cần được duyệt trước khi mua quảng cáo.
-        </p>
-      )}
+      <h2 className="text-xl font-semibold">{t('picker.title')}</h2>
+      {!approved && <p className="text-muted-foreground text-sm">{t('picker.notApproved')}</p>}
       {packages.length === 0 ? (
-        <p className="text-muted-foreground">Hiện chưa có gói quảng cáo nào.</p>
+        <p className="text-muted-foreground">{t('picker.none')}</p>
       ) : (
         <>
           <ProviderChoice value={provider} onChange={setProvider} />
@@ -46,7 +44,9 @@ export function PackagePicker({ packages, approved }: Props) {
               <Card key={item.id} className="rounded-2xl">
                 <CardContent className="space-y-4">
                   <div>
-                    <p className="text-2xl font-bold tabular-nums">{item.days} ngày</p>
+                    <p className="text-2xl font-bold tabular-nums">
+                      {t('picker.days', { count: item.days })}
+                    </p>
                     <p className="text-muted-foreground tabular-nums">{formatVnd(item.priceVnd)}</p>
                   </div>
                   <Button
@@ -55,7 +55,7 @@ export function PackagePicker({ packages, approved }: Props) {
                     onClick={() => void buy(item.id)}
                   >
                     {buying === item.id && <LoaderCircle className="animate-spin" aria-hidden />}
-                    Mua gói
+                    {t('picker.buy')}
                   </Button>
                 </CardContent>
               </Card>
