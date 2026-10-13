@@ -54,3 +54,9 @@ function overlap(a: Shift, b: Shift) {
 /** Index of the first shift that overlaps an earlier one, or -1. */
 export const findOverlap = (shifts: Shift[]) =>
   shifts.findIndex((shift, i) => shifts.slice(0, i).some((earlier) => overlap(earlier, shift)))
+
+/** Normalises older free text ("6:00-21:00") for display; text that cannot be read is shown as is. */
+export function displayHours(text: string) {
+  const shifts = parseHours(text)
+  return shifts ? formatHours(shifts) : text
+}

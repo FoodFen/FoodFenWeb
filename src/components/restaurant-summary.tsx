@@ -1,6 +1,7 @@
 import type { RestaurantResponse } from '@/api/generated'
 import { RejectionNote } from '@/components/rejection-note'
 import { StatusBadge } from '@/components/status-badge'
+import { displayHours } from '@/lib/opening-hours'
 import { formatPhone, phoneHref } from '@/lib/phone'
 import { Clock, ImageOff, MapPin, Phone } from 'lucide-react'
 import type { ReactNode } from 'react'
@@ -51,7 +52,7 @@ export function RestaurantSummary({
             <Row
               icon={<Clock aria-hidden />}
               label={t('restaurantInfo.openingHours')}
-              value={openingHours}
+              value={displayHours(openingHours)}
             />
           </dl>
           {actions}

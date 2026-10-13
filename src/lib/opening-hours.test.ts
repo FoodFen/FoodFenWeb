@@ -1,4 +1,10 @@
-import { crossesMidnight, findOverlap, formatHours, parseHours } from './opening-hours'
+import {
+  crossesMidnight,
+  displayHours,
+  findOverlap,
+  formatHours,
+  parseHours,
+} from './opening-hours'
 
 const s = (open: string, close: string) => ({ open, close })
 
@@ -50,4 +56,10 @@ describe('findOverlap', () => {
     expect(findOverlap([s('18:00', '02:00'), s('03:00', '05:00')])).toBe(-1)
     expect(findOverlap([s('06:00', '10:00'), s('22:00', '07:00')])).toBe(1)
   })
+})
+
+test('displays readable legacy text normalised and the rest verbatim', () => {
+  expect(displayHours('6:00-21:00')).toBe('06:00-21:00')
+  expect(displayHours('7h - 11h; 16h-21h')).toBe('07:00-11:00, 16:00-21:00')
+  expect(displayHours('7:00 - 21:00 hằng ngày')).toBe('7:00 - 21:00 hằng ngày')
 })
