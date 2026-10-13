@@ -74,5 +74,75 @@
     "hint": "Free. Your restaurant goes live once FoodFen has reviewed your profile and menu.",
     "submit": "Submit for review",
     "back": "Review the terms"
+  },
+  "validation": {
+    "nameRequired": "Enter the dish name",
+    "nameMax": "The name can be at most 255 characters",
+    "descriptionMax": "The description can be at most 2,000 characters",
+    "price": "The price is a whole number of dong, 0 or more",
+    "servingG": "Serving size is 1 to 10,000 g",
+    "kcal": "Energy is a whole number from 0 to 20,000 kcal",
+    "proteinRange": "Protein is 0 to 2,000 g",
+    "carbsRange": "Carbs are 0 to 2,000 g",
+    "fatRange": "Fat is 0 to 2,000 g",
+    "fiberRange": "Fiber is 0 to 2,000 g"
+  },
+  "dish": {
+    "list": {
+      "title": "Menu",
+      "add": "Add dish",
+      "empty": "No dishes yet. Add dishes with their nutrition so your restaurant can be reviewed."
+    },
+    "card": {
+      "edit": "Edit",
+      "delete": "Delete",
+      "deleteNamed": "Delete dish {{name}}"
+    },
+    "dialog": {
+      "addTitle": "Add dish",
+      "editTitle": "Edit dish",
+      "addDescription": "A new dish is shown once it has been approved.",
+      "editDescription": "After you save, the dish is hidden until it is approved again.",
+      "submitNew": "Submit for review",
+      "submitEdit": "Save and resubmit"
+    },
+    "form": {
+      "image": "Dish photo",
+      "name": "Dish name",
+      "description": "Description (optional)",
+      "dietTag": "Diet",
+      "dietTagHint": "Vegetarian: no meat or fish (eggs and dairy allowed). Vegan: no animal products.",
+      "price": "Price (VND)",
+      "priceHint": "Example: 65,000",
+      "servingG": "Serving size (g)",
+      "nutrition": "Nutrition per serving",
+      "kcal": "Energy (kcal)",
+      "proteinG": "Protein (g)",
+      "carbsG": "Carbs (g)",
+      "fatG": "Fat (g)",
+      "fiberG": "Fiber (g, optional)",
+      "kcalOff": "The energy is far from what the protein, carbs and fat add up to (4 kcal/g for protein and carbs, 9 kcal/g for fat). Check the numbers before you submit."
+    },
+    "delete": {
+      "title": "Delete {{name}}?",
+      "description": "The dish is removed from your menu and cannot be restored.",
+      "confirm": "Delete dish"
+    }
+  },
+  "image": {
+    "invalidType": "Only JPEG, PNG or WebP images are accepted.",
+    "tooLarge": "Images can be at most 5 MB.",
+    "uploadedAlt": "Uploaded photo",
+    "choose": "Choose photo",
+    "change": "Change photo",
+    "remove": "Remove photo",
+    "fileLabel": "Image file"
+  },
+  "profile": {
+    "editTitle": "Edit restaurant details",
+    "resubmitNote": "After you save, the restaurant goes back to review.",
+    "save": "Save changes",
+    "saveResubmit": "Save and resubmit",
+    "edit": "Edit details"
   }
 }

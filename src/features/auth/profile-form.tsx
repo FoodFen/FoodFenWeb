@@ -1,9 +1,10 @@
 import type { UserResponse } from '@/api/generated'
 import { applyApiError } from '@/api/form-errors'
+import { fieldProps } from '@/components/field-props'
 import { FormField } from '@/components/form-field'
 import { FormError, SubmitButton } from '@/components/form-parts'
+import { InputField } from '@/components/input-field'
 import { selectClass } from '@/components/select-class'
-import { Input } from '@/components/ui/input'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
@@ -49,20 +50,21 @@ export function ProfileForm({ user }: { user: UserResponse }) {
 
   return (
     <form onSubmit={onSubmit} noValidate className="bg-card space-y-4 rounded-2xl border p-6">
-      <FormField id="email" label="Email">
-        <Input id="email" className="h-11" value={user.email} readOnly disabled />
-      </FormField>
-      <FormField id="displayName" label={t('displayName')} error={errors.displayName?.message}>
-        <Input
-          id="displayName"
-          className="h-11"
-          autoComplete="name"
-          aria-invalid={!!errors.displayName}
-          {...register('displayName')}
-        />
-      </FormField>
+      <InputField id="email" label="Email" value={user.email} readOnly disabled />
+      <InputField
+        id="displayName"
+        label={t('displayName')}
+        autoComplete="name"
+        enterKeyHint="next"
+        error={errors.displayName?.message}
+        {...register('displayName')}
+      />
       <FormField id="gender" label={t('profile.gender')} error={errors.gender?.message}>
-        <select id="gender" className={selectClass} {...register('gender')}>
+        <select
+          className={selectClass}
+          {...fieldProps('gender', errors.gender?.message)}
+          {...register('gender')}
+        >
           <option value="">{t('profile.genderUnset')}</option>
           {GENDERS.map((gender) => (
             <option key={gender} value={gender}>
@@ -71,15 +73,16 @@ export function ProfileForm({ user }: { user: UserResponse }) {
           ))}
         </select>
       </FormField>
-      <FormField id="birthYear" label={t('profile.birthYear')} error={errors.birthYear?.message}>
-        <Input
-          id="birthYear"
-          className="h-11"
-          inputMode="numeric"
-          aria-invalid={!!errors.birthYear}
-          {...register('birthYear')}
-        />
-      </FormField>
+      <InputField
+        id="birthYear"
+        label={t('profile.birthYear')}
+        inputMode="numeric"
+        autoComplete="bday-year"
+        enterKeyHint="done"
+        maxLength={4}
+        error={errors.birthYear?.message}
+        {...register('birthYear')}
+      />
       <FormError message={formError} />
       {saved && (
         <p role="status" className="text-primary text-sm">

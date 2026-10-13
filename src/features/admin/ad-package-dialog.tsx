@@ -1,6 +1,6 @@
 import { applyApiError } from '@/api/form-errors'
 import type { AdPackageResponse } from '@/api/generated'
-import { FormField } from '@/components/form-field'
+import { NumberField } from '@/components/number-field'
 import { FormError, SubmitButton } from '@/components/form-parts'
 import {
   Dialog,
@@ -9,7 +9,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog'
-import { Input } from '@/components/ui/input'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
@@ -65,29 +64,22 @@ export function AdPackageDialog({ open, onOpenChange, editing }: Props) {
           <DialogDescription>{t('adPackages.dialog.description')}</DialogDescription>
         </DialogHeader>
         <form onSubmit={submit} noValidate className="space-y-5">
-          <FormField id="days" label={t('adPackages.dialog.days')} error={errors.days?.message}>
-            <Input
-              id="days"
-              inputMode="numeric"
-              className="h-11"
-              aria-invalid={!!errors.days}
-              {...register('days')}
-            />
-          </FormField>
-          <FormField
+          <NumberField
+            whole
+            id="days"
+            label={t('adPackages.dialog.days')}
+            error={errors.days?.message}
+            {...register('days')}
+          />
+          <NumberField
+            whole
             id="priceVnd"
             label={t('adPackages.dialog.price')}
             hint={t('adPackages.dialog.priceHint')}
+            enterKeyHint="done"
             error={errors.priceVnd?.message}
-          >
-            <Input
-              id="priceVnd"
-              inputMode="numeric"
-              className="h-11"
-              aria-invalid={!!errors.priceVnd}
-              {...register('priceVnd')}
-            />
-          </FormField>
+            {...register('priceVnd')}
+          />
           <label className="flex min-h-11 items-center gap-2">
             <input type="checkbox" className="accent-primary size-4" {...register('active')} />
             {t('adPackages.onSale')}

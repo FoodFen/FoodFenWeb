@@ -28,6 +28,8 @@ export function UsersToolbar({
         />
         <Input
           type="search"
+          maxLength={100}
+          enterKeyHint="search"
           value={query}
           onChange={(e) => onQuery(e.target.value)}
           placeholder={t('users.searchPlaceholder')}

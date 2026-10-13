@@ -1,9 +1,11 @@
 import { applyApiError } from '@/api/form-errors'
+import { fieldProps } from '@/components/field-props'
 import { FormField } from '@/components/form-field'
+import { InputField } from '@/components/input-field'
+import { NumberField } from '@/components/number-field'
 import { FormError, SubmitButton } from '@/components/form-parts'
 import { selectClass } from '@/components/select-class'
 import { Alert, AlertDescription } from '@/components/ui/alert'
-import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { DIET_TAGS } from '@/lib/diet-tag'
 import { kcalLooksOff } from '@/lib/nutrition'
@@ -14,7 +16,6 @@ import { useForm, useWatch, type FieldNamesMarkedBoolean } from 'react-hook-form
 import { useTranslation } from 'react-i18next'
 import { dishSchema, toDishBody, type DishValues } from './dish-schema'
 import { ImageUpload } from './image-upload'
-import { NumberField } from './number-field'
 
 type Props = {
   defaultValues: DishValues
@@ -27,7 +28,7 @@ type Props = {
 const FIELDS = Object.keys(dishSchema.shape) as (keyof DishValues)[]
 
 export function DishForm({ defaultValues, submitLabel, onSubmit, upload }: Props) {
-  const { t } = useTranslation()
+  const { t } = useTranslation(['restaurant', 'common'])
   const {
     register,
     handleSubmit,
@@ -55,81 +56,99 @@ export function DishForm({ defaultValues, submitLabel, onSubmit, upload }: Props
 
   return (
     <form onSubmit={submit} noValidate className="space-y-5">
-      <FormField id="image" label="Ảnh món">
+      <FormField id="image" label={t('dish.form.image')}>
         <ImageUpload
           value={imageUrl}
           onChange={(url) => setValue('imageUrl', url, { shouldDirty: true })}
           upload={upload}
         />
       </FormField>
-      <FormField id="name" label="Tên món" error={errors.name?.message}>
-        <Input id="name" className="h-11" aria-invalid={!!errors.name} {...register('name')} />
-      </FormField>
+      <InputField
+        id="name"
+        label={t('dish.form.name')}
+        autoComplete="off"
+        enterKeyHint="next"
+        error={errors.name?.message}
+        {...register('name')}
+      />
       <FormField
         id="description"
-        label="Mô tả (không bắt buộc)"
+        label={t('dish.form.description')}
         error={errors.description?.message}
       >
-        <Textarea id="description" rows={2} {...register('description')} />
+        <Textarea
+          rows={2}
+          {...fieldProps('description', errors.description?.message)}
+          {...register('description')}
+        />
       </FormField>
       <FormField
         id="dietTag"
-        label="Chế độ ăn"
+        label={t('dish.form.dietTag')}
         error={errors.dietTag?.message}
-        hint="Chay: không thịt, cá (có thể có trứng, sữa). Thuần chay: không có sản phẩm từ động vật."
+        hint={t('dish.form.dietTagHint')}
       >
-        <select id="dietTag" className={selectClass} {...register('dietTag')}>
+        <select
+          className={selectClass}
+          {...fieldProps('dietTag', errors.dietTag?.message, t('dish.form.dietTagHint'))}
+          {...register('dietTag')}
+        >
           {DIET_TAGS.map((tag) => (
             <option key={tag} value={tag}>
-              {t(`dietTag.${tag}`)}
+              {t(`common:dietTag.${tag}`)}
             </option>
           ))}
         </select>
       </FormField>
       <div className="grid gap-5 sm:grid-cols-2">
         <NumberField
+          whole
           id="price"
-          label="Giá (đồng)"
+          label={t('dish.form.price')}
+          hint={t('dish.form.priceHint')}
           error={errors.price?.message}
           {...register('price')}
         />
         <NumberField
+          whole
           id="servingG"
-          label="Khẩu phần (g)"
+          label={t('dish.form.servingG')}
           error={errors.servingG?.message}
           {...register('servingG')}
         />
       </div>
       <fieldset className="space-y-4">
-        <legend className="text-sm font-medium">Dinh dưỡng cho một khẩu phần</legend>
+        <legend className="text-sm font-medium">{t('dish.form.nutrition')}</legend>
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
           <NumberField
+            whole
             id="kcal"
-            label="Năng lượng (kcal)"
+            label={t('dish.form.kcal')}
             error={errors.kcal?.message}
             {...register('kcal')}
           />
           <NumberField
             id="proteinG"
-            label="Đạm (g)"
+            label={t('dish.form.proteinG')}
             error={errors.proteinG?.message}
             {...register('proteinG')}
           />
           <NumberField
             id="carbsG"
-            label="Tinh bột (g)"
+            label={t('dish.form.carbsG')}
             error={errors.carbsG?.message}
             {...register('carbsG')}
           />
           <NumberField
             id="fatG"
-            label="Chất béo (g)"
+            label={t('dish.form.fatG')}
             error={errors.fatG?.message}
             {...register('fatG')}
           />
           <NumberField
             id="fiberG"
-            label="Chất xơ (g, tuỳ chọn)"
+            label={t('dish.form.fiberG')}
+            enterKeyHint="done"
             error={errors.fiberG?.message}
             {...register('fiberG')}
           />
@@ -137,10 +156,7 @@ export function DishForm({ defaultValues, submitLabel, onSubmit, upload }: Props
         {suspicious && (
           <Alert>
             <TriangleAlert aria-hidden />
-            <AlertDescription>
-              Năng lượng lệch nhiều so với đạm, tinh bột và chất béo (4 kcal/g đạm và tinh bột, 9
-              kcal/g chất béo). Kiểm tra lại số liệu trước khi gửi duyệt.
-            </AlertDescription>
+            <AlertDescription>{t('dish.form.kcalOff')}</AlertDescription>
           </Alert>
         )}
       </fieldset>

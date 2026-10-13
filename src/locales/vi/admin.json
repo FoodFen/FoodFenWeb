@@ -1,14 +1,14 @@
 {
   "vsYesterday": "so với hôm qua",
-  "days_one": "{{count}} ngày",
   "days_other": "{{count}} ngày",
   "table": {
     "status": "Trạng thái",
     "actions": "Thao tác"
   },
   "validation": {
-    "daysPositive": "Số ngày là số nguyên lớn hơn 0",
-    "pricePositive": "Giá là số nguyên đồng lớn hơn 0"
+    "daysRange": "Số ngày là số nguyên từ 1 đến 3.650",
+    "priceRange": "Giá là số nguyên đồng từ 1 đến 999.999.999.999",
+    "reasonMax": "Lý do tối đa 1.000 ký tự"
   },
   "overview": {
     "title": "Tổng quan",
@@ -74,7 +74,6 @@
     "approveRestaurant": "Duyệt quán",
     "takeDownRestaurant": "Gỡ quán",
     "rejectRestaurant": "Từ chối quán",
-    "menu_one": "Thực đơn ({{count}} món)",
     "menu_other": "Thực đơn ({{count}} món)",
     "noDishes": "Quán chưa thêm món nào.",
     "approve": "Duyệt",
@@ -101,7 +100,6 @@
       "free": "Miễn phí",
       "premium": "Premium"
     },
-    "showing_one": "Hiển thị {{shown}} trên {{count}} người dùng",
     "showing_other": "Hiển thị {{shown}} trên {{count}} người dùng",
     "loadMore": "Tải thêm",
     "empty": {
@@ -143,7 +141,6 @@
       "daily": "Hằng ngày",
       "weekly": "Hằng tuần"
     },
-    "coins_one": "{{count}} xu",
     "coins_other": "{{count}} xu"
   },
   "adPackages": {

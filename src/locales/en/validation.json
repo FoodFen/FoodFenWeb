@@ -1,5 +1,6 @@
 {
   "email": "Enter a valid email address",
+  "emailMax": "Email can be at most 320 characters",
   "passwordRequired": "Enter your password",
   "passwordMin": "Password must be at least 8 characters",
   "passwordMax": "Password can be at most 72 characters",

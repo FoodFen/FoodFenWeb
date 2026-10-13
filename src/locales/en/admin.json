@@ -7,8 +7,9 @@
     "actions": "Actions"
   },
   "validation": {
-    "daysPositive": "Days must be a whole number greater than 0",
-    "pricePositive": "Price must be a whole number of dong greater than 0"
+    "daysRange": "Days is a whole number from 1 to 3,650",
+    "priceRange": "Price is a whole number of dong from 1 to 999,999,999,999",
+    "reasonMax": "The reason can be at most 1,000 characters"
   },
   "overview": {
     "title": "Overview",
@@ -169,7 +170,7 @@
       "description": "Sold packages are never deleted: untick \"On sale\" to hide a package from owners, past orders keep their package.",
       "days": "Days",
       "price": "Price (VND)",
-      "priceHint": "Example: 99.000",
+      "priceHint": "Example: 99,000",
       "save": "Save"
     }
   }

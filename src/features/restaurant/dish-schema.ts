@@ -1,38 +1,46 @@
 import type { DishResponse } from '@/api/generated'
 import { DIET_TAGS } from '@/lib/diet-tag'
+import { parseDecimal, parseWhole } from '@/lib/number-input'
 import { z } from 'zod'
 
 // Form fields stay strings (what inputs hold); `toDishBody` turns them into the numbers the BE wants.
-// Vietnamese users type "12,5", so the comma counts as a decimal point.
-const toNumber = (text: string) => (text === '' ? NaN : Number(text.replace(',', '.')))
-
-const numeric = (message: string, { min = 0, max, integer = false }: Range) =>
+// Limits mirror the BE's CreateDishRequest. Decimals accept "12,5", whole numbers "65.000".
+const decimal = (message: string, max: number) =>
   z
     .string()
     .trim()
-    .refine((text) => inRange(toNumber(text), { min, max, integer }), message)
+    .refine((text) => inRange(parseDecimal(text), 0, max), message)
 
-type Range = { min?: number; max: number; integer?: boolean }
+const whole = (message: string, min: number, max: number) =>
+  z
+    .string()
+    .trim()
+    .refine((text) => inRange(parseWhole(text), min, max), message)
 
-function inRange(value: number, { min = 0, max, integer = false }: Range) {
-  return (
-    Number.isFinite(value) && value >= min && value <= max && (!integer || Number.isInteger(value))
-  )
-}
-
-const grams = (label: string) => numeric(`${label} từ 0 đến 2.000 g`, { max: 2000 })
+const inRange = (value: number, min: number, max: number) =>
+  Number.isFinite(value) && value >= min && value <= max
 
 export const dishSchema = z.object({
-  name: z.string().trim().min(1, 'Nhập tên món').max(255, 'Tên tối đa 255 ký tự'),
-  description: z.string().trim().max(2000, 'Mô tả tối đa 2.000 ký tự'),
+  name: z
+    .string()
+    .trim()
+    .min(1, 'restaurant:validation.nameRequired')
+    .max(255, 'restaurant:validation.nameMax'),
+  description: z.string().trim().max(2000, 'restaurant:validation.descriptionMax'),
   imageUrl: z.string(),
-  price: numeric('Giá là số nguyên từ 0 đồng', { max: 999_999_999_999, integer: true }),
-  servingG: numeric('Khẩu phần từ 1 đến 10.000 g', { min: 1, max: 10_000, integer: true }),
-  kcal: numeric('Năng lượng là số nguyên từ 0 đến 20.000 kcal', { max: 20_000, integer: true }),
-  proteinG: grams('Đạm'),
-  carbsG: grams('Tinh bột'),
-  fatG: grams('Chất béo'),
-  fiberG: grams('Chất xơ').or(z.literal('')),
+  price: whole('restaurant:validation.price', 0, 999_999_999_999),
+  servingG: whole('restaurant:validation.servingG', 1, 10_000),
+  kcal: whole('restaurant:validation.kcal', 0, 20_000),
+  proteinG: decimal('restaurant:validation.proteinRange', 2000),
+  carbsG: decimal('restaurant:validation.carbsRange', 2000),
+  fatG: decimal('restaurant:validation.fatRange', 2000),
+  fiberG: z
+    .string()
+    .trim()
+    .refine(
+      (text) => text === '' || inRange(parseDecimal(text), 0, 2000),
+      'restaurant:validation.fiberRange',
+    ),
   dietTag: z.enum(DIET_TAGS),
 })
 
@@ -58,13 +66,13 @@ export function toDishBody(values: DishValues) {
     name: values.name,
     description: values.description || null,
     imageUrl: values.imageUrl || null,
-    price: toNumber(values.price),
-    servingG: toNumber(values.servingG),
-    kcal: toNumber(values.kcal),
-    proteinG: toNumber(values.proteinG),
-    carbsG: toNumber(values.carbsG),
-    fatG: toNumber(values.fatG),
-    fiberG: values.fiberG === '' ? null : toNumber(values.fiberG),
+    price: parseWhole(values.price),
+    servingG: parseWhole(values.servingG),
+    kcal: parseWhole(values.kcal),
+    proteinG: parseDecimal(values.proteinG),
+    carbsG: parseDecimal(values.carbsG),
+    fatG: parseDecimal(values.fatG),
+    fiberG: values.fiberG === '' ? null : parseDecimal(values.fiberG),
     dietTag: values.dietTag,
   }
 }

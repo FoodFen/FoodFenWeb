@@ -42,6 +42,17 @@ test('fiber is optional but must be valid when filled', () => {
   expect(dishSchema.safeParse({ ...dish, fiberG: 'abc' }).success).toBe(false)
 })
 
+test('whole-number fields read thousands groups, decimals keep the comma', () => {
+  const grouped = { ...dish, price: '65.000', kcal: '1,250' }
+  expect(dishSchema.safeParse(grouped).success).toBe(true)
+  expect(toDishBody(grouped)).toMatchObject({ price: 65000, kcal: 1250, proteinG: 25.5 })
+})
+
+test('a bad fiber value reports the fiber message, not a generic one', () => {
+  const result = dishSchema.safeParse({ ...dish, fiberG: 'abc' })
+  expect(result.error?.issues[0]?.message).toBe('restaurant:validation.fiberRange')
+})
+
 test('rejects empty, non-numeric and out-of-bound numbers', () => {
   for (const patch of [
     { price: '' },

@@ -1,5 +1,6 @@
 {
   "email": "Email không hợp lệ",
+  "emailMax": "Email tối đa 320 ký tự",
   "passwordRequired": "Nhập mật khẩu",
   "passwordMin": "Mật khẩu cần ít nhất 8 ký tự",
   "passwordMax": "Mật khẩu tối đa 72 ký tự",

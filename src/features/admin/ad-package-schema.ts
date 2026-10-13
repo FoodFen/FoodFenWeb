@@ -1,14 +1,18 @@
 import type { AdPackageResponse, UpdateAdPackageRequest } from '@/api/generated'
+import { parseWhole } from '@/lib/number-input'
 import { z } from 'zod'
 
-// Inputs hold strings. Price may be typed "99.000" or "99 000"; days must be plain digits.
-const digits = (text: string) => (/^\d+$/.test(text.trim()) ? Number(text.trim()) : NaN)
-const money = (text: string) => digits(text.replace(/[.\s]/g, ''))
-const positive = (value: number) => Number.isSafeInteger(value) && value > 0
+// Inputs hold strings; the price may be typed "99.000", "99,000" or "99 000".
+// Limits mirror the BE's CreateAdPackageRequest: days 1 to 3650, price 1 to 999 999 999 999.
+const whole = (message: string, max: number) =>
+  z.string().refine((text) => {
+    const value = parseWhole(text)
+    return value >= 1 && value <= max
+  }, message)
 
 export const adPackageSchema = z.object({
-  days: z.string().refine((text) => positive(digits(text)), 'admin:validation.daysPositive'),
-  priceVnd: z.string().refine((text) => positive(money(text)), 'admin:validation.pricePositive'),
+  days: whole('admin:validation.daysRange', 3650),
+  priceVnd: whole('admin:validation.priceRange', 999_999_999_999),
   active: z.boolean(),
 })
 
@@ -26,8 +30,8 @@ export const toAdPackageValues = (item: AdPackageResponse): AdPackageValues => (
 })
 
 export const toAdPackageBody = ({ days, priceVnd, active }: AdPackageValues) => ({
-  days: digits(days),
-  priceVnd: money(priceVnd),
+  days: parseWhole(days),
+  priceVnd: parseWhole(priceVnd),
   active,
 })
 

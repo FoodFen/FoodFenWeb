@@ -70,6 +70,7 @@ export function ForgotPasswordForm() {
               icon={Mail}
               type="email"
               autoComplete="email"
+              enterKeyHint="go"
               error={errors.email?.message}
               {...register('email')}
             />

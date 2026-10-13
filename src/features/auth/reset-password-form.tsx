@@ -69,6 +69,7 @@ export function ResetPasswordForm() {
                   icon={Lock}
                   type="password"
                   autoComplete="new-password"
+                  enterKeyHint="go"
                   error={errors.newPassword?.message}
                   {...register('newPassword')}
                 />

@@ -1,11 +1,12 @@
 import { z } from 'zod'
 
-const email = z.email('validation:email')
+// The BE takes 3 to 320 characters for an email and 1 to 72 for a sign-in password.
+const email = z.string().trim().pipe(z.email('validation:email').max(320, 'validation:emailMax'))
 const password = z.string().min(8, 'validation:passwordMin').max(72, 'validation:passwordMax')
 
 export const loginSchema = z.object({
   email,
-  password: z.string().min(1, 'validation:passwordRequired'),
+  password: z.string().min(1, 'validation:passwordRequired').max(72, 'validation:passwordMax'),
 })
 
 export const registerSchema = z.object({

@@ -55,6 +55,7 @@ export function LoginForm() {
           icon={Mail}
           type="email"
           autoComplete="email"
+          enterKeyHint="next"
           error={errors.email?.message}
           {...register('email')}
         />
@@ -64,6 +65,7 @@ export function LoginForm() {
           icon={Lock}
           type="password"
           autoComplete="current-password"
+          enterKeyHint="go"
           labelAside={
             <Link to="/forgot-password" className="text-primary text-sm hover:underline">
               {t('login.forgot')}

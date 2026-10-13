@@ -22,7 +22,11 @@ export function FormField({
     <div className="space-y-2">
       <Label htmlFor={id}>{label}</Label>
       {children}
-      {hint && !error && <p className="text-muted-foreground text-sm">{hint}</p>}
+      {hint && !error && (
+        <p id={`${id}-hint`} className="text-muted-foreground text-sm">
+          {hint}
+        </p>
+      )}
       {error && (
         <p
           id={`${id}-error`}

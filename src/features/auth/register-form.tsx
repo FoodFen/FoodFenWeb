@@ -53,6 +53,7 @@ export function RegisterForm() {
           label={t('displayName')}
           icon={User}
           autoComplete="name"
+          enterKeyHint="next"
           error={errors.displayName?.message}
           {...register('displayName')}
         />
@@ -62,6 +63,7 @@ export function RegisterForm() {
           icon={Mail}
           type="email"
           autoComplete="email"
+          enterKeyHint="next"
           error={errors.email?.message}
           {...register('email')}
         />
@@ -72,6 +74,7 @@ export function RegisterForm() {
             icon={Lock}
             type="password"
             autoComplete="new-password"
+            enterKeyHint="go"
             error={errors.password?.message}
             {...register('password')}
           />

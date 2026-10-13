@@ -74,5 +74,75 @@
     "hint": "Miễn phí. Quán được hiển thị sau khi FoodFen duyệt hồ sơ và thực đơn.",
     "submit": "Gửi duyệt",
     "back": "Xem lại điều khoản"
+  },
+  "validation": {
+    "nameRequired": "Nhập tên món",
+    "nameMax": "Tên tối đa 255 ký tự",
+    "descriptionMax": "Mô tả tối đa 2.000 ký tự",
+    "price": "Giá là số nguyên từ 0 đồng",
+    "servingG": "Khẩu phần từ 1 đến 10.000 g",
+    "kcal": "Năng lượng là số nguyên từ 0 đến 20.000 kcal",
+    "proteinRange": "Đạm từ 0 đến 2.000 g",
+    "carbsRange": "Tinh bột từ 0 đến 2.000 g",
+    "fatRange": "Chất béo từ 0 đến 2.000 g",
+    "fiberRange": "Chất xơ từ 0 đến 2.000 g"
+  },
+  "dish": {
+    "list": {
+      "title": "Thực đơn",
+      "add": "Thêm món",
+      "empty": "Chưa có món nào. Thêm món kèm dinh dưỡng để quán được xét duyệt."
+    },
+    "card": {
+      "edit": "Sửa",
+      "delete": "Xoá",
+      "deleteNamed": "Xoá món {{name}}"
+    },
+    "dialog": {
+      "addTitle": "Thêm món",
+      "editTitle": "Sửa món",
+      "addDescription": "Món mới sẽ hiển thị sau khi được duyệt.",
+      "editDescription": "Sau khi lưu, món sẽ được ẩn và chờ duyệt lại.",
+      "submitNew": "Gửi duyệt",
+      "submitEdit": "Lưu và gửi duyệt lại"
+    },
+    "form": {
+      "image": "Ảnh món",
+      "name": "Tên món",
+      "description": "Mô tả (không bắt buộc)",
+      "dietTag": "Chế độ ăn",
+      "dietTagHint": "Chay: không thịt, cá (có thể có trứng, sữa). Thuần chay: không có sản phẩm từ động vật.",
+      "price": "Giá (đồng)",
+      "priceHint": "Ví dụ: 65.000",
+      "servingG": "Khẩu phần (g)",
+      "nutrition": "Dinh dưỡng cho một khẩu phần",
+      "kcal": "Năng lượng (kcal)",
+      "proteinG": "Đạm (g)",
+      "carbsG": "Tinh bột (g)",
+      "fatG": "Chất béo (g)",
+      "fiberG": "Chất xơ (g, tuỳ chọn)",
+      "kcalOff": "Năng lượng lệch nhiều so với đạm, tinh bột và chất béo (4 kcal/g đạm và tinh bột, 9 kcal/g chất béo). Kiểm tra lại số liệu trước khi gửi duyệt."
+    },
+    "delete": {
+      "title": "Xoá món {{name}}?",
+      "description": "Món sẽ bị xoá khỏi thực đơn và không thể khôi phục.",
+      "confirm": "Xoá món"
+    }
+  },
+  "image": {
+    "invalidType": "Chỉ nhận ảnh JPEG, PNG hoặc WebP.",
+    "tooLarge": "Ảnh tối đa 5 MB.",
+    "uploadedAlt": "Ảnh đã tải lên",
+    "choose": "Chọn ảnh",
+    "change": "Đổi ảnh",
+    "remove": "Bỏ ảnh",
+    "fileLabel": "Tệp ảnh"
+  },
+  "profile": {
+    "editTitle": "Sửa thông tin quán",
+    "resubmitNote": "Sau khi lưu, quán sẽ được gửi duyệt lại.",
+    "save": "Lưu thay đổi",
+    "saveResubmit": "Lưu và gửi duyệt lại",
+    "edit": "Sửa thông tin"
   }
 }
