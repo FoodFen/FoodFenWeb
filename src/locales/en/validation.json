@@ -1,0 +1,8 @@
+{
+  "email": "Enter a valid email address",
+  "passwordRequired": "Enter your password",
+  "passwordMin": "Password must be at least 8 characters",
+  "passwordMax": "Password can be at most 72 characters",
+  "displayNameMax": "Name can be at most 100 characters",
+  "birthYear": "Enter a valid birth year"
+}

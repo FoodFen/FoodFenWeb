@@ -3,6 +3,7 @@ import { RejectionNote } from '@/components/rejection-note'
 import { StatusBadge } from '@/components/status-badge'
 import { Clock, ImageOff, MapPin, Phone } from 'lucide-react'
 import type { ReactNode } from 'react'
+import { useTranslation } from 'react-i18next'
 
 /** Profile card shared by the owner's page and the admin's review page. */
 export function RestaurantSummary({
@@ -12,6 +13,7 @@ export function RestaurantSummary({
   restaurant: RestaurantResponse
   actions?: ReactNode
 }) {
+  const { t } = useTranslation()
   const { name, description, address, phone, openingHours, imageUrl, status, rejectionReason } =
     restaurant
   return (
@@ -31,9 +33,17 @@ export function RestaurantSummary({
           </div>
           {description && <p className="text-muted-foreground max-w-prose">{description}</p>}
           <dl className="space-y-1.5 text-sm">
-            <Row icon={<MapPin aria-hidden />} label="Địa chỉ" value={address} />
-            <Row icon={<Phone aria-hidden />} label="Điện thoại" value={phone} />
-            <Row icon={<Clock aria-hidden />} label="Giờ mở cửa" value={openingHours} />
+            <Row
+              icon={<MapPin aria-hidden />}
+              label={t('restaurantInfo.address')}
+              value={address}
+            />
+            <Row icon={<Phone aria-hidden />} label={t('restaurantInfo.phone')} value={phone} />
+            <Row
+              icon={<Clock aria-hidden />}
+              label={t('restaurantInfo.openingHours')}
+              value={openingHours}
+            />
           </dl>
           {actions}
         </div>

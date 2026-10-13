@@ -2,9 +2,11 @@ import { SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui
 import { useSessionStore } from '@/lib/session-store'
 import { useRouter } from '@tanstack/react-router'
 import { LogOut } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { useSignOut } from './use-auth'
 
 export function UserMenu() {
+  const { t } = useTranslation('auth')
   const user = useSessionStore((s) => s.user)
   const refreshToken = useSessionStore((s) => s.refreshToken)
   const signOut = useSignOut()
@@ -28,7 +30,7 @@ export function UserMenu() {
         <SidebarMenuItem>
           <SidebarMenuButton className="h-11 md:h-9" onClick={handleSignOut}>
             <LogOut aria-hidden />
-            <span>Đăng xuất</span>
+            <span>{t('signOut')}</span>
           </SidebarMenuButton>
         </SidebarMenuItem>
       </SidebarMenu>

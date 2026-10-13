@@ -4,6 +4,7 @@ import { getRouteApi, useRouter } from '@tanstack/react-router'
 import { Lock, Mail, User } from 'lucide-react'
 import { useState } from 'react'
 import { useForm, useWatch } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { applyApiError } from '@/api/form-errors'
 import { AuthLayout } from './auth-layout'
 import { FormError, SubmitButton } from '@/components/form-parts'
@@ -15,6 +16,7 @@ import { registerSchema, type RegisterValues } from './schemas'
 import { useSignUp } from './use-auth'
 
 export function RegisterForm() {
+  const { t } = useTranslation('auth')
   const {
     register,
     handleSubmit,
@@ -40,15 +42,15 @@ export function RegisterForm() {
 
   return (
     <AuthLayout
-      title="Tạo tài khoản FoodFen"
-      hint="Miễn phí, không cần thẻ thanh toán."
-      headline="Bắt đầu ăn uống khỏe hơn từ hôm nay."
-      photo={{ id: ids.bowl, alt: 'Tô cơm cá hồi, trứng và rau củ' }}
+      title={t('register.title')}
+      hint={t('register.hint')}
+      headline={t('register.headline')}
+      photo={{ id: ids.bowl, alt: t('photoAlt.bowl') }}
     >
       <form onSubmit={onSubmit} noValidate className="space-y-4">
         <Field
           id="displayName"
-          label="Tên hiển thị"
+          label={t('displayName')}
           icon={User}
           autoComplete="name"
           error={errors.displayName?.message}
@@ -56,7 +58,7 @@ export function RegisterForm() {
         />
         <Field
           id="email"
-          label="Email"
+          label={t('email')}
           icon={Mail}
           type="email"
           autoComplete="email"
@@ -66,7 +68,7 @@ export function RegisterForm() {
         <div className="space-y-2">
           <Field
             id="password"
-            label="Mật khẩu"
+            label={t('password')}
             icon={Lock}
             type="password"
             autoComplete="new-password"
@@ -76,9 +78,14 @@ export function RegisterForm() {
           <PasswordStrength password={password ?? ''} />
         </div>
         <FormError message={formError} />
-        <SubmitButton loading={isSubmitting}>Tạo tài khoản</SubmitButton>
+        <SubmitButton loading={isSubmitting}>{t('register.submit')}</SubmitButton>
       </form>
-      <SwitchLink text="Đã có tài khoản?" to="/login" label="Đăng nhập" redirect={redirect} />
+      <SwitchLink
+        text={t('register.haveAccount')}
+        to="/login"
+        label={t('register.login')}
+        redirect={redirect}
+      />
     </AuthLayout>
   )
 }

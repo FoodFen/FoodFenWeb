@@ -5,6 +5,7 @@ import { useEffect } from 'react'
 import { appNav, isNavSection } from './app-nav'
 import { NavGroup } from './nav-group'
 import { NavLeaf } from './nav-leaf'
+import { LanguageToggle } from './language-toggle'
 import { ThemeToggle } from './theme-toggle'
 import {
   Sidebar,
@@ -29,7 +30,10 @@ export function AppSidebar() {
         <Link to="/" className="text-primary rounded-md text-xl font-semibold">
           FoodFen
         </Link>
-        <ThemeToggle />
+        <div className="flex items-center">
+          <LanguageToggle />
+          <ThemeToggle />
+        </div>
       </SidebarHeader>
       <SidebarContent className="p-2">
         <SidebarMenu className="gap-1">

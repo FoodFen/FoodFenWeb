@@ -1,0 +1,41 @@
+{
+  "retry": "Try again",
+  "cancel": "Cancel",
+  "theme": {
+    "light": "Light mode",
+    "dark": "Dark mode"
+  },
+  "language": {
+    "change": "Change language"
+  },
+  "sidebar": {
+    "description": "Main navigation for FoodFen.",
+    "open": "Open menu"
+  },
+  "dietTag": {
+    "none": "Not vegetarian",
+    "vegetarian": "Vegetarian",
+    "vegan": "Vegan"
+  },
+  "nutrition": {
+    "kcal": "{{value}} kcal",
+    "protein": "Protein {{value}} g",
+    "carbs": "Carbs {{value}} g",
+    "fat": "Fat {{value}} g",
+    "fiber": "Fiber {{value}} g",
+    "perServing": "{{macros}} per {{serving}} g"
+  },
+  "status": {
+    "pending": "Pending review",
+    "approved": "Approved",
+    "rejected": "Rejected"
+  },
+  "rejection": {
+    "reason": "Reason for rejection"
+  },
+  "restaurantInfo": {
+    "address": "Address",
+    "phone": "Phone",
+    "openingHours": "Opening hours"
+  }
+}

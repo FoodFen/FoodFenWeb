@@ -7,6 +7,7 @@ import { getRouteApi, Link } from '@tanstack/react-router'
 import { CircleCheck, Lock } from 'lucide-react'
 import { useState } from 'react'
 import { useForm, useWatch } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { AuthLayout } from './auth-layout'
 import { Field } from './field'
 import { PasswordStrength } from './password-strength'
@@ -18,6 +19,7 @@ const route = getRouteApi('/auth/reset-password')
 const linkClass = buttonVariants({ variant: 'link', className: 'h-auto justify-start p-0' })
 
 export function ResetPasswordForm() {
+  const { t } = useTranslation('auth')
   const { token } = route.useSearch()
   const [done, setDone] = useState(false)
   const [formError, setFormError] = useState<string | null>(null)
@@ -44,16 +46,16 @@ export function ResetPasswordForm() {
 
   return (
     <AuthLayout
-      title={done ? 'Đã đổi mật khẩu' : 'Đặt lại mật khẩu'}
-      hint={done ? 'Bạn có thể đăng nhập bằng mật khẩu mới.' : 'Nhập mật khẩu mới cho tài khoản.'}
-      headline="Đừng lo, bạn sẽ quay lại bữa ăn của mình ngay thôi."
-      photo={{ id: ids.market, alt: 'Các loại đậu và rau củ tươi' }}
+      title={done ? t('reset.doneTitle') : t('reset.title')}
+      hint={done ? t('reset.doneHint') : t('reset.hint')}
+      headline={t('forgot.headline')}
+      photo={{ id: ids.market, alt: t('photoAlt.market') }}
     >
       {done ? (
         <div className="space-y-6">
           <CircleCheck className="text-primary size-12" aria-hidden />
           <Link to="/login" className={buttonVariants({ className: 'h-11 px-4' })}>
-            Đăng nhập
+            {t('reset.login')}
           </Link>
         </div>
       ) : (
@@ -63,7 +65,7 @@ export function ResetPasswordForm() {
               <div className="space-y-2">
                 <Field
                   id="newPassword"
-                  label="Mật khẩu mới"
+                  label={t('reset.newPassword')}
                   icon={Lock}
                   type="password"
                   autoComplete="new-password"
@@ -73,13 +75,13 @@ export function ResetPasswordForm() {
                 <PasswordStrength password={newPassword ?? ''} />
               </div>
               <FormError message={formError} />
-              <SubmitButton loading={isSubmitting}>Đổi mật khẩu</SubmitButton>
+              <SubmitButton loading={isSubmitting}>{t('reset.submit')}</SubmitButton>
             </form>
           ) : (
-            <FormError message="Liên kết đặt lại mật khẩu không hợp lệ." />
+            <FormError message={t('reset.invalidLink')} />
           )}
           <Link to="/forgot-password" className={linkClass}>
-            Yêu cầu liên kết mới
+            {t('reset.requestNew')}
           </Link>
         </div>
       )}

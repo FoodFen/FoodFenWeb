@@ -1,16 +1,18 @@
 import { Photo } from '@/components/photo'
+import { LanguageToggle } from '@/components/language-toggle'
 import { ThemeToggle } from '@/components/theme-toggle'
 import { Link } from '@tanstack/react-router'
 import { Camera, Flame, Target } from 'lucide-react'
 import { motion, useReducedMotion } from 'motion/react'
 import type { ReactNode } from 'react'
+import { useTranslation } from 'react-i18next'
 import { ease } from '@/lib/motion'
 
 const benefits = [
-  { icon: Camera, text: 'Nhận diện món ăn từ ảnh' },
-  { icon: Target, text: 'Mục tiêu calo và macro mỗi ngày' },
-  { icon: Flame, text: 'Chuỗi ngày và nhiệm vụ hằng tuần' },
-]
+  { icon: Camera, key: 'recognize' },
+  { icon: Target, key: 'goals' },
+  { icon: Flame, key: 'streaks' },
+] as const
 
 type Props = {
   title: string
@@ -21,6 +23,7 @@ type Props = {
 }
 
 export function AuthLayout({ title, hint, headline, photo, children }: Props) {
+  const { t } = useTranslation('auth')
   const reduce = useReducedMotion()
   const rise = (delay: number) => ({
     initial: reduce ? false : { opacity: 0, y: 20 },
@@ -35,7 +38,10 @@ export function AuthLayout({ title, hint, headline, photo, children }: Props) {
           <Link to="/" className="text-primary text-xl font-semibold">
             FoodFen
           </Link>
-          <ThemeToggle />
+          <div className="flex items-center">
+            <LanguageToggle />
+            <ThemeToggle />
+          </div>
         </div>
         <motion.div
           {...rise(0)}
@@ -67,12 +73,12 @@ export function AuthLayout({ title, hint, headline, photo, children }: Props) {
             {headline}
           </motion.h2>
           <ul className="space-y-3">
-            {benefits.map(({ icon: Icon, text }, i) => (
-              <motion.li key={text} {...rise(0.35 + i * 0.1)} className="flex items-center gap-3">
+            {benefits.map(({ icon: Icon, key }, i) => (
+              <motion.li key={key} {...rise(0.35 + i * 0.1)} className="flex items-center gap-3">
                 <span className="flex size-9 items-center justify-center rounded-lg bg-white/15 backdrop-blur">
                   <Icon className="size-4" aria-hidden />
                 </span>
-                {text}
+                {t(`benefits.${key}`)}
               </motion.li>
             ))}
           </ul>

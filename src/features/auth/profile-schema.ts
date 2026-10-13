@@ -2,17 +2,17 @@ import type { UpdateUserProfileRequest, UserResponse } from '@/api/generated'
 import type { DeepPartial } from 'react-hook-form'
 import { z } from 'zod'
 
-export const genderLabels = { male: 'Nam', female: 'Nữ', other: 'Khác' } as const
+export const GENDERS = ['male', 'female', 'other'] as const
 
 export const profileSchema = z.object({
-  displayName: z.string().trim().max(100, 'Tên tối đa 100 ký tự'),
-  gender: z.enum(['', 'male', 'female', 'other']),
+  displayName: z.string().trim().max(100, 'validation:displayNameMax'),
+  gender: z.enum(['', ...GENDERS]),
   birthYear: z
     .string()
     .trim()
     .refine(
       (v) => v === '' || (/^\d{4}$/.test(v) && +v >= 1900 && +v <= new Date().getFullYear()),
-      'Năm sinh không hợp lệ',
+      'validation:birthYear',
     ),
 })
 

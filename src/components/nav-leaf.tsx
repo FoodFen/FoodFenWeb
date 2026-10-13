@@ -1,8 +1,10 @@
 import { SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar'
 import { Link } from '@tanstack/react-router'
+import { useTranslation } from 'react-i18next'
 import { isActivePath, type NavItem } from './app-nav'
 
 export function NavLeaf({ item, pathname }: { item: NavItem; pathname: string }) {
+  const { t } = useTranslation('nav')
   const { to, label, icon: Icon, exact } = item
   return (
     <SidebarMenuItem>
@@ -12,7 +14,7 @@ export function NavLeaf({ item, pathname }: { item: NavItem; pathname: string })
         render={<Link to={to} activeOptions={{ exact }} />}
       >
         <Icon aria-hidden />
-        <span>{label}</span>
+        <span>{t(label)}</span>
       </SidebarMenuButton>
     </SidebarMenuItem>
   )

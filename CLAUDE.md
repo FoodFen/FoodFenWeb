@@ -18,7 +18,16 @@ FoodFen's web client (Vite + React 19 + TypeScript SPA): the **restaurant owner 
 
 **Scope is fixed.** End users get only the landing page, sign-in/register/password flows, and a basic personal-info page (`/app`). Do not build tracker features on the web (food logging, AI analysis, goals, water/weight/activity logs, streaks, quests, quizzes, coins, chat, Premium checkout) even though the BE exposes them, and do not invent new end-user screens. Anything beyond this scope needs an explicit request.
 
-Siblings in the parent folder: `../FoodFenBE` (FastAPI) and `../FoodFenFE` (Expo mobile app). The mobile app's libraries and `CLAUDE.md` rules do not apply here; read them for product context only. All UI copy is Vietnamese.
+Siblings in the parent folder: `../FoodFenBE` (FastAPI) and `../FoodFenFE` (Expo mobile app). The mobile app's libraries and `CLAUDE.md` rules do not apply here; read them for product context only. UI copy is Vietnamese (default) and English, see Internationalization.
+
+## Internationalization
+
+- i18next + react-i18next, set up in `src/i18n/` (imported first by `main.tsx` and `test-setup.ts`). Vietnamese is the default and the fallback; English is the second language. Text lives in `src/locales/{vi,en}/<namespace>.json`, registered in `src/i18n/resources.ts`. Namespaces: `common` (default; shared components), `nav`, `auth`, `validation`, `errors`, `landing`, `admin`, `ads`, `restaurant`. A feature owns the namespace of its name. Never hardcode user-visible text (text, aria-labels, titles, placeholders, alt) in components.
+- Keys are camelCase, nested by screen or part (`t('login.title')`). Use `useTranslation('<ns>')`; keys from another namespace are `'ns:key'`. Values use `{{name}}` interpolation. Types come from the `vi` JSON, so `t('missing.key')` fails `tsc`, and keys built from a union (`` t(`status.${status}`) ``) are checked too. `src/i18n/parity.test.ts` fails when an `en` file lacks or adds a key compared with `vi`, so add both languages together. Write natural English, not word-for-word.
+- Validation: zod schemas stay static and their messages are namespaced translation keys (`z.email('validation:email')`). Shared messages go in `validation`; a feature's own schema messages go in its namespace under `validation.*` (`'ads:validation.nameRequired'`). `FormField` and the auth `Field` translate `error` through `useErrorText` only when it is an existing key; anything else (server field errors from `applyApiError`) is shown verbatim. Custom form components must do the same.
+- Text outside React (query hooks, `api/errors.ts`) uses `i18n.t` or `i18n.getFixedT(null, 'ns')` at call time, never at module load. Constants that hold text become keys, translated where they render.
+- `lib/format.ts` formatters follow the current language; call them during render inside a component that uses `useTranslation`, so they refresh on a language switch.
+- Language state is `lib/language.ts` (`localStorage` key `foodfen-lang`, `setLanguage`), applied before first render and mirrored on `<html lang>`. `LanguageToggle` sits next to every `ThemeToggle`.
 
 ## Commands
 

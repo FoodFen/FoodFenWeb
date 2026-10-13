@@ -8,9 +8,11 @@ import {
 } from '@/components/ui/sidebar'
 import { Link } from '@tanstack/react-router'
 import { ChevronRight } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { isActivePath, type NavSection } from './app-nav'
 
 export function NavGroup({ section, pathname }: { section: NavSection; pathname: string }) {
+  const { t } = useTranslation('nav')
   const { label, icon: Icon, children } = section
   return (
     <Collapsible
@@ -19,7 +21,7 @@ export function NavGroup({ section, pathname }: { section: NavSection; pathname:
     >
       <CollapsibleTrigger render={<SidebarMenuButton className="h-11 md:h-9" />}>
         <Icon aria-hidden />
-        <span>{label}</span>
+        <span>{t(label)}</span>
         <ChevronRight
           aria-hidden
           className="ml-auto transition-transform group-data-[panel-open]/menu-button:rotate-90"
@@ -35,7 +37,7 @@ export function NavGroup({ section, pathname }: { section: NavSection; pathname:
                 render={<Link to={child.to} activeOptions={{ exact: child.exact }} />}
               >
                 <child.icon aria-hidden />
-                <span>{child.label}</span>
+                <span>{t(child.label)}</span>
               </SidebarMenuSubButton>
             </SidebarMenuSubItem>
           ))}

@@ -7,6 +7,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog'
+import { useTranslation } from 'react-i18next'
 
 type Props = {
   open: boolean
@@ -27,6 +28,7 @@ export function ConfirmDialog({
   busy,
   onConfirm,
 }: Props) {
+  const { t } = useTranslation()
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent>
@@ -36,7 +38,7 @@ export function ConfirmDialog({
         </DialogHeader>
         <DialogFooter>
           <Button variant="outline" className="h-11 px-4" onClick={() => onOpenChange(false)}>
-            Huỷ
+            {t('cancel')}
           </Button>
           <Button variant="destructive" className="h-11 px-4" disabled={busy} onClick={onConfirm}>
             {confirmLabel}

@@ -1,0 +1,41 @@
+{
+  "retry": "Thử lại",
+  "cancel": "Huỷ",
+  "theme": {
+    "light": "Chế độ sáng",
+    "dark": "Chế độ tối"
+  },
+  "language": {
+    "change": "Đổi ngôn ngữ"
+  },
+  "sidebar": {
+    "description": "Điều hướng chính của FoodFen.",
+    "open": "Mở menu"
+  },
+  "dietTag": {
+    "none": "Không chay",
+    "vegetarian": "Chay",
+    "vegan": "Thuần chay"
+  },
+  "nutrition": {
+    "kcal": "{{value}} kcal",
+    "protein": "Đạm {{value}} g",
+    "carbs": "Tinh bột {{value}} g",
+    "fat": "Béo {{value}} g",
+    "fiber": "Xơ {{value}} g",
+    "perServing": "{{macros}} cho {{serving}} g"
+  },
+  "status": {
+    "pending": "Chờ duyệt",
+    "approved": "Đã duyệt",
+    "rejected": "Bị từ chối"
+  },
+  "rejection": {
+    "reason": "Lý do từ chối"
+  },
+  "restaurantInfo": {
+    "address": "Địa chỉ",
+    "phone": "Điện thoại",
+    "openingHours": "Giờ mở cửa"
+  }
+}

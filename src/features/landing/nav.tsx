@@ -1,3 +1,4 @@
+import { LanguageToggle } from '@/components/language-toggle'
 import { ThemeToggle } from '@/components/theme-toggle'
 import { buttonVariants } from '@/components/ui/button'
 import { Link } from '@tanstack/react-router'
@@ -84,6 +85,7 @@ export function Nav() {
         </nav>
 
         <div className="flex items-center gap-2">
+          <LanguageToggle />
           <ThemeToggle />
           <Link
             to="/login"

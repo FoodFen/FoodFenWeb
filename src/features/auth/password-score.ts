@@ -1,4 +1,5 @@
-export const strengthLabels = ['', 'Yếu', 'Trung bình', 'Khá', 'Mạnh']
+/** Keys of `auth:strength`, from score 1 up. */
+export const strengthKeys = ['weak', 'fair', 'good', 'strong'] as const
 
 export function passwordScore(password: string) {
   if (!password) return 0

@@ -4,6 +4,7 @@ import { Link, getRouteApi, useRouter } from '@tanstack/react-router'
 import { Lock, Mail } from 'lucide-react'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { applyApiError } from '@/api/form-errors'
 import { AuthLayout } from './auth-layout'
 import { FormError, SubmitButton } from '@/components/form-parts'
@@ -14,6 +15,7 @@ import { loginSchema, type LoginValues } from './schemas'
 import { useSignIn } from './use-auth'
 
 export function LoginForm() {
+  const { t } = useTranslation('auth')
   const {
     register,
     handleSubmit,
@@ -33,7 +35,7 @@ export function LoginForm() {
     } catch (error) {
       setFormError(
         applyApiError(error, setError, ['email', 'password'], {
-          401: 'Email hoặc mật khẩu không đúng.',
+          401: t('login.invalidCredentials'),
         }),
       )
     }
@@ -41,15 +43,15 @@ export function LoginForm() {
 
   return (
     <AuthLayout
-      title="Chào mừng trở lại"
-      hint="Đăng nhập để xem nhật ký ăn uống của bạn."
-      headline="Ghi lại từng bữa ăn trong vài giây."
-      photo={{ id: ids.breakfast, alt: 'Bàn bữa sáng với yến mạch và trái cây' }}
+      title={t('login.title')}
+      hint={t('login.hint')}
+      headline={t('login.headline')}
+      photo={{ id: ids.breakfast, alt: t('photoAlt.breakfast') }}
     >
       <form onSubmit={onSubmit} noValidate className="space-y-4">
         <Field
           id="email"
-          label="Email"
+          label={t('email')}
           icon={Mail}
           type="email"
           autoComplete="email"
@@ -58,22 +60,27 @@ export function LoginForm() {
         />
         <Field
           id="password"
-          label="Mật khẩu"
+          label={t('password')}
           icon={Lock}
           type="password"
           autoComplete="current-password"
           labelAside={
             <Link to="/forgot-password" className="text-primary text-sm hover:underline">
-              Quên mật khẩu?
+              {t('login.forgot')}
             </Link>
           }
           error={errors.password?.message}
           {...register('password')}
         />
         <FormError message={formError} />
-        <SubmitButton loading={isSubmitting}>Đăng nhập</SubmitButton>
+        <SubmitButton loading={isSubmitting}>{t('login.submit')}</SubmitButton>
       </form>
-      <SwitchLink text="Chưa có tài khoản?" to="/register" label="Đăng ký" redirect={redirect} />
+      <SwitchLink
+        text={t('login.noAccount')}
+        to="/register"
+        label={t('login.register')}
+        redirect={redirect}
+      />
     </AuthLayout>
   )
 }

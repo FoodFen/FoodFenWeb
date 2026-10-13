@@ -1,3 +1,4 @@
+import type { ParseKeys } from 'i18next'
 import {
   Megaphone,
   ListChecks,
@@ -10,9 +11,12 @@ import {
   type LucideIcon,
 } from 'lucide-react'
 
-export type NavItem = { to: string; label: string; icon: LucideIcon; exact?: boolean }
+/** `label` is a key in the `nav` namespace. */
+type NavLabel = ParseKeys<'nav'>
+
+export type NavItem = { to: string; label: NavLabel; icon: LucideIcon; exact?: boolean }
 export type NavSection = {
-  label: string
+  label: NavLabel
   icon: LucideIcon
   adminOnly?: boolean
   userOnly?: boolean
@@ -23,27 +27,27 @@ export type NavEntry = NavItem | NavSection
 export const isNavSection = (entry: NavEntry): entry is NavSection => 'children' in entry
 
 export const appNav: NavEntry[] = [
-  { to: '/app', label: 'Tài khoản', icon: UserRound, exact: true },
+  { to: '/app', label: 'account', icon: UserRound, exact: true },
   {
-    label: 'Quán của tôi',
+    label: 'myRestaurant',
     icon: Store,
     userOnly: true,
     children: [
-      { to: '/restaurant', label: 'Hồ sơ quán', icon: Store, exact: true },
-      { to: '/restaurant/ads', label: 'Quảng cáo', icon: Megaphone },
+      { to: '/restaurant', label: 'restaurantProfile', icon: Store, exact: true },
+      { to: '/restaurant/ads', label: 'ads', icon: Megaphone },
     ],
   },
   {
-    label: 'Quản trị',
+    label: 'admin',
     icon: ShieldCheck,
     adminOnly: true,
     children: [
-      { to: '/admin', label: 'Tổng quan', icon: LayoutDashboard, exact: true },
-      { to: '/admin/dashboard', label: 'Dòng tiền', icon: Wallet },
-      { to: '/admin/restaurants', label: 'Quản lý quán', icon: Store },
-      { to: '/admin/users', label: 'Người dùng', icon: Users },
-      { to: '/admin/content', label: 'Nội dung', icon: ListChecks },
-      { to: '/admin/ad-packages', label: 'Gói quảng cáo', icon: Megaphone },
+      { to: '/admin', label: 'overview', icon: LayoutDashboard, exact: true },
+      { to: '/admin/dashboard', label: 'cashflow', icon: Wallet },
+      { to: '/admin/restaurants', label: 'restaurants', icon: Store },
+      { to: '/admin/users', label: 'users', icon: Users },
+      { to: '/admin/content', label: 'content', icon: ListChecks },
+      { to: '/admin/ad-packages', label: 'adPackages', icon: Megaphone },
     ],
   },
 ]

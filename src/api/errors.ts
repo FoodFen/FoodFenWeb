@@ -1,3 +1,4 @@
+import i18n from '@/i18n'
 import { isAxiosError } from 'axios'
 
 export type ApiFailure = {
@@ -9,31 +10,28 @@ export type ApiFailure = {
 
 type ErrorBody = { message?: string; errors?: Record<string, string> }
 
-const byStatus: Record<number, string> = {
-  401: 'Phiên đăng nhập không hợp lệ. Hãy đăng nhập lại.',
-  403: 'Bạn không có quyền thực hiện thao tác này.',
-  404: 'Không tìm thấy dữ liệu yêu cầu.',
-  409: 'Dữ liệu đã tồn tại hoặc đang xung đột.',
-  422: 'Dữ liệu chưa hợp lệ.',
-  429: 'Bạn thao tác quá nhanh. Hãy thử lại sau ít phút.',
-}
+// Fallback texts live in the `errors` namespace; a message sent by the BE always wins.
+const byStatus = {
+  401: 'unauthorized',
+  403: 'forbidden',
+  404: 'notFound',
+  409: 'conflict',
+  422: 'invalid',
+  429: 'tooManyRequests',
+} as const
 
 // Failure bodies from the BE look like { message?, error?, errors?: { field: message } }.
 export function parseApiError(error: unknown): ApiFailure {
-  if (!isAxiosError<ErrorBody>(error)) {
-    return { message: 'Đã có lỗi xảy ra. Hãy thử lại.', fields: {} }
-  }
+  const t = i18n.getFixedT(null, 'errors')
+  if (!isAxiosError<ErrorBody>(error)) return { message: t('unknown'), fields: {} }
   const { response } = error
-  if (!response) {
-    return { message: 'Không kết nối được máy chủ. Kiểm tra mạng rồi thử lại.', fields: {} }
-  }
+  if (!response) return { message: t('network'), fields: {} }
   const status = response.status
+  const fallback =
+    byStatus[status as keyof typeof byStatus] ?? (status >= 500 ? 'server' : 'generic')
   return {
     status,
-    message:
-      response.data?.message ??
-      byStatus[status] ??
-      (status >= 500 ? 'Máy chủ đang gặp sự cố. Hãy thử lại sau.' : 'Đã có lỗi xảy ra.'),
+    message: response.data?.message ?? t(fallback),
     fields: response.data?.errors ?? {},
   }
 }

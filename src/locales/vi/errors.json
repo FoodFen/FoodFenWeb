@@ -1,0 +1,12 @@
+{
+  "unknown": "Đã có lỗi xảy ra. Hãy thử lại.",
+  "generic": "Đã có lỗi xảy ra.",
+  "network": "Không kết nối được máy chủ. Kiểm tra mạng rồi thử lại.",
+  "server": "Máy chủ đang gặp sự cố. Hãy thử lại sau.",
+  "unauthorized": "Phiên đăng nhập không hợp lệ. Hãy đăng nhập lại.",
+  "forbidden": "Bạn không có quyền thực hiện thao tác này.",
+  "notFound": "Không tìm thấy dữ liệu yêu cầu.",
+  "conflict": "Dữ liệu đã tồn tại hoặc đang xung đột.",
+  "invalid": "Dữ liệu chưa hợp lệ.",
+  "tooManyRequests": "Bạn thao tác quá nhanh. Hãy thử lại sau ít phút."
+}

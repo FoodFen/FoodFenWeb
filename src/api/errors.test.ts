@@ -1,4 +1,5 @@
 import { AxiosError, type AxiosResponse } from 'axios'
+import i18n from 'i18next'
 import { parseApiError, shouldRetry } from './errors'
 
 const failure = (status: number, data?: unknown) =>
@@ -17,6 +18,12 @@ test('uses the message and field errors sent by the BE', () => {
 
 test('falls back to a message for the status when the body has none', () => {
   expect(parseApiError(failure(429)).message).toContain('quá nhanh')
+})
+
+test('fallback messages follow the language', async () => {
+  await i18n.changeLanguage('en')
+  expect(parseApiError(failure(429)).message).toContain('too fast')
+  await i18n.changeLanguage('vi')
 })
 
 test('reports a network failure when there was no response', () => {

@@ -1,0 +1,8 @@
+{
+  "email": "Email không hợp lệ",
+  "passwordRequired": "Nhập mật khẩu",
+  "passwordMin": "Mật khẩu cần ít nhất 8 ký tự",
+  "passwordMax": "Mật khẩu tối đa 72 ký tự",
+  "displayNameMax": "Tên tối đa 100 ký tự",
+  "birthYear": "Năm sinh không hợp lệ"
+}

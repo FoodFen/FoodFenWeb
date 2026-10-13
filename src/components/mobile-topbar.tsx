@@ -1,4 +1,5 @@
 import { Link } from '@tanstack/react-router'
+import { LanguageToggle } from './language-toggle'
 import { ThemeToggle } from './theme-toggle'
 import { SidebarTrigger } from './ui/sidebar'
 
@@ -9,7 +10,8 @@ export function MobileTopbar() {
       <Link to="/" className="text-primary rounded-md text-lg font-semibold">
         FoodFen
       </Link>
-      <ThemeToggle className="ml-auto" />
+      <LanguageToggle className="ml-auto" />
+      <ThemeToggle />
     </header>
   )
 }

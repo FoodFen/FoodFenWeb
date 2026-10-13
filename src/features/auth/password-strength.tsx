@@ -1,8 +1,10 @@
-import { passwordScore, strengthLabels } from './password-score'
+import { useTranslation } from 'react-i18next'
+import { passwordScore, strengthKeys } from './password-score'
 
 const colors = ['', 'bg-destructive', 'bg-chart-3', 'bg-primary/70', 'bg-primary']
 
 export function PasswordStrength({ password }: { password: string }) {
+  const { t } = useTranslation('auth')
   const score = passwordScore(password)
   if (!score) return null
 
@@ -19,7 +21,7 @@ export function PasswordStrength({ password }: { password: string }) {
         ))}
       </div>
       <p aria-live="polite" className="text-muted-foreground text-xs">
-        Độ mạnh mật khẩu: {strengthLabels[score]}
+        {t('strength.label', { level: t(`strength.${strengthKeys[score - 1]}`) })}
       </p>
     </div>
   )

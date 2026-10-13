@@ -1,0 +1,12 @@
+{
+  "unknown": "Something went wrong. Please try again.",
+  "generic": "Something went wrong.",
+  "network": "Can't reach the server. Check your connection and try again.",
+  "server": "The server is having problems. Please try again later.",
+  "unauthorized": "Your session is no longer valid. Please sign in again.",
+  "forbidden": "You don't have permission to do this.",
+  "notFound": "We couldn't find what you asked for.",
+  "conflict": "This data already exists or conflicts with something else.",
+  "invalid": "Some of the data is not valid.",
+  "tooManyRequests": "You're going too fast. Please try again in a few minutes."
+}

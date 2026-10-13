@@ -7,8 +7,9 @@ import { Input } from '@/components/ui/input'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import {
-  genderLabels,
+  GENDERS,
   profileSchema,
   toProfilePatch,
   toProfileValues,
@@ -17,6 +18,7 @@ import {
 import { useUpdateProfile } from './use-profile'
 
 export function ProfileForm({ user }: { user: UserResponse }) {
+  const { t } = useTranslation('auth')
   const [saved, setSaved] = useState(false)
   const [formError, setFormError] = useState<string | null>(null)
   const updateProfile = useUpdateProfile()
@@ -50,7 +52,7 @@ export function ProfileForm({ user }: { user: UserResponse }) {
       <FormField id="email" label="Email">
         <Input id="email" className="h-11" value={user.email} readOnly disabled />
       </FormField>
-      <FormField id="displayName" label="Tên hiển thị" error={errors.displayName?.message}>
+      <FormField id="displayName" label={t('displayName')} error={errors.displayName?.message}>
         <Input
           id="displayName"
           className="h-11"
@@ -59,17 +61,17 @@ export function ProfileForm({ user }: { user: UserResponse }) {
           {...register('displayName')}
         />
       </FormField>
-      <FormField id="gender" label="Giới tính" error={errors.gender?.message}>
+      <FormField id="gender" label={t('profile.gender')} error={errors.gender?.message}>
         <select id="gender" className={selectClass} {...register('gender')}>
-          <option value="">Chưa chọn</option>
-          {Object.entries(genderLabels).map(([value, label]) => (
-            <option key={value} value={value}>
-              {label}
+          <option value="">{t('profile.genderUnset')}</option>
+          {GENDERS.map((gender) => (
+            <option key={gender} value={gender}>
+              {t(`profile.genders.${gender}`)}
             </option>
           ))}
         </select>
       </FormField>
-      <FormField id="birthYear" label="Năm sinh" error={errors.birthYear?.message}>
+      <FormField id="birthYear" label={t('profile.birthYear')} error={errors.birthYear?.message}>
         <Input
           id="birthYear"
           className="h-11"
@@ -81,11 +83,11 @@ export function ProfileForm({ user }: { user: UserResponse }) {
       <FormError message={formError} />
       {saved && (
         <p role="status" className="text-primary text-sm">
-          Đã lưu thay đổi
+          {t('profile.saved')}
         </p>
       )}
       <SubmitButton loading={isSubmitting} disabled={!isDirty}>
-        Lưu thay đổi
+        {t('profile.save')}
       </SubmitButton>
     </form>
   )

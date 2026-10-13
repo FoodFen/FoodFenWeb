@@ -1,18 +1,15 @@
 import { z } from 'zod'
 
-const email = z.email('Email không hợp lệ')
-const password = z
-  .string()
-  .min(8, 'Mật khẩu cần ít nhất 8 ký tự')
-  .max(72, 'Mật khẩu tối đa 72 ký tự')
+const email = z.email('validation:email')
+const password = z.string().min(8, 'validation:passwordMin').max(72, 'validation:passwordMax')
 
 export const loginSchema = z.object({
   email,
-  password: z.string().min(1, 'Nhập mật khẩu'),
+  password: z.string().min(1, 'validation:passwordRequired'),
 })
 
 export const registerSchema = z.object({
-  displayName: z.string().trim().max(100, 'Tên tối đa 100 ký tự').optional(),
+  displayName: z.string().trim().max(100, 'validation:displayNameMax').optional(),
   email,
   password,
 })

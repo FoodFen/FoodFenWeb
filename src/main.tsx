@@ -1,3 +1,4 @@
+import '@/i18n'
 import { configureApi } from '@/api/client'
 import { queryClient } from '@/api/query-client'
 import { SessionSync } from '@/features/auth/session-sync'

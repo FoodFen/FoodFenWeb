@@ -1,6 +1,8 @@
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import { useErrorText } from '@/i18n/use-error-text'
 import { CircleAlert, Eye, EyeOff, type LucideIcon } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { useState, type ComponentProps, type ReactNode } from 'react'
 
 type Props = ComponentProps<typeof Input> & {
@@ -11,6 +13,8 @@ type Props = ComponentProps<typeof Input> & {
 }
 
 export function Field({ id, label, icon: Icon, error, labelAside, type, ...input }: Props) {
+  const { t } = useTranslation('auth')
+  const errorText = useErrorText()
   const [shown, setShown] = useState(false)
   const isPassword = type === 'password'
 
@@ -37,7 +41,7 @@ export function Field({ id, label, icon: Icon, error, labelAside, type, ...input
           <button
             type="button"
             onClick={() => setShown((s) => !s)}
-            aria-label={shown ? 'Ẩn mật khẩu' : 'Hiện mật khẩu'}
+            aria-label={shown ? t('hidePassword') : t('showPassword')}
             className="text-muted-foreground hover:text-foreground absolute top-1/2 right-0 flex size-11 -translate-y-1/2 items-center justify-center rounded-lg transition-colors"
           >
             {shown ? (
@@ -55,7 +59,7 @@ export function Field({ id, label, icon: Icon, error, labelAside, type, ...input
           className="text-destructive flex items-center gap-1.5 text-sm"
         >
           <CircleAlert className="size-4 shrink-0" aria-hidden />
-          {error}
+          {errorText(error)}
         </p>
       )}
     </div>

@@ -1,4 +1,5 @@
 import { Label } from '@/components/ui/label'
+import { useErrorText } from '@/i18n/use-error-text'
 import { CircleAlert } from 'lucide-react'
 import type { ReactNode } from 'react'
 
@@ -16,6 +17,7 @@ export function FormField({
   hint?: string
   children: ReactNode
 }) {
+  const errorText = useErrorText()
   return (
     <div className="space-y-2">
       <Label htmlFor={id}>{label}</Label>
@@ -28,7 +30,7 @@ export function FormField({
           className="text-destructive flex items-center gap-1.5 text-sm"
         >
           <CircleAlert className="size-4 shrink-0" aria-hidden />
-          {error}
+          {errorText(error)}
         </p>
       )}
     </div>

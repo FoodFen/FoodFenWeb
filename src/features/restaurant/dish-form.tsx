@@ -5,12 +5,13 @@ import { selectClass } from '@/components/select-class'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
-import { DIET_TAG_LABELS } from '@/lib/diet-tag'
+import { DIET_TAGS } from '@/lib/diet-tag'
 import { kcalLooksOff } from '@/lib/nutrition'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { TriangleAlert } from 'lucide-react'
 import { useState } from 'react'
 import { useForm, useWatch, type FieldNamesMarkedBoolean } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { dishSchema, toDishBody, type DishValues } from './dish-schema'
 import { ImageUpload } from './image-upload'
 import { NumberField } from './number-field'
@@ -26,6 +27,7 @@ type Props = {
 const FIELDS = Object.keys(dishSchema.shape) as (keyof DishValues)[]
 
 export function DishForm({ defaultValues, submitLabel, onSubmit, upload }: Props) {
+  const { t } = useTranslation()
   const {
     register,
     handleSubmit,
@@ -77,9 +79,9 @@ export function DishForm({ defaultValues, submitLabel, onSubmit, upload }: Props
         hint="Chay: không thịt, cá (có thể có trứng, sữa). Thuần chay: không có sản phẩm từ động vật."
       >
         <select id="dietTag" className={selectClass} {...register('dietTag')}>
-          {Object.entries(DIET_TAG_LABELS).map(([value, label]) => (
-            <option key={value} value={value}>
-              {label}
+          {DIET_TAGS.map((tag) => (
+            <option key={tag} value={tag}>
+              {t(`dietTag.${tag}`)}
             </option>
           ))}
         </select>
