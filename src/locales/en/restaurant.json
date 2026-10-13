@@ -1,1 +1,78 @@
-{}
+{
+  "onboarding": {
+    "title": "Open your restaurant on FoodFen",
+    "pitch": "Put your dishes in front of diners who are looking for food that fits their nutrition goals.",
+    "benefits": {
+      "title": "What you get",
+      "items": {
+        "free": {
+          "title": "Free to register",
+          "body": "Create your restaurant profile and menu at no cost."
+        },
+        "reach": {
+          "title": "Reach the right diners",
+          "body": "Your dishes appear in the Dishes tab of the FoodFen app, shown to people whose daily goals they fit."
+        },
+        "directions": {
+          "title": "Easy directions",
+          "body": "Diners see your address and can open directions in Google Maps."
+        },
+        "ads": {
+          "title": "Optional advertising",
+          "body": "You can buy a package to appear in the Sponsored section."
+        },
+        "impressions": {
+          "title": "Track impressions",
+          "body": "See how many times your restaurant was shown each day."
+        }
+      }
+    },
+    "steps": {
+      "title": "How it works",
+      "items": {
+        "profile": {
+          "title": "Create your profile",
+          "body": "Add your name, address, coordinates, opening hours and a photo."
+        },
+        "menu": {
+          "title": "Add your menu",
+          "body": "Enter the nutrition per serving for every dish: kcal, protein, carbs and fat."
+        },
+        "review": {
+          "title": "FoodFen reviews it",
+          "body": "We check your restaurant and each dish."
+        },
+        "live": {
+          "title": "Go live in the app",
+          "body": "Approved dishes are shown to diners."
+        }
+      }
+    },
+    "terms": {
+      "title": "Terms",
+      "items": {
+        "accuracy": "Nutrition per serving (kcal, protein, carbs, fat) must be accurate.",
+        "images": "Restaurant and dish images may only be added through FoodFen's upload.",
+        "dishReview": "When you edit a dish, it goes back to review and stays hidden until it is approved again.",
+        "profileEdits": "Edits to the profile of an approved restaurant go live straight away, without a new review.",
+        "takedown": "FoodFen can take down a restaurant or a dish at any time and will give a reason.",
+        "oneRestaurant": "Each account can register one restaurant.",
+        "ads": "Paid placement only shows a dish to diners it fits. If your restaurant is taken down while a package is running, the package is not refunded."
+      }
+    },
+    "accept": "I have read and agree to the terms",
+    "start": "Start registration"
+  },
+  "myRestaurant": {
+    "title": "My restaurant",
+    "pitch": "List your dishes with their nutrition so FoodFen diners can find your restaurant. Registration is free.",
+    "open": "Open your restaurant on FoodFen",
+    "manage": "Manage restaurant"
+  },
+  "register": {
+    "title": "Register your restaurant",
+    "hint": "Free. Your restaurant goes live once FoodFen has reviewed your profile and menu.",
+    "submit": "Submit for review",
+    "back": "Review the terms"
+  }
+}

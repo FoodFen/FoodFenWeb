@@ -1,1 +1,78 @@
-{}
+{
+  "onboarding": {
+    "title": "Mở quán trên FoodFen",
+    "pitch": "Đưa món ăn của quán đến đúng thực khách đang tìm món hợp mục tiêu dinh dưỡng của họ.",
+    "benefits": {
+      "title": "Quyền lợi",
+      "items": {
+        "free": {
+          "title": "Đăng ký miễn phí",
+          "body": "Tạo hồ sơ quán và thực đơn mà không mất phí."
+        },
+        "reach": {
+          "title": "Đến đúng thực khách",
+          "body": "Món của quán xuất hiện ở tab Món ăn trong ứng dụng FoodFen, dành cho người có mục tiêu hằng ngày phù hợp với món."
+        },
+        "directions": {
+          "title": "Chỉ đường dễ dàng",
+          "body": "Thực khách thấy địa chỉ quán và mở chỉ đường trên Google Maps."
+        },
+        "ads": {
+          "title": "Quảng cáo tuỳ chọn",
+          "body": "Bạn có thể mua gói hiển thị trong mục Được tài trợ."
+        },
+        "impressions": {
+          "title": "Theo dõi lượt hiển thị",
+          "body": "Xem số lượt hiển thị của quán mỗi ngày."
+        }
+      }
+    },
+    "steps": {
+      "title": "Cách hoạt động",
+      "items": {
+        "profile": {
+          "title": "Tạo hồ sơ quán",
+          "body": "Điền tên, địa chỉ, toạ độ, giờ mở cửa và ảnh quán."
+        },
+        "menu": {
+          "title": "Thêm thực đơn",
+          "body": "Nhập dinh dưỡng mỗi khẩu phần cho từng món: kcal, đạm, tinh bột và béo."
+        },
+        "review": {
+          "title": "FoodFen duyệt",
+          "body": "Chúng tôi kiểm tra hồ sơ quán và từng món."
+        },
+        "live": {
+          "title": "Lên sóng trong ứng dụng",
+          "body": "Món đã duyệt hiển thị cho thực khách."
+        }
+      }
+    },
+    "terms": {
+      "title": "Điều khoản",
+      "items": {
+        "accuracy": "Dinh dưỡng mỗi khẩu phần (kcal, đạm, tinh bột, béo) phải chính xác.",
+        "images": "Ảnh quán và ảnh món chỉ được tải lên qua chức năng tải ảnh của FoodFen.",
+        "dishReview": "Khi bạn sửa một món, món đó quay lại trạng thái chờ duyệt và bị ẩn cho đến khi được duyệt lại.",
+        "profileEdits": "Chỉnh sửa hồ sơ của quán đã được duyệt có hiệu lực ngay, không cần duyệt lại.",
+        "takedown": "FoodFen có thể gỡ quán hoặc một món bất kỳ lúc nào và sẽ nêu rõ lý do.",
+        "oneRestaurant": "Mỗi tài khoản được đăng ký một quán.",
+        "ads": "Quảng cáo trả phí chỉ hiển thị món phù hợp với từng thực khách. Nếu quán bị gỡ khi gói còn hạn, gói không được hoàn tiền."
+      }
+    },
+    "accept": "Tôi đã đọc và đồng ý với điều khoản",
+    "start": "Bắt đầu đăng ký"
+  },
+  "myRestaurant": {
+    "title": "Quán của tôi",
+    "pitch": "Đăng món ăn kèm dinh dưỡng để thực khách trong ứng dụng FoodFen tìm thấy quán của bạn. Đăng ký miễn phí.",
+    "open": "Mở quán trên FoodFen",
+    "manage": "Quản lý quán"
+  },
+  "register": {
+    "title": "Đăng ký quán của bạn",
+    "hint": "Miễn phí. Quán được hiển thị sau khi FoodFen duyệt hồ sơ và thực đơn.",
+    "submit": "Gửi duyệt",
+    "back": "Xem lại điều khoản"
+  }
+}
