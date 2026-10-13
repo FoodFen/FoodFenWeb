@@ -5,10 +5,12 @@ import { StatusBadge } from '@/components/status-badge'
 import { Button } from '@/components/ui/button'
 import { formatVnd } from '@/lib/format'
 import { ImageOff, Pencil, Trash2 } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 
 type Props = { dish: DishResponse; onEdit: () => void; onDelete: () => void }
 
 export function DishCard({ dish, onEdit, onDelete }: Props) {
+  const { t } = useTranslation('restaurant')
   return (
     <li className="flex flex-col gap-3 py-4 sm:flex-row sm:items-start">
       {dish.imageUrl ? (
@@ -34,16 +36,16 @@ export function DishCard({ dish, onEdit, onDelete }: Props) {
       <div className="flex gap-2">
         <Button variant="outline" className="h-11 px-4" onClick={onEdit}>
           <Pencil aria-hidden />
-          Sửa
+          {t('dish.card.edit')}
         </Button>
         <Button
           variant="outline"
           className="h-11 px-4"
           onClick={onDelete}
-          aria-label={`Xoá món ${dish.name}`}
+          aria-label={t('dish.card.deleteNamed', { name: dish.name })}
         >
           <Trash2 aria-hidden />
-          Xoá
+          {t('dish.card.delete')}
         </Button>
       </div>
     </li>

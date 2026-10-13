@@ -4,6 +4,7 @@ import { ConfirmDialog } from '@/components/confirm-dialog'
 import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { DishDialog } from './dish-dialog'
 import { DishList } from './dish-list'
 import { emptyDish, toDishValues } from './dish-schema'
@@ -13,6 +14,7 @@ import { useCreateDish, useDeleteDish, useMyDishes, useUpdateDish } from './use-
 type Editor = { dish?: DishResponse }
 
 export function MenuSection({ upload }: { upload: (file: File) => Promise<string> }) {
+  const { t } = useTranslation(['restaurant', 'common'])
   const dishes = useMyDishes()
   const create = useCreateDish()
   const update = useUpdateDish()
@@ -27,7 +29,7 @@ export function MenuSection({ upload }: { upload: (file: File) => Promise<string
       <div className="space-y-3">
         <p role="alert">{parseApiError(dishes.error).message}</p>
         <Button variant="outline" className="h-11 px-4" onClick={() => void dishes.refetch()}>
-          Thử lại
+          {t('common:retry')}
         </Button>
       </div>
     )
@@ -57,9 +59,9 @@ export function MenuSection({ upload }: { upload: (file: File) => Promise<string
       <ConfirmDialog
         open={toDelete !== null}
         onOpenChange={(open) => !open && setToDelete(null)}
-        title={`Xoá món ${toDelete?.name ?? ''}?`}
-        description="Món sẽ bị xoá khỏi thực đơn và không thể khôi phục."
-        confirmLabel="Xoá món"
+        title={t('dish.delete.title', { name: toDelete?.name ?? '' })}
+        description={t('dish.delete.description')}
+        confirmLabel={t('dish.delete.confirm')}
         busy={removing}
         onConfirm={async () => {
           if (toDelete) await remove(toDelete.id)

@@ -5,6 +5,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog'
+import { useTranslation } from 'react-i18next'
 import { DishForm } from './dish-form'
 
 type Props = Pick<Parameters<typeof DishForm>[0], 'defaultValues' | 'onSubmit' | 'upload'> & {
@@ -15,18 +16,22 @@ type Props = Pick<Parameters<typeof DishForm>[0], 'defaultValues' | 'onSubmit' |
 }
 
 export function DishDialog({ open, onOpenChange, editing, ...form }: Props) {
+  const { t } = useTranslation('restaurant')
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-h-[90dvh] overflow-y-auto sm:max-w-2xl">
         <DialogHeader>
-          <DialogTitle>{editing ? 'Sửa món' : 'Thêm món'}</DialogTitle>
+          <DialogTitle>
+            {editing ? t('dish.dialog.editTitle') : t('dish.dialog.addTitle')}
+          </DialogTitle>
           <DialogDescription>
-            {editing
-              ? 'Sau khi lưu, món sẽ được ẩn và chờ duyệt lại.'
-              : 'Món mới sẽ hiển thị sau khi được duyệt.'}
+            {editing ? t('dish.dialog.editDescription') : t('dish.dialog.addDescription')}
           </DialogDescription>
         </DialogHeader>
-        <DishForm {...form} submitLabel={editing ? 'Lưu và gửi duyệt lại' : 'Gửi duyệt'} />
+        <DishForm
+          {...form}
+          submitLabel={editing ? t('dish.dialog.submitEdit') : t('dish.dialog.submitNew')}
+        />
       </DialogContent>
     </Dialog>
   )

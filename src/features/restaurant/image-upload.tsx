@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button'
 import { parseApiError } from '@/api/errors'
 import { ImagePlus, Loader2, X } from 'lucide-react'
 import { useRef, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 const TYPES = ['image/jpeg', 'image/png', 'image/webp']
 const MAX_BYTES = 5 * 1024 * 1024
@@ -15,14 +16,15 @@ type Props = {
 }
 
 export function ImageUpload({ value, onChange, upload }: Props) {
+  const { t } = useTranslation('restaurant')
   const input = useRef<HTMLInputElement>(null)
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
   async function pick(file: File | undefined) {
     if (!file) return
-    if (!TYPES.includes(file.type)) return setError('Chỉ nhận ảnh JPEG, PNG hoặc WebP.')
-    if (file.size > MAX_BYTES) return setError('Ảnh tối đa 5 MB.')
+    if (!TYPES.includes(file.type)) return setError(t('image.invalidType'))
+    if (file.size > MAX_BYTES) return setError(t('image.tooLarge'))
     setError(null)
     setBusy(true)
     try {
@@ -38,7 +40,11 @@ export function ImageUpload({ value, onChange, upload }: Props) {
     <div className="space-y-2">
       <div className="flex items-center gap-3">
         {value ? (
-          <img src={value} alt="Ảnh đã tải lên" className="size-20 rounded-xl object-cover" />
+          <img
+            src={value}
+            alt={t('image.uploadedAlt')}
+            className="size-20 rounded-xl object-cover"
+          />
         ) : (
           <div className="bg-muted text-muted-foreground flex size-20 items-center justify-center rounded-xl">
             <ImagePlus className="size-6" aria-hidden />
@@ -53,7 +59,7 @@ export function ImageUpload({ value, onChange, upload }: Props) {
             onClick={() => input.current?.click()}
           >
             {busy ? <Loader2 className="animate-spin" aria-hidden /> : <ImagePlus aria-hidden />}
-            {value ? 'Đổi ảnh' : 'Chọn ảnh'}
+            {value ? t('image.change') : t('image.choose')}
           </Button>
           {value && (
             <Button
@@ -64,7 +70,7 @@ export function ImageUpload({ value, onChange, upload }: Props) {
               onClick={() => onChange('')}
             >
               <X aria-hidden />
-              Bỏ ảnh
+              {t('image.remove')}
             </Button>
           )}
         </div>
@@ -75,7 +81,7 @@ export function ImageUpload({ value, onChange, upload }: Props) {
         accept={TYPES.join(',')}
         className="sr-only"
         tabIndex={-1}
-        aria-label="Tệp ảnh"
+        aria-label={t('image.fileLabel')}
         onChange={(event) => {
           void pick(event.target.files?.[0])
           event.target.value = ''
