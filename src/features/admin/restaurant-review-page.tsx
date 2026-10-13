@@ -22,7 +22,7 @@ export function RestaurantReviewPage() {
         className={buttonVariants({ variant: 'ghost', className: 'h-11 px-3' })}
       >
         <ArrowLeft aria-hidden />
-        Danh sách duyệt
+        Quản lý quán
       </Link>
       {detail.isPending ? (
         <Skeleton className="h-64 w-full rounded-2xl" aria-busy />

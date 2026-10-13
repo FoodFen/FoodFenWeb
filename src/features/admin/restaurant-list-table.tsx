@@ -10,18 +10,21 @@ import {
   TableRow,
 } from '@/components/ui/table'
 import { CircleCheck, Eye } from 'lucide-react'
+import { emptyMessages, type RestaurantTab } from './restaurant-tabs'
 
-type Props = { rows: AdminRestaurantRowResponse[]; onOpen: (id: string) => void }
+type Props = {
+  rows: AdminRestaurantRowResponse[]
+  tab: RestaurantTab
+  onOpen: (id: string) => void
+}
 
-export function ReviewQueueTable({ rows, onOpen }: Props) {
+export function RestaurantListTable({ rows, tab, onOpen }: Props) {
   if (rows.length === 0) {
     return (
       <div className="flex flex-col items-center gap-2 py-16 text-center">
         <CircleCheck className="text-muted-foreground size-10" aria-hidden />
         <p className="font-medium">Chưa có quán nào ở mục này</p>
-        <p className="text-muted-foreground text-sm">
-          Quán và món mới gửi lên sẽ xuất hiện trong mục Cần duyệt.
-        </p>
+        <p className="text-muted-foreground text-sm">{emptyMessages[tab]}</p>
       </div>
     )
   }

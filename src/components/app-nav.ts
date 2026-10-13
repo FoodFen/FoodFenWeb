@@ -38,7 +38,7 @@ export const appNav: NavEntry[] = [
     children: [
       { to: '/admin', label: 'Tổng quan', icon: LayoutDashboard, exact: true },
       { to: '/admin/dashboard', label: 'Dòng tiền', icon: Wallet },
-      { to: '/admin/restaurants', label: 'Duyệt quán', icon: Store },
+      { to: '/admin/restaurants', label: 'Quản lý quán', icon: Store },
       { to: '/admin/users', label: 'Người dùng', icon: Users },
       { to: '/admin/content', label: 'Nội dung', icon: ListChecks },
       { to: '/admin/ad-packages', label: 'Gói quảng cáo', icon: Megaphone },

@@ -1,4 +1,4 @@
-import type { ModerationStatus, ReviewRequest } from '@/api/generated'
+import type { ReviewRequest } from '@/api/generated'
 import {
   getRestaurantAdminRestaurantsRestaurantIdGetOptions,
   getRestaurantAdminRestaurantsRestaurantIdGetQueryKey,
@@ -6,23 +6,25 @@ import {
   reviewDishAdminDishesDishIdReviewPostMutation,
   reviewRestaurantAdminRestaurantsRestaurantIdReviewPostMutation,
 } from '@/api/generated/@tanstack/react-query.gen'
+import type { RestaurantTab } from './restaurant-tabs'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
-export type QueueFilter = 'needsReview' | Extract<ModerationStatus, 'approved' | 'rejected'>
+const tabQueries = {
+  all: undefined,
+  pending: { needsReview: true },
+  approved: { status: 'approved' },
+  rejected: { status: 'rejected' },
+} as const
 
-export const useReviewQueue = (filter: QueueFilter) =>
-  useQuery(
-    listRestaurantsAdminRestaurantsGetOptions({
-      query: filter === 'needsReview' ? { needsReview: true } : { status: filter },
-    }),
-  )
+export const useRestaurantList = (tab: RestaurantTab) =>
+  useQuery(listRestaurantsAdminRestaurantsGetOptions({ query: tabQueries[tab] }))
 
 export const useAdminRestaurant = (restaurantId: string) =>
   useQuery(
     getRestaurantAdminRestaurantsRestaurantIdGetOptions({ path: { restaurant_id: restaurantId } }),
   )
 
-/** Reviews of one restaurant page: refreshes that page and every queue list afterwards. */
+/** Reviews of one restaurant page: refreshes that page and every restaurant list afterwards. */
 export function useReviewActions(restaurantId: string) {
   const queryClient = useQueryClient()
   const refresh = () =>

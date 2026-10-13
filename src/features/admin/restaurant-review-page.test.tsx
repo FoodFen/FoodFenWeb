@@ -54,7 +54,7 @@ const dish = (id: string, name: string) => ({
   reviewedAt: '2026-10-10T09:20:46Z',
 })
 
-test('opening a restaurant from the queue shows its menu', async () => {
+test('opening a restaurant from the list shows its menu', async () => {
   useSessionStore.setState({
     user: { id: 1, email: 'admin@x.vn', displayName: null, role: 'admin' },
   })
