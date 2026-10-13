@@ -1,3 +1,4 @@
+import { PageHeader } from '@/components/page-header'
 import { Button } from '@/components/ui/button'
 import { useNavigate } from '@tanstack/react-router'
 import { useState } from 'react'
@@ -13,11 +14,8 @@ export function OnboardingIntro() {
   const [accepted, setAccepted] = useState(false)
 
   return (
-    <div className="max-w-3xl space-y-10">
-      <header className="space-y-2">
-        <h1 className="text-3xl font-bold tracking-tight">{t('onboarding.title')}</h1>
-        <p className="text-muted-foreground text-lg">{t('onboarding.pitch')}</p>
-      </header>
+    <div className="max-w-3xl space-y-8">
+      <PageHeader title={t('onboarding.title')} description={t('onboarding.pitch')} />
       <OnboardingBenefits />
       <OnboardingSteps />
       <OnboardingTerms />

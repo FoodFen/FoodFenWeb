@@ -1,7 +1,6 @@
-import { parseApiError } from '@/api/errors'
 import type { DishResponse } from '@/api/generated'
 import { ConfirmDialog } from '@/components/confirm-dialog'
-import { Button } from '@/components/ui/button'
+import { QueryError } from '@/components/query-error'
 import { Skeleton } from '@/components/ui/skeleton'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -14,7 +13,7 @@ import { useCreateDish, useDeleteDish, useMyDishes, useUpdateDish } from './use-
 type Editor = { dish?: DishResponse }
 
 export function MenuSection({ upload }: { upload: (file: File) => Promise<string> }) {
-  const { t } = useTranslation(['restaurant', 'common'])
+  const { t } = useTranslation('restaurant')
   const dishes = useMyDishes()
   const create = useCreateDish()
   const update = useUpdateDish()
@@ -25,14 +24,7 @@ export function MenuSection({ upload }: { upload: (file: File) => Promise<string
   if (dishes.isPending) return <Skeleton className="h-40 w-full rounded-2xl" aria-busy />
 
   if (dishes.isError) {
-    return (
-      <div className="space-y-3">
-        <p role="alert">{parseApiError(dishes.error).message}</p>
-        <Button variant="outline" className="h-11 px-4" onClick={() => void dishes.refetch()}>
-          {t('common:retry')}
-        </Button>
-      </div>
-    )
+    return <QueryError error={dishes.error} onRetry={() => void dishes.refetch()} />
   }
 
   return (

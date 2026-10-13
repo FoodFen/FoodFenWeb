@@ -1,4 +1,5 @@
 import type { RestaurantResponse } from '@/api/generated'
+import { PageHeader } from '@/components/page-header'
 import { RestaurantSummary } from '@/components/restaurant-summary'
 import { Button } from '@/components/ui/button'
 import { Pencil } from 'lucide-react'
@@ -18,9 +19,11 @@ export function RestaurantProfile({ restaurant, upload }: Props) {
   if (editing) {
     const rejected = restaurant.status === 'rejected'
     return (
-      <div className="space-y-4">
-        <h2 className="text-xl font-semibold">{t('profile.editTitle')}</h2>
-        {rejected && <p className="text-muted-foreground text-sm">{t('profile.resubmitNote')}</p>}
+      <div className="max-w-3xl space-y-6">
+        <PageHeader
+          title={t('profile.editTitle')}
+          description={rejected ? t('profile.resubmitNote') : undefined}
+        />
         <RestaurantForm
           defaultValues={toRestaurantValues(restaurant)}
           submitLabel={rejected ? t('profile.saveResubmit') : t('profile.save')}

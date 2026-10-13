@@ -1,9 +1,13 @@
 import { parseApiError } from '@/api/errors'
 import { getMyRestaurantRestaurantsMineGetOptions } from '@/api/generated/@tanstack/react-query.gen'
 import { DailyChart } from '@/components/daily-chart'
+import { PageHeader } from '@/components/page-header'
+import { EmptyState } from '@/components/empty-state'
 import { QueryError } from '@/components/query-error'
+import { buttonVariants } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
 import { formatNumber } from '@/lib/format'
+import { Store } from 'lucide-react'
 import { useQuery } from '@tanstack/react-query'
 import { Link } from '@tanstack/react-router'
 import { useTranslation } from 'react-i18next'
@@ -37,10 +41,7 @@ export function AdsPage() {
   const total = impressions.reduce((sum, day) => sum + day.count, 0)
   return (
     <div className="space-y-6">
-      <header className="space-y-1">
-        <h1 className="text-2xl font-bold tracking-tight md:text-3xl">{t('title')}</h1>
-        <p className="text-muted-foreground">{t('description')}</p>
-      </header>
+      <PageHeader title={t('title')} description={t('description')} />
       <OrderBanner />
       <AdsExplainer />
       <AdsStatus featuredUntil={featuredUntil} />
@@ -58,11 +59,10 @@ export function AdsPage() {
 function NoRestaurant() {
   const { t } = useTranslation('ads')
   return (
-    <div className="space-y-3">
-      <p>{t('noRestaurant.message')}</p>
-      <Link to="/restaurant" className="text-primary font-medium underline underline-offset-4">
+    <EmptyState icon={Store} title={t('noRestaurant.message')}>
+      <Link to="/restaurant" className={buttonVariants({ className: 'mt-2 h-11 px-4' })}>
         {t('noRestaurant.link')}
       </Link>
-    </div>
+    </EmptyState>
   )
 }

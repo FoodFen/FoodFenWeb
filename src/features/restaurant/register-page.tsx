@@ -1,8 +1,8 @@
 import { parseApiError } from '@/api/errors'
+import { BackLink } from '@/components/back-link'
+import { PageHeader } from '@/components/page-header'
 import { QueryError } from '@/components/query-error'
-import { buttonVariants } from '@/components/ui/button'
-import { Link, Navigate } from '@tanstack/react-router'
-import { ArrowLeft } from 'lucide-react'
+import { Navigate } from '@tanstack/react-router'
 import { useTranslation } from 'react-i18next'
 import { PageSkeleton } from './page-skeleton'
 import { RestaurantForm } from './restaurant-form'
@@ -25,18 +25,11 @@ export function RegisterPage() {
   }
 
   return (
-    <div className="space-y-4">
-      <Link
-        to="/restaurant"
-        className={buttonVariants({ variant: 'ghost', className: 'h-11 px-3' })}
-      >
-        <ArrowLeft aria-hidden />
-        {t('register.back')}
-      </Link>
-      <header className="space-y-1">
-        <h1 className="text-2xl font-bold tracking-tight">{t('register.title')}</h1>
-        <p className="text-muted-foreground">{t('register.hint')}</p>
-      </header>
+    <div className="max-w-3xl space-y-6">
+      <div className="space-y-2">
+        <BackLink to="/restaurant">{t('register.back')}</BackLink>
+        <PageHeader title={t('register.title')} description={t('register.hint')} />
+      </div>
       <RestaurantForm
         defaultValues={emptyRestaurant}
         submitLabel={t('register.submit')}

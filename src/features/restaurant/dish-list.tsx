@@ -1,4 +1,5 @@
 import type { DishResponse } from '@/api/generated'
+import { EmptyState } from '@/components/empty-state'
 import { Button } from '@/components/ui/button'
 import { Plus, UtensilsCrossed } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
@@ -14,18 +15,17 @@ type Props = {
 export function DishList({ dishes, onAdd, onEdit, onDelete }: Props) {
   const { t } = useTranslation('restaurant')
   return (
-    <section className="space-y-2">
+    <section className="space-y-3">
       <div className="flex items-center justify-between gap-3">
-        <h2 className="text-lg font-semibold">{t('dish.list.title')}</h2>
+        <h2 className="text-xl font-semibold">{t('dish.list.title')}</h2>
         <Button className="h-11 px-4" onClick={onAdd}>
           <Plus aria-hidden />
           {t('dish.list.add')}
         </Button>
       </div>
       {dishes.length === 0 ? (
-        <div className="text-muted-foreground flex flex-col items-center gap-2 rounded-2xl border border-dashed py-12 text-center">
-          <UtensilsCrossed className="size-8" aria-hidden />
-          <p>{t('dish.list.empty')}</p>
+        <div className="rounded-2xl border border-dashed">
+          <EmptyState icon={UtensilsCrossed} title={t('dish.list.empty')} className="py-12" />
         </div>
       ) : (
         <ul className="divide-y">

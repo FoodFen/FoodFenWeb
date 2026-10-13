@@ -52,7 +52,7 @@ export function RestaurantForm({ defaultValues, submitLabel, onSubmit, upload }:
   })
 
   return (
-    <form onSubmit={submit} noValidate className="max-w-2xl space-y-5">
+    <form onSubmit={submit} noValidate className="space-y-5">
       <FormField id="image" label={t('form.image')}>
         <ImageUpload
           value={imageUrl}
@@ -76,19 +76,17 @@ export function RestaurantForm({ defaultValues, submitLabel, onSubmit, upload }:
         error={errors.address?.message}
         {...register('address')}
       />
-      <div className="grid gap-5 sm:grid-cols-2">
-        <InputField
-          id="phone"
-          label={t('form.phone')}
-          hint={t('form.phoneHint')}
-          type="tel"
-          inputMode="tel"
-          autoComplete="tel"
-          error={errors.phone?.message}
-          {...register('phone')}
-        />
-        <OpeningHoursField control={control} legacyHours={defaultValues.legacyHours} />
-      </div>
+      <InputField
+        id="phone"
+        label={t('form.phone')}
+        hint={t('form.phoneHint')}
+        type="tel"
+        inputMode="tel"
+        autoComplete="tel"
+        error={errors.phone?.message}
+        {...register('phone')}
+      />
+      <OpeningHoursField control={control} legacyHours={defaultValues.legacyHours} />
       <LocationField control={control} onAddress={fillAddress} />
       <FormError message={formError} />
       <SubmitButton loading={isSubmitting} disabled={!isDirty}>
