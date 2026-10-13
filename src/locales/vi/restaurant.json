@@ -92,8 +92,11 @@
     "phoneRequired": "Nhập số điện thoại",
     "phoneInvalid": "Số điện thoại không hợp lệ. Ví dụ: 0901 234 567 hoặc +84 901 234 567",
     "hoursRequired": "Nhập giờ mở cửa",
-    "hoursMax": "Giờ mở cửa tối đa 255 ký tự",
-    "locationInvalid": "Dán toạ độ dạng \"10.7769, 106.7009\""
+    "locationInvalid": "Dán toạ độ dạng \"10.7769, 106.7009\"",
+    "hoursOpenRequired": "Chọn giờ mở cửa",
+    "hoursCloseRequired": "Chọn giờ đóng cửa",
+    "hoursSame": "Giờ mở và đóng cửa phải khác nhau",
+    "hoursOverlap": "Ca này trùng với một ca khác"
   },
   "dish": {
     "list": {
@@ -161,9 +164,21 @@
     "phone": "Số điện thoại",
     "phoneHint": "Ví dụ: 0901 234 567 hoặc +84 901 234 567",
     "openingHours": "Giờ mở cửa",
-    "openingHoursHint": "Ví dụ: 7:00 - 21:00 hằng ngày",
+    "openingHoursHint": "Áp dụng cho tất cả các ngày trong tuần. Tối đa 3 ca.",
     "location": "Toạ độ trên Google Maps",
     "locationHint": "Mở Google Maps, nhấn chuột phải vào vị trí quán, chọn dòng toạ độ để sao chép rồi dán vào đây.",
     "locationPlaceholder": "10.7769, 106.7009"
+  },
+  "hours": {
+    "open": "Mở cửa",
+    "close": "Đóng cửa",
+    "openNamed": "Giờ mở cửa, ca {{n}}",
+    "closeNamed": "Giờ đóng cửa, ca {{n}}",
+    "overnight": "Qua đêm, đóng cửa vào sáng hôm sau",
+    "add": "Thêm ca",
+    "remove": "Xoá ca {{n}}",
+    "current": "Giờ hiện tại: {{text}}",
+    "legacyPrompt": "Chọn lại giờ mở cửa để cập nhật. Nếu bạn không chọn, giờ hiện tại được giữ nguyên.",
+    "pick": "Chọn giờ"
   }
 }

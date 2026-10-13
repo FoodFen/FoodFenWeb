@@ -8,6 +8,7 @@ import { useState } from 'react'
 import { useForm, useWatch } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { ImageUpload } from './image-upload'
+import { OpeningHoursField } from './opening-hours-field'
 import { restaurantSchema, type RestaurantValues } from './restaurant-schema'
 
 type Props = {
@@ -17,7 +18,7 @@ type Props = {
   upload: (file: File) => Promise<string>
 }
 
-const FIELDS = ['name', 'description', 'address', 'phone', 'openingHours', 'imageUrl'] as const
+const FIELDS = ['name', 'description', 'address', 'phone', 'imageUrl'] as const
 
 export function RestaurantForm({ defaultValues, submitLabel, onSubmit, upload }: Props) {
   const { t } = useTranslation('restaurant')
@@ -77,13 +78,7 @@ export function RestaurantForm({ defaultValues, submitLabel, onSubmit, upload }:
           error={errors.phone?.message}
           {...register('phone')}
         />
-        <InputField
-          id="openingHours"
-          label={t('form.openingHours')}
-          hint={t('form.openingHoursHint')}
-          error={errors.openingHours?.message}
-          {...register('openingHours')}
-        />
+        <OpeningHoursField control={control} legacyHours={defaultValues.legacyHours} />
       </div>
       <InputField
         id="location"

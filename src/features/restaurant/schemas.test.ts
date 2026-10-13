@@ -11,6 +11,7 @@ import {
   emptyRestaurant,
   restaurantSchema,
   toRestaurantBody,
+  toRestaurantPatch,
   toRestaurantValues,
 } from './restaurant-schema'
 
@@ -71,7 +72,7 @@ const restaurant = {
   name: 'Bếp Nhà',
   address: '12 Nguyễn Huệ, Quận 1',
   phone: '0901234567',
-  openingHours: '7:00 - 21:00',
+  hours: [{ open: '07:00', close: '21:00' }],
   location: '10.7769, 106.7009',
 }
 
@@ -90,6 +91,59 @@ test('the phone is checked and stored in its canonical shape', () => {
     restaurantSchema.safeParse({ ...restaurant, phone: '123' }).error?.issues[0]?.message,
   ).toBe('restaurant:validation.phoneInvalid')
   expect(toRestaurantBody({ ...restaurant, phone: '+84 901 234 567' }).phone).toBe('0901234567')
+})
+
+test('the body carries the shifts as the stored text', () => {
+  expect(toRestaurantBody(restaurant).openingHours).toBe('07:00-21:00')
+})
+
+const shifts = (...list: [string, string][]) => list.map(([open, close]) => ({ open, close }))
+const hoursIssues = (hours: ReturnType<typeof shifts>) =>
+  restaurantSchema
+    .safeParse({ ...restaurant, hours })
+    .error?.issues.map((issue) => [issue.path.join('.'), issue.message])
+
+test('shifts need both times, differing, and may not overlap', () => {
+  expect(hoursIssues(shifts(['07:00', '10:30'], ['16:00', '21:00']))).toBeUndefined()
+  expect(hoursIssues(shifts(['', '10:00']))).toEqual([
+    ['hours.0.open', 'restaurant:validation.hoursOpenRequired'],
+  ])
+  expect(hoursIssues(shifts(['07:00', '07:00']))).toEqual([
+    ['hours.0.close', 'restaurant:validation.hoursSame'],
+  ])
+  expect(hoursIssues(shifts(['07:00', '12:00'], ['11:00', '14:00']))).toEqual([
+    ['hours.1.open', 'restaurant:validation.hoursOverlap'],
+  ])
+})
+
+test('a shift may close after midnight', () => {
+  expect(hoursIssues(shifts(['18:00', '02:00']))).toBeUndefined()
+})
+
+test('at most three shifts', () => {
+  const four = shifts(
+    ['01:00', '02:00'],
+    ['03:00', '04:00'],
+    ['05:00', '06:00'],
+    ['07:00', '08:00'],
+  )
+  expect(hoursIssues(four)).toBeDefined()
+})
+
+test('saved hours the picker can read become shifts, others are kept as legacy text', () => {
+  const saved = { ...restaurant, id: 'x', status: 'approved', latitude: 1, longitude: 2 }
+  const readable = toRestaurantValues({ ...saved, openingHours: '7h-21h' } as never)
+  expect(readable).toMatchObject({ hours: shifts(['07:00', '21:00']), legacyHours: '' })
+  const legacy = toRestaurantValues({ ...saved, openingHours: 'Cả ngày trừ Chủ nhật' } as never)
+  expect(legacy).toMatchObject({ hours: [], legacyHours: 'Cả ngày trừ Chủ nhật' })
+  expect(restaurantSchema.safeParse(legacy).success).toBe(true)
+})
+
+test('an update leaves unreadable saved hours alone and sends picked ones', () => {
+  const legacy = { ...restaurant, hours: [], legacyHours: 'Cả ngày' }
+  expect(toRestaurantPatch(legacy)).not.toHaveProperty('openingHours')
+  expect(toRestaurantPatch(restaurant)).toHaveProperty('openingHours', '07:00-21:00')
+  expect(toRestaurantPatch(legacy)).not.toHaveProperty('legacyHours')
 })
 
 test('rejects a location that is not a coordinate pair', () => {

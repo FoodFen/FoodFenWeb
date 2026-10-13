@@ -92,8 +92,11 @@
     "phoneRequired": "Enter a phone number",
     "phoneInvalid": "That phone number is not valid. For example: 0901 234 567 or +84 901 234 567",
     "hoursRequired": "Enter the opening hours",
-    "hoursMax": "Opening hours can be at most 255 characters",
-    "locationInvalid": "Paste coordinates like \"10.7769, 106.7009\""
+    "locationInvalid": "Paste coordinates like \"10.7769, 106.7009\"",
+    "hoursOpenRequired": "Pick the opening time",
+    "hoursCloseRequired": "Pick the closing time",
+    "hoursSame": "Opening and closing times must differ",
+    "hoursOverlap": "This shift overlaps another one"
   },
   "dish": {
     "list": {
@@ -161,9 +164,21 @@
     "phone": "Phone number",
     "phoneHint": "For example: 0901 234 567 or +84 901 234 567",
     "openingHours": "Opening hours",
-    "openingHoursHint": "For example: 7:00 - 21:00 daily",
+    "openingHoursHint": "Applies to every day of the week. Up to 3 shifts.",
     "location": "Coordinates from Google Maps",
     "locationHint": "Open Google Maps, right-click the restaurant's spot, click the coordinates line to copy them, then paste here.",
     "locationPlaceholder": "10.7769, 106.7009"
+  },
+  "hours": {
+    "open": "Opens",
+    "close": "Closes",
+    "openNamed": "Opening time, shift {{n}}",
+    "closeNamed": "Closing time, shift {{n}}",
+    "overnight": "Overnight, closes the next morning",
+    "add": "Add shift",
+    "remove": "Remove shift {{n}}",
+    "current": "Current hours: {{text}}",
+    "legacyPrompt": "Pick the times again to update them. If you do not, the current hours stay as they are.",
+    "pick": "Pick times"
   }
 }
