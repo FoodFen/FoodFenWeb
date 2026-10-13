@@ -20,7 +20,8 @@ export function Premium() {
             <Link
               to="/register"
               className={buttonVariants({
-                className: `${big} bg-cta text-cta-foreground hover:bg-cta/90`,
+                variant: 'cta',
+                className: big,
               })}
             >
               {t('premium.cta')}

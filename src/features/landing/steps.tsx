@@ -32,7 +32,7 @@ function Step({
   return (
     <div ref={ref} className="flex min-h-[55vh] items-center md:min-h-[75vh]">
       <div
-        className={`space-y-3 transition-opacity duration-500 ${active ? 'opacity-100' : 'opacity-30'}`}
+        className={`space-y-3 transition-opacity duration-500 ${active ? 'opacity-100' : 'opacity-50'}`}
       >
         <IconBadge icon={icon} className="bg-primary/10 text-primary" />
         <p className="text-primary text-5xl font-bold tracking-tight md:text-7xl">
@@ -50,7 +50,9 @@ export function Steps() {
   const reduce = useReducedMotion()
   return (
     <section id="cach-hoat-dong" className={`${wrap} py-16 md:py-24`}>
-      <h2 className="text-3xl font-bold tracking-tight md:text-4xl">{t('steps.title')}</h2>
+      <h2 className="text-3xl font-bold tracking-tight text-balance md:text-4xl">
+        {t('steps.title')}
+      </h2>
       <div className="mt-6 grid md:mt-10 md:grid-cols-2 md:gap-12">
         <div className="bg-background sticky top-16 z-10 -mx-4 px-4 py-3 md:top-24 md:mx-0 md:self-start md:bg-transparent md:p-0">
           <div className="bg-secondary relative h-56 overflow-hidden rounded-2xl md:h-[30rem]">

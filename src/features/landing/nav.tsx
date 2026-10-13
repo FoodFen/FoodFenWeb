@@ -49,7 +49,7 @@ export function Nav() {
       }`}
     >
       <div
-        className={`${wrap} flex items-center justify-between gap-4 transition-[height] duration-300 ${
+        className={`${wrap} flex items-center justify-between gap-2 transition-[height] duration-300 sm:gap-4 ${
           scrolled ? 'h-14' : 'h-16'
         }`}
       >
@@ -103,7 +103,7 @@ export function Nav() {
             to="/restaurant"
             className={buttonVariants({
               variant: 'ghost',
-              className: 'hidden h-11 px-3 text-sm sm:inline-flex',
+              className: 'h-11 px-3 text-sm max-lg:hidden',
             })}
           >
             {t('cta.registerRestaurant')}
@@ -112,7 +112,7 @@ export function Nav() {
             to="/register"
             className={buttonVariants({
               className:
-                'relative h-11 overflow-hidden px-4 text-sm before:absolute before:inset-y-0 before:-left-1/2 before:w-1/3 before:-skew-x-12 before:bg-white/30 before:transition-transform before:duration-700 hover:before:translate-x-[450%] motion-reduce:before:hidden',
+                'relative h-11 overflow-hidden px-4 text-sm before:absolute before:inset-y-0 before:-left-1/2 before:w-1/3 before:-skew-x-12 before:bg-white/30 before:transition-transform before:duration-700 hover:before:translate-x-[450%] motion-reduce:before:hidden max-sm:hidden',
             })}
           >
             {t('cta.tryFree')}

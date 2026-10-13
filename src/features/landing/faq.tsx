@@ -8,7 +8,9 @@ export function Faq() {
   const { t } = useTranslation('landing')
   return (
     <section id="hoi-dap" className={`${wrap} space-y-6 py-16 md:py-24`}>
-      <h2 className="text-3xl font-bold tracking-tight md:text-4xl">{t('faq.title')}</h2>
+      <h2 className="text-3xl font-bold tracking-tight text-balance md:text-4xl">
+        {t('faq.title')}
+      </h2>
       <div className="bg-card max-w-2xl divide-y rounded-2xl border">
         {faqIds.map((id) => (
           <details key={id} className="group px-5 py-2">
