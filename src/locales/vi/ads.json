@@ -33,14 +33,12 @@
     "title": "Chọn gói",
     "notApproved": "Quán cần được duyệt trước khi mua quảng cáo.",
     "none": "Hiện chưa có gói quảng cáo nào.",
-    "days_one": "{{count}} ngày",
     "days_other": "{{count}} ngày",
     "buy": "Mua gói",
     "payWith": "Thanh toán qua"
   },
   "impressions": {
     "title": "Lượt hiển thị",
-    "description_one": "{{total}} lượt trong 30 ngày qua",
     "description_other": "{{total}} lượt trong 30 ngày qua"
   }
 }

@@ -7,7 +7,7 @@ import {
   ChartTooltipContent,
   type ChartConfig,
 } from '@/components/ui/chart'
-import { formatShortDate } from '@/lib/format'
+import { formatNumber, formatShortDate } from '@/lib/format'
 import { Area, AreaChart, CartesianGrid, XAxis } from 'recharts'
 
 type Series<Row> = { key: Exclude<keyof Row, 'date'> & string; label: string; color: string }
@@ -54,8 +54,20 @@ export function DailyChart<Row extends { date: string }>({
               cursor={false}
               content={
                 <ChartTooltipContent
-                  indicator="line"
+                  indicator="dot"
                   labelFormatter={(label) => formatShortDate(String(label))}
+                  formatter={(value, name, item) => (
+                    <>
+                      <div
+                        className="size-2.5 shrink-0 rounded-[2px]"
+                        style={{ backgroundColor: item.color }}
+                      />
+                      <span className="text-muted-foreground">{config[name as string]?.label}</span>
+                      <span className="text-foreground ml-auto font-mono font-medium tabular-nums">
+                        {formatNumber(Number(value))}
+                      </span>
+                    </>
+                  )}
                 />
               }
             />
