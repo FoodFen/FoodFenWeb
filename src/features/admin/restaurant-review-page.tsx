@@ -8,7 +8,7 @@ import { RestaurantReview } from './restaurant-review'
 import { reviewErrorMessage } from './review-error'
 import { useAdminRestaurant, useReviewActions } from './use-moderation'
 
-const route = getRouteApi('/admin/restaurants/$restaurantId')
+const route = getRouteApi('/_authed/admin/restaurants/$restaurantId')
 
 export function RestaurantReviewPage() {
   const { restaurantId } = route.useParams()

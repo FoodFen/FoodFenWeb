@@ -1,4 +1,4 @@
-import { navItemClass } from '@/components/nav-item-class'
+import { SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar'
 import { useSessionStore } from '@/lib/session-store'
 import { useRouter } from '@tanstack/react-router'
 import { LogOut } from 'lucide-react'
@@ -17,17 +17,21 @@ export function UserMenu() {
   }
 
   return (
-    <div className="flex flex-1 flex-col gap-2 md:mt-auto md:flex-none md:border-t md:pt-3">
+    <div className="flex flex-col gap-1 border-t pt-2">
       {user && (
-        <div className="hidden px-3 text-sm md:block">
+        <div className="px-2 py-1 text-sm">
           <p className="truncate font-medium">{user.displayName ?? user.email}</p>
           <p className="text-muted-foreground truncate text-xs">{user.email}</p>
         </div>
       )}
-      <button type="button" onClick={handleSignOut} className={navItemClass}>
-        <LogOut className="size-5" aria-hidden />
-        Đăng xuất
-      </button>
+      <SidebarMenu>
+        <SidebarMenuItem>
+          <SidebarMenuButton className="h-11 md:h-9" onClick={handleSignOut}>
+            <LogOut aria-hidden />
+            <span>Đăng xuất</span>
+          </SidebarMenuButton>
+        </SidebarMenuItem>
+      </SidebarMenu>
     </div>
   )
 }

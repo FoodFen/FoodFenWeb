@@ -10,38 +10,31 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as AdminRouteImport } from './routes/admin'
-import { Route as AppRouteImport } from './routes/app'
+import { Route as AuthedRouteImport } from './routes/_authed'
 import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as RegisterRouteImport } from './routes/register'
-import { Route as RestaurantRouteImport } from './routes/restaurant'
-import { Route as AdminIndexRouteImport } from './routes/admin/index'
-import { Route as AdminAdPackagesRouteImport } from './routes/admin/ad-packages'
-import { Route as AdminContentRouteImport } from './routes/admin/content'
-import { Route as AdminDashboardRouteImport } from './routes/admin/dashboard'
-import { Route as AdminUsersRouteImport } from './routes/admin/users'
-import { Route as AppIndexRouteImport } from './routes/app/index'
+import { Route as AuthedAdminRouteImport } from './routes/_authed/admin'
 import { Route as AuthResetPasswordRouteImport } from './routes/auth/reset-password'
 import { Route as AuthVerifyEmailRouteImport } from './routes/auth/verify-email'
-import { Route as RestaurantIndexRouteImport } from './routes/restaurant/index'
-import { Route as RestaurantAdsRouteImport } from './routes/restaurant/ads'
-import { Route as AdminRestaurantsIndexRouteImport } from './routes/admin/restaurants/index'
-import { Route as AdminRestaurantsRestaurantIdRouteImport } from './routes/admin/restaurants/$restaurantId'
+import { Route as AuthedAdminIndexRouteImport } from './routes/_authed/admin/index'
+import { Route as AuthedAdminAdPackagesRouteImport } from './routes/_authed/admin/ad-packages'
+import { Route as AuthedAdminContentRouteImport } from './routes/_authed/admin/content'
+import { Route as AuthedAdminDashboardRouteImport } from './routes/_authed/admin/dashboard'
+import { Route as AuthedAdminUsersRouteImport } from './routes/_authed/admin/users'
+import { Route as AuthedAppIndexRouteImport } from './routes/_authed/app/index'
+import { Route as AuthedRestaurantIndexRouteImport } from './routes/_authed/restaurant/index'
+import { Route as AuthedRestaurantAdsRouteImport } from './routes/_authed/restaurant/ads'
+import { Route as AuthedAdminRestaurantsIndexRouteImport } from './routes/_authed/admin/restaurants/index'
+import { Route as AuthedAdminRestaurantsRestaurantIdRouteImport } from './routes/_authed/admin/restaurants/$restaurantId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AdminRoute = AdminRouteImport.update({
-  id: '/admin',
-  path: '/admin',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AppRoute = AppRouteImport.update({
-  id: '/app',
-  path: '/app',
+const AuthedRoute = AuthedRouteImport.update({
+  id: '/_authed',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ForgotPasswordRoute = ForgotPasswordRouteImport.update({
@@ -59,40 +52,10 @@ const RegisterRoute = RegisterRouteImport.update({
   path: '/register',
   getParentRoute: () => rootRouteImport,
 } as any)
-const RestaurantRoute = RestaurantRouteImport.update({
-  id: '/restaurant',
-  path: '/restaurant',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminIndexRoute = AdminIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => AdminRoute,
-} as any)
-const AdminAdPackagesRoute = AdminAdPackagesRouteImport.update({
-  id: '/ad-packages',
-  path: '/ad-packages',
-  getParentRoute: () => AdminRoute,
-} as any)
-const AdminContentRoute = AdminContentRouteImport.update({
-  id: '/content',
-  path: '/content',
-  getParentRoute: () => AdminRoute,
-} as any)
-const AdminDashboardRoute = AdminDashboardRouteImport.update({
-  id: '/dashboard',
-  path: '/dashboard',
-  getParentRoute: () => AdminRoute,
-} as any)
-const AdminUsersRoute = AdminUsersRouteImport.update({
-  id: '/users',
-  path: '/users',
-  getParentRoute: () => AdminRoute,
-} as any)
-const AppIndexRoute = AppIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => AppRoute,
+const AuthedAdminRoute = AuthedAdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => AuthedRoute,
 } as any)
 const AuthResetPasswordRoute = AuthResetPasswordRouteImport.update({
   id: '/auth/reset-password',
@@ -104,105 +67,131 @@ const AuthVerifyEmailRoute = AuthVerifyEmailRouteImport.update({
   path: '/auth/verify-email',
   getParentRoute: () => rootRouteImport,
 } as any)
-const RestaurantIndexRoute = RestaurantIndexRouteImport.update({
+const AuthedAdminIndexRoute = AuthedAdminIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => RestaurantRoute,
+  getParentRoute: () => AuthedAdminRoute,
 } as any)
-const RestaurantAdsRoute = RestaurantAdsRouteImport.update({
-  id: '/ads',
-  path: '/ads',
-  getParentRoute: () => RestaurantRoute,
+const AuthedAdminAdPackagesRoute = AuthedAdminAdPackagesRouteImport.update({
+  id: '/ad-packages',
+  path: '/ad-packages',
+  getParentRoute: () => AuthedAdminRoute,
 } as any)
-const AdminRestaurantsIndexRoute = AdminRestaurantsIndexRouteImport.update({
-  id: '/restaurants/',
-  path: '/restaurants/',
-  getParentRoute: () => AdminRoute,
+const AuthedAdminContentRoute = AuthedAdminContentRouteImport.update({
+  id: '/content',
+  path: '/content',
+  getParentRoute: () => AuthedAdminRoute,
 } as any)
-const AdminRestaurantsRestaurantIdRoute =
-  AdminRestaurantsRestaurantIdRouteImport.update({
+const AuthedAdminDashboardRoute = AuthedAdminDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AuthedAdminRoute,
+} as any)
+const AuthedAdminUsersRoute = AuthedAdminUsersRouteImport.update({
+  id: '/users',
+  path: '/users',
+  getParentRoute: () => AuthedAdminRoute,
+} as any)
+const AuthedAppIndexRoute = AuthedAppIndexRouteImport.update({
+  id: '/app/',
+  path: '/app/',
+  getParentRoute: () => AuthedRoute,
+} as any)
+const AuthedRestaurantIndexRoute = AuthedRestaurantIndexRouteImport.update({
+  id: '/restaurant/',
+  path: '/restaurant/',
+  getParentRoute: () => AuthedRoute,
+} as any)
+const AuthedRestaurantAdsRoute = AuthedRestaurantAdsRouteImport.update({
+  id: '/restaurant/ads',
+  path: '/restaurant/ads',
+  getParentRoute: () => AuthedRoute,
+} as any)
+const AuthedAdminRestaurantsIndexRoute =
+  AuthedAdminRestaurantsIndexRouteImport.update({
+    id: '/restaurants/',
+    path: '/restaurants/',
+    getParentRoute: () => AuthedAdminRoute,
+  } as any)
+const AuthedAdminRestaurantsRestaurantIdRoute =
+  AuthedAdminRestaurantsRestaurantIdRouteImport.update({
     id: '/restaurants/$restaurantId',
     path: '/restaurants/$restaurantId',
-    getParentRoute: () => AdminRoute,
+    getParentRoute: () => AuthedAdminRoute,
   } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/admin': typeof AdminRouteWithChildren
-  '/app': typeof AppRouteWithChildren
   '/forgot-password': typeof ForgotPasswordRoute
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
-  '/restaurant': typeof RestaurantRouteWithChildren
-  '/admin/ad-packages': typeof AdminAdPackagesRoute
-  '/admin/content': typeof AdminContentRoute
-  '/admin/dashboard': typeof AdminDashboardRoute
-  '/admin/users': typeof AdminUsersRoute
+  '/admin': typeof AuthedAdminRouteWithChildren
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/auth/verify-email': typeof AuthVerifyEmailRoute
-  '/restaurant/ads': typeof RestaurantAdsRoute
-  '/admin/': typeof AdminIndexRoute
-  '/app/': typeof AppIndexRoute
-  '/restaurant/': typeof RestaurantIndexRoute
-  '/admin/restaurants/$restaurantId': typeof AdminRestaurantsRestaurantIdRoute
-  '/admin/restaurants/': typeof AdminRestaurantsIndexRoute
+  '/admin/ad-packages': typeof AuthedAdminAdPackagesRoute
+  '/admin/content': typeof AuthedAdminContentRoute
+  '/admin/dashboard': typeof AuthedAdminDashboardRoute
+  '/admin/users': typeof AuthedAdminUsersRoute
+  '/restaurant/ads': typeof AuthedRestaurantAdsRoute
+  '/admin/': typeof AuthedAdminIndexRoute
+  '/app/': typeof AuthedAppIndexRoute
+  '/restaurant/': typeof AuthedRestaurantIndexRoute
+  '/admin/restaurants/$restaurantId': typeof AuthedAdminRestaurantsRestaurantIdRoute
+  '/admin/restaurants/': typeof AuthedAdminRestaurantsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
-  '/admin/ad-packages': typeof AdminAdPackagesRoute
-  '/admin/content': typeof AdminContentRoute
-  '/admin/dashboard': typeof AdminDashboardRoute
-  '/admin/users': typeof AdminUsersRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/auth/verify-email': typeof AuthVerifyEmailRoute
-  '/restaurant/ads': typeof RestaurantAdsRoute
-  '/admin': typeof AdminIndexRoute
-  '/app': typeof AppIndexRoute
-  '/restaurant': typeof RestaurantIndexRoute
-  '/admin/restaurants/$restaurantId': typeof AdminRestaurantsRestaurantIdRoute
-  '/admin/restaurants': typeof AdminRestaurantsIndexRoute
+  '/admin/ad-packages': typeof AuthedAdminAdPackagesRoute
+  '/admin/content': typeof AuthedAdminContentRoute
+  '/admin/dashboard': typeof AuthedAdminDashboardRoute
+  '/admin/users': typeof AuthedAdminUsersRoute
+  '/restaurant/ads': typeof AuthedRestaurantAdsRoute
+  '/admin': typeof AuthedAdminIndexRoute
+  '/app': typeof AuthedAppIndexRoute
+  '/restaurant': typeof AuthedRestaurantIndexRoute
+  '/admin/restaurants/$restaurantId': typeof AuthedAdminRestaurantsRestaurantIdRoute
+  '/admin/restaurants': typeof AuthedAdminRestaurantsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/admin': typeof AdminRouteWithChildren
-  '/app': typeof AppRouteWithChildren
+  '/_authed': typeof AuthedRouteWithChildren
   '/forgot-password': typeof ForgotPasswordRoute
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
-  '/restaurant': typeof RestaurantRouteWithChildren
-  '/admin/ad-packages': typeof AdminAdPackagesRoute
-  '/admin/content': typeof AdminContentRoute
-  '/admin/dashboard': typeof AdminDashboardRoute
-  '/admin/users': typeof AdminUsersRoute
+  '/_authed/admin': typeof AuthedAdminRouteWithChildren
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/auth/verify-email': typeof AuthVerifyEmailRoute
-  '/restaurant/ads': typeof RestaurantAdsRoute
-  '/admin/': typeof AdminIndexRoute
-  '/app/': typeof AppIndexRoute
-  '/restaurant/': typeof RestaurantIndexRoute
-  '/admin/restaurants/$restaurantId': typeof AdminRestaurantsRestaurantIdRoute
-  '/admin/restaurants/': typeof AdminRestaurantsIndexRoute
+  '/_authed/admin/ad-packages': typeof AuthedAdminAdPackagesRoute
+  '/_authed/admin/content': typeof AuthedAdminContentRoute
+  '/_authed/admin/dashboard': typeof AuthedAdminDashboardRoute
+  '/_authed/admin/users': typeof AuthedAdminUsersRoute
+  '/_authed/restaurant/ads': typeof AuthedRestaurantAdsRoute
+  '/_authed/admin/': typeof AuthedAdminIndexRoute
+  '/_authed/app/': typeof AuthedAppIndexRoute
+  '/_authed/restaurant/': typeof AuthedRestaurantIndexRoute
+  '/_authed/admin/restaurants/$restaurantId': typeof AuthedAdminRestaurantsRestaurantIdRoute
+  '/_authed/admin/restaurants/': typeof AuthedAdminRestaurantsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/admin'
-    | '/app'
     | '/forgot-password'
     | '/login'
     | '/register'
-    | '/restaurant'
+    | '/admin'
+    | '/auth/reset-password'
+    | '/auth/verify-email'
     | '/admin/ad-packages'
     | '/admin/content'
     | '/admin/dashboard'
     | '/admin/users'
-    | '/auth/reset-password'
-    | '/auth/verify-email'
     | '/restaurant/ads'
     | '/admin/'
     | '/app/'
@@ -215,12 +204,12 @@ export interface FileRouteTypes {
     | '/forgot-password'
     | '/login'
     | '/register'
+    | '/auth/reset-password'
+    | '/auth/verify-email'
     | '/admin/ad-packages'
     | '/admin/content'
     | '/admin/dashboard'
     | '/admin/users'
-    | '/auth/reset-password'
-    | '/auth/verify-email'
     | '/restaurant/ads'
     | '/admin'
     | '/app'
@@ -230,34 +219,31 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
-    | '/admin'
-    | '/app'
+    | '/_authed'
     | '/forgot-password'
     | '/login'
     | '/register'
-    | '/restaurant'
-    | '/admin/ad-packages'
-    | '/admin/content'
-    | '/admin/dashboard'
-    | '/admin/users'
+    | '/_authed/admin'
     | '/auth/reset-password'
     | '/auth/verify-email'
-    | '/restaurant/ads'
-    | '/admin/'
-    | '/app/'
-    | '/restaurant/'
-    | '/admin/restaurants/$restaurantId'
-    | '/admin/restaurants/'
+    | '/_authed/admin/ad-packages'
+    | '/_authed/admin/content'
+    | '/_authed/admin/dashboard'
+    | '/_authed/admin/users'
+    | '/_authed/restaurant/ads'
+    | '/_authed/admin/'
+    | '/_authed/app/'
+    | '/_authed/restaurant/'
+    | '/_authed/admin/restaurants/$restaurantId'
+    | '/_authed/admin/restaurants/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AdminRoute: typeof AdminRouteWithChildren
-  AppRoute: typeof AppRouteWithChildren
+  AuthedRoute: typeof AuthedRouteWithChildren
   ForgotPasswordRoute: typeof ForgotPasswordRoute
   LoginRoute: typeof LoginRoute
   RegisterRoute: typeof RegisterRoute
-  RestaurantRoute: typeof RestaurantRouteWithChildren
   AuthResetPasswordRoute: typeof AuthResetPasswordRoute
   AuthVerifyEmailRoute: typeof AuthVerifyEmailRoute
 }
@@ -271,18 +257,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/admin': {
-      id: '/admin'
-      path: '/admin'
-      fullPath: '/admin'
-      preLoaderRoute: typeof AdminRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/app': {
-      id: '/app'
-      path: '/app'
-      fullPath: '/app'
-      preLoaderRoute: typeof AppRouteImport
+    '/_authed': {
+      id: '/_authed'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthedRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/forgot-password': {
@@ -306,54 +285,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RegisterRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/restaurant': {
-      id: '/restaurant'
-      path: '/restaurant'
-      fullPath: '/restaurant'
-      preLoaderRoute: typeof RestaurantRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/': {
-      id: '/admin/'
-      path: '/'
-      fullPath: '/admin/'
-      preLoaderRoute: typeof AdminIndexRouteImport
-      parentRoute: typeof AdminRoute
-    }
-    '/admin/ad-packages': {
-      id: '/admin/ad-packages'
-      path: '/ad-packages'
-      fullPath: '/admin/ad-packages'
-      preLoaderRoute: typeof AdminAdPackagesRouteImport
-      parentRoute: typeof AdminRoute
-    }
-    '/admin/content': {
-      id: '/admin/content'
-      path: '/content'
-      fullPath: '/admin/content'
-      preLoaderRoute: typeof AdminContentRouteImport
-      parentRoute: typeof AdminRoute
-    }
-    '/admin/dashboard': {
-      id: '/admin/dashboard'
-      path: '/dashboard'
-      fullPath: '/admin/dashboard'
-      preLoaderRoute: typeof AdminDashboardRouteImport
-      parentRoute: typeof AdminRoute
-    }
-    '/admin/users': {
-      id: '/admin/users'
-      path: '/users'
-      fullPath: '/admin/users'
-      preLoaderRoute: typeof AdminUsersRouteImport
-      parentRoute: typeof AdminRoute
-    }
-    '/app/': {
-      id: '/app/'
-      path: '/'
-      fullPath: '/app/'
-      preLoaderRoute: typeof AppIndexRouteImport
-      parentRoute: typeof AppRoute
+    '/_authed/admin': {
+      id: '/_authed/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AuthedAdminRouteImport
+      parentRoute: typeof AuthedRoute
     }
     '/auth/reset-password': {
       id: '/auth/reset-password'
@@ -369,91 +306,127 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthVerifyEmailRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/restaurant/': {
-      id: '/restaurant/'
+    '/_authed/admin/': {
+      id: '/_authed/admin/'
       path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AuthedAdminIndexRouteImport
+      parentRoute: typeof AuthedAdminRoute
+    }
+    '/_authed/admin/ad-packages': {
+      id: '/_authed/admin/ad-packages'
+      path: '/ad-packages'
+      fullPath: '/admin/ad-packages'
+      preLoaderRoute: typeof AuthedAdminAdPackagesRouteImport
+      parentRoute: typeof AuthedAdminRoute
+    }
+    '/_authed/admin/content': {
+      id: '/_authed/admin/content'
+      path: '/content'
+      fullPath: '/admin/content'
+      preLoaderRoute: typeof AuthedAdminContentRouteImport
+      parentRoute: typeof AuthedAdminRoute
+    }
+    '/_authed/admin/dashboard': {
+      id: '/_authed/admin/dashboard'
+      path: '/dashboard'
+      fullPath: '/admin/dashboard'
+      preLoaderRoute: typeof AuthedAdminDashboardRouteImport
+      parentRoute: typeof AuthedAdminRoute
+    }
+    '/_authed/admin/users': {
+      id: '/_authed/admin/users'
+      path: '/users'
+      fullPath: '/admin/users'
+      preLoaderRoute: typeof AuthedAdminUsersRouteImport
+      parentRoute: typeof AuthedAdminRoute
+    }
+    '/_authed/app/': {
+      id: '/_authed/app/'
+      path: '/app'
+      fullPath: '/app/'
+      preLoaderRoute: typeof AuthedAppIndexRouteImport
+      parentRoute: typeof AuthedRoute
+    }
+    '/_authed/restaurant/': {
+      id: '/_authed/restaurant/'
+      path: '/restaurant'
       fullPath: '/restaurant/'
-      preLoaderRoute: typeof RestaurantIndexRouteImport
-      parentRoute: typeof RestaurantRoute
+      preLoaderRoute: typeof AuthedRestaurantIndexRouteImport
+      parentRoute: typeof AuthedRoute
     }
-    '/restaurant/ads': {
-      id: '/restaurant/ads'
-      path: '/ads'
+    '/_authed/restaurant/ads': {
+      id: '/_authed/restaurant/ads'
+      path: '/restaurant/ads'
       fullPath: '/restaurant/ads'
-      preLoaderRoute: typeof RestaurantAdsRouteImport
-      parentRoute: typeof RestaurantRoute
+      preLoaderRoute: typeof AuthedRestaurantAdsRouteImport
+      parentRoute: typeof AuthedRoute
     }
-    '/admin/restaurants/': {
-      id: '/admin/restaurants/'
+    '/_authed/admin/restaurants/': {
+      id: '/_authed/admin/restaurants/'
       path: '/restaurants'
       fullPath: '/admin/restaurants/'
-      preLoaderRoute: typeof AdminRestaurantsIndexRouteImport
-      parentRoute: typeof AdminRoute
+      preLoaderRoute: typeof AuthedAdminRestaurantsIndexRouteImport
+      parentRoute: typeof AuthedAdminRoute
     }
-    '/admin/restaurants/$restaurantId': {
-      id: '/admin/restaurants/$restaurantId'
+    '/_authed/admin/restaurants/$restaurantId': {
+      id: '/_authed/admin/restaurants/$restaurantId'
       path: '/restaurants/$restaurantId'
       fullPath: '/admin/restaurants/$restaurantId'
-      preLoaderRoute: typeof AdminRestaurantsRestaurantIdRouteImport
-      parentRoute: typeof AdminRoute
+      preLoaderRoute: typeof AuthedAdminRestaurantsRestaurantIdRouteImport
+      parentRoute: typeof AuthedAdminRoute
     }
   }
 }
 
-interface AdminRouteChildren {
-  AdminAdPackagesRoute: typeof AdminAdPackagesRoute
-  AdminContentRoute: typeof AdminContentRoute
-  AdminDashboardRoute: typeof AdminDashboardRoute
-  AdminUsersRoute: typeof AdminUsersRoute
-  AdminIndexRoute: typeof AdminIndexRoute
-  AdminRestaurantsRestaurantIdRoute: typeof AdminRestaurantsRestaurantIdRoute
-  AdminRestaurantsIndexRoute: typeof AdminRestaurantsIndexRoute
+interface AuthedAdminRouteChildren {
+  AuthedAdminAdPackagesRoute: typeof AuthedAdminAdPackagesRoute
+  AuthedAdminContentRoute: typeof AuthedAdminContentRoute
+  AuthedAdminDashboardRoute: typeof AuthedAdminDashboardRoute
+  AuthedAdminUsersRoute: typeof AuthedAdminUsersRoute
+  AuthedAdminIndexRoute: typeof AuthedAdminIndexRoute
+  AuthedAdminRestaurantsRestaurantIdRoute: typeof AuthedAdminRestaurantsRestaurantIdRoute
+  AuthedAdminRestaurantsIndexRoute: typeof AuthedAdminRestaurantsIndexRoute
 }
 
-const AdminRouteChildren: AdminRouteChildren = {
-  AdminAdPackagesRoute: AdminAdPackagesRoute,
-  AdminContentRoute: AdminContentRoute,
-  AdminDashboardRoute: AdminDashboardRoute,
-  AdminUsersRoute: AdminUsersRoute,
-  AdminIndexRoute: AdminIndexRoute,
-  AdminRestaurantsRestaurantIdRoute: AdminRestaurantsRestaurantIdRoute,
-  AdminRestaurantsIndexRoute: AdminRestaurantsIndexRoute,
+const AuthedAdminRouteChildren: AuthedAdminRouteChildren = {
+  AuthedAdminAdPackagesRoute: AuthedAdminAdPackagesRoute,
+  AuthedAdminContentRoute: AuthedAdminContentRoute,
+  AuthedAdminDashboardRoute: AuthedAdminDashboardRoute,
+  AuthedAdminUsersRoute: AuthedAdminUsersRoute,
+  AuthedAdminIndexRoute: AuthedAdminIndexRoute,
+  AuthedAdminRestaurantsRestaurantIdRoute:
+    AuthedAdminRestaurantsRestaurantIdRoute,
+  AuthedAdminRestaurantsIndexRoute: AuthedAdminRestaurantsIndexRoute,
 }
 
-const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
-
-interface AppRouteChildren {
-  AppIndexRoute: typeof AppIndexRoute
-}
-
-const AppRouteChildren: AppRouteChildren = {
-  AppIndexRoute: AppIndexRoute,
-}
-
-const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
-
-interface RestaurantRouteChildren {
-  RestaurantAdsRoute: typeof RestaurantAdsRoute
-  RestaurantIndexRoute: typeof RestaurantIndexRoute
-}
-
-const RestaurantRouteChildren: RestaurantRouteChildren = {
-  RestaurantAdsRoute: RestaurantAdsRoute,
-  RestaurantIndexRoute: RestaurantIndexRoute,
-}
-
-const RestaurantRouteWithChildren = RestaurantRoute._addFileChildren(
-  RestaurantRouteChildren,
+const AuthedAdminRouteWithChildren = AuthedAdminRoute._addFileChildren(
+  AuthedAdminRouteChildren,
 )
+
+interface AuthedRouteChildren {
+  AuthedAdminRoute: typeof AuthedAdminRouteWithChildren
+  AuthedRestaurantAdsRoute: typeof AuthedRestaurantAdsRoute
+  AuthedAppIndexRoute: typeof AuthedAppIndexRoute
+  AuthedRestaurantIndexRoute: typeof AuthedRestaurantIndexRoute
+}
+
+const AuthedRouteChildren: AuthedRouteChildren = {
+  AuthedAdminRoute: AuthedAdminRouteWithChildren,
+  AuthedRestaurantAdsRoute: AuthedRestaurantAdsRoute,
+  AuthedAppIndexRoute: AuthedAppIndexRoute,
+  AuthedRestaurantIndexRoute: AuthedRestaurantIndexRoute,
+}
+
+const AuthedRouteWithChildren =
+  AuthedRoute._addFileChildren(AuthedRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AdminRoute: AdminRouteWithChildren,
-  AppRoute: AppRouteWithChildren,
+  AuthedRoute: AuthedRouteWithChildren,
   ForgotPasswordRoute: ForgotPasswordRoute,
   LoginRoute: LoginRoute,
   RegisterRoute: RegisterRoute,
-  RestaurantRoute: RestaurantRouteWithChildren,
   AuthResetPasswordRoute: AuthResetPasswordRoute,
   AuthVerifyEmailRoute: AuthVerifyEmailRoute,
 }
