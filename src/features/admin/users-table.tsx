@@ -52,8 +52,8 @@ export function UsersTable({ users }: { users: AdminUserRowResponse[] }) {
                     {initials(name)}
                   </span>
                   <span className="min-w-0">
-                    <span className="flex items-center gap-2 font-medium">
-                      <span className="truncate">{name}</span>
+                    <span className="flex flex-col items-start gap-1 font-medium sm:flex-row sm:items-center sm:gap-2">
+                      <span className="max-w-full truncate">{name}</span>
                       {user.role === 'admin' && <Badge variant="outline">{t('users.admin')}</Badge>}
                     </span>
                     <span className="text-muted-foreground block truncate text-xs">
