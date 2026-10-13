@@ -16,10 +16,9 @@ function formatter<T extends Intl.NumberFormat | Intl.DateTimeFormat>(
   return found as T
 }
 
+/** "99.000 ₫" in Vietnamese, "99,000 ₫" in English: Intl puts the symbol first in en-US, so the sign is appended by hand. */
 export const formatVnd = (amount: number) =>
-  formatter('vnd', (l) => new Intl.NumberFormat(l, { style: 'currency', currency: 'VND' })).format(
-    amount,
-  )
+  `${formatter('vnd', (l) => new Intl.NumberFormat(l, { maximumFractionDigits: 0 })).format(amount)} ₫`
 
 export const formatNumber = (value: number) =>
   formatter('number', (l) => new Intl.NumberFormat(l, { maximumFractionDigits: 1 })).format(value)
@@ -39,6 +38,19 @@ export const formatDate = (iso: string) =>
   formatter(
     'date',
     (l) => new Intl.DateTimeFormat(l, { day: '2-digit', month: '2-digit', year: 'numeric' }),
+  ).format(new Date(iso))
+
+/** A calendar day without a time: read as UTC so the viewer's time zone cannot shift it. */
+export const formatDay = (iso: string) =>
+  formatter(
+    'day',
+    (l) =>
+      new Intl.DateTimeFormat(l, {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+        timeZone: 'UTC',
+      }),
   ).format(new Date(iso))
 
 export const formatDateTime = (iso: string) =>
