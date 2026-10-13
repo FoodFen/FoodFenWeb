@@ -180,5 +180,17 @@
     "current": "Giờ hiện tại: {{text}}",
     "legacyPrompt": "Chọn lại giờ mở cửa để cập nhật. Nếu bạn không chọn, giờ hiện tại được giữ nguyên.",
     "pick": "Chọn giờ"
+  },
+  "location": {
+    "search": "Tìm địa điểm",
+    "searchPlaceholder": "Nhập tên quán hoặc địa chỉ",
+    "noResults": "Không tìm thấy địa điểm nào",
+    "searchFailed": "Không lấy được vị trí của địa điểm này. Hãy thử địa điểm khác hoặc nhấn vào bản đồ.",
+    "locate": "Vị trí hiện tại",
+    "denied": "Trình duyệt đang chặn quyền vị trí. Hãy bật lại trong cài đặt, hoặc tìm địa điểm và nhấn vào bản đồ.",
+    "unavailable": "Không xác định được vị trí của bạn. Hãy thử lại, hoặc tìm địa điểm và nhấn vào bản đồ.",
+    "mapLabel": "Bản đồ chọn vị trí quán. Nhấn để đặt ghim, kéo ghim để chỉnh.",
+    "pin": "Vị trí quán",
+    "mapUnavailable": "Không tải được bản đồ. Bạn vẫn có thể dán toạ độ vào ô bên dưới."
   }
 }

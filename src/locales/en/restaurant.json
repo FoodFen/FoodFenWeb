@@ -180,5 +180,17 @@
     "current": "Current hours: {{text}}",
     "legacyPrompt": "Pick the times again to update them. If you do not, the current hours stay as they are.",
     "pick": "Pick times"
+  },
+  "location": {
+    "search": "Search for a place",
+    "searchPlaceholder": "Type the restaurant name or address",
+    "noResults": "No places found",
+    "searchFailed": "Could not get the position of this place. Try another one or click the map.",
+    "locate": "Use my location",
+    "denied": "Your browser is blocking location access. Turn it back on in its settings, or search for a place and click the map.",
+    "unavailable": "Could not find your location. Try again, or search for a place and click the map.",
+    "mapLabel": "Map for choosing the restaurant's location. Click to place the pin, drag the pin to adjust.",
+    "pin": "Restaurant location",
+    "mapUnavailable": "The map could not load. You can still paste the coordinates in the field below."
   }
 }

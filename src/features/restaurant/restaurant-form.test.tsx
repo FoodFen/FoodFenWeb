@@ -3,6 +3,11 @@ import userEvent from '@testing-library/user-event'
 import { RestaurantForm } from './restaurant-form'
 import { emptyRestaurant, type RestaurantValues } from './restaurant-schema'
 
+// A local .env key must not make these tests load the map.
+vi.mock('@/lib/env', () => ({
+  env: { apiUrl: '', googleMapsKey: '', googleMapsMapId: 'DEMO_MAP_ID' },
+}))
+
 const setup = (
   onSubmit = vi.fn().mockResolvedValue(undefined),
   defaultValues: RestaurantValues = emptyRestaurant,

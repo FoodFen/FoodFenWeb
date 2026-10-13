@@ -10,3 +10,12 @@ export function parseCoordinates(text: string) {
   if (Math.abs(latitude) > 90 || Math.abs(longitude) > 180) return null
   return { latitude, longitude }
 }
+
+/** The text `parseCoordinates` reads back, rounded to about 10 cm. */
+export const formatCoordinates = ({
+  latitude,
+  longitude,
+}: {
+  latitude: number
+  longitude: number
+}) => `${Number(latitude.toFixed(6))}, ${Number(longitude.toFixed(6))}`

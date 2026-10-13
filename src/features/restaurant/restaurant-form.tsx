@@ -8,6 +8,7 @@ import { useState } from 'react'
 import { useForm, useWatch } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { ImageUpload } from './image-upload'
+import { LocationField } from './location-field'
 import { OpeningHoursField } from './opening-hours-field'
 import { restaurantSchema, type RestaurantValues } from './restaurant-schema'
 
@@ -27,11 +28,19 @@ export function RestaurantForm({ defaultValues, submitLabel, onSubmit, upload }:
     handleSubmit,
     setError,
     setValue,
+    getValues,
     control,
     formState: { errors, isSubmitting, isDirty },
   } = useForm<RestaurantValues>({ resolver: zodResolver(restaurantSchema), defaultValues })
   const [formError, setFormError] = useState<string | null>(null)
   const imageUrl = useWatch({ control, name: 'imageUrl' })
+
+  // A searched place only fills an empty address, never overwrites what the owner typed.
+  const fillAddress = (address: string) => {
+    if (getValues('address').trim() === '') {
+      setValue('address', address, { shouldDirty: true, shouldValidate: true })
+    }
+  }
 
   const submit = handleSubmit(async (values) => {
     setFormError(null)
@@ -80,15 +89,7 @@ export function RestaurantForm({ defaultValues, submitLabel, onSubmit, upload }:
         />
         <OpeningHoursField control={control} legacyHours={defaultValues.legacyHours} />
       </div>
-      <InputField
-        id="location"
-        label={t('form.location')}
-        hint={t('form.locationHint')}
-        inputMode="decimal"
-        placeholder={t('form.locationPlaceholder')}
-        error={errors.location?.message}
-        {...register('location')}
-      />
+      <LocationField control={control} onAddress={fillAddress} />
       <FormError message={formError} />
       <SubmitButton loading={isSubmitting} disabled={!isDirty}>
         {submitLabel}
