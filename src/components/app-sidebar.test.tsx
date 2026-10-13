@@ -48,6 +48,12 @@ test('signed-in users without the admin role get no admin group', async () => {
   expect(screen.queryByRole('button', { name: 'Quản trị' })).not.toBeInTheDocument()
 })
 
+test('admins get no owner portal group', async () => {
+  await renderAt('/app', 'admin')
+  expect(screen.getByRole('button', { name: 'Quản trị' })).toBeInTheDocument()
+  expect(screen.queryByRole('button', { name: 'Quán của tôi' })).not.toBeInTheDocument()
+})
+
 test('a group opens and closes from its parent button', async () => {
   await renderAt('/app', 'admin')
   const group = screen.getByRole('button', { name: 'Quản trị' })

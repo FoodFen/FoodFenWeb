@@ -15,6 +15,7 @@ export type NavSection = {
   label: string
   icon: LucideIcon
   adminOnly?: boolean
+  userOnly?: boolean
   children: NavItem[]
 }
 export type NavEntry = NavItem | NavSection
@@ -26,6 +27,7 @@ export const appNav: NavEntry[] = [
   {
     label: 'Quán của tôi',
     icon: Store,
+    userOnly: true,
     children: [
       { to: '/restaurant', label: 'Hồ sơ quán', icon: Store, exact: true },
       { to: '/restaurant/ads', label: 'Quảng cáo', icon: Megaphone },

@@ -15,6 +15,7 @@ import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as RegisterRouteImport } from './routes/register'
 import { Route as AuthedAdminRouteImport } from './routes/_authed/admin'
+import { Route as AuthedRestaurantRouteImport } from './routes/_authed/restaurant'
 import { Route as AuthResetPasswordRouteImport } from './routes/auth/reset-password'
 import { Route as AuthVerifyEmailRouteImport } from './routes/auth/verify-email'
 import { Route as AuthedAdminIndexRouteImport } from './routes/_authed/admin/index'
@@ -55,6 +56,11 @@ const RegisterRoute = RegisterRouteImport.update({
 const AuthedAdminRoute = AuthedAdminRouteImport.update({
   id: '/admin',
   path: '/admin',
+  getParentRoute: () => AuthedRoute,
+} as any)
+const AuthedRestaurantRoute = AuthedRestaurantRouteImport.update({
+  id: '/restaurant',
+  path: '/restaurant',
   getParentRoute: () => AuthedRoute,
 } as any)
 const AuthResetPasswordRoute = AuthResetPasswordRouteImport.update({
@@ -98,14 +104,14 @@ const AuthedAppIndexRoute = AuthedAppIndexRouteImport.update({
   getParentRoute: () => AuthedRoute,
 } as any)
 const AuthedRestaurantIndexRoute = AuthedRestaurantIndexRouteImport.update({
-  id: '/restaurant/',
-  path: '/restaurant/',
-  getParentRoute: () => AuthedRoute,
+  id: '/',
+  path: '/',
+  getParentRoute: () => AuthedRestaurantRoute,
 } as any)
 const AuthedRestaurantAdsRoute = AuthedRestaurantAdsRouteImport.update({
-  id: '/restaurant/ads',
-  path: '/restaurant/ads',
-  getParentRoute: () => AuthedRoute,
+  id: '/ads',
+  path: '/ads',
+  getParentRoute: () => AuthedRestaurantRoute,
 } as any)
 const AuthedAdminRestaurantsIndexRoute =
   AuthedAdminRestaurantsIndexRouteImport.update({
@@ -126,6 +132,7 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
   '/admin': typeof AuthedAdminRouteWithChildren
+  '/restaurant': typeof AuthedRestaurantRouteWithChildren
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/auth/verify-email': typeof AuthVerifyEmailRoute
   '/admin/ad-packages': typeof AuthedAdminAdPackagesRoute
@@ -165,6 +172,7 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
   '/_authed/admin': typeof AuthedAdminRouteWithChildren
+  '/_authed/restaurant': typeof AuthedRestaurantRouteWithChildren
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/auth/verify-email': typeof AuthVerifyEmailRoute
   '/_authed/admin/ad-packages': typeof AuthedAdminAdPackagesRoute
@@ -186,6 +194,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/register'
     | '/admin'
+    | '/restaurant'
     | '/auth/reset-password'
     | '/auth/verify-email'
     | '/admin/ad-packages'
@@ -224,6 +233,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/register'
     | '/_authed/admin'
+    | '/_authed/restaurant'
     | '/auth/reset-password'
     | '/auth/verify-email'
     | '/_authed/admin/ad-packages'
@@ -292,6 +302,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthedAdminRouteImport
       parentRoute: typeof AuthedRoute
     }
+    '/_authed/restaurant': {
+      id: '/_authed/restaurant'
+      path: '/restaurant'
+      fullPath: '/restaurant'
+      preLoaderRoute: typeof AuthedRestaurantRouteImport
+      parentRoute: typeof AuthedRoute
+    }
     '/auth/reset-password': {
       id: '/auth/reset-password'
       path: '/auth/reset-password'
@@ -350,17 +367,17 @@ declare module '@tanstack/react-router' {
     }
     '/_authed/restaurant/': {
       id: '/_authed/restaurant/'
-      path: '/restaurant'
+      path: '/'
       fullPath: '/restaurant/'
       preLoaderRoute: typeof AuthedRestaurantIndexRouteImport
-      parentRoute: typeof AuthedRoute
+      parentRoute: typeof AuthedRestaurantRoute
     }
     '/_authed/restaurant/ads': {
       id: '/_authed/restaurant/ads'
-      path: '/restaurant/ads'
+      path: '/ads'
       fullPath: '/restaurant/ads'
       preLoaderRoute: typeof AuthedRestaurantAdsRouteImport
-      parentRoute: typeof AuthedRoute
+      parentRoute: typeof AuthedRestaurantRoute
     }
     '/_authed/admin/restaurants/': {
       id: '/_authed/admin/restaurants/'
@@ -404,18 +421,29 @@ const AuthedAdminRouteWithChildren = AuthedAdminRoute._addFileChildren(
   AuthedAdminRouteChildren,
 )
 
+interface AuthedRestaurantRouteChildren {
+  AuthedRestaurantAdsRoute: typeof AuthedRestaurantAdsRoute
+  AuthedRestaurantIndexRoute: typeof AuthedRestaurantIndexRoute
+}
+
+const AuthedRestaurantRouteChildren: AuthedRestaurantRouteChildren = {
+  AuthedRestaurantAdsRoute: AuthedRestaurantAdsRoute,
+  AuthedRestaurantIndexRoute: AuthedRestaurantIndexRoute,
+}
+
+const AuthedRestaurantRouteWithChildren =
+  AuthedRestaurantRoute._addFileChildren(AuthedRestaurantRouteChildren)
+
 interface AuthedRouteChildren {
   AuthedAdminRoute: typeof AuthedAdminRouteWithChildren
-  AuthedRestaurantAdsRoute: typeof AuthedRestaurantAdsRoute
+  AuthedRestaurantRoute: typeof AuthedRestaurantRouteWithChildren
   AuthedAppIndexRoute: typeof AuthedAppIndexRoute
-  AuthedRestaurantIndexRoute: typeof AuthedRestaurantIndexRoute
 }
 
 const AuthedRouteChildren: AuthedRouteChildren = {
   AuthedAdminRoute: AuthedAdminRouteWithChildren,
-  AuthedRestaurantAdsRoute: AuthedRestaurantAdsRoute,
+  AuthedRestaurantRoute: AuthedRestaurantRouteWithChildren,
   AuthedAppIndexRoute: AuthedAppIndexRoute,
-  AuthedRestaurantIndexRoute: AuthedRestaurantIndexRoute,
 }
 
 const AuthedRouteWithChildren =

@@ -34,7 +34,9 @@ export function AppSidebar() {
       <SidebarContent className="p-2">
         <SidebarMenu className="gap-1">
           {appNav
-            .filter((entry) => isAdmin || !(isNavSection(entry) && entry.adminOnly))
+            .filter(
+              (entry) => !isNavSection(entry) || (isAdmin ? !entry.userOnly : !entry.adminOnly),
+            )
             .map((entry) =>
               isNavSection(entry) ? (
                 <NavGroup key={entry.label} section={entry} pathname={pathname} />
