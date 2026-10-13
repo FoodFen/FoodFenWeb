@@ -23,8 +23,11 @@
     "title": "Cash flow and growth",
     "description": "Revenue, new users and new restaurants per day (Vietnam time).",
     "backToDefault": "Back to the last 30 days",
-    "from": "From",
-    "to": "To",
+    "range": {
+      "label": "Date range",
+      "previousMonth": "Previous month",
+      "nextMonth": "Next month"
+    },
     "stats": {
       "premiumRevenue": "Premium revenue",
       "adRevenue": "Ad revenue",

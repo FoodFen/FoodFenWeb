@@ -22,8 +22,11 @@
     "title": "Dòng tiền và tăng trưởng",
     "description": "Doanh thu và lượng người dùng, quán mới theo ngày (giờ Việt Nam).",
     "backToDefault": "Về 30 ngày gần nhất",
-    "from": "Từ ngày",
-    "to": "Đến ngày",
+    "range": {
+      "label": "Khoảng thời gian",
+      "previousMonth": "Tháng trước",
+      "nextMonth": "Tháng sau"
+    },
     "stats": {
       "premiumRevenue": "Doanh thu Premium",
       "adRevenue": "Doanh thu quảng cáo",

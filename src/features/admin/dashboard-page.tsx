@@ -4,7 +4,7 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { DashboardView } from './dashboard-view'
-import type { DateRange } from './date-range-fields'
+import type { DateRange } from './date-range'
 import { useDashboard } from './use-dashboard'
 
 export function DashboardPage() {
