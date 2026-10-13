@@ -56,16 +56,14 @@ describe('with a Maps key', () => {
 
   test('shows the search, the locate button and the map, and clicking the map fills the text', async () => {
     render(<Harness />)
-    expect(
-      await screen.findByRole('combobox', { name: 'Tìm địa điểm' }, { timeout: 8000 }),
-    ).toBeInTheDocument()
+    expect(await screen.findByRole('combobox', { name: 'Tìm địa điểm' })).toBeInTheDocument()
     expect(screen.getByRole('button', { name: 'Vị trí hiện tại' })).toBeInTheDocument()
     expect(screen.queryByTestId('pin')).not.toBeInTheDocument()
 
     await userEvent.click(await screen.findByRole('button', { name: /^map/ }))
     expect(screen.getByLabelText('Toạ độ trên Google Maps')).toHaveValue('10.5, 106.5')
     expect(screen.getByTestId('pin')).toHaveTextContent('10.5')
-  }, 15_000)
+  })
 
   test('typed coordinates place the pin, so the text works without a mouse', async () => {
     render(<Harness location="10.7769, 106.7009" />)
