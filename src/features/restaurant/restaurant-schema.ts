@@ -1,16 +1,33 @@
 import type { RestaurantResponse } from '@/api/generated'
 import { parseCoordinates } from '@/lib/coordinates'
+import { isValidPhone, toStoredPhone } from '@/lib/phone'
 import { z } from 'zod'
 
 export const restaurantSchema = z.object({
-  name: z.string().trim().min(1, 'Nhập tên quán').max(255, 'Tên tối đa 255 ký tự'),
-  description: z.string().trim().max(2000, 'Mô tả tối đa 2.000 ký tự'),
-  address: z.string().trim().min(1, 'Nhập địa chỉ').max(500, 'Địa chỉ tối đa 500 ký tự'),
-  phone: z.string().trim().min(1, 'Nhập số điện thoại').max(32, 'Số điện thoại tối đa 32 ký tự'),
-  openingHours: z.string().trim().min(1, 'Nhập giờ mở cửa').max(255, 'Giờ mở cửa tối đa 255 ký tự'),
+  name: z
+    .string()
+    .trim()
+    .min(1, 'restaurant:validation.restaurantNameRequired')
+    .max(255, 'restaurant:validation.nameMax'),
+  description: z.string().trim().max(2000, 'restaurant:validation.descriptionMax'),
+  address: z
+    .string()
+    .trim()
+    .min(1, 'restaurant:validation.addressRequired')
+    .max(500, 'restaurant:validation.addressMax'),
+  phone: z
+    .string()
+    .trim()
+    .min(1, 'restaurant:validation.phoneRequired')
+    .refine(isValidPhone, 'restaurant:validation.phoneInvalid'),
+  openingHours: z
+    .string()
+    .trim()
+    .min(1, 'restaurant:validation.hoursRequired')
+    .max(255, 'restaurant:validation.hoursMax'),
   location: z
     .string()
-    .refine((text) => parseCoordinates(text) !== null, 'Dán toạ độ dạng "10.7769, 106.7009"'),
+    .refine((text) => parseCoordinates(text) !== null, 'restaurant:validation.locationInvalid'),
   imageUrl: z.string(),
 })
 
@@ -40,9 +57,10 @@ export function toRestaurantValues(restaurant: RestaurantResponse): RestaurantVa
 
 /** Request body for create and update; `null` clears an optional field on PATCH. */
 export function toRestaurantBody(values: RestaurantValues) {
-  const { location, description, imageUrl, ...rest } = values
+  const { location, description, imageUrl, phone, ...rest } = values
   return {
     ...rest,
+    phone: toStoredPhone(phone),
     description: description || null,
     imageUrl: imageUrl || null,
     ...parseCoordinates(location)!,

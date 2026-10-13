@@ -85,7 +85,15 @@
     "proteinRange": "Protein is 0 to 2,000 g",
     "carbsRange": "Carbs are 0 to 2,000 g",
     "fatRange": "Fat is 0 to 2,000 g",
-    "fiberRange": "Fiber is 0 to 2,000 g"
+    "fiberRange": "Fiber is 0 to 2,000 g",
+    "restaurantNameRequired": "Enter the restaurant name",
+    "addressRequired": "Enter the address",
+    "addressMax": "The address can be at most 500 characters",
+    "phoneRequired": "Enter a phone number",
+    "phoneInvalid": "That phone number is not valid. For example: 0901 234 567 or +84 901 234 567",
+    "hoursRequired": "Enter the opening hours",
+    "hoursMax": "Opening hours can be at most 255 characters",
+    "locationInvalid": "Paste coordinates like \"10.7769, 106.7009\""
   },
   "dish": {
     "list": {
@@ -144,5 +152,18 @@
     "save": "Save changes",
     "saveResubmit": "Save and resubmit",
     "edit": "Edit details"
+  },
+  "form": {
+    "image": "Restaurant photo",
+    "name": "Restaurant name",
+    "description": "Description (optional)",
+    "address": "Address",
+    "phone": "Phone number",
+    "phoneHint": "For example: 0901 234 567 or +84 901 234 567",
+    "openingHours": "Opening hours",
+    "openingHoursHint": "For example: 7:00 - 21:00 daily",
+    "location": "Coordinates from Google Maps",
+    "locationHint": "Open Google Maps, right-click the restaurant's spot, click the coordinates line to copy them, then paste here.",
+    "locationPlaceholder": "10.7769, 106.7009"
   }
 }

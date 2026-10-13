@@ -85,7 +85,15 @@
     "proteinRange": "Đạm từ 0 đến 2.000 g",
     "carbsRange": "Tinh bột từ 0 đến 2.000 g",
     "fatRange": "Chất béo từ 0 đến 2.000 g",
-    "fiberRange": "Chất xơ từ 0 đến 2.000 g"
+    "fiberRange": "Chất xơ từ 0 đến 2.000 g",
+    "restaurantNameRequired": "Nhập tên quán",
+    "addressRequired": "Nhập địa chỉ",
+    "addressMax": "Địa chỉ tối đa 500 ký tự",
+    "phoneRequired": "Nhập số điện thoại",
+    "phoneInvalid": "Số điện thoại không hợp lệ. Ví dụ: 0901 234 567 hoặc +84 901 234 567",
+    "hoursRequired": "Nhập giờ mở cửa",
+    "hoursMax": "Giờ mở cửa tối đa 255 ký tự",
+    "locationInvalid": "Dán toạ độ dạng \"10.7769, 106.7009\""
   },
   "dish": {
     "list": {
@@ -144,5 +152,18 @@
     "save": "Lưu thay đổi",
     "saveResubmit": "Lưu và gửi duyệt lại",
     "edit": "Sửa thông tin"
+  },
+  "form": {
+    "image": "Ảnh quán",
+    "name": "Tên quán",
+    "description": "Mô tả (không bắt buộc)",
+    "address": "Địa chỉ",
+    "phone": "Số điện thoại",
+    "phoneHint": "Ví dụ: 0901 234 567 hoặc +84 901 234 567",
+    "openingHours": "Giờ mở cửa",
+    "openingHoursHint": "Ví dụ: 7:00 - 21:00 hằng ngày",
+    "location": "Toạ độ trên Google Maps",
+    "locationHint": "Mở Google Maps, nhấn chuột phải vào vị trí quán, chọn dòng toạ độ để sao chép rồi dán vào đây.",
+    "locationPlaceholder": "10.7769, 106.7009"
   }
 }

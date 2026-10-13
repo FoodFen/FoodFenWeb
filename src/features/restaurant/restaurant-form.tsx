@@ -1,11 +1,12 @@
 import { applyApiError } from '@/api/form-errors'
 import { FormField } from '@/components/form-field'
 import { FormError, SubmitButton } from '@/components/form-parts'
-import { Input } from '@/components/ui/input'
+import { InputField } from '@/components/input-field'
 import { Textarea } from '@/components/ui/textarea'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useState } from 'react'
 import { useForm, useWatch } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { ImageUpload } from './image-upload'
 import { restaurantSchema, type RestaurantValues } from './restaurant-schema'
 
@@ -19,6 +20,7 @@ type Props = {
 const FIELDS = ['name', 'description', 'address', 'phone', 'openingHours', 'imageUrl'] as const
 
 export function RestaurantForm({ defaultValues, submitLabel, onSubmit, upload }: Props) {
+  const { t } = useTranslation('restaurant')
   const {
     register,
     handleSubmit,
@@ -41,71 +43,57 @@ export function RestaurantForm({ defaultValues, submitLabel, onSubmit, upload }:
 
   return (
     <form onSubmit={submit} noValidate className="max-w-2xl space-y-5">
-      <FormField id="image" label="Ảnh quán">
+      <FormField id="image" label={t('form.image')}>
         <ImageUpload
           value={imageUrl}
           onChange={(url) => setValue('imageUrl', url, { shouldDirty: true })}
           upload={upload}
         />
       </FormField>
-      <FormField id="name" label="Tên quán" error={errors.name?.message}>
-        <Input id="name" className="h-11" aria-invalid={!!errors.name} {...register('name')} />
-      </FormField>
-      <FormField
-        id="description"
-        label="Mô tả (không bắt buộc)"
-        error={errors.description?.message}
-      >
+      <InputField
+        id="name"
+        label={t('form.name')}
+        error={errors.name?.message}
+        {...register('name')}
+      />
+      <FormField id="description" label={t('form.description')} error={errors.description?.message}>
         <Textarea id="description" rows={3} {...register('description')} />
       </FormField>
-      <FormField id="address" label="Địa chỉ" error={errors.address?.message}>
-        <Input
-          id="address"
-          className="h-11"
-          autoComplete="street-address"
-          aria-invalid={!!errors.address}
-          {...register('address')}
-        />
-      </FormField>
+      <InputField
+        id="address"
+        label={t('form.address')}
+        autoComplete="street-address"
+        error={errors.address?.message}
+        {...register('address')}
+      />
       <div className="grid gap-5 sm:grid-cols-2">
-        <FormField id="phone" label="Số điện thoại" error={errors.phone?.message}>
-          <Input
-            id="phone"
-            type="tel"
-            className="h-11"
-            aria-invalid={!!errors.phone}
-            {...register('phone')}
-          />
-        </FormField>
-        <FormField
-          id="openingHours"
-          label="Giờ mở cửa"
-          hint="Ví dụ: 7:00 - 21:00 hằng ngày"
-          error={errors.openingHours?.message}
-        >
-          <Input
-            id="openingHours"
-            className="h-11"
-            aria-invalid={!!errors.openingHours}
-            {...register('openingHours')}
-          />
-        </FormField>
-      </div>
-      <FormField
-        id="location"
-        label="Toạ độ trên Google Maps"
-        hint="Mở Google Maps, nhấn chuột phải vào vị trí quán, chọn dòng toạ độ để sao chép rồi dán vào đây."
-        error={errors.location?.message}
-      >
-        <Input
-          id="location"
-          className="h-11"
-          inputMode="decimal"
-          placeholder="10.7769, 106.7009"
-          aria-invalid={!!errors.location}
-          {...register('location')}
+        <InputField
+          id="phone"
+          label={t('form.phone')}
+          hint={t('form.phoneHint')}
+          type="tel"
+          inputMode="tel"
+          autoComplete="tel"
+          error={errors.phone?.message}
+          {...register('phone')}
         />
-      </FormField>
+        <InputField
+          id="openingHours"
+          label={t('form.openingHours')}
+          hint={t('form.openingHoursHint')}
+          error={errors.openingHours?.message}
+          {...register('openingHours')}
+        />
+      </div>
+      <InputField
+        id="location"
+        label={t('form.location')}
+        hint={t('form.locationHint')}
+        inputMode="decimal"
+        placeholder={t('form.locationPlaceholder')}
+        error={errors.location?.message}
+        {...register('location')}
+      />
       <FormError message={formError} />
       <SubmitButton loading={isSubmitting} disabled={!isDirty}>
         {submitLabel}

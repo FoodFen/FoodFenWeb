@@ -85,6 +85,13 @@ test('a complete restaurant passes and the pasted location becomes latitude and 
   expect(toRestaurantBody(restaurant)).not.toHaveProperty('location')
 })
 
+test('the phone is checked and stored in its canonical shape', () => {
+  expect(
+    restaurantSchema.safeParse({ ...restaurant, phone: '123' }).error?.issues[0]?.message,
+  ).toBe('restaurant:validation.phoneInvalid')
+  expect(toRestaurantBody({ ...restaurant, phone: '+84 901 234 567' }).phone).toBe('0901234567')
+})
+
 test('rejects a location that is not a coordinate pair', () => {
   expect(restaurantSchema.safeParse({ ...restaurant, location: 'Quận 1' }).success).toBe(false)
 })

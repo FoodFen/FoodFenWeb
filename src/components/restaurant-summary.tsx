@@ -1,6 +1,7 @@
 import type { RestaurantResponse } from '@/api/generated'
 import { RejectionNote } from '@/components/rejection-note'
 import { StatusBadge } from '@/components/status-badge'
+import { formatPhone, phoneHref } from '@/lib/phone'
 import { Clock, ImageOff, MapPin, Phone } from 'lucide-react'
 import type { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -38,7 +39,15 @@ export function RestaurantSummary({
               label={t('restaurantInfo.address')}
               value={address}
             />
-            <Row icon={<Phone aria-hidden />} label={t('restaurantInfo.phone')} value={phone} />
+            <Row
+              icon={<Phone aria-hidden />}
+              label={t('restaurantInfo.phone')}
+              value={
+                <a href={phoneHref(phone)} className="underline-offset-4 hover:underline">
+                  {formatPhone(phone)}
+                </a>
+              }
+            />
             <Row
               icon={<Clock aria-hidden />}
               label={t('restaurantInfo.openingHours')}
@@ -53,7 +62,7 @@ export function RestaurantSummary({
   )
 }
 
-function Row({ icon, label, value }: { icon: ReactNode; label: string; value: string }) {
+function Row({ icon, label, value }: { icon: ReactNode; label: string; value: ReactNode }) {
   return (
     <div className="flex items-start gap-2 [&>svg]:mt-0.5 [&>svg]:size-4 [&>svg]:shrink-0">
       <dt className="sr-only">{label}</dt>
