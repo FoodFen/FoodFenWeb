@@ -5,7 +5,7 @@ import { keepPreviousData, useInfiniteQuery } from '@tanstack/react-query'
 export const useAdminUsers = (q: string, tier: SubscriptionTier | undefined) =>
   useInfiniteQuery({
     ...listUsersAdminUsersGetInfiniteOptions({ query: { q: q || undefined, tier } }),
-    initialPageParam: null,
+    initialPageParam: '0',
     getNextPageParam: (last) => last.nextCursor,
     placeholderData: keepPreviousData,
   })
