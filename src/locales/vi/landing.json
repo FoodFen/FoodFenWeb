@@ -1,1 +1,165 @@
-{}
+{
+  "cta": {
+    "tryFree": "Dùng thử miễn phí",
+    "signIn": "Đăng nhập",
+    "registerRestaurant": "Đăng ký quán"
+  },
+  "header": {
+    "label": "Trang chủ",
+    "links": {
+      "features": "Tính năng",
+      "how": "Cách hoạt động",
+      "faq": "Hỏi đáp"
+    }
+  },
+  "hero": {
+    "title": "Chụp bữa ăn, biết ngay calo.",
+    "subtitle": "FoodFen nhận diện món ăn từ ảnh và tính calo, protein, carb, chất béo cho bạn.",
+    "how": "Xem cách hoạt động",
+    "bowlAlt": "Tô cơm cá hồi, trứng và rau củ nhìn từ trên xuống",
+    "chips": {
+      "salmon": "Cá hồi",
+      "egg": "Trứng"
+    },
+    "meal": {
+      "name": "Bữa trưa",
+      "macros": "Protein 32 g, Carb 48 g, Béo 18 g"
+    }
+  },
+  "stats": {
+    "users": "người dùng đang hoạt động",
+    "meals": "bữa ăn đã được ghi lại",
+    "dishes": "món ăn Việt và quốc tế nhận diện được",
+    "rating": "điểm đánh giá trên 5 sao"
+  },
+  "band": {
+    "title": "Từ salad đến tô phở, chụp là có số liệu."
+  },
+  "photos": {
+    "flatlay": "Đĩa trứng, rau và bơ",
+    "steak": "Bò áp chảo với rau xà lách",
+    "pomegranate": "Salad rau xanh với lựu",
+    "table": "Salad bơ và rau củ",
+    "market": "Các loại đậu và rau củ",
+    "berries": "Tô yến mạch với trái cây",
+    "salad": "Salad hạt và rau củ",
+    "ramen": "Tô mì với tôm và trứng",
+    "pasta": "Nui trộn rau và cà chua",
+    "pancake": "Chồng bánh pancake",
+    "tacos": "Bánh taco với rau củ",
+    "greenBowl": "Tô rau xanh trang trí hoa",
+    "plate": "Đĩa cá hồi, đậu que và ngũ cốc",
+    "breakfast": "Bàn bữa sáng với yến mạch và trái cây",
+    "pho": "Tô phở bò",
+    "buddha": "Tô rau củ và đậu gà"
+  },
+  "features": {
+    "title": "Mọi thứ bạn cần để ăn uống có kiểm soát",
+    "recognize": {
+      "title": "Nhận diện món ăn bằng ảnh",
+      "text": "Chụp hoặc chọn ảnh, FoodFen liệt kê nguyên liệu kèm khẩu phần ước tính. Bạn chỉnh lại trước khi lưu."
+    },
+    "goals": {
+      "title": "Nhật ký theo mục tiêu",
+      "text": "Đặt mục tiêu calo và macro, xem mỗi ngày bạn còn lại bao nhiêu."
+    },
+    "streaks": {
+      "title": "Chuỗi ngày và nhiệm vụ",
+      "text": "Giữ chuỗi ghi nhật ký, làm nhiệm vụ tuần và đổi xu lấy ngày Premium."
+    },
+    "insights": {
+      "title": "Thống kê và trợ lý AI",
+      "text": "Xem xu hướng cân nặng, calo theo tuần, rồi hỏi trợ lý AI về chính bữa ăn của bạn."
+    }
+  },
+  "steps": {
+    "title": "Ba thao tác cho mỗi bữa ăn",
+    "items": {
+      "capture": {
+        "verb": "Chụp",
+        "text": "Chụp món ăn hoặc chọn ảnh có sẵn. Bạn cũng có thể gõ hoặc nói tên món.",
+        "alt": "Tô cơm cá hồi nhìn từ trên xuống"
+      },
+      "confirm": {
+        "verb": "Xác nhận",
+        "text": "Xem danh sách nguyên liệu, sửa khẩu phần nếu cần rồi lưu vào nhật ký.",
+        "alt": "Đĩa cá hồi, đậu que và ngũ cốc"
+      },
+      "track": {
+        "verb": "Theo dõi",
+        "text": "Đối chiếu với mục tiêu trong ngày và xem xu hướng của cả tuần.",
+        "alt": "Bàn bữa sáng với yến mạch và trái cây"
+      }
+    }
+  },
+  "testimonials": {
+    "title": "Người dùng nói gì về FoodFen",
+    "rating": "5 trên 5 sao",
+    "items": {
+      "minhAnh": {
+        "quote": "Trước đây mình toàn đoán calo bằng mắt. Giờ chụp một tấm là có đủ protein, carb, béo.",
+        "name": "Nguyễn Minh Anh",
+        "role": "Nhân viên văn phòng, TP.HCM"
+      },
+      "giaBao": {
+        "quote": "Mình dạy gym nên cần số liệu nhanh cho học viên. Sửa khẩu phần xong là lưu luôn, rất gọn.",
+        "name": "Phạm Gia Bảo",
+        "role": "Huấn luyện viên, Đà Nẵng"
+      },
+      "ngocLan": {
+        "quote": "Hỏi trợ lý AI nên ăn gì tối nay để đủ protein, nó trả lời đúng theo mục tiêu của mình.",
+        "name": "Võ Ngọc Lan",
+        "role": "Nhân viên marketing, Cần Thơ"
+      },
+      "quocHuy": {
+        "quote": "Chuỗi ngày ghi nhật ký làm mình lười mấy cũng phải mở app mỗi tối.",
+        "name": "Trần Quốc Huy",
+        "role": "Sinh viên, Hà Nội"
+      },
+      "hoangNam": {
+        "quote": "Nhận ra cả tô phở lẫn bánh mì. Món nào sai thì mình chỉnh lại trong vài giây.",
+        "name": "Đặng Hoàng Nam",
+        "role": "Kỹ sư phần mềm, Hải Phòng"
+      },
+      "khanhLinh": {
+        "quote": "Mình ăn uống lại sau sinh, app giúp mình thấy rõ hôm nào ăn thiếu bữa.",
+        "name": "Bùi Khánh Linh",
+        "role": "Mẹ bỉm sữa, Huế"
+      }
+    }
+  },
+  "premium": {
+    "title": "Miễn phí để bắt đầu. Premium khi bạn cần nhiều hơn.",
+    "cta": "Nâng cấp Premium",
+    "perks": {
+      "fiber": "Chất xơ chi tiết cho từng món",
+      "scans": "Thêm lượt nhận diện bằng AI mỗi ngày",
+      "coins": "Đổi xu tích lũy thành ngày Premium"
+    }
+  },
+  "faq": {
+    "title": "Câu hỏi thường gặp",
+    "items": {
+      "free": {
+        "q": "FoodFen có miễn phí không?",
+        "a": "Có. Bạn ghi nhật ký và dùng nhận diện bằng ảnh miễn phí. Premium mở thêm các tính năng nâng cao."
+      },
+      "accuracy": {
+        "q": "Nhận diện món ăn chính xác đến đâu?",
+        "a": "Kết quả là ước tính. Bạn luôn có thể sửa nguyên liệu và khẩu phần trước khi lưu."
+      },
+      "privacy": {
+        "q": "Dữ liệu sức khỏe của tôi có được bảo mật không?",
+        "a": "Cân nặng và nhật ký ăn uống thuộc về tài khoản của bạn và không hiển thị cho người khác."
+      },
+      "mobile": {
+        "q": "Tôi có dùng được trên điện thoại không?",
+        "a": "Có. FoodFen có ứng dụng iOS và Android, đồng bộ với bản web."
+      }
+    }
+  },
+  "finalCta": {
+    "title": "Bắt đầu bữa ăn tiếp theo cùng FoodFen",
+    "alt": "Bàn ăn với trứng, rau củ và bơ"
+  }
+}

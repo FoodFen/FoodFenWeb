@@ -1,1 +1,165 @@
-{}
+{
+  "cta": {
+    "tryFree": "Try it free",
+    "signIn": "Sign in",
+    "registerRestaurant": "Register your restaurant"
+  },
+  "header": {
+    "label": "Home",
+    "links": {
+      "features": "Features",
+      "how": "How it works",
+      "faq": "FAQ"
+    }
+  },
+  "hero": {
+    "title": "Snap a meal, know the calories.",
+    "subtitle": "FoodFen recognizes dishes from a photo and works out the calories, protein, carbs and fat for you.",
+    "how": "See how it works",
+    "bowlAlt": "Overhead view of a rice bowl with salmon, egg and vegetables",
+    "chips": {
+      "salmon": "Salmon",
+      "egg": "Egg"
+    },
+    "meal": {
+      "name": "Lunch",
+      "macros": "Protein 32 g, Carbs 48 g, Fat 18 g"
+    }
+  },
+  "stats": {
+    "users": "active users",
+    "meals": "meals logged",
+    "dishes": "Vietnamese and international dishes recognized",
+    "rating": "average rating out of 5 stars"
+  },
+  "band": {
+    "title": "From salad to pho, snap it and get the numbers."
+  },
+  "photos": {
+    "flatlay": "Plate of eggs, greens and avocado",
+    "steak": "Seared beef with lettuce",
+    "pomegranate": "Green salad with pomegranate",
+    "table": "Avocado and vegetable salad",
+    "market": "Assorted beans and vegetables",
+    "berries": "Oatmeal bowl with fruit",
+    "salad": "Seed and vegetable salad",
+    "ramen": "Noodle bowl with shrimp and egg",
+    "pasta": "Pasta with vegetables and tomatoes",
+    "pancake": "Stack of pancakes",
+    "tacos": "Tacos with vegetables",
+    "greenBowl": "Green bowl garnished with flowers",
+    "plate": "Plate of salmon, green beans and grains",
+    "breakfast": "Breakfast table with oatmeal and fruit",
+    "pho": "Bowl of beef pho",
+    "buddha": "Bowl of vegetables and chickpeas"
+  },
+  "features": {
+    "title": "Everything you need to stay in control of what you eat",
+    "recognize": {
+      "title": "Recognize meals from a photo",
+      "text": "Snap or pick a photo and FoodFen lists the ingredients with estimated portions. You can adjust them before saving."
+    },
+    "goals": {
+      "title": "A diary built around your goals",
+      "text": "Set calorie and macro targets and see how much you have left each day."
+    },
+    "streaks": {
+      "title": "Streaks and quests",
+      "text": "Keep your logging streak, complete weekly quests and trade coins for Premium days."
+    },
+    "insights": {
+      "title": "Insights and an AI assistant",
+      "text": "Follow your weight trend and weekly calories, then ask the AI assistant about your own meals."
+    }
+  },
+  "steps": {
+    "title": "Three taps for every meal",
+    "items": {
+      "capture": {
+        "verb": "Snap",
+        "text": "Snap your meal or pick an existing photo. You can also type or say the dish name.",
+        "alt": "Overhead view of a salmon rice bowl"
+      },
+      "confirm": {
+        "verb": "Confirm",
+        "text": "Review the ingredient list, adjust portions if needed, then save it to your diary.",
+        "alt": "Plate of salmon, green beans and grains"
+      },
+      "track": {
+        "verb": "Track",
+        "text": "Compare with your goals for the day and see the trend across the week.",
+        "alt": "Breakfast table with oatmeal and fruit"
+      }
+    }
+  },
+  "testimonials": {
+    "title": "What people say about FoodFen",
+    "rating": "5 out of 5 stars",
+    "items": {
+      "minhAnh": {
+        "quote": "I used to eyeball calories. Now one photo gives me protein, carbs and fat.",
+        "name": "Nguyễn Minh Anh",
+        "role": "Office worker, Ho Chi Minh City"
+      },
+      "giaBao": {
+        "quote": "I coach at a gym and need quick numbers for my clients. I adjust the portion, save, and that's it. Very tidy.",
+        "name": "Phạm Gia Bảo",
+        "role": "Personal trainer, Da Nang"
+      },
+      "ngocLan": {
+        "quote": "I asked the AI assistant what to eat tonight to hit my protein target, and the answer fit my goals exactly.",
+        "name": "Võ Ngọc Lan",
+        "role": "Marketing specialist, Can Tho"
+      },
+      "quocHuy": {
+        "quote": "The logging streak gets me to open the app every night, however lazy I feel.",
+        "name": "Trần Quốc Huy",
+        "role": "Student, Hanoi"
+      },
+      "hoangNam": {
+        "quote": "It recognizes both a bowl of pho and a banh mi. If it gets a dish wrong, I fix it in seconds.",
+        "name": "Đặng Hoàng Nam",
+        "role": "Software engineer, Hai Phong"
+      },
+      "khanhLinh": {
+        "quote": "I'm getting back to eating well after having my baby, and the app shows me which days I skipped meals.",
+        "name": "Bùi Khánh Linh",
+        "role": "New mom, Hue"
+      }
+    }
+  },
+  "premium": {
+    "title": "Free to start. Premium when you need more.",
+    "cta": "Upgrade to Premium",
+    "perks": {
+      "fiber": "Detailed fiber for every dish",
+      "scans": "More AI recognitions every day",
+      "coins": "Trade the coins you earn for Premium days"
+    }
+  },
+  "faq": {
+    "title": "Frequently asked questions",
+    "items": {
+      "free": {
+        "q": "Is FoodFen free?",
+        "a": "Yes. Logging meals and photo recognition are free. Premium unlocks more advanced features."
+      },
+      "accuracy": {
+        "q": "How accurate is the food recognition?",
+        "a": "Results are estimates. You can always adjust the ingredients and portions before saving."
+      },
+      "privacy": {
+        "q": "Is my health data private?",
+        "a": "Your weight and food diary belong to your account and are never shown to anyone else."
+      },
+      "mobile": {
+        "q": "Can I use it on my phone?",
+        "a": "Yes. FoodFen has iOS and Android apps that sync with the web version."
+      }
+    }
+  },
+  "finalCta": {
+    "title": "Start your next meal with FoodFen",
+    "alt": "Table with eggs, vegetables and avocado"
+  }
+}

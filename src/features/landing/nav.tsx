@@ -4,13 +4,14 @@ import { buttonVariants } from '@/components/ui/button'
 import { Link } from '@tanstack/react-router'
 import { motion, useMotionValueEvent, useReducedMotion, useScroll } from 'motion/react'
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { wrap } from './shared'
 
 const links = [
-  { href: '#tinh-nang', label: 'Tính năng' },
-  { href: '#cach-hoat-dong', label: 'Cách hoạt động' },
-  { href: '#hoi-dap', label: 'Hỏi đáp' },
-]
+  { href: '#tinh-nang', id: 'features' },
+  { href: '#cach-hoat-dong', id: 'how' },
+  { href: '#hoi-dap', id: 'faq' },
+] as const
 const sectionIds = links.map((l) => l.href.slice(1))
 
 function useActiveSection() {
@@ -32,6 +33,7 @@ function useActiveSection() {
 }
 
 export function Nav() {
+  const { t } = useTranslation('landing')
   const { scrollY } = useScroll()
   const [scrolled, setScrolled] = useState(false)
   useMotionValueEvent(scrollY, 'change', (y) => setScrolled(y > 8))
@@ -56,11 +58,11 @@ export function Nav() {
         </Link>
 
         <nav
-          aria-label="Trang chủ"
+          aria-label={t('header.label')}
           className="text-muted-foreground hidden gap-6 text-sm md:flex"
           onMouseLeave={() => setHover(null)}
         >
-          {links.map(({ href, label }) => (
+          {links.map(({ href, id }) => (
             <a
               key={href}
               href={href}
@@ -69,7 +71,7 @@ export function Nav() {
               onBlur={() => setHover(null)}
               className={`relative flex items-center gap-1.5 px-1 py-2 transition-colors ${bar === href ? 'text-foreground' : ''}`}
             >
-              {label}
+              {t(`header.links.${id}`)}
               {bar === href && (
                 <motion.span
                   layoutId="nav-bar"
@@ -95,7 +97,7 @@ export function Nav() {
                 'after:bg-primary relative h-11 px-3 text-sm after:absolute after:inset-x-3 after:bottom-2 after:h-0.5 after:origin-left after:scale-x-0 after:rounded-full after:transition-transform after:duration-300 hover:after:scale-x-100',
             })}
           >
-            Đăng nhập
+            {t('cta.signIn')}
           </Link>
           <Link
             to="/restaurant"
@@ -104,7 +106,7 @@ export function Nav() {
               className: 'hidden h-11 px-3 text-sm sm:inline-flex',
             })}
           >
-            Đăng ký quán
+            {t('cta.registerRestaurant')}
           </Link>
           <Link
             to="/register"
@@ -113,7 +115,7 @@ export function Nav() {
                 'relative h-11 overflow-hidden px-4 text-sm before:absolute before:inset-y-0 before:-left-1/2 before:w-1/3 before:-skew-x-12 before:bg-white/30 before:transition-transform before:duration-700 hover:before:translate-x-[450%] motion-reduce:before:hidden',
             })}
           >
-            Dùng thử miễn phí
+            {t('cta.tryFree')}
           </Link>
         </div>
       </div>
