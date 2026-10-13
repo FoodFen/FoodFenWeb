@@ -4,7 +4,7 @@ import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/_authed/app/')({
   component: () => (
-    <div className="max-w-xl space-y-8">
+    <div className="max-w-3xl space-y-8">
       <ProfilePage />
       <MyRestaurantCard />
     </div>

@@ -1,8 +1,7 @@
 import { FormError } from '@/components/form-parts'
-import { buttonVariants } from '@/components/ui/button'
+import { BackLink } from '@/components/back-link'
 import { Skeleton } from '@/components/ui/skeleton'
-import { Link, getRouteApi } from '@tanstack/react-router'
-import { ArrowLeft } from 'lucide-react'
+import { getRouteApi } from '@tanstack/react-router'
 import { useTranslation } from 'react-i18next'
 import { QueryError } from '@/components/query-error'
 import { RestaurantReview } from './restaurant-review'
@@ -19,13 +18,7 @@ export function RestaurantReviewPage() {
 
   return (
     <div className="space-y-6">
-      <Link
-        to="/admin/restaurants"
-        className={buttonVariants({ variant: 'ghost', className: 'h-11 px-3' })}
-      >
-        <ArrowLeft aria-hidden />
-        {t('restaurants.title')}
-      </Link>
+      <BackLink to="/admin/restaurants">{t('restaurants.title')}</BackLink>
       {detail.isPending ? (
         <Skeleton className="h-64 w-full rounded-2xl" aria-busy />
       ) : detail.isError ? (

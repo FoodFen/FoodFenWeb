@@ -3,7 +3,7 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { Crown, UserPlus, UtensilsCrossed } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { DailyChart } from '@/components/daily-chart'
-import { PageHeader } from './page-header'
+import { PageHeader } from '@/components/page-header'
 import { percentChange } from './percent-change'
 import { QueryError } from '@/components/query-error'
 import { StatCard } from './stat-card'
@@ -33,7 +33,7 @@ function Overview({ daily, totals }: Pick<DashboardResponse, 'daily' | 'totals'>
   const yesterday = daily.at(-2)
   return (
     <>
-      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+      <div className="grid grid-cols-2 gap-4 lg:grid-cols-3 max-lg:[&>:last-child:nth-child(odd)]:col-span-2">
         <StatCard
           icon={UserPlus}
           label={t('overview.newUsersToday')}

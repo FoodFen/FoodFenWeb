@@ -48,6 +48,7 @@ export function DailyChart<Row extends { date: string }>({
               axisLine={false}
               tickMargin={8}
               interval="preserveStartEnd"
+              minTickGap={32}
               tickFormatter={formatShortDate}
             />
             <ChartTooltip

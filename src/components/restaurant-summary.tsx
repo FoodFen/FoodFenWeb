@@ -29,7 +29,7 @@ export function RestaurantSummary({
         )}
         <div className="min-w-0 flex-1 space-y-3">
           <div className="flex flex-wrap items-center gap-2">
-            <h2 className="text-xl font-semibold">{name}</h2>
+            <h1 className="text-2xl font-bold tracking-tight md:text-3xl">{name}</h1>
             <StatusBadge status={status} />
           </div>
           {description && <p className="text-muted-foreground max-w-prose">{description}</p>}

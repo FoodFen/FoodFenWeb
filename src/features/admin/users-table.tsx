@@ -1,4 +1,5 @@
 import type { AdminUserRowResponse } from '@/api/generated'
+import { EmptyState } from '@/components/empty-state'
 import { Badge } from '@/components/ui/badge'
 import {
   Table,
@@ -23,13 +24,7 @@ const initials = (name: string) =>
 export function UsersTable({ users }: { users: AdminUserRowResponse[] }) {
   const { t } = useTranslation('admin')
   if (users.length === 0) {
-    return (
-      <div className="flex flex-col items-center gap-2 py-16 text-center">
-        <SearchX className="text-muted-foreground size-10" aria-hidden />
-        <p className="font-medium">{t('users.empty.title')}</p>
-        <p className="text-muted-foreground text-sm">{t('users.empty.hint')}</p>
-      </div>
-    )
+    return <EmptyState icon={SearchX} title={t('users.empty.title')} hint={t('users.empty.hint')} />
   }
 
   return (
@@ -48,7 +43,7 @@ export function UsersTable({ users }: { users: AdminUserRowResponse[] }) {
           const name = user.displayName ?? user.email
           return (
             <TableRow key={user.id}>
-              <TableCell>
+              <TableCell className="w-full max-w-0">
                 <div className="flex items-center gap-3">
                   <span
                     aria-hidden

@@ -1,4 +1,5 @@
 import type { AdminRestaurantRowResponse } from '@/api/generated'
+import { EmptyState } from '@/components/empty-state'
 import { StatusBadge } from '@/components/status-badge'
 import { Button } from '@/components/ui/button'
 import {
@@ -24,11 +25,11 @@ export function RestaurantListTable({ rows, tab, onOpen }: Props) {
   const { t } = useTranslation('admin')
   if (rows.length === 0) {
     return (
-      <div className="flex flex-col items-center gap-2 py-16 text-center">
-        <CircleCheck className="text-muted-foreground size-10" aria-hidden />
-        <p className="font-medium">{t('restaurants.empty.title')}</p>
-        <p className="text-muted-foreground text-sm">{t(`restaurants.empty.${tab}`)}</p>
-      </div>
+      <EmptyState
+        icon={CircleCheck}
+        title={t('restaurants.empty.title')}
+        hint={t(`restaurants.empty.${tab}`)}
+      />
     )
   }
 
@@ -50,7 +51,7 @@ export function RestaurantListTable({ rows, tab, onOpen }: Props) {
       <TableBody>
         {rows.map((row) => (
           <TableRow key={row.id}>
-            <TableCell>
+            <TableCell className="w-full max-w-0">
               <span className="block truncate font-medium">{row.name}</span>
               <span className="text-muted-foreground block truncate text-xs">
                 {row.ownerName ? `${row.ownerName}, ${row.ownerEmail}` : row.ownerEmail}

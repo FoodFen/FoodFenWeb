@@ -21,7 +21,7 @@ export function StatCard({
   const up = (delta ?? 0) >= 0
   const Trend = up ? TrendingUp : TrendingDown
   return (
-    <Card className="rounded-2xl p-5">
+    <Card className="gap-3 rounded-2xl p-4 sm:gap-4 sm:p-5">
       <div className="flex items-start justify-between gap-3">
         <IconBadge icon={icon} className="bg-primary/10 text-primary" />
         {delta !== undefined && (
@@ -35,7 +35,9 @@ export function StatCard({
         )}
       </div>
       <div className="space-y-1">
-        <p className="text-3xl font-bold tracking-tight tabular-nums">{format(value)}</p>
+        <p className="text-2xl font-bold tracking-tight tabular-nums sm:text-3xl">
+          {format(value)}
+        </p>
         <p className="text-muted-foreground text-sm">{label}</p>
       </div>
     </Card>

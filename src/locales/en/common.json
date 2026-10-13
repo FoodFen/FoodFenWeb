@@ -1,5 +1,6 @@
 {
   "retry": "Try again",
+  "close": "Close",
   "cancel": "Cancel",
   "theme": {
     "light": "Light mode",

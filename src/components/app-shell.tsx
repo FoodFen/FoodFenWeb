@@ -11,7 +11,9 @@ export function AppShell() {
       <div className="flex min-w-0 flex-1 flex-col">
         <MobileTopbar />
         <main className="flex-1 p-4 md:p-8">
-          <Outlet />
+          <div className="mx-auto w-full max-w-6xl">
+            <Outlet />
+          </div>
         </main>
       </div>
     </SidebarProvider>

@@ -48,7 +48,7 @@ describe('MyRestaurantCard on /app', () => {
     signIn('admin')
     await renderAt('/app')
 
-    await screen.findByText('Thông tin cơ bản')
+    await screen.findByRole('heading', { name: 'Tài khoản' })
     expect(screen.queryByText('Quán của tôi')).not.toBeInTheDocument()
     expect(getMyRestaurantRestaurantsMineGet).not.toHaveBeenCalled()
   })

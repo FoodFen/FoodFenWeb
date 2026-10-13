@@ -4,7 +4,7 @@ import { Crown, Megaphone, Store, UserPlus } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { DailyChart } from '@/components/daily-chart'
 import { DateRangeFields, type DateRange } from './date-range-fields'
-import { PageHeader } from './page-header'
+import { PageHeader } from '@/components/page-header'
 import { StatCard } from './stat-card'
 
 type Props = {
@@ -20,7 +20,7 @@ export function DashboardView({ totals, daily, range, onRangeChange }: Props) {
     <div className="space-y-6">
       <PageHeader title={t('dashboard.title')} description={t('dashboard.description')} />
       <DateRangeFields value={range} onChange={onRangeChange} />
-      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+      <div className="grid grid-cols-2 gap-4 xl:grid-cols-4">
         <StatCard
           icon={Crown}
           label={t('dashboard.stats.premiumRevenue')}

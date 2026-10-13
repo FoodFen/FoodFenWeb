@@ -1,3 +1,4 @@
+import { EmptyState } from '@/components/empty-state'
 import { Badge } from '@/components/ui/badge'
 import { Skeleton } from '@/components/ui/skeleton'
 import {
@@ -8,7 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
-import { Coins } from 'lucide-react'
+import { Coins, Target } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { QueryError } from '@/components/query-error'
 import { useQuests } from './use-content'
@@ -20,8 +21,7 @@ export function QuestList() {
   if (quests.isPending) return <Skeleton className="h-40 w-full" aria-busy />
   if (quests.isError)
     return <QueryError error={quests.error} onRetry={() => void quests.refetch()} />
-  if (quests.data.length === 0)
-    return <p className="text-muted-foreground py-12 text-center">{t('content.quest.empty')}</p>
+  if (quests.data.length === 0) return <EmptyState icon={Target} title={t('content.quest.empty')} />
 
   return (
     <Table>

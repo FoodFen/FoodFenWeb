@@ -8,7 +8,7 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { AdPackageDialog } from './ad-package-dialog'
 import { AdPackagesTable } from './ad-packages-table'
-import { PageHeader } from './page-header'
+import { PageHeader } from '@/components/page-header'
 import { useAdPackages } from './use-ad-packages'
 
 /** `undefined`: dialog closed. `null`: creating. A package: editing it. */

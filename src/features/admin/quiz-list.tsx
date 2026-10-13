@@ -1,3 +1,4 @@
+import { EmptyState } from '@/components/empty-state'
 import { Badge } from '@/components/ui/badge'
 import { Skeleton } from '@/components/ui/skeleton'
 import {
@@ -8,6 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
+import { ListChecks } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { QueryError } from '@/components/query-error'
 import { useQuizzes } from './use-content'
@@ -20,7 +22,7 @@ export function QuizList() {
   if (quizzes.isError)
     return <QueryError error={quizzes.error} onRetry={() => void quizzes.refetch()} />
   if (quizzes.data.length === 0)
-    return <p className="text-muted-foreground py-12 text-center">{t('content.quiz.empty')}</p>
+    return <EmptyState icon={ListChecks} title={t('content.quiz.empty')} />
 
   return (
     <Table>

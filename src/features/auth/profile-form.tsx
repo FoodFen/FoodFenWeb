@@ -50,39 +50,41 @@ export function ProfileForm({ user }: { user: UserResponse }) {
 
   return (
     <form onSubmit={onSubmit} noValidate className="bg-card space-y-4 rounded-2xl border p-6">
-      <InputField id="email" label="Email" value={user.email} readOnly disabled />
-      <InputField
-        id="displayName"
-        label={t('displayName')}
-        autoComplete="name"
-        enterKeyHint="next"
-        error={errors.displayName?.message}
-        {...register('displayName')}
-      />
-      <FormField id="gender" label={t('profile.gender')} error={errors.gender?.message}>
-        <select
-          className={selectClass}
-          {...fieldProps('gender', errors.gender?.message)}
-          {...register('gender')}
-        >
-          <option value="">{t('profile.genderUnset')}</option>
-          {GENDERS.map((gender) => (
-            <option key={gender} value={gender}>
-              {t(`profile.genders.${gender}`)}
-            </option>
-          ))}
-        </select>
-      </FormField>
-      <InputField
-        id="birthYear"
-        label={t('profile.birthYear')}
-        inputMode="numeric"
-        autoComplete="bday-year"
-        enterKeyHint="done"
-        maxLength={4}
-        error={errors.birthYear?.message}
-        {...register('birthYear')}
-      />
+      <div className="grid gap-4 sm:grid-cols-2">
+        <InputField id="email" label="Email" value={user.email} readOnly disabled />
+        <InputField
+          id="displayName"
+          label={t('displayName')}
+          autoComplete="name"
+          enterKeyHint="next"
+          error={errors.displayName?.message}
+          {...register('displayName')}
+        />
+        <FormField id="gender" label={t('profile.gender')} error={errors.gender?.message}>
+          <select
+            className={selectClass}
+            {...fieldProps('gender', errors.gender?.message)}
+            {...register('gender')}
+          >
+            <option value="">{t('profile.genderUnset')}</option>
+            {GENDERS.map((gender) => (
+              <option key={gender} value={gender}>
+                {t(`profile.genders.${gender}`)}
+              </option>
+            ))}
+          </select>
+        </FormField>
+        <InputField
+          id="birthYear"
+          label={t('profile.birthYear')}
+          inputMode="numeric"
+          autoComplete="bday-year"
+          enterKeyHint="done"
+          maxLength={4}
+          error={errors.birthYear?.message}
+          {...register('birthYear')}
+        />
+      </div>
       <FormError message={formError} />
       {saved && (
         <p role="status" className="text-primary text-sm">

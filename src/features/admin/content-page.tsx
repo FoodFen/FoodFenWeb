@@ -1,7 +1,7 @@
 import { Card } from '@/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { useTranslation } from 'react-i18next'
-import { PageHeader } from './page-header'
+import { PageHeader } from '@/components/page-header'
 import { QuestList } from './quest-list'
 import { QuizList } from './quiz-list'
 

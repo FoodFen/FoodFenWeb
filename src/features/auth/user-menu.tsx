@@ -23,7 +23,9 @@ export function UserMenu() {
       {user && (
         <div className="px-2 py-1 text-sm">
           <p className="truncate font-medium">{user.displayName ?? user.email}</p>
-          <p className="text-muted-foreground truncate text-xs">{user.email}</p>
+          {user.displayName && (
+            <p className="text-muted-foreground truncate text-xs">{user.email}</p>
+          )}
         </div>
       )}
       <SidebarMenu>

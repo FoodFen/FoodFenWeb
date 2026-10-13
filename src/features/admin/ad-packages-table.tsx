@@ -1,4 +1,5 @@
 import type { AdPackageResponse } from '@/api/generated'
+import { EmptyState } from '@/components/empty-state'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import {
@@ -19,11 +20,11 @@ export function AdPackagesTable({ rows, onEdit }: Props) {
   const { t } = useTranslation('admin')
   if (rows.length === 0) {
     return (
-      <div className="flex flex-col items-center gap-2 py-16 text-center">
-        <PackageOpen className="text-muted-foreground size-10" aria-hidden />
-        <p className="font-medium">{t('adPackages.empty.title')}</p>
-        <p className="text-muted-foreground text-sm">{t('adPackages.empty.hint')}</p>
-      </div>
+      <EmptyState
+        icon={PackageOpen}
+        title={t('adPackages.empty.title')}
+        hint={t('adPackages.empty.hint')}
+      />
     )
   }
 

@@ -56,8 +56,8 @@ export function RestaurantReview({
           </div>
         }
       />
-      <section className="space-y-2">
-        <h2 className="text-lg font-semibold">{t('review.menu', { count: dishes.length })}</h2>
+      <section className="space-y-3">
+        <h2 className="text-xl font-semibold">{t('review.menu', { count: dishes.length })}</h2>
         {dishes.length === 0 ? (
           <p className="text-muted-foreground">{t('review.noDishes')}</p>
         ) : (
