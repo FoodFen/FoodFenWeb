@@ -1,32 +1,32 @@
-# React + TypeScript + Vite
+# FoodFenWeb
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+FoodFen's web client: the restaurant owner portal (profile, menu with nutrition, paid placement) and the admin area (moderation, users, ad packages, dashboard). End users only get the landing page, sign-in, registration, password flows and a basic personal-info page; the nutrition tracker itself is the mobile app (`../FoodFenFE`).
 
-Currently, two official plugins are available:
+Vite + React 19 + TypeScript, talking to `../FoodFenBE` (FastAPI). The API client in `src/api/generated` is generated from the backend's OpenAPI schema.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Commands
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm install
+npm run dev        # http://localhost:5173
+npm run verify     # typecheck + lint + tests
+npm run build      # production build into dist/
+npm run api:gen    # regenerate src/api/generated from http://localhost:8000/openapi.json (or OPENAPI_URL)
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## Environment
+
+Copy `.env.example` to `.env.local`.
+
+| Variable | Purpose |
+| --- | --- |
+| `VITE_API_URL` | Backend origin. Defaults to `http://localhost:8000`; set it to the deployed backend for a production build. |
+| `VITE_GOOGLE_MAPS_API_KEY` | Location picker on the restaurant form (Maps JavaScript API and Places API (New)). Without it the form shows a plain coordinates field. |
+| `VITE_GOOGLE_MAPS_MAP_ID` | Optional map style id. |
+
+The backend's `APP_BASE_URL` must be this site's origin: email links and the ad checkout return page (`/restaurant/ads`) point here.
+
+## More
+
+- `CLAUDE.md`: scope, structure and conventions.
+- `../FoodFenBE/docs/marketplace.md`: business rules for restaurants, moderation, admin and paid placement.
