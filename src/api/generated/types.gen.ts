@@ -214,6 +214,32 @@ export type AdminRestaurantDetailResponse = {
      * Dishes
      */
     dishes: Array<DishResponse>;
+    /**
+     * Ownername
+     */
+    ownerName: string | null;
+    /**
+     * Owneremail
+     */
+    ownerEmail: string;
+};
+
+/**
+ * AdminRestaurantListResponse
+ */
+export type AdminRestaurantListResponse = {
+    /**
+     * Restaurants
+     */
+    restaurants: Array<AdminRestaurantRowResponse>;
+    /**
+     * Total
+     */
+    total: number;
+    /**
+     * Nextcursor
+     */
+    nextCursor: string | null;
 };
 
 /**
@@ -4541,6 +4567,18 @@ export type ListRestaurantsAdminRestaurantsGetData = {
          * Status
          */
         status?: ModerationStatus | null;
+        /**
+         * Q
+         */
+        q?: string | null;
+        /**
+         * Cursor
+         */
+        cursor?: string | null;
+        /**
+         * Limit
+         */
+        limit?: number;
     };
     url: '/admin/restaurants';
 };
@@ -4556,11 +4594,9 @@ export type ListRestaurantsAdminRestaurantsGetError = ListRestaurantsAdminRestau
 
 export type ListRestaurantsAdminRestaurantsGetResponses = {
     /**
-     * Response List Restaurants Admin Restaurants Get
-     *
      * Successful Response
      */
-    200: Array<AdminRestaurantRowResponse>;
+    200: AdminRestaurantListResponse;
 };
 
 export type ListRestaurantsAdminRestaurantsGetResponse = ListRestaurantsAdminRestaurantsGetResponses[keyof ListRestaurantsAdminRestaurantsGetResponses];

@@ -85,6 +85,7 @@
     "searchLabel": "Search restaurants",
     "total_one": "{{count}} restaurant",
     "total_other": "{{count}} restaurants",
+    "loadMore": "Load more",
     "noMatch": {
       "title": "No restaurants found",
       "hint": "Try another keyword or switch to a different tab."
@@ -209,12 +210,6 @@
     "dishesApproved_other": "{{count}} dishes approved",
     "adPackageCreated": "Ad package added",
     "adPackageUpdated": "Ad package updated"
-  },
-  "pager": {
-    "label": "Pagination",
-    "previous": "Previous",
-    "next": "Next",
-    "page": "Page {{page}} / {{pageCount}}"
   },
   "payments": {
     "title": "Transactions",

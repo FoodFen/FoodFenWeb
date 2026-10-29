@@ -62,18 +62,27 @@ test('opening a restaurant from the list shows its menu', async () => {
     user: { id: 1, email: 'admin@x.vn', displayName: null, role: 'admin' },
   })
   vi.mocked(listRestaurantsAdminRestaurantsGet).mockResolvedValue({
-    data: [
-      {
-        ...restaurant,
-        ownerName: null,
-        ownerEmail: 'owner@x.vn',
-        dishCount: 2,
-        pendingDishCount: 0,
-      },
-    ],
+    data: {
+      restaurants: [
+        {
+          ...restaurant,
+          ownerName: null,
+          ownerEmail: 'owner@x.vn',
+          dishCount: 2,
+          pendingDishCount: 0,
+        },
+      ],
+      total: 1,
+      nextCursor: null,
+    },
   } as never)
   vi.mocked(getRestaurantAdminRestaurantsRestaurantIdGet).mockResolvedValue({
-    data: { restaurant, dishes: [dish('d1', 'Gỏi cuốn tôm thịt'), dish('d2', 'Bún bò')] },
+    data: {
+      restaurant,
+      dishes: [dish('d1', 'Gỏi cuốn tôm thịt'), dish('d2', 'Bún bò')],
+      ownerName: null,
+      ownerEmail: 'owner@x.vn',
+    },
   } as never)
   const router = createRouter({
     routeTree,
@@ -91,6 +100,7 @@ test('opening a restaurant from the list shows its menu', async () => {
   expect(await screen.findByRole('heading', { name: 'Thực đơn (2 món)' })).toBeInTheDocument()
   expect(screen.getByRole('heading', { name: 'Gỏi cuốn tôm thịt' })).toBeInTheDocument()
   expect(screen.getByRole('heading', { name: 'Bún bò' })).toBeInTheDocument()
+  expect(screen.getByRole('link', { name: 'owner@x.vn' })).toBeInTheDocument()
 })
 
 test('a failed reject shows its error once, in the dialog', async () => {
@@ -98,7 +108,7 @@ test('a failed reject shows its error once, in the dialog', async () => {
     user: { id: 1, email: 'admin@x.vn', displayName: null, role: 'admin' },
   })
   vi.mocked(getRestaurantAdminRestaurantsRestaurantIdGet).mockResolvedValue({
-    data: { restaurant, dishes: [] },
+    data: { restaurant, dishes: [], ownerName: null, ownerEmail: 'owner@x.vn' },
   } as never)
   vi.mocked(reviewRestaurantAdminRestaurantsRestaurantIdReviewPost).mockRejectedValue(
     new AxiosError('bad', undefined, undefined, undefined, {

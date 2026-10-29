@@ -21,13 +21,13 @@ export function RestaurantReviewPage() {
   return (
     <div className="space-y-6">
       <BackLink to="/admin/restaurants">{t('restaurants.title')}</BackLink>
-      <RestaurantOwner restaurantId={restaurantId} />
       {detail.isPending ? (
         <Skeleton className="h-64 w-full rounded-2xl" aria-busy />
       ) : detail.isError ? (
         <QueryError error={detail.error} onRetry={() => void detail.refetch()} />
       ) : (
         <>
+          <RestaurantOwner ownerName={detail.data.ownerName} ownerEmail={detail.data.ownerEmail} />
           <FormError message={error ? reviewErrorMessage(error) : null} />
           <RestaurantReview
             restaurant={detail.data.restaurant}

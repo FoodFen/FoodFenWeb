@@ -83,6 +83,7 @@
     "searchPlaceholder": "Tìm theo tên quán, tên hoặc email chủ quán",
     "searchLabel": "Tìm quán",
     "total_other": "{{count}} quán",
+    "loadMore": "Tải thêm",
     "noMatch": {
       "title": "Không tìm thấy quán",
       "hint": "Thử đổi từ khóa hoặc chuyển sang mục khác."
@@ -202,12 +203,6 @@
     "dishesApproved_other": "Đã duyệt {{count}} món",
     "adPackageCreated": "Đã thêm gói quảng cáo",
     "adPackageUpdated": "Đã cập nhật gói quảng cáo"
-  },
-  "pager": {
-    "label": "Phân trang",
-    "previous": "Trước",
-    "next": "Sau",
-    "page": "Trang {{page}} / {{pageCount}}"
   },
   "payments": {
     "title": "Giao dịch",

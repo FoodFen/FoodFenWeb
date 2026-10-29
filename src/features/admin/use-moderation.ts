@@ -3,24 +3,12 @@ import type { DishResponse, RestaurantResponse, ReviewRequest } from '@/api/gene
 import {
   getRestaurantAdminRestaurantsRestaurantIdGetOptions,
   getRestaurantAdminRestaurantsRestaurantIdGetQueryKey,
-  listRestaurantsAdminRestaurantsGetOptions,
   reviewDishAdminDishesDishIdReviewPostMutation,
   reviewRestaurantAdminRestaurantsRestaurantIdReviewPostMutation,
 } from '@/api/generated/@tanstack/react-query.gen'
-import type { RestaurantTab } from './restaurant-tabs'
 import i18n from '@/i18n'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'sonner'
-
-const tabQueries = {
-  all: undefined,
-  pending: { needsReview: true },
-  approved: { status: 'approved' },
-  rejected: { status: 'rejected' },
-} as const
-
-export const useRestaurantList = (tab: RestaurantTab) =>
-  useQuery(listRestaurantsAdminRestaurantsGetOptions({ query: tabQueries[tab] }))
 
 export const useAdminRestaurant = (restaurantId: string) =>
   useQuery(

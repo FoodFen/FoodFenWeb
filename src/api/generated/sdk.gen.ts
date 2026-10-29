@@ -790,6 +790,9 @@ export const getPublicRestaurantRestaurantsRestaurantIdGet = <ThrowOnError exten
 
 /**
  * List Restaurants
+ *
+ * ``q`` matches the restaurant name, owner name or owner email (case-insensitive substring).
+ * ``cursor`` is opaque: pass back the previous page's ``nextCursor``.
  */
 export const listRestaurantsAdminRestaurantsGet = <ThrowOnError extends boolean = false>(options?: Options<ListRestaurantsAdminRestaurantsGetData, ThrowOnError>): RequestResult<ListRestaurantsAdminRestaurantsGetResponses, ListRestaurantsAdminRestaurantsGetErrors, ThrowOnError> => (options?.client ?? client).get<ListRestaurantsAdminRestaurantsGetResponses, ListRestaurantsAdminRestaurantsGetErrors, ThrowOnError>({
     responseType: 'json',

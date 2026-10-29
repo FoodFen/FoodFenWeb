@@ -1336,6 +1336,9 @@ export const listRestaurantsAdminRestaurantsGetQueryKey = (options?: Options<Lis
 
 /**
  * List Restaurants
+ *
+ * ``q`` matches the restaurant name, owner name or owner email (case-insensitive substring).
+ * ``cursor`` is opaque: pass back the previous page's ``nextCursor``.
  */
 export const listRestaurantsAdminRestaurantsGetOptions = (options?: Options<ListRestaurantsAdminRestaurantsGetData>) => queryOptions<ListRestaurantsAdminRestaurantsGetResponse, AxiosError<ListRestaurantsAdminRestaurantsGetError>, ListRestaurantsAdminRestaurantsGetResponse, ReturnType<typeof listRestaurantsAdminRestaurantsGetQueryKey>>({
     queryFn: async ({ queryKey, signal }) => {
@@ -1349,6 +1352,39 @@ export const listRestaurantsAdminRestaurantsGetOptions = (options?: Options<List
     },
     queryKey: listRestaurantsAdminRestaurantsGetQueryKey(options)
 });
+
+export const listRestaurantsAdminRestaurantsGetInfiniteQueryKey = (options?: Options<ListRestaurantsAdminRestaurantsGetData>): QueryKey<Options<ListRestaurantsAdminRestaurantsGetData>> => createQueryKey('listRestaurantsAdminRestaurantsGet', options, true);
+
+/**
+ * List Restaurants
+ *
+ * ``q`` matches the restaurant name, owner name or owner email (case-insensitive substring).
+ * ``cursor`` is opaque: pass back the previous page's ``nextCursor``.
+ */
+export const listRestaurantsAdminRestaurantsGetInfiniteOptions = (options?: Options<ListRestaurantsAdminRestaurantsGetData>) => {
+    const opts = infiniteQueryOptions<ListRestaurantsAdminRestaurantsGetResponse, AxiosError<ListRestaurantsAdminRestaurantsGetError>, InfiniteData<ListRestaurantsAdminRestaurantsGetResponse>, QueryKey<Options<ListRestaurantsAdminRestaurantsGetData>>, string | null | Pick<QueryKey<Options<ListRestaurantsAdminRestaurantsGetData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
+    // @ts-ignore
+    {
+        queryFn: async ({ pageParam, queryKey, signal }) => {
+            // @ts-ignore
+            const page: Pick<QueryKey<Options<ListRestaurantsAdminRestaurantsGetData>>[0], 'body' | 'headers' | 'path' | 'query'> = typeof pageParam === 'object' ? pageParam : {
+                query: {
+                    cursor: pageParam
+                }
+            };
+            const params = createInfiniteParams(queryKey, page);
+            const { data } = await listRestaurantsAdminRestaurantsGet({
+                ...options,
+                ...params,
+                signal,
+                throwOnError: true
+            });
+            return data;
+        },
+        queryKey: listRestaurantsAdminRestaurantsGetInfiniteQueryKey(options)
+    });
+    return opts as Omit<typeof opts, 'initialData'>;
+};
 
 export const getRestaurantAdminRestaurantsRestaurantIdGetQueryKey = (options: Options<GetRestaurantAdminRestaurantsRestaurantIdGetData>) => createQueryKey('getRestaurantAdminRestaurantsRestaurantIdGet', options);
 
