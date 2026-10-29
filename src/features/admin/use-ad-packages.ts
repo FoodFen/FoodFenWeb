@@ -20,10 +20,15 @@ export function useSaveAdPackage(editing: AdPackageResponse | null) {
   const queryClient = useQueryClient()
   const onSuccess = () =>
     queryClient.invalidateQueries({ queryKey: listAdPackagesAdminAdPackagesGetQueryKey() })
-  const create = useMutation({ ...createAdPackageAdminAdPackagesPostMutation(), onSuccess })
+  const create = useMutation({
+    ...createAdPackageAdminAdPackagesPostMutation(),
+    onSuccess,
+    meta: { success: 'admin:toast.adPackageCreated', errorToast: false },
+  })
   const update = useMutation({
     ...updateAdPackageAdminAdPackagesPackageIdPatchMutation(),
     onSuccess,
+    meta: { success: 'admin:toast.adPackageUpdated', errorToast: false },
   })
 
   return (values: AdPackageValues, dirty: Dirty) =>

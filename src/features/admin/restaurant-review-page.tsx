@@ -34,27 +34,27 @@ export function RestaurantReviewPage() {
             dishes={detail.data.dishes}
             busy={busy}
             onApproveRestaurant={() =>
-              void reviewRestaurant({
+              void reviewRestaurant(detail.data.restaurant, {
                 decision: 'approved',
                 expectedUpdatedAt: detail.data.restaurant.updatedAt,
               }).catch(() => {})
             }
             onRejectRestaurant={async (reason) => {
-              await reviewRestaurant({
+              await reviewRestaurant(detail.data.restaurant, {
                 decision: 'rejected',
                 reason,
                 expectedUpdatedAt: detail.data.restaurant.updatedAt,
               })
             }}
             onApproveDish={(dish) =>
-              void reviewDish(dish.id, {
+              void reviewDish(dish, {
                 decision: 'approved',
                 expectedUpdatedAt: dish.updatedAt,
               }).catch(() => {})
             }
             onApprovePendingDishes={(pending) => void approveDishes(pending).catch(() => {})}
             onRejectDish={async (dish, reason) => {
-              await reviewDish(dish.id, {
+              await reviewDish(dish, {
                 decision: 'rejected',
                 reason,
                 expectedUpdatedAt: dish.updatedAt,

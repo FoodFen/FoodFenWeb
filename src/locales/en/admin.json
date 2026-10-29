@@ -181,5 +181,17 @@
       "priceHint": "Example: 99,000",
       "save": "Save"
     }
+  },
+  "toast": {
+    "restaurantApproved": "Restaurant approved",
+    "restaurantRejected": "Restaurant rejected",
+    "restaurantTakenDown": "Restaurant taken down",
+    "dishApproved": "Dish approved",
+    "dishRejected": "Dish rejected",
+    "dishTakenDown": "Dish taken down",
+    "dishesApproved_one": "{{count}} dish approved",
+    "dishesApproved_other": "{{count}} dishes approved",
+    "adPackageCreated": "Ad package added",
+    "adPackageUpdated": "Ad package updated"
   }
 }

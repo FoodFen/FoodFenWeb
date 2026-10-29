@@ -12,6 +12,7 @@ export const useProfile = () => useQuery(meAuthMeGetOptions())
 export const useUpdateProfile = () =>
   useMutation({
     ...updateMyProfileUsersMePatchMutation(),
+    meta: { success: 'auth:toast.profileSaved', errorToast: false },
     onSuccess: (user) => {
       useSessionStore.getState().setUser(user)
       void queryClient.invalidateQueries({ queryKey: meAuthMeGetOptions().queryKey })

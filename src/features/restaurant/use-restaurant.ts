@@ -22,6 +22,7 @@ export function useCreateRestaurant() {
   const save = useSaveToCache()
   const { mutateAsync } = useMutation({
     ...createRestaurantRestaurantsPostMutation(),
+    meta: { success: 'restaurant:toast.restaurantCreated', errorToast: false },
     onSuccess: save,
   })
   return (values: RestaurantValues) => mutateAsync({ body: toRestaurantBody(values) })
@@ -31,6 +32,7 @@ export function useUpdateRestaurant() {
   const save = useSaveToCache()
   const { mutateAsync } = useMutation({
     ...updateMyRestaurantRestaurantsMinePatchMutation(),
+    meta: { success: 'restaurant:toast.restaurantUpdated', errorToast: false },
     onSuccess: save,
   })
   return (values: RestaurantValues) => mutateAsync({ body: toRestaurantPatch(values) })
@@ -38,6 +40,9 @@ export function useUpdateRestaurant() {
 
 /** Uploads one image and resolves to its hosted URL. */
 export function useUploadImage() {
-  const { mutateAsync } = useMutation(uploadImageRestaurantsMineImagesPostMutation())
+  const { mutateAsync } = useMutation({
+    ...uploadImageRestaurantsMineImagesPostMutation(),
+    meta: { success: 'restaurant:toast.imageUploaded', errorToast: false },
+  })
   return async (image: File) => (await mutateAsync({ body: { image } })).url
 }

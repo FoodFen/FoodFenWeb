@@ -193,5 +193,13 @@
     "mapLabel": "Map for choosing the restaurant's location. Click to place the pin, drag the pin to adjust.",
     "pin": "Restaurant location",
     "mapUnavailable": "The map could not load. You can still paste the coordinates in the field below."
+  },
+  "toast": {
+    "restaurantCreated": "Restaurant created, awaiting review",
+    "restaurantUpdated": "Restaurant details saved",
+    "imageUploaded": "Image uploaded",
+    "dishCreated": "Dish added",
+    "dishUpdated": "Dish updated",
+    "dishDeleted": "Dish deleted"
   }
 }

@@ -22,6 +22,7 @@ export function useCreateDish() {
   const change = useDishCache()
   const { mutateAsync } = useMutation({
     ...createDishRestaurantsMineDishesPostMutation(),
+    meta: { success: 'restaurant:toast.dishCreated', errorToast: false },
     onSuccess: (dish) => change((dishes) => [...dishes, dish]),
   })
   return (values: DishValues) => mutateAsync({ body: toDishBody(values) })
@@ -31,6 +32,7 @@ export function useUpdateDish() {
   const change = useDishCache()
   const { mutateAsync } = useMutation({
     ...updateDishRestaurantsMineDishesDishIdPatchMutation(),
+    meta: { success: 'restaurant:toast.dishUpdated', errorToast: false },
     onSuccess: (dish) => change((dishes) => dishes.map((d) => (d.id === dish.id ? dish : d))),
   })
   return (dishId: string, values: DishValues, dirty: Partial<Record<keyof DishValues, unknown>>) =>
@@ -39,7 +41,10 @@ export function useUpdateDish() {
 
 export function useDeleteDish() {
   const change = useDishCache()
-  const mutation = useMutation(deleteDishRestaurantsMineDishesDishIdDeleteMutation())
+  const mutation = useMutation({
+    ...deleteDishRestaurantsMineDishesDishIdDeleteMutation(),
+    meta: { success: 'restaurant:toast.dishDeleted' },
+  })
   return {
     isPending: mutation.isPending,
     remove: (dishId: string) =>

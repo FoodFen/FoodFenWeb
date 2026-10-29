@@ -193,5 +193,13 @@
     "mapLabel": "Bản đồ chọn vị trí quán. Nhấn để đặt ghim, kéo ghim để chỉnh.",
     "pin": "Vị trí quán",
     "mapUnavailable": "Không tải được bản đồ. Bạn vẫn có thể dán toạ độ vào ô bên dưới."
+  },
+  "toast": {
+    "restaurantCreated": "Đã tạo quán, đang chờ duyệt",
+    "restaurantUpdated": "Đã lưu thông tin quán",
+    "imageUploaded": "Đã tải ảnh lên",
+    "dishCreated": "Đã thêm món",
+    "dishUpdated": "Đã cập nhật món",
+    "dishDeleted": "Đã xoá món"
   }
 }

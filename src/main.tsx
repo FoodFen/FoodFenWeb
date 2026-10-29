@@ -1,6 +1,7 @@
 import '@/i18n'
 import { configureApi } from '@/api/client'
 import { queryClient } from '@/api/query-client'
+import { Toaster } from '@/components/toaster'
 import { SessionSync } from '@/features/auth/session-sync'
 import { useSessionStore } from '@/lib/session-store'
 import { QueryClientProvider } from '@tanstack/react-query'
@@ -30,6 +31,7 @@ createRoot(document.getElementById('root')!).render(
     <QueryClientProvider client={queryClient}>
       <SessionSync />
       <RouterProvider router={router} />
+      <Toaster />
     </QueryClientProvider>
   </StrictMode>,
 )

@@ -176,5 +176,16 @@
       "priceHint": "Ví dụ: 99.000",
       "save": "Lưu"
     }
+  },
+  "toast": {
+    "restaurantApproved": "Đã duyệt quán",
+    "restaurantRejected": "Đã từ chối quán",
+    "restaurantTakenDown": "Đã gỡ quán",
+    "dishApproved": "Đã duyệt món",
+    "dishRejected": "Đã từ chối món",
+    "dishTakenDown": "Đã gỡ món",
+    "dishesApproved_other": "Đã duyệt {{count}} món",
+    "adPackageCreated": "Đã thêm gói quảng cáo",
+    "adPackageUpdated": "Đã cập nhật gói quảng cáo"
   }
 }

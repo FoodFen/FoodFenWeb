@@ -20,7 +20,6 @@ import { useUpdateProfile } from './use-profile'
 
 export function ProfileForm({ user }: { user: UserResponse }) {
   const { t } = useTranslation('auth')
-  const [saved, setSaved] = useState(false)
   const [formError, setFormError] = useState<string | null>(null)
   const updateProfile = useUpdateProfile()
   const {
@@ -36,13 +35,11 @@ export function ProfileForm({ user }: { user: UserResponse }) {
 
   const onSubmit = handleSubmit(async (values) => {
     setFormError(null)
-    setSaved(false)
     try {
       const updated = await updateProfile.mutateAsync({
         body: toProfilePatch(values, dirtyFields),
       })
       reset(toProfileValues(updated))
-      setSaved(true)
     } catch (error) {
       setFormError(applyApiError(error, setError, ['displayName', 'gender', 'birthYear']))
     }
@@ -86,11 +83,6 @@ export function ProfileForm({ user }: { user: UserResponse }) {
         />
       </div>
       <FormError message={formError} />
-      {saved && (
-        <p role="status" className="text-primary text-sm">
-          {t('profile.saved')}
-        </p>
-      )}
       <SubmitButton loading={isSubmitting} disabled={!isDirty}>
         {t('profile.save')}
       </SubmitButton>

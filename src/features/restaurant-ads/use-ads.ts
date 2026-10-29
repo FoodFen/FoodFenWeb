@@ -17,7 +17,10 @@ export const useMyAds = () => useQuery(getMyAdsRestaurantsMineAdsGetOptions())
 
 /** Creates the order, remembers its code, and sends the browser to the provider's page. */
 export function useAdCheckout() {
-  const { mutateAsync } = useMutation(createAdCheckoutRestaurantsMineAdsCheckoutPostMutation())
+  const { mutateAsync } = useMutation({
+    ...createAdCheckoutRestaurantsMineAdsCheckoutPostMutation(),
+    meta: { errorToast: false },
+  })
   return async (packageId: string, provider: PaymentProvider) => {
     const { orderCode, checkoutUrl } = await mutateAsync({ body: { packageId, provider } })
     saveOrderCode(orderCode)
@@ -41,6 +44,7 @@ export function usePaymentOrder() {
   })
   const cancel = useMutation({
     ...cancelPaymentPaymentsOrderCodeCancelPostMutation(),
+    meta: { errorToast: false },
     onSuccess: (data) =>
       queryClient.setQueryData(getPaymentPaymentsOrderCodeGetQueryKey({ path }), data),
   })
