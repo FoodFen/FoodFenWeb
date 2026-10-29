@@ -132,7 +132,7 @@
       "carbsG": "Tinh bột (g)",
       "fatG": "Chất béo (g)",
       "fiberG": "Chất xơ (g, tuỳ chọn)",
-      "kcalOff": "Năng lượng lệch nhiều so với đạm, tinh bột và chất béo (4 kcal/g đạm và tinh bột, 9 kcal/g chất béo). Kiểm tra lại số liệu trước khi gửi duyệt."
+      "kcalOff": "Năng lượng lệch nhiều so với đạm, tinh bột và chất béo (4 kcal/g đạm và tinh bột, 9 kcal/g chất béo). Ước tính: {{value}} kcal. Kiểm tra lại số liệu trước khi gửi duyệt."
     },
     "delete": {
       "title": "Xoá món {{name}}?",
@@ -151,6 +151,7 @@
   },
   "profile": {
     "editTitle": "Sửa thông tin quán",
+    "pendingNote": "FoodFen đang duyệt hồ sơ và thực đơn của quán. Bạn sẽ nhận email khi có kết quả.",
     "resubmitNote": "Sau khi lưu, quán sẽ được gửi duyệt lại.",
     "save": "Lưu thay đổi",
     "saveResubmit": "Lưu và gửi duyệt lại",

@@ -37,6 +37,8 @@
   "restaurantInfo": {
     "address": "Address",
     "phone": "Phone",
-    "openingHours": "Opening hours"
+    "openingHours": "Opening hours",
+    "location": "Location",
+    "viewOnMap": "View on Google Maps"
   }
 }

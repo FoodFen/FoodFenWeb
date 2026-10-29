@@ -78,3 +78,14 @@ test('dishes are explained as hidden while the restaurant is pending', () => {
     screen.getByText('Món được duyệt chỉ hiện với người dùng khi quán cũng được duyệt.'),
   ).toBeInTheDocument()
 })
+
+test('a pending dish with off kcal is left out of the bulk approval and called out', async () => {
+  const off = { ...dish('x', 'pending'), kcal: 900 }
+  const dishes = [dish('a', 'pending'), dish('b', 'pending'), off]
+  const onApprovePendingDishes = renderReview('approved', dishes)
+
+  await userEvent.click(screen.getByRole('button', { name: 'Duyệt tất cả món đang chờ (2)' }))
+
+  expect(onApprovePendingDishes).toHaveBeenCalledWith([dishes[0], dishes[1]])
+  expect(screen.getByText('1 món có kcal lệch cần duyệt riêng.')).toBeInTheDocument()
+})

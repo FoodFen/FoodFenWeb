@@ -1,8 +1,9 @@
 import type { RestaurantResponse } from '@/api/generated'
 import { PageHeader } from '@/components/page-header'
 import { RestaurantSummary } from '@/components/restaurant-summary'
+import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Button } from '@/components/ui/button'
-import { Pencil } from 'lucide-react'
+import { Clock, Pencil } from 'lucide-react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { RestaurantForm } from './restaurant-form'
@@ -41,14 +42,22 @@ export function RestaurantProfile({ restaurant, upload }: Props) {
   }
 
   return (
-    <RestaurantSummary
-      restaurant={restaurant}
-      actions={
-        <Button variant="outline" className="h-11 px-4" onClick={() => setEditing(true)}>
-          <Pencil aria-hidden />
-          {t('profile.edit')}
-        </Button>
-      }
-    />
+    <div className="space-y-4">
+      <RestaurantSummary
+        restaurant={restaurant}
+        actions={
+          <Button variant="outline" className="h-11 px-4" onClick={() => setEditing(true)}>
+            <Pencil aria-hidden />
+            {t('profile.edit')}
+          </Button>
+        }
+      />
+      {restaurant.status === 'pending' && (
+        <Alert>
+          <Clock aria-hidden />
+          <AlertDescription>{t('profile.pendingNote')}</AlertDescription>
+        </Alert>
+      )}
+    </div>
   )
 }

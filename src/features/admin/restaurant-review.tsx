@@ -1,6 +1,7 @@
 import type { DishResponse, RestaurantResponse } from '@/api/generated'
 import { RestaurantSummary } from '@/components/restaurant-summary'
 import { Button } from '@/components/ui/button'
+import { kcalLooksOff } from '@/lib/nutrition'
 import { Check, CheckCheck, X } from 'lucide-react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -34,6 +35,8 @@ export function RestaurantReview({
   const [target, setTarget] = useState<Target | null>(null)
   const approved = restaurant.status === 'approved'
   const pending = dishes.filter((dish) => dish.status === 'pending')
+  const flagged = pending.filter((dish) => kcalLooksOff(dish.kcal, dish))
+  const bulk = pending.filter((dish) => !flagged.includes(dish))
 
   return (
     <div className="space-y-8">
@@ -62,20 +65,25 @@ export function RestaurantReview({
       <section className="space-y-3">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <h2 className="text-xl font-semibold">{t('review.menu', { count: dishes.length })}</h2>
-          {pending.length >= 2 && (
+          {bulk.length >= 2 && (
             <Button
               variant="outline"
               className="h-11 px-4"
               disabled={busy}
-              onClick={() => onApprovePendingDishes(pending)}
+              onClick={() => onApprovePendingDishes(bulk)}
             >
               <CheckCheck aria-hidden />
-              {t('review.approvePending', { count: pending.length })}
+              {t('review.approvePending', { count: bulk.length })}
             </Button>
           )}
         </div>
+        {flagged.length > 0 && (
+          <p className="text-muted-foreground text-sm">
+            {t('review.flaggedPending', { count: flagged.length })}
+          </p>
+        )}
         {!approved && dishes.length > 0 && (
-          <p className="text-sm text-muted-foreground">{t('review.dishesHiddenUntilApproved')}</p>
+          <p className="text-muted-foreground text-sm">{t('review.dishesHiddenUntilApproved')}</p>
         )}
         {dishes.length === 0 ? (
           <p className="text-muted-foreground">{t('review.noDishes')}</p>

@@ -43,7 +43,7 @@ afterEach(() => {
 
 test('without a Maps key only the coordinates field shows, with its hint and no error', () => {
   render(<Harness />)
-  const input = screen.getByLabelText('Toạ độ trên Google Maps')
+  const input = screen.getByRole('textbox', { name: 'Toạ độ trên Google Maps' })
   expect(input).toHaveAccessibleDescription(/nhấn chuột phải/)
   expect(screen.queryByLabelText('Tìm địa điểm')).not.toBeInTheDocument()
   expect(screen.queryByRole('alert')).not.toBeInTheDocument()

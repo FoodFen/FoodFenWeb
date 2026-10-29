@@ -132,7 +132,7 @@
       "carbsG": "Carbs (g)",
       "fatG": "Fat (g)",
       "fiberG": "Fiber (g, optional)",
-      "kcalOff": "The energy is far from what the protein, carbs and fat add up to (4 kcal/g for protein and carbs, 9 kcal/g for fat). Check the numbers before you submit."
+      "kcalOff": "The energy is far from what the protein, carbs and fat add up to (4 kcal/g for protein and carbs, 9 kcal/g for fat). Estimate: {{value}} kcal. Check the numbers before you submit."
     },
     "delete": {
       "title": "Delete {{name}}?",
@@ -151,6 +151,7 @@
   },
   "profile": {
     "editTitle": "Edit restaurant details",
+    "pendingNote": "FoodFen is reviewing your restaurant profile and menu. You will get an email with the result.",
     "resubmitNote": "After you save, the restaurant goes back to review.",
     "save": "Save changes",
     "saveResubmit": "Save and resubmit",

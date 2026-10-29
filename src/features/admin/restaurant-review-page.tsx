@@ -4,6 +4,7 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { getRouteApi } from '@tanstack/react-router'
 import { useTranslation } from 'react-i18next'
 import { QueryError } from '@/components/query-error'
+import { RestaurantOwner } from './restaurant-owner'
 import { RestaurantReview } from './restaurant-review'
 import { reviewErrorMessage } from './review-error'
 import { useAdminRestaurant, useReviewActions } from './use-moderation'
@@ -14,11 +15,13 @@ export function RestaurantReviewPage() {
   const { t } = useTranslation('admin')
   const { restaurantId } = route.useParams()
   const detail = useAdminRestaurant(restaurantId)
-  const { busy, error, reviewRestaurant, reviewDish, approveDishes } = useReviewActions(restaurantId)
+  const { busy, error, reviewRestaurant, reviewDish, approveDishes } =
+    useReviewActions(restaurantId)
 
   return (
     <div className="space-y-6">
       <BackLink to="/admin/restaurants">{t('restaurants.title')}</BackLink>
+      <RestaurantOwner restaurantId={restaurantId} />
       {detail.isPending ? (
         <Skeleton className="h-64 w-full rounded-2xl" aria-busy />
       ) : detail.isError ? (

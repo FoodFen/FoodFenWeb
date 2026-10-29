@@ -3,7 +3,7 @@ import { RejectionNote } from '@/components/rejection-note'
 import { StatusBadge } from '@/components/status-badge'
 import { displayHours } from '@/lib/opening-hours'
 import { formatPhone, phoneHref } from '@/lib/phone'
-import { Clock, ImageOff, MapPin, Phone } from 'lucide-react'
+import { Clock, ImageOff, Map, MapPin, Phone } from 'lucide-react'
 import type { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 
@@ -16,8 +16,18 @@ export function RestaurantSummary({
   actions?: ReactNode
 }) {
   const { t } = useTranslation()
-  const { name, description, address, phone, openingHours, imageUrl, status, rejectionReason } =
-    restaurant
+  const {
+    name,
+    description,
+    address,
+    phone,
+    openingHours,
+    latitude,
+    longitude,
+    imageUrl,
+    status,
+    rejectionReason,
+  } = restaurant
   return (
     <section className="space-y-4">
       <div className="flex flex-col gap-4 sm:flex-row">
@@ -53,6 +63,20 @@ export function RestaurantSummary({
               icon={<Clock aria-hidden />}
               label={t('restaurantInfo.openingHours')}
               value={displayHours(openingHours)}
+            />
+            <Row
+              icon={<Map aria-hidden />}
+              label={t('restaurantInfo.location')}
+              value={
+                <a
+                  href={`https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="underline-offset-4 hover:underline"
+                >
+                  {t('restaurantInfo.viewOnMap')}
+                </a>
+              }
             />
           </dl>
           {actions}

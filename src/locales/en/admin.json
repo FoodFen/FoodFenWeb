@@ -83,6 +83,9 @@
     "noDishes": "This restaurant has not added any dishes yet.",
     "approve": "Approve",
     "approvePending": "Approve all pending dishes ({{count}})",
+    "flaggedPending_one": "{{count}} dish with off kcal needs its own review.",
+    "flaggedPending_other": "{{count}} dishes with off kcal need their own review.",
+    "owner": "Owner",
     "dishesHiddenUntilApproved": "Approved dishes are only visible to users once the restaurant is approved too.",
     "takeDown": "Take down",
     "reject": "Reject",
@@ -91,7 +94,7 @@
   },
   "rejectDialog": {
     "title": "Reject {{subject}}",
-    "description": "The owner will see this reason and can fix the issue and resubmit.",
+    "description": "The owner will get an email with this reason and can fix the issue and resubmit.",
     "reason": "Reason",
     "reasonRequired": "Enter a reason so the owner knows what to fix.",
     "submit": "Reject"

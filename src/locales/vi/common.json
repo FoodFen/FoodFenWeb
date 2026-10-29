@@ -37,6 +37,8 @@
   "restaurantInfo": {
     "address": "Địa chỉ",
     "phone": "Điện thoại",
-    "openingHours": "Giờ mở cửa"
+    "openingHours": "Giờ mở cửa",
+    "location": "Vị trí",
+    "viewOnMap": "Xem trên Google Maps"
   }
 }

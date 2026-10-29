@@ -81,6 +81,8 @@
     "noDishes": "Quán chưa thêm món nào.",
     "approve": "Duyệt",
     "approvePending": "Duyệt tất cả món đang chờ ({{count}})",
+    "flaggedPending_other": "{{count}} món có kcal lệch cần duyệt riêng.",
+    "owner": "Chủ quán",
     "dishesHiddenUntilApproved": "Món được duyệt chỉ hiện với người dùng khi quán cũng được duyệt.",
     "takeDown": "Gỡ món",
     "reject": "Từ chối",
@@ -89,7 +91,7 @@
   },
   "rejectDialog": {
     "title": "Từ chối {{subject}}",
-    "description": "Chủ quán sẽ thấy lý do này và có thể sửa rồi gửi lại.",
+    "description": "Chủ quán sẽ nhận email kèm lý do này và có thể sửa rồi gửi lại.",
     "reason": "Lý do",
     "reasonRequired": "Nhập lý do để chủ quán biết cần sửa gì.",
     "submit": "Từ chối"

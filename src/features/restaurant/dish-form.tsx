@@ -8,7 +8,8 @@ import { selectClass } from '@/components/select-class'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Textarea } from '@/components/ui/textarea'
 import { DIET_TAGS } from '@/lib/diet-tag'
-import { kcalLooksOff } from '@/lib/nutrition'
+import { formatNumber } from '@/lib/format'
+import { estimateKcal, kcalLooksOff } from '@/lib/nutrition'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { TriangleAlert } from 'lucide-react'
 import { useState } from 'react'
@@ -156,7 +157,9 @@ export function DishForm({ defaultValues, submitLabel, onSubmit, upload }: Props
         {suspicious && (
           <Alert>
             <TriangleAlert aria-hidden />
-            <AlertDescription>{t('dish.form.kcalOff')}</AlertDescription>
+            <AlertDescription>
+              {t('dish.form.kcalOff', { value: formatNumber(estimateKcal(body)) })}
+            </AlertDescription>
           </Alert>
         )}
       </fieldset>
