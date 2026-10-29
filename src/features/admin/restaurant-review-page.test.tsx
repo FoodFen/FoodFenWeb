@@ -1,6 +1,7 @@
 import {
   getRestaurantAdminRestaurantsRestaurantIdGet,
   listRestaurantsAdminRestaurantsGet,
+  reviewRestaurantAdminRestaurantsRestaurantIdReviewPost,
 } from '@/api/generated/sdk.gen'
 import { routeTree } from '@/routeTree.gen'
 import { useSessionStore } from '@/lib/session-store'
@@ -8,11 +9,13 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { RouterProvider, createMemoryHistory, createRouter } from '@tanstack/react-router'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import { AxiosError } from 'axios'
 
 vi.mock('@/api/generated/sdk.gen', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/api/generated/sdk.gen')>()),
   listRestaurantsAdminRestaurantsGet: vi.fn(),
   getRestaurantAdminRestaurantsRestaurantIdGet: vi.fn(),
+  reviewRestaurantAdminRestaurantsRestaurantIdReviewPost: vi.fn(),
 }))
 
 // Shapes copied from real `GET /admin/restaurants` and `GET /admin/restaurants/{id}` responses.
@@ -88,4 +91,35 @@ test('opening a restaurant from the list shows its menu', async () => {
   expect(await screen.findByRole('heading', { name: 'Thực đơn (2 món)' })).toBeInTheDocument()
   expect(screen.getByRole('heading', { name: 'Gỏi cuốn tôm thịt' })).toBeInTheDocument()
   expect(screen.getByRole('heading', { name: 'Bún bò' })).toBeInTheDocument()
+})
+
+test('a failed reject shows its error once, in the dialog', async () => {
+  useSessionStore.setState({
+    user: { id: 1, email: 'admin@x.vn', displayName: null, role: 'admin' },
+  })
+  vi.mocked(getRestaurantAdminRestaurantsRestaurantIdGet).mockResolvedValue({
+    data: { restaurant, dishes: [] },
+  } as never)
+  vi.mocked(reviewRestaurantAdminRestaurantsRestaurantIdReviewPost).mockRejectedValue(
+    new AxiosError('bad', undefined, undefined, undefined, {
+      status: 400,
+      data: { message: 'Không thể từ chối lúc này.' },
+    } as never),
+  )
+  const router = createRouter({
+    routeTree,
+    history: createMemoryHistory({ initialEntries: ['/admin/restaurants/r1'] }),
+  })
+  await router.load()
+  render(
+    <QueryClientProvider client={new QueryClient()}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>,
+  )
+
+  await userEvent.click(await screen.findByRole('button', { name: 'Gỡ quán' }))
+  await userEvent.type(await screen.findByLabelText('Lý do'), 'Sai thông tin')
+  await userEvent.click(screen.getByRole('button', { name: 'Từ chối' }))
+
+  expect(await screen.findAllByText('Không thể từ chối lúc này.')).toHaveLength(1)
 })

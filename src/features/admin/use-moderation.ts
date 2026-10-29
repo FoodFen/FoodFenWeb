@@ -71,9 +71,13 @@ export function useReviewActions(restaurantId: string) {
     meta: { errorToast: false },
   })
 
+  // A failed reject is shown by RejectDialog itself, so the page-level error skips it.
+  const pageError = (m: typeof restaurant | typeof dish) =>
+    m.variables?.body.decision === 'rejected' ? null : m.error
+
   return {
     busy: restaurant.isPending || dish.isPending || dishes.isPending,
-    error: restaurant.error ?? dish.error ?? dishes.error,
+    error: pageError(restaurant) ?? pageError(dish) ?? dishes.error,
     approveDishes: async (list: DishResponse[]) => {
       await dishes.mutateAsync(list)
       toast.success(i18n.t('admin:toast.dishesApproved', { count: list.length }))
