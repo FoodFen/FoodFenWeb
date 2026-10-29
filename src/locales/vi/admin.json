@@ -25,7 +25,9 @@
     "range": {
       "label": "Khoảng thời gian",
       "previousMonth": "Tháng trước",
-      "nextMonth": "Tháng sau"
+      "nextMonth": "Tháng sau",
+      "any": "Mọi ngày",
+      "clear": "Bỏ lọc khoảng thời gian"
     },
     "stats": {
       "premiumRevenue": "Doanh thu Premium",
@@ -206,5 +208,47 @@
     "previous": "Trước",
     "next": "Sau",
     "page": "Trang {{page}} / {{pageCount}}"
+  },
+  "payments": {
+    "title": "Giao dịch",
+    "description": "Lịch sử thanh toán Premium và quảng cáo.",
+    "searchPlaceholder": "Email người mua hoặc mã đơn",
+    "searchLabel": "Tìm giao dịch",
+    "any": "Tất cả",
+    "total_other": "{{count}} giao dịch",
+    "loadMore": "Tải thêm",
+    "adDays_other": "Quảng cáo {{count}} ngày",
+    "empty": {
+      "title": "Không có giao dịch nào",
+      "hint": "Thử đổi từ khóa hoặc bộ lọc."
+    },
+    "columns": {
+      "order": "Mã đơn",
+      "created": "Tạo lúc",
+      "payer": "Người mua",
+      "item": "Mua gì",
+      "provider": "Cổng thanh toán",
+      "amount": "Số tiền",
+      "status": "Trạng thái",
+      "plan": "Loại",
+      "paidAt": "Thanh toán lúc"
+    },
+    "status": {
+      "pending": "Chờ thanh toán",
+      "paid": "Đã thanh toán",
+      "cancelled": "Đã huỷ",
+      "expired": "Hết hạn",
+      "failed": "Thất bại"
+    },
+    "plan": {
+      "monthly": "Premium theo tháng",
+      "annual": "Premium theo năm",
+      "coin_redeem": "Đổi xu lấy Premium",
+      "ad_package": "Gói quảng cáo"
+    },
+    "provider": {
+      "payos": "PayOS",
+      "momo": "MoMo"
+    }
   }
 }

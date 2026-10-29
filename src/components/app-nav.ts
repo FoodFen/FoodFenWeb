@@ -2,6 +2,7 @@ import type { ParseKeys } from 'i18next'
 import {
   Megaphone,
   ListChecks,
+  Receipt,
   ShieldCheck,
   Store,
   UserRound,
@@ -44,6 +45,7 @@ export const appNav: NavEntry[] = [
     children: [
       { to: '/admin', label: 'overview', icon: LayoutDashboard, exact: true },
       { to: '/admin/dashboard', label: 'cashflow', icon: Wallet },
+      { to: '/admin/payments', label: 'payments', icon: Receipt },
       { to: '/admin/restaurants', label: 'restaurants', icon: Store },
       { to: '/admin/users', label: 'users', icon: Users },
       { to: '/admin/content', label: 'content', icon: ListChecks },

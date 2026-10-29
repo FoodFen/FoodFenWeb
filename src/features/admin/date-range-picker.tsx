@@ -6,20 +6,25 @@ import { useIsMobile } from '@/hooks/use-mobile'
 import { formatDay } from '@/lib/format'
 import { enUS, vi } from 'date-fns/locale'
 import { subMonths } from 'date-fns'
-import { CalendarDays } from 'lucide-react'
+import { CalendarDays, X } from 'lucide-react'
 import { useId, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { pickDay, toDate, toIso, vietnamToday, type DateRange } from './date-range'
 
 const locales = { vi, en: enUS }
 
-/** One trigger and one calendar: the first click sets an end, the second completes the range. */
+/**
+ * One trigger and one calendar: the first click sets an end, the second completes the range.
+ * A `null` value means "any date"; with `onClear` a set range can be dropped again.
+ */
 export function DateRangePicker({
   value,
   onChange,
+  onClear,
 }: {
-  value: DateRange
+  value: DateRange | null
   onChange: (range: DateRange) => void
+  onClear?: () => void
 }) {
   const { t, i18n } = useTranslation('admin')
   const isMobile = useIsMobile()
@@ -32,56 +37,73 @@ export function DateRangePicker({
   const today = toDate(vietnamToday())
   const selected = anchor
     ? { from: toDate(anchor), to: toDate(anchor) }
-    : { from: toDate(value.from), to: toDate(value.to) }
+    : value
+      ? { from: toDate(value.from), to: toDate(value.to) }
+      : undefined
+  const month = selected?.to ?? today
 
   return (
     <div className="space-y-2">
       <Label id={labelId}>{t('dashboard.range.label')}</Label>
-      <Popover
-        open={open}
-        onOpenChange={(next) => {
-          setOpen(next)
-          setAnchor(null)
-        }}
-      >
-        <PopoverTrigger
-          render={
-            <Button
-              variant="outline"
-              aria-labelledby={`${labelId} ${valueId}`}
-              className="h-11 gap-2 px-4"
-            />
-          }
+      <div className="flex gap-2">
+        <Popover
+          open={open}
+          onOpenChange={(next) => {
+            setOpen(next)
+            setAnchor(null)
+          }}
         >
-          <CalendarDays aria-hidden />
-          <span id={valueId} className="tabular-nums">
-            {formatDay(value.from)} - {formatDay(value.to)}
-          </span>
-        </PopoverTrigger>
-        <PopoverContent align="start" className="w-auto max-w-[calc(100vw-2rem)]">
-          <Calendar
-            mode="range"
-            locale={locales[i18n.language as keyof typeof locales] ?? vi}
-            numberOfMonths={isMobile ? 1 : 2}
-            defaultMonth={isMobile ? selected.to : subMonths(selected.to, 1)}
-            endMonth={today}
-            disabled={{ after: today }}
-            selected={selected}
-            onSelect={(_, day) => {
-              const pick = pickDay(anchor, toIso(day))
-              setAnchor(pick.anchor)
-              if (pick.range) {
-                onChange(pick.range)
-                setOpen(false)
-              }
-            }}
-            labels={{
-              labelPrevious: () => t('dashboard.range.previousMonth'),
-              labelNext: () => t('dashboard.range.nextMonth'),
-            }}
-          />
-        </PopoverContent>
-      </Popover>
+          <PopoverTrigger
+            render={
+              <Button
+                variant="outline"
+                aria-labelledby={`${labelId} ${valueId}`}
+                className="h-11 gap-2 px-4"
+              />
+            }
+          >
+            <CalendarDays aria-hidden />
+            <span id={valueId} className="tabular-nums">
+              {value
+                ? `${formatDay(value.from)} - ${formatDay(value.to)}`
+                : t('dashboard.range.any')}
+            </span>
+          </PopoverTrigger>
+          <PopoverContent align="start" className="w-auto max-w-[calc(100vw-2rem)]">
+            <Calendar
+              mode="range"
+              locale={locales[i18n.language as keyof typeof locales] ?? vi}
+              numberOfMonths={isMobile ? 1 : 2}
+              defaultMonth={isMobile ? month : subMonths(month, 1)}
+              endMonth={today}
+              disabled={{ after: today }}
+              selected={selected}
+              onSelect={(_, day) => {
+                const pick = pickDay(anchor, toIso(day))
+                setAnchor(pick.anchor)
+                if (pick.range) {
+                  onChange(pick.range)
+                  setOpen(false)
+                }
+              }}
+              labels={{
+                labelPrevious: () => t('dashboard.range.previousMonth'),
+                labelNext: () => t('dashboard.range.nextMonth'),
+              }}
+            />
+          </PopoverContent>
+        </Popover>
+        {value && onClear && (
+          <Button
+            variant="outline"
+            className="size-11"
+            onClick={onClear}
+            aria-label={t('dashboard.range.clear')}
+          >
+            <X aria-hidden />
+          </Button>
+        )}
+      </div>
     </div>
   )
 }

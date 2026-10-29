@@ -22,6 +22,7 @@ import { Route as AuthedAdminIndexRouteImport } from './routes/_authed/admin/ind
 import { Route as AuthedAdminAdPackagesRouteImport } from './routes/_authed/admin/ad-packages'
 import { Route as AuthedAdminContentRouteImport } from './routes/_authed/admin/content'
 import { Route as AuthedAdminDashboardRouteImport } from './routes/_authed/admin/dashboard'
+import { Route as AuthedAdminPaymentsRouteImport } from './routes/_authed/admin/payments'
 import { Route as AuthedAdminUsersRouteImport } from './routes/_authed/admin/users'
 import { Route as AuthedAppIndexRouteImport } from './routes/_authed/app/index'
 import { Route as AuthedRestaurantIndexRouteImport } from './routes/_authed/restaurant/index'
@@ -94,6 +95,11 @@ const AuthedAdminDashboardRoute = AuthedAdminDashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => AuthedAdminRoute,
 } as any)
+const AuthedAdminPaymentsRoute = AuthedAdminPaymentsRouteImport.update({
+  id: '/payments',
+  path: '/payments',
+  getParentRoute: () => AuthedAdminRoute,
+} as any)
 const AuthedAdminUsersRoute = AuthedAdminUsersRouteImport.update({
   id: '/users',
   path: '/users',
@@ -145,6 +151,7 @@ export interface FileRoutesByFullPath {
   '/admin/ad-packages': typeof AuthedAdminAdPackagesRoute
   '/admin/content': typeof AuthedAdminContentRoute
   '/admin/dashboard': typeof AuthedAdminDashboardRoute
+  '/admin/payments': typeof AuthedAdminPaymentsRoute
   '/admin/users': typeof AuthedAdminUsersRoute
   '/restaurant/ads': typeof AuthedRestaurantAdsRoute
   '/restaurant/register': typeof AuthedRestaurantRegisterRoute
@@ -164,6 +171,7 @@ export interface FileRoutesByTo {
   '/admin/ad-packages': typeof AuthedAdminAdPackagesRoute
   '/admin/content': typeof AuthedAdminContentRoute
   '/admin/dashboard': typeof AuthedAdminDashboardRoute
+  '/admin/payments': typeof AuthedAdminPaymentsRoute
   '/admin/users': typeof AuthedAdminUsersRoute
   '/restaurant/ads': typeof AuthedRestaurantAdsRoute
   '/restaurant/register': typeof AuthedRestaurantRegisterRoute
@@ -187,6 +195,7 @@ export interface FileRoutesById {
   '/_authed/admin/ad-packages': typeof AuthedAdminAdPackagesRoute
   '/_authed/admin/content': typeof AuthedAdminContentRoute
   '/_authed/admin/dashboard': typeof AuthedAdminDashboardRoute
+  '/_authed/admin/payments': typeof AuthedAdminPaymentsRoute
   '/_authed/admin/users': typeof AuthedAdminUsersRoute
   '/_authed/restaurant/ads': typeof AuthedRestaurantAdsRoute
   '/_authed/restaurant/register': typeof AuthedRestaurantRegisterRoute
@@ -210,6 +219,7 @@ export interface FileRouteTypes {
     | '/admin/ad-packages'
     | '/admin/content'
     | '/admin/dashboard'
+    | '/admin/payments'
     | '/admin/users'
     | '/restaurant/ads'
     | '/restaurant/register'
@@ -229,6 +239,7 @@ export interface FileRouteTypes {
     | '/admin/ad-packages'
     | '/admin/content'
     | '/admin/dashboard'
+    | '/admin/payments'
     | '/admin/users'
     | '/restaurant/ads'
     | '/restaurant/register'
@@ -251,6 +262,7 @@ export interface FileRouteTypes {
     | '/_authed/admin/ad-packages'
     | '/_authed/admin/content'
     | '/_authed/admin/dashboard'
+    | '/_authed/admin/payments'
     | '/_authed/admin/users'
     | '/_authed/restaurant/ads'
     | '/_authed/restaurant/register'
@@ -364,6 +376,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthedAdminDashboardRouteImport
       parentRoute: typeof AuthedAdminRoute
     }
+    '/_authed/admin/payments': {
+      id: '/_authed/admin/payments'
+      path: '/payments'
+      fullPath: '/admin/payments'
+      preLoaderRoute: typeof AuthedAdminPaymentsRouteImport
+      parentRoute: typeof AuthedAdminRoute
+    }
     '/_authed/admin/users': {
       id: '/_authed/admin/users'
       path: '/users'
@@ -420,6 +439,7 @@ interface AuthedAdminRouteChildren {
   AuthedAdminAdPackagesRoute: typeof AuthedAdminAdPackagesRoute
   AuthedAdminContentRoute: typeof AuthedAdminContentRoute
   AuthedAdminDashboardRoute: typeof AuthedAdminDashboardRoute
+  AuthedAdminPaymentsRoute: typeof AuthedAdminPaymentsRoute
   AuthedAdminUsersRoute: typeof AuthedAdminUsersRoute
   AuthedAdminIndexRoute: typeof AuthedAdminIndexRoute
   AuthedAdminRestaurantsRestaurantIdRoute: typeof AuthedAdminRestaurantsRestaurantIdRoute
@@ -430,6 +450,7 @@ const AuthedAdminRouteChildren: AuthedAdminRouteChildren = {
   AuthedAdminAdPackagesRoute: AuthedAdminAdPackagesRoute,
   AuthedAdminContentRoute: AuthedAdminContentRoute,
   AuthedAdminDashboardRoute: AuthedAdminDashboardRoute,
+  AuthedAdminPaymentsRoute: AuthedAdminPaymentsRoute,
   AuthedAdminUsersRoute: AuthedAdminUsersRoute,
   AuthedAdminIndexRoute: AuthedAdminIndexRoute,
   AuthedAdminRestaurantsRestaurantIdRoute:

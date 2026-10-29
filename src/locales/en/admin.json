@@ -26,7 +26,9 @@
     "range": {
       "label": "Date range",
       "previousMonth": "Previous month",
-      "nextMonth": "Next month"
+      "nextMonth": "Next month",
+      "any": "Any date",
+      "clear": "Clear date range"
     },
     "stats": {
       "premiumRevenue": "Premium revenue",
@@ -213,5 +215,49 @@
     "previous": "Previous",
     "next": "Next",
     "page": "Page {{page}} / {{pageCount}}"
+  },
+  "payments": {
+    "title": "Transactions",
+    "description": "History of Premium and advertising payments.",
+    "searchPlaceholder": "Buyer email or order code",
+    "searchLabel": "Search transactions",
+    "any": "All",
+    "total_one": "{{count}} transaction",
+    "total_other": "{{count}} transactions",
+    "loadMore": "Load more",
+    "adDays_one": "Advertising for {{count}} day",
+    "adDays_other": "Advertising for {{count}} days",
+    "empty": {
+      "title": "No transactions found",
+      "hint": "Try another keyword or filter."
+    },
+    "columns": {
+      "order": "Order code",
+      "created": "Created",
+      "payer": "Buyer",
+      "item": "Purchase",
+      "provider": "Provider",
+      "amount": "Amount",
+      "status": "Status",
+      "plan": "Type",
+      "paidAt": "Paid at"
+    },
+    "status": {
+      "pending": "Pending",
+      "paid": "Paid",
+      "cancelled": "Cancelled",
+      "expired": "Expired",
+      "failed": "Failed"
+    },
+    "plan": {
+      "monthly": "Premium monthly",
+      "annual": "Premium annual",
+      "coin_redeem": "Premium via coins",
+      "ad_package": "Ad package"
+    },
+    "provider": {
+      "payos": "PayOS",
+      "momo": "MoMo"
+    }
   }
 }
