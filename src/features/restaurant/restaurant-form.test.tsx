@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react'
+import { render, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { RestaurantForm } from './restaurant-form'
 import { emptyRestaurant, type RestaurantValues } from './restaurant-schema'
@@ -53,6 +53,13 @@ const filled: RestaurantValues = {
   location: '10.7769, 106.7009',
 }
 
+async function pickTime(label: string, time: string) {
+  const [hour, minute] = time.split(':')
+  await userEvent.click(screen.getByLabelText(label))
+  await userEvent.click(within(screen.getByRole('listbox', { name: 'Giờ' })).getByText(hour))
+  await userEvent.click(within(screen.getByRole('listbox', { name: 'Phút' })).getByText(minute))
+}
+
 const save = () => userEvent.click(screen.getByRole('button', { name: 'Gửi duyệt' }))
 const edit = () => userEvent.type(screen.getByLabelText('Tên quán'), '!')
 
@@ -83,8 +90,8 @@ test('an empty new shift asks for both times and blocks the save', async () => {
 test('overlapping shifts are rejected and a shift past midnight is labelled', async () => {
   const onSubmit = setup(undefined, filled)
   await userEvent.click(screen.getByRole('button', { name: 'Thêm ca' }))
-  await userEvent.type(screen.getByLabelText('Giờ mở cửa, ca 2'), '20:00')
-  await userEvent.type(screen.getByLabelText('Giờ đóng cửa, ca 2'), '02:00')
+  await pickTime('Giờ mở cửa, ca 2', '20:00')
+  await pickTime('Giờ đóng cửa, ca 2', '02:00')
   expect(screen.getByText('Qua đêm, đóng cửa vào sáng hôm sau')).toBeInTheDocument()
 
   await save()
@@ -95,8 +102,8 @@ test('overlapping shifts are rejected and a shift past midnight is labelled', as
 test('valid shifts are submitted', async () => {
   const onSubmit = setup(undefined, filled)
   await userEvent.click(screen.getByRole('button', { name: 'Thêm ca' }))
-  await userEvent.type(screen.getByLabelText('Giờ mở cửa, ca 2'), '22:00')
-  await userEvent.type(screen.getByLabelText('Giờ đóng cửa, ca 2'), '23:30')
+  await pickTime('Giờ mở cửa, ca 2', '22:00')
+  await pickTime('Giờ đóng cửa, ca 2', '23:30')
   await save()
 
   await waitFor(() => expect(onSubmit).toHaveBeenCalled())
@@ -124,4 +131,27 @@ test('picking times for unreadable saved hours makes them required', async () =>
 
   expect(await screen.findByText('Chọn giờ mở cửa')).toBeInTheDocument()
   expect(onSubmit).not.toHaveBeenCalled()
+})
+
+test('a preset fills the first empty shift, else adds one, and stops at three', async () => {
+  const onSubmit = setup(undefined, { ...filled, hours: [{ open: '', close: '' }] })
+  await userEvent.click(screen.getByRole('button', { name: /^Sáng/ }))
+  expect(screen.getByLabelText('Giờ mở cửa, ca 1')).toHaveTextContent('06:00')
+  expect(screen.getAllByLabelText(/^Giờ mở cửa, ca/)).toHaveLength(1)
+
+  await userEvent.click(screen.getByRole('button', { name: /^Tối/ }))
+  expect(screen.getByLabelText('Giờ đóng cửa, ca 2')).toHaveTextContent('22:00')
+
+  await userEvent.click(screen.getByRole('button', { name: /^Trưa/ }))
+  expect(screen.getByRole('button', { name: /^Sáng/ })).toBeDisabled()
+
+  await userEvent.click(screen.getByRole('button', { name: 'Xoá ca 3' }))
+  await userEvent.click(screen.getByRole('button', { name: /^Trưa/ }))
+  await save()
+  await waitFor(() => expect(onSubmit).toHaveBeenCalled())
+  expect(onSubmit.mock.calls[0][0].hours).toEqual([
+    { open: '06:00', close: '10:00' },
+    { open: '17:00', close: '22:00' },
+    { open: '10:30', close: '14:00' },
+  ])
 })

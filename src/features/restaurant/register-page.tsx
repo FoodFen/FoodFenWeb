@@ -25,7 +25,7 @@ export function RegisterPage() {
   }
 
   return (
-    <div className="max-w-3xl space-y-6">
+    <div className="mx-auto w-full max-w-2xl space-y-6">
       <div className="space-y-2">
         <BackLink to="/restaurant">{t('register.back')}</BackLink>
         <PageHeader title={t('register.title')} description={t('register.hint')} />

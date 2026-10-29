@@ -180,7 +180,18 @@
     "remove": "Xoá ca {{n}}",
     "current": "Giờ hiện tại: {{text}}",
     "legacyPrompt": "Chọn lại giờ mở cửa để cập nhật. Nếu bạn không chọn, giờ hiện tại được giữ nguyên.",
-    "pick": "Chọn giờ"
+    "pick": "Chọn giờ",
+    "shift": "Ca {{n}}",
+    "timePlaceholder": "Chọn giờ",
+    "hourColumn": "Giờ",
+    "minuteColumn": "Phút",
+    "presets": "Chọn nhanh",
+    "preset": {
+      "morning": "Sáng",
+      "noon": "Trưa",
+      "evening": "Tối",
+      "allDay": "Cả ngày"
+    }
   },
   "location": {
     "search": "Tìm địa điểm",

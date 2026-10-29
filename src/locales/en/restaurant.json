@@ -180,7 +180,18 @@
     "remove": "Remove shift {{n}}",
     "current": "Current hours: {{text}}",
     "legacyPrompt": "Pick the times again to update them. If you do not, the current hours stay as they are.",
-    "pick": "Pick times"
+    "pick": "Pick times",
+    "shift": "Shift {{n}}",
+    "timePlaceholder": "Select time",
+    "hourColumn": "Hour",
+    "minuteColumn": "Minute",
+    "presets": "Quick fill",
+    "preset": {
+      "morning": "Morning",
+      "noon": "Lunch",
+      "evening": "Evening",
+      "allDay": "All day"
+    }
   },
   "location": {
     "search": "Search for a place",

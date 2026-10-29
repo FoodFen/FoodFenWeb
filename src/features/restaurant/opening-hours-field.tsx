@@ -1,8 +1,9 @@
 import { Button } from '@/components/ui/button'
-import { MAX_SHIFTS } from '@/lib/opening-hours'
+import { MAX_SHIFTS, type Shift } from '@/lib/opening-hours'
 import { Plus } from 'lucide-react'
 import { useController, useFormState, type Control } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
+import { HoursPresets } from './hours-presets'
 import type { RestaurantValues } from './restaurant-schema'
 import { ShiftRow } from './shift-row'
 
@@ -16,11 +17,19 @@ export function OpeningHoursField({ control, legacyHours }: Props) {
   const { field } = useController({ control, name: 'hours' })
   const shifts = field.value
   const { errors } = useFormState({ control, name: 'hours' })
+  const emptyAt = shifts.findIndex((s) => s.open === '' && s.close === '')
+
+  // Fills the first untouched shift, else adds one.
+  const applyPreset = (preset: Shift) =>
+    field.onChange(
+      emptyAt >= 0 ? shifts.map((s, i) => (i === emptyAt ? preset : s)) : [...shifts, preset],
+    )
 
   return (
     <fieldset className="space-y-3">
       <legend className="text-sm font-medium">{t('form.openingHours')}</legend>
       <p className="text-muted-foreground text-sm">{t('form.openingHoursHint')}</p>
+      <HoursPresets disabled={shifts.length >= MAX_SHIFTS && emptyAt < 0} onPick={applyPreset} />
       {shifts.length === 0 ? (
         <div className="space-y-3">
           <p className="font-medium">{t('hours.current', { text: legacyHours })}</p>
