@@ -39,13 +39,14 @@ export function AdsPage() {
 
   const { featuredUntil, packages, impressions } = ads.data
   const total = impressions.reduce((sum, day) => sum + day.count, 0)
+  const approved = restaurant.data.status === 'approved'
   return (
     <div className="space-y-6">
       <PageHeader title={t('title')} description={t('description')} />
       <OrderBanner />
       <AdsExplainer />
-      <AdsStatus featuredUntil={featuredUntil} />
-      <PackagePicker packages={packages} approved={restaurant.data.status === 'approved'} />
+      <AdsStatus featuredUntil={featuredUntil} approved={approved} />
+      <PackagePicker packages={packages} approved={approved} />
       <DailyChart
         title={t('impressions.title')}
         description={t('impressions.description', { count: total, total: formatNumber(total) })}

@@ -4,7 +4,13 @@ import { Megaphone } from 'lucide-react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-export function AdsStatus({ featuredUntil }: { featuredUntil: string | null }) {
+export function AdsStatus({
+  featuredUntil,
+  approved,
+}: {
+  featuredUntil: string | null
+  approved: boolean
+}) {
   const { t } = useTranslation('ads')
   const [now] = useState(Date.now)
   const running = featuredUntil !== null && new Date(featuredUntil).getTime() > now
@@ -14,7 +20,9 @@ export function AdsStatus({ featuredUntil }: { featuredUntil: string | null }) {
         <Megaphone className="text-muted-foreground size-5" aria-hidden />
         <p className="font-medium">
           {running
-            ? t('status.running', { date: formatDateTime(featuredUntil) })
+            ? t(approved ? 'status.running' : 'status.paused', {
+                date: formatDateTime(featuredUntil),
+              })
             : t('status.idle')}
         </p>
       </CardContent>

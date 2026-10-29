@@ -17,6 +17,7 @@
   },
   "status": {
     "running": "Đang quảng cáo đến {{date}}",
+    "paused": "Gói còn hạn đến {{date}}, nhưng quảng cáo đang tạm ẩn vì quán chưa được duyệt hoặc đã bị gỡ.",
     "idle": "Chưa chạy quảng cáo"
   },
   "order": {

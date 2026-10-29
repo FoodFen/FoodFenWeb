@@ -17,6 +17,7 @@
   },
   "status": {
     "running": "Advertising until {{date}}",
+    "paused": "Your package runs until {{date}}, but your ad is hidden because the restaurant is not approved or was taken down.",
     "idle": "No ad is running"
   },
   "order": {
