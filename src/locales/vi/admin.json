@@ -80,6 +80,8 @@
     "menu_other": "Thực đơn ({{count}} món)",
     "noDishes": "Quán chưa thêm món nào.",
     "approve": "Duyệt",
+    "approvePending": "Duyệt tất cả món đang chờ ({{count}})",
+    "dishesHiddenUntilApproved": "Món được duyệt chỉ hiện với người dùng khi quán cũng được duyệt.",
     "takeDown": "Gỡ món",
     "reject": "Từ chối",
     "estimate": "Ước tính từ đạm, tinh bột, béo (4P + 4C + 9F): {{value}} kcal",

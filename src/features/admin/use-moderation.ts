@@ -1,4 +1,5 @@
-import type { ReviewRequest } from '@/api/generated'
+import { reviewDishAdminDishesDishIdReviewPost } from '@/api/generated'
+import type { DishResponse, ReviewRequest } from '@/api/generated'
 import {
   getRestaurantAdminRestaurantsRestaurantIdGetOptions,
   getRestaurantAdminRestaurantsRestaurantIdGetQueryKey,
@@ -44,10 +45,24 @@ export function useReviewActions(restaurantId: string) {
     ...reviewDishAdminDishesDishIdReviewPostMutation(),
     onSettled: refresh,
   })
+  // One request per dish (the BE has no bulk endpoint); stops at the first failure.
+  const dishes = useMutation({
+    mutationFn: async (list: DishResponse[]) => {
+      for (const d of list) {
+        await reviewDishAdminDishesDishIdReviewPost({
+          path: { dish_id: d.id },
+          body: { decision: 'approved', expectedUpdatedAt: d.updatedAt },
+          throwOnError: true,
+        })
+      }
+    },
+    onSettled: refresh,
+  })
 
   return {
-    busy: restaurant.isPending || dish.isPending,
-    error: restaurant.error ?? dish.error,
+    busy: restaurant.isPending || dish.isPending || dishes.isPending,
+    error: restaurant.error ?? dish.error ?? dishes.error,
+    approveDishes: (list: DishResponse[]) => dishes.mutateAsync(list),
     reviewRestaurant: (body: ReviewRequest) =>
       restaurant.mutateAsync({ path: { restaurant_id: restaurantId }, body }),
     reviewDish: (dishId: string, body: ReviewRequest) =>

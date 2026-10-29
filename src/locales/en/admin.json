@@ -82,6 +82,8 @@
     "menu_other": "Menu ({{count}} dishes)",
     "noDishes": "This restaurant has not added any dishes yet.",
     "approve": "Approve",
+    "approvePending": "Approve all pending dishes ({{count}})",
+    "dishesHiddenUntilApproved": "Approved dishes are only visible to users once the restaurant is approved too.",
     "takeDown": "Take down",
     "reject": "Reject",
     "estimate": "Estimated from protein, carbs and fat (4P + 4C + 9F): {{value}} kcal",

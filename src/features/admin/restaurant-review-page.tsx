@@ -14,7 +14,7 @@ export function RestaurantReviewPage() {
   const { t } = useTranslation('admin')
   const { restaurantId } = route.useParams()
   const detail = useAdminRestaurant(restaurantId)
-  const { busy, error, reviewRestaurant, reviewDish } = useReviewActions(restaurantId)
+  const { busy, error, reviewRestaurant, reviewDish, approveDishes } = useReviewActions(restaurantId)
 
   return (
     <div className="space-y-6">
@@ -49,6 +49,7 @@ export function RestaurantReviewPage() {
                 expectedUpdatedAt: dish.updatedAt,
               }).catch(() => {})
             }
+            onApprovePendingDishes={(pending) => void approveDishes(pending).catch(() => {})}
             onRejectDish={async (dish, reason) => {
               await reviewDish(dish.id, {
                 decision: 'rejected',
