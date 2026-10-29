@@ -205,6 +205,60 @@
     "pin": "Vị trí quán",
     "mapUnavailable": "Không tải được bản đồ. Bạn vẫn có thể dán toạ độ vào ô bên dưới."
   },
+  "stats": {
+    "title": "Thống kê",
+    "description": "Tình hình quán, thực đơn, lượt hiển thị và chi phí quảng cáo.",
+    "noRestaurant": {
+      "message": "Bạn cần tạo quán để xem thống kê.",
+      "link": "Tạo quán của bạn"
+    },
+    "cards": {
+      "status": "Trạng thái quán",
+      "featured": "Quảng cáo nổi bật",
+      "impressions7": "Lượt hiển thị 7 ngày qua",
+      "impressions30": "Lượt hiển thị 30 ngày qua",
+      "spend": "Đã chi cho quảng cáo",
+      "spendRecent_other": "Đã chi trong {{count}} giao dịch gần nhất",
+      "approved": "Món đã duyệt",
+      "pending": "Món chờ duyệt",
+      "rejected": "Món bị từ chối"
+    },
+    "featured": {
+      "running": "Đang hiển thị nổi bật đến {{date}}",
+      "paused": "Tạm ẩn, gói còn hạn đến {{date}}",
+      "idle": "Không chạy quảng cáo",
+      "buy": "Mua gói quảng cáo"
+    },
+    "menu": {
+      "title": "Thực đơn",
+      "empty": "Quán chưa có món nào.",
+      "add": "Thêm món",
+      "avgKcal": "Năng lượng trung bình mỗi món",
+      "kcalRange": "Khoảng năng lượng",
+      "priceRange": "Khoảng giá",
+      "range": "{{min}} - {{max}}",
+      "flagged": "Món cần kiểm tra dinh dưỡng",
+      "flaggedHint": "Năng lượng của các món này lệch nhiều so với đạm, tinh bột và béo. Hãy sửa trong trang quán.",
+      "fix": "Mở trang quán"
+    },
+    "payments": {
+      "title": "Lịch sử thanh toán quảng cáo",
+      "empty": {
+        "title": "Chưa có giao dịch nào",
+        "hint": "Các lần mua gói quảng cáo sẽ hiện ở đây."
+      },
+      "loadMore": "Tải thêm",
+      "columns": {
+        "created": "Tạo lúc",
+        "order": "Mã đơn",
+        "package": "Gói",
+        "provider": "Cổng thanh toán",
+        "amount": "Số tiền",
+        "status": "Trạng thái",
+        "paidAt": "Thanh toán lúc"
+      }
+    }
+  },
   "toast": {
     "restaurantCreated": "Đã tạo quán, đang chờ duyệt",
     "restaurantUpdated": "Đã lưu thông tin quán",

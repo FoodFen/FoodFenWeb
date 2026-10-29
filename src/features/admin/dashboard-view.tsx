@@ -7,7 +7,7 @@ import { DashboardDailyTable } from './dashboard-daily-table'
 import type { DateRange } from './date-range'
 import { DateRangePicker } from './date-range-picker'
 import { PageHeader } from '@/components/page-header'
-import { StatCard } from './stat-card'
+import { StatCard } from '@/components/stat-card'
 
 type Props = {
   totals: DashboardTotalsResponse

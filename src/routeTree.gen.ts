@@ -28,6 +28,7 @@ import { Route as AuthedAppIndexRouteImport } from './routes/_authed/app/index'
 import { Route as AuthedRestaurantIndexRouteImport } from './routes/_authed/restaurant/index'
 import { Route as AuthedRestaurantAdsRouteImport } from './routes/_authed/restaurant/ads'
 import { Route as AuthedRestaurantRegisterRouteImport } from './routes/_authed/restaurant/register'
+import { Route as AuthedRestaurantStatsRouteImport } from './routes/_authed/restaurant/stats'
 import { Route as AuthedAdminRestaurantsIndexRouteImport } from './routes/_authed/admin/restaurants/index'
 import { Route as AuthedAdminRestaurantsRestaurantIdRouteImport } from './routes/_authed/admin/restaurants/$restaurantId'
 
@@ -126,6 +127,11 @@ const AuthedRestaurantRegisterRoute =
     path: '/register',
     getParentRoute: () => AuthedRestaurantRoute,
   } as any)
+const AuthedRestaurantStatsRoute = AuthedRestaurantStatsRouteImport.update({
+  id: '/stats',
+  path: '/stats',
+  getParentRoute: () => AuthedRestaurantRoute,
+} as any)
 const AuthedAdminRestaurantsIndexRoute =
   AuthedAdminRestaurantsIndexRouteImport.update({
     id: '/restaurants/',
@@ -155,6 +161,7 @@ export interface FileRoutesByFullPath {
   '/admin/users': typeof AuthedAdminUsersRoute
   '/restaurant/ads': typeof AuthedRestaurantAdsRoute
   '/restaurant/register': typeof AuthedRestaurantRegisterRoute
+  '/restaurant/stats': typeof AuthedRestaurantStatsRoute
   '/admin/': typeof AuthedAdminIndexRoute
   '/app/': typeof AuthedAppIndexRoute
   '/restaurant/': typeof AuthedRestaurantIndexRoute
@@ -175,6 +182,7 @@ export interface FileRoutesByTo {
   '/admin/users': typeof AuthedAdminUsersRoute
   '/restaurant/ads': typeof AuthedRestaurantAdsRoute
   '/restaurant/register': typeof AuthedRestaurantRegisterRoute
+  '/restaurant/stats': typeof AuthedRestaurantStatsRoute
   '/admin': typeof AuthedAdminIndexRoute
   '/app': typeof AuthedAppIndexRoute
   '/restaurant': typeof AuthedRestaurantIndexRoute
@@ -199,6 +207,7 @@ export interface FileRoutesById {
   '/_authed/admin/users': typeof AuthedAdminUsersRoute
   '/_authed/restaurant/ads': typeof AuthedRestaurantAdsRoute
   '/_authed/restaurant/register': typeof AuthedRestaurantRegisterRoute
+  '/_authed/restaurant/stats': typeof AuthedRestaurantStatsRoute
   '/_authed/admin/': typeof AuthedAdminIndexRoute
   '/_authed/app/': typeof AuthedAppIndexRoute
   '/_authed/restaurant/': typeof AuthedRestaurantIndexRoute
@@ -223,6 +232,7 @@ export interface FileRouteTypes {
     | '/admin/users'
     | '/restaurant/ads'
     | '/restaurant/register'
+    | '/restaurant/stats'
     | '/admin/'
     | '/app/'
     | '/restaurant/'
@@ -243,6 +253,7 @@ export interface FileRouteTypes {
     | '/admin/users'
     | '/restaurant/ads'
     | '/restaurant/register'
+    | '/restaurant/stats'
     | '/admin'
     | '/app'
     | '/restaurant'
@@ -266,6 +277,7 @@ export interface FileRouteTypes {
     | '/_authed/admin/users'
     | '/_authed/restaurant/ads'
     | '/_authed/restaurant/register'
+    | '/_authed/restaurant/stats'
     | '/_authed/admin/'
     | '/_authed/app/'
     | '/_authed/restaurant/'
@@ -418,6 +430,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthedRestaurantRegisterRouteImport
       parentRoute: typeof AuthedRestaurantRoute
     }
+    '/_authed/restaurant/stats': {
+      id: '/_authed/restaurant/stats'
+      path: '/stats'
+      fullPath: '/restaurant/stats'
+      preLoaderRoute: typeof AuthedRestaurantStatsRouteImport
+      parentRoute: typeof AuthedRestaurantRoute
+    }
     '/_authed/admin/restaurants/': {
       id: '/_authed/admin/restaurants/'
       path: '/restaurants'
@@ -465,12 +484,14 @@ const AuthedAdminRouteWithChildren = AuthedAdminRoute._addFileChildren(
 interface AuthedRestaurantRouteChildren {
   AuthedRestaurantAdsRoute: typeof AuthedRestaurantAdsRoute
   AuthedRestaurantRegisterRoute: typeof AuthedRestaurantRegisterRoute
+  AuthedRestaurantStatsRoute: typeof AuthedRestaurantStatsRoute
   AuthedRestaurantIndexRoute: typeof AuthedRestaurantIndexRoute
 }
 
 const AuthedRestaurantRouteChildren: AuthedRestaurantRouteChildren = {
   AuthedRestaurantAdsRoute: AuthedRestaurantAdsRoute,
   AuthedRestaurantRegisterRoute: AuthedRestaurantRegisterRoute,
+  AuthedRestaurantStatsRoute: AuthedRestaurantStatsRoute,
   AuthedRestaurantIndexRoute: AuthedRestaurantIndexRoute,
 }
 

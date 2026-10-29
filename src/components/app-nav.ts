@@ -1,5 +1,6 @@
 import type { ParseKeys } from 'i18next'
 import {
+  ChartColumn,
   Megaphone,
   ListChecks,
   Receipt,
@@ -35,6 +36,7 @@ export const appNav: NavEntry[] = [
     userOnly: true,
     children: [
       { to: '/restaurant', label: 'restaurantProfile', icon: Store, exact: true },
+      { to: '/restaurant/stats', label: 'stats', icon: ChartColumn },
       { to: '/restaurant/ads', label: 'ads', icon: Megaphone },
     ],
   },

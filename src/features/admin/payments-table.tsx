@@ -12,7 +12,7 @@ import { formatDateTime, formatVnd } from '@/lib/format'
 import { Receipt } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { PaymentItem } from './payment-item'
-import { PaymentStatusBadge } from './payment-status-badge'
+import { PaymentStatusBadge } from '@/components/payment-status-badge'
 
 export function PaymentsTable({ payments }: { payments: AdminPaymentRowResponse[] }) {
   const { t } = useTranslation('admin')

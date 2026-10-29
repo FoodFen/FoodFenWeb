@@ -6,7 +6,7 @@ import { DailyChart } from '@/components/daily-chart'
 import { PageHeader } from '@/components/page-header'
 import { percentChange } from './percent-change'
 import { QueryError } from '@/components/query-error'
-import { StatCard } from './stat-card'
+import { StatCard } from '@/components/stat-card'
 import { useDashboard } from './use-dashboard'
 
 export function OverviewPage() {

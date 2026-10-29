@@ -205,6 +205,61 @@
     "pin": "Restaurant location",
     "mapUnavailable": "The map could not load. You can still paste the coordinates in the field below."
   },
+  "stats": {
+    "title": "Statistics",
+    "description": "How your restaurant, menu, impressions and ad spending are doing.",
+    "noRestaurant": {
+      "message": "Create your restaurant to see its statistics.",
+      "link": "Create your restaurant"
+    },
+    "cards": {
+      "status": "Restaurant status",
+      "featured": "Featured ads",
+      "impressions7": "Impressions, last 7 days",
+      "impressions30": "Impressions, last 30 days",
+      "spend": "Spent on ads",
+      "spendRecent_one": "Spent in the latest {{count}} transaction",
+      "spendRecent_other": "Spent in the latest {{count}} transactions",
+      "approved": "Approved dishes",
+      "pending": "Dishes awaiting review",
+      "rejected": "Rejected dishes"
+    },
+    "featured": {
+      "running": "Featured until {{date}}",
+      "paused": "Hidden for now, package valid until {{date}}",
+      "idle": "No ads running",
+      "buy": "Buy an ad package"
+    },
+    "menu": {
+      "title": "Menu",
+      "empty": "Your restaurant has no dishes yet.",
+      "add": "Add dishes",
+      "avgKcal": "Average energy per dish",
+      "kcalRange": "Energy range",
+      "priceRange": "Price range",
+      "range": "{{min}} - {{max}}",
+      "flagged": "Dishes to double-check",
+      "flaggedHint": "The energy of these dishes is far from what their protein, carbs and fat add up to. Fix them on your restaurant page.",
+      "fix": "Open restaurant page"
+    },
+    "payments": {
+      "title": "Ad payment history",
+      "empty": {
+        "title": "No transactions yet",
+        "hint": "Your ad package purchases will show up here."
+      },
+      "loadMore": "Load more",
+      "columns": {
+        "created": "Created",
+        "order": "Order code",
+        "package": "Package",
+        "provider": "Payment provider",
+        "amount": "Amount",
+        "status": "Status",
+        "paidAt": "Paid at"
+      }
+    }
+  },
   "toast": {
     "restaurantCreated": "Restaurant created, awaiting review",
     "restaurantUpdated": "Restaurant details saved",
