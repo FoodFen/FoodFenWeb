@@ -32,7 +32,8 @@
       "premiumRevenue": "Premium revenue",
       "adRevenue": "Ad revenue",
       "newUsers": "New users",
-      "newRestaurants": "New restaurants"
+      "newRestaurants": "New restaurants",
+      "foodEntries": "Meals logged"
     },
     "series": {
       "premium": "Premium",
@@ -53,6 +54,11 @@
         "title": "New restaurants per day",
         "description": "New restaurant registrations"
       }
+    },
+    "daily": {
+      "title": "Daily figures",
+      "date": "Date",
+      "total": "Total"
     }
   },
   "restaurants": {
@@ -72,7 +78,15 @@
       "updated": "Updated"
     },
     "view": "View",
-    "viewNamed": "View {{name}}"
+    "viewNamed": "View {{name}}",
+    "searchPlaceholder": "Search by restaurant, owner name or owner email",
+    "searchLabel": "Search restaurants",
+    "total_one": "{{count}} restaurant",
+    "total_other": "{{count}} restaurants",
+    "noMatch": {
+      "title": "No restaurants found",
+      "hint": "Try another keyword or switch to a different tab."
+    }
   },
   "review": {
     "approveRestaurant": "Approve restaurant",
@@ -193,5 +207,11 @@
     "dishesApproved_other": "{{count}} dishes approved",
     "adPackageCreated": "Ad package added",
     "adPackageUpdated": "Ad package updated"
+  },
+  "pager": {
+    "label": "Pagination",
+    "previous": "Previous",
+    "next": "Next",
+    "page": "Page {{page}} / {{pageCount}}"
   }
 }

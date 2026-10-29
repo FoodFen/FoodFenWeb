@@ -1,6 +1,5 @@
+import { SearchInput } from '@/components/search-input'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Search } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 
 export type TierFilter = 'all' | 'free' | 'premium'
@@ -21,22 +20,13 @@ export function UsersToolbar({
   const { t } = useTranslation('admin')
   return (
     <div className="flex flex-wrap items-center justify-between gap-3">
-      <div className="relative w-full sm:max-w-xs">
-        <Search
-          className="text-muted-foreground pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2"
-          aria-hidden
-        />
-        <Input
-          type="search"
-          maxLength={100}
-          enterKeyHint="search"
-          value={query}
-          onChange={(e) => onQuery(e.target.value)}
-          placeholder={t('users.searchPlaceholder')}
-          aria-label={t('users.searchLabel')}
-          className="h-11 pl-10"
-        />
-      </div>
+      <SearchInput
+        className="sm:max-w-xs"
+        value={query}
+        onChange={onQuery}
+        placeholder={t('users.searchPlaceholder')}
+        label={t('users.searchLabel')}
+      />
       <div role="group" aria-label={t('users.tierFilter')} className="flex gap-1.5">
         {tiers.map((value) => (
           <Button

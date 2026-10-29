@@ -31,7 +31,8 @@
       "premiumRevenue": "Doanh thu Premium",
       "adRevenue": "Doanh thu quảng cáo",
       "newUsers": "Người dùng mới",
-      "newRestaurants": "Quán mới"
+      "newRestaurants": "Quán mới",
+      "foodEntries": "Bữa ăn được ghi"
     },
     "series": {
       "premium": "Premium",
@@ -52,6 +53,11 @@
         "title": "Quán mới theo ngày",
         "description": "Quán đăng ký mới"
       }
+    },
+    "daily": {
+      "title": "Số liệu theo ngày",
+      "date": "Ngày",
+      "total": "Tổng"
     }
   },
   "restaurants": {
@@ -71,7 +77,14 @@
       "updated": "Cập nhật"
     },
     "view": "Xem",
-    "viewNamed": "Xem {{name}}"
+    "viewNamed": "Xem {{name}}",
+    "searchPlaceholder": "Tìm theo tên quán, tên hoặc email chủ quán",
+    "searchLabel": "Tìm quán",
+    "total_other": "{{count}} quán",
+    "noMatch": {
+      "title": "Không tìm thấy quán",
+      "hint": "Thử đổi từ khóa hoặc chuyển sang mục khác."
+    }
   },
   "review": {
     "approveRestaurant": "Duyệt quán",
@@ -187,5 +200,11 @@
     "dishesApproved_other": "Đã duyệt {{count}} món",
     "adPackageCreated": "Đã thêm gói quảng cáo",
     "adPackageUpdated": "Đã cập nhật gói quảng cáo"
+  },
+  "pager": {
+    "label": "Phân trang",
+    "previous": "Trước",
+    "next": "Sau",
+    "page": "Trang {{page}} / {{pageCount}}"
   }
 }

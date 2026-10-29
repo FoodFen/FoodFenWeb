@@ -11,18 +11,29 @@ import {
   TableRow,
 } from '@/components/ui/table'
 import { formatDate } from '@/lib/format'
-import { CircleCheck, Eye } from 'lucide-react'
+import { CircleCheck, Eye, SearchX } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import type { RestaurantTab } from './restaurant-tabs'
 
 type Props = {
   rows: AdminRestaurantRowResponse[]
   tab: RestaurantTab
+  /** A search is active, so an empty list means no match rather than no restaurants. */
+  searching: boolean
   onOpen: (id: string) => void
 }
 
-export function RestaurantListTable({ rows, tab, onOpen }: Props) {
+export function RestaurantListTable({ rows, tab, searching, onOpen }: Props) {
   const { t } = useTranslation('admin')
+  if (rows.length === 0 && searching) {
+    return (
+      <EmptyState
+        icon={SearchX}
+        title={t('restaurants.noMatch.title')}
+        hint={t('restaurants.noMatch.hint')}
+      />
+    )
+  }
   if (rows.length === 0) {
     return (
       <EmptyState

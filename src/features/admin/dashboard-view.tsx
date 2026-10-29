@@ -3,6 +3,7 @@ import { formatVnd } from '@/lib/format'
 import { Crown, Megaphone, Store, UserPlus } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { DailyChart } from '@/components/daily-chart'
+import { DashboardDailyTable } from './dashboard-daily-table'
 import type { DateRange } from './date-range'
 import { DateRangePicker } from './date-range-picker'
 import { PageHeader } from '@/components/page-header'
@@ -73,6 +74,7 @@ export function DashboardView({ totals, daily, range, onRangeChange }: Props) {
           ]}
         />
       </div>
+      <DashboardDailyTable daily={daily} totals={totals} />
     </div>
   )
 }

@@ -1,24 +1,37 @@
 import { QueryError } from '@/components/query-error'
+import { SearchInput } from '@/components/search-input'
 import { Badge } from '@/components/ui/badge'
 import { Card } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { useDebouncedInput } from '@/hooks/use-debounced-input'
 import { getRouteApi, useNavigate } from '@tanstack/react-router'
+import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { PageHeader } from '@/components/page-header'
+import { ListPager } from './list-pager'
+import { filterRestaurants, paginate } from './restaurant-filter'
 import { RestaurantListTable } from './restaurant-list-table'
-import { restaurantTabs, type RestaurantTab } from './restaurant-tabs'
+import { restaurantTabs, type RestaurantSearch, type RestaurantTab } from './restaurant-tabs'
 import { useRestaurantList } from './use-moderation'
 
 const route = getRouteApi('/_authed/admin/restaurants/')
 
 export function RestaurantListPage() {
   const { t } = useTranslation(['admin', 'common'])
-  const tab = route.useSearch({ select: (s) => s.tab ?? 'all' })
+  const { tab: tabParam, q = '', page: pageParam = 1 } = route.useSearch()
+  const tab = tabParam ?? 'all'
   const navigate = route.useNavigate()
   const openNavigate = useNavigate()
   const list = useRestaurantList(tab)
   const pendingCount = useRestaurantList('pending').data?.length ?? 0
+  // Tab and query changes go back to page 1 because `page` is dropped from the URL.
+  const go = (search: RestaurantSearch) => void navigate({ search })
+  const [text, setText] = useDebouncedInput(q, (value) =>
+    go({ tab: tabParam, q: value || undefined }),
+  )
+  const filtered = useMemo(() => filterRestaurants(list.data ?? [], q), [list.data, q])
+  const { items, page, pageCount, total } = paginate(filtered, pageParam)
 
   return (
     <div className="space-y-6">
@@ -26,7 +39,7 @@ export function RestaurantListPage() {
       <Tabs
         value={tab}
         onValueChange={(value) =>
-          void navigate({ search: { tab: value === 'all' ? undefined : (value as RestaurantTab) } })
+          go({ tab: value === 'all' ? undefined : (value as RestaurantTab), q: q || undefined })
         }
       >
         <TabsList>
@@ -38,6 +51,13 @@ export function RestaurantListPage() {
           ))}
         </TabsList>
       </Tabs>
+      <SearchInput
+        className="sm:max-w-sm"
+        value={text}
+        onChange={setText}
+        placeholder={t('restaurants.searchPlaceholder')}
+        label={t('restaurants.searchLabel')}
+      />
       <Card className="rounded-2xl p-2">
         {list.isPending ? (
           <Skeleton className="h-40 w-full" aria-busy />
@@ -45,8 +65,9 @@ export function RestaurantListPage() {
           <QueryError error={list.error} onRetry={() => void list.refetch()} />
         ) : (
           <RestaurantListTable
-            rows={list.data}
+            rows={items}
             tab={tab}
+            searching={q !== ''}
             onOpen={(restaurantId) =>
               void openNavigate({
                 to: '/admin/restaurants/$restaurantId',
@@ -56,6 +77,17 @@ export function RestaurantListPage() {
           />
         )}
       </Card>
+      {list.data && (
+        <ListPager
+          page={page}
+          pageCount={pageCount}
+          total={total}
+          totalLabel={t('restaurants.total', { count: total })}
+          onPage={(next) =>
+            go({ tab: tabParam, q: q || undefined, page: next > 1 ? next : undefined })
+          }
+        />
+      )}
     </div>
   )
 }
