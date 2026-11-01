@@ -18,13 +18,22 @@ npm run api:gen    # regenerate src/api/generated from http://localhost:8000/ope
 
 Copy `.env.example` to `.env.local`.
 
-| Variable | Purpose |
-| --- | --- |
-| `VITE_API_URL` | Backend origin. Defaults to `http://localhost:8000`; set it to the deployed backend for a production build. |
+| Variable                   | Purpose                                                                                                                                 |
+| -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| `VITE_API_URL`             | Backend origin. Defaults to `http://localhost:8000`; set it to the deployed backend for a production build.                             |
 | `VITE_GOOGLE_MAPS_API_KEY` | Location picker on the restaurant form (Maps JavaScript API and Places API (New)). Without it the form shows a plain coordinates field. |
-| `VITE_GOOGLE_MAPS_MAP_ID` | Optional map style id. |
+| `VITE_GOOGLE_MAPS_MAP_ID`  | Optional map style id.                                                                                                                  |
 
 The backend's `APP_BASE_URL` must be this site's origin: email links and the ad checkout return page (`/restaurant/ads`) point here.
+
+## Deployment
+
+- Hosted on Vercel through the Git integration: a push to `main` is a production deploy, every pull request gets a preview URL.
+- CI is `.github/workflows/ci.yml`, job `verify` (lint, test, build). Vercel Deployment Checks gate production on it, so do not rename the job without updating the check in Vercel.
+- `vercel.json` holds the SPA rewrite so client routes (TanStack Router) resolve to `index.html`.
+- Set the variables from Environment in Vercel (`VITE_API_URL` = the backend URL on Render, `VITE_GOOGLE_MAPS_API_KEY`, `VITE_GOOGLE_MAPS_MAP_ID`). They are inlined at build time, so changing one needs a redeploy.
+- `VITE_` variables are public: restrict the Maps key by HTTP referrer in Google Cloud.
+- The backend's `APP_BASE_URL` must point at the deployed web domain.
 
 ## More
 
