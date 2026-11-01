@@ -1,11 +1,11 @@
 import type { AdminPaymentRowResponse } from '@/api/generated'
 import { listPaymentsAdminPaymentsGet } from '@/api/generated/sdk.gen'
 import { useSessionStore } from '@/lib/session-store'
-import { routeTree } from '@/routeTree.gen'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { RouterProvider, createMemoryHistory, createRouter } from '@tanstack/react-router'
-import { render, screen } from '@testing-library/react'
+import { renderRoutes } from '@/test/render-routes'
+import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import { PaymentsPage } from './payments-page'
+import { paymentsSearchSchema } from './payments-search'
 
 vi.mock('@/api/generated/sdk.gen', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/api/generated/sdk.gen')>()),
@@ -42,17 +42,10 @@ async function renderPage(url = '/admin/payments') {
   useSessionStore.setState({
     user: { id: 1, email: 'admin@x.vn', displayName: null, role: 'admin' },
   })
-  const router = createRouter({
-    routeTree,
-    history: createMemoryHistory({ initialEntries: [url] }),
-  })
-  await router.load()
-  render(
-    <QueryClientProvider client={new QueryClient()}>
-      <RouterProvider router={router} />
-    </QueryClientProvider>,
+  return renderRoutes(
+    [{ path: '/admin/payments', component: PaymentsPage, validateSearch: paymentsSearchSchema }],
+    url,
   )
-  return router
 }
 
 test('lists payments with plan, ad restaurant link, amount, status and total', async () => {

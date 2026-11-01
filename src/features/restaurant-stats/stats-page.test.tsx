@@ -7,12 +7,11 @@ import {
   meAuthMeGet,
 } from '@/api/generated/sdk.gen'
 import { useSessionStore } from '@/lib/session-store'
-import { routeTree } from '@/routeTree.gen'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { RouterProvider, createMemoryHistory, createRouter } from '@tanstack/react-router'
-import { render, screen, within } from '@testing-library/react'
+import { renderRoutes } from '@/test/render-routes'
+import { screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { AxiosError } from 'axios'
+import { StatsPage } from './stats-page'
 
 vi.mock('@/api/generated/sdk.gen', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/api/generated/sdk.gen')>()),
@@ -76,18 +75,7 @@ const notFound = new AxiosError('missing', undefined, undefined, undefined, {
 async function renderPage() {
   useSessionStore.setState({ user: { id: 1, email: 'a@b.vn', displayName: null, role: 'user' } })
   vi.mocked(meAuthMeGet).mockReturnValue(new Promise(() => {}) as never)
-  const router = createRouter({
-    routeTree,
-    history: createMemoryHistory({ initialEntries: ['/restaurant/stats'] }),
-  })
-  await router.load()
-  render(
-    <QueryClientProvider
-      client={new QueryClient({ defaultOptions: { queries: { retry: false } } })}
-    >
-      <RouterProvider router={router} />
-    </QueryClientProvider>,
-  )
+  await renderRoutes([{ path: '/restaurant/stats', component: StatsPage }], '/restaurant/stats')
 }
 
 afterEach(() => useSessionStore.setState({ user: null }))

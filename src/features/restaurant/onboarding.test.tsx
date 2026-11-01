@@ -1,11 +1,14 @@
 import { meAuthMeGet, getMyRestaurantRestaurantsMineGet } from '@/api/generated/sdk.gen'
 import { useSessionStore } from '@/lib/session-store'
-import { routeTree } from '@/routeTree.gen'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { RouterProvider, createMemoryHistory, createRouter } from '@tanstack/react-router'
-import { render, screen } from '@testing-library/react'
+import { ProfilePage } from '@/features/auth/profile-page'
+import { renderRoutes } from '@/test/render-routes'
+import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { AxiosError } from 'axios'
+import { MyRestaurantCard } from './my-restaurant-card'
+import { RegisterPage } from './register-page'
+import { registerSearchSchema, requireAcceptedTerms } from './register-search'
+import { RestaurantPage } from './restaurant-page'
 
 vi.mock('@/api/generated/sdk.gen', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/api/generated/sdk.gen')>()),
@@ -24,21 +27,28 @@ const noRestaurant = () =>
     } as never),
   )
 
+const AccountPage = () => (
+  <>
+    <ProfilePage />
+    <MyRestaurantCard />
+  </>
+)
+
 async function renderAt(path: string) {
   vi.mocked(meAuthMeGet).mockReturnValue(new Promise(() => {}) as never)
-  const router = createRouter({
-    routeTree,
-    history: createMemoryHistory({ initialEntries: [path] }),
-  })
-  await router.load()
-  render(
-    <QueryClientProvider
-      client={new QueryClient({ defaultOptions: { queries: { retry: false } } })}
-    >
-      <RouterProvider router={router} />
-    </QueryClientProvider>,
+  return renderRoutes(
+    [
+      { path: '/app/', component: AccountPage },
+      { path: '/restaurant/', component: RestaurantPage },
+      {
+        path: '/restaurant/register',
+        component: RegisterPage,
+        validateSearch: registerSearchSchema,
+        beforeLoad: ({ search }) => requireAcceptedTerms(search),
+      },
+    ],
+    path,
   )
-  return router
 }
 
 afterEach(() => useSessionStore.setState({ user: null }))

@@ -1,11 +1,11 @@
 import type { AdminRestaurantRowResponse } from '@/api/generated'
 import { listRestaurantsAdminRestaurantsGet } from '@/api/generated/sdk.gen'
 import { useSessionStore } from '@/lib/session-store'
-import { routeTree } from '@/routeTree.gen'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { RouterProvider, createMemoryHistory, createRouter } from '@tanstack/react-router'
-import { render, screen } from '@testing-library/react'
+import { renderRoutes } from '@/test/render-routes'
+import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import { RestaurantListPage } from './restaurant-list-page'
+import { restaurantSearchSchema } from './restaurant-tabs'
 
 vi.mock('@/api/generated/sdk.gen', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/api/generated/sdk.gen')>()),
@@ -36,17 +36,16 @@ async function renderPage() {
   useSessionStore.setState({
     user: { id: 1, email: 'admin@x.vn', displayName: null, role: 'admin' },
   })
-  const router = createRouter({
-    routeTree,
-    history: createMemoryHistory({ initialEntries: ['/admin/restaurants'] }),
-  })
-  await router.load()
-  render(
-    <QueryClientProvider client={new QueryClient()}>
-      <RouterProvider router={router} />
-    </QueryClientProvider>,
+  return renderRoutes(
+    [
+      {
+        path: '/admin/restaurants/',
+        component: RestaurantListPage,
+        validateSearch: restaurantSearchSchema,
+      },
+    ],
+    '/admin/restaurants',
   )
-  return router
 }
 
 test('the default tab lists every restaurant and the pending tab is a URL search param', async () => {

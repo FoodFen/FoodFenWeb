@@ -3,13 +3,14 @@ import {
   listRestaurantsAdminRestaurantsGet,
   reviewRestaurantAdminRestaurantsRestaurantIdReviewPost,
 } from '@/api/generated/sdk.gen'
-import { routeTree } from '@/routeTree.gen'
 import { useSessionStore } from '@/lib/session-store'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { RouterProvider, createMemoryHistory, createRouter } from '@tanstack/react-router'
-import { render, screen } from '@testing-library/react'
+import { renderRoutes } from '@/test/render-routes'
+import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { AxiosError } from 'axios'
+import { RestaurantListPage } from './restaurant-list-page'
+import { RestaurantReviewPage } from './restaurant-review-page'
+import { restaurantSearchSchema } from './restaurant-tabs'
 
 vi.mock('@/api/generated/sdk.gen', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/api/generated/sdk.gen')>()),
@@ -36,6 +37,19 @@ const restaurant = {
   updatedAt: '2026-10-10T09:20:46Z',
   reviewedAt: '2026-10-10T09:20:46Z',
 }
+const renderAt = (url: string) =>
+  renderRoutes(
+    [
+      {
+        path: '/admin/restaurants/',
+        component: RestaurantListPage,
+        validateSearch: restaurantSearchSchema,
+      },
+      { path: '/admin/restaurants/$restaurantId', component: RestaurantReviewPage },
+    ],
+    url,
+  )
+
 const dish = (id: string, name: string) => ({
   id,
   restaurantId: 'r1',
@@ -84,16 +98,7 @@ test('opening a restaurant from the list shows its menu', async () => {
       ownerEmail: 'owner@x.vn',
     },
   } as never)
-  const router = createRouter({
-    routeTree,
-    history: createMemoryHistory({ initialEntries: ['/admin/restaurants'] }),
-  })
-  await router.load()
-  render(
-    <QueryClientProvider client={new QueryClient()}>
-      <RouterProvider router={router} />
-    </QueryClientProvider>,
-  )
+  await renderAt('/admin/restaurants')
 
   await userEvent.click(await screen.findByRole('button', { name: 'Xem Bếp Ba Tèo (Demo)' }))
 
@@ -116,16 +121,7 @@ test('a failed reject shows its error once, in the dialog', async () => {
       data: { message: 'Không thể từ chối lúc này.' },
     } as never),
   )
-  const router = createRouter({
-    routeTree,
-    history: createMemoryHistory({ initialEntries: ['/admin/restaurants/r1'] }),
-  })
-  await router.load()
-  render(
-    <QueryClientProvider client={new QueryClient()}>
-      <RouterProvider router={router} />
-    </QueryClientProvider>,
-  )
+  await renderAt('/admin/restaurants/r1')
 
   await userEvent.click(await screen.findByRole('button', { name: 'Gỡ quán' }))
   await userEvent.type(await screen.findByLabelText('Lý do'), 'Sai thông tin')
