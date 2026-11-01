@@ -27,3 +27,4 @@ dist-ssr
 .tanstack/
 
 .claude/worktrees/
+.claude/launch.json
