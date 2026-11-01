@@ -10,7 +10,7 @@ import { AuthLayout } from './auth-layout'
 import { FormError, SubmitButton } from '@/components/form-parts'
 import { SwitchLink } from './auth-parts'
 import { Field } from './field'
-import { safeTarget } from './redirect'
+import { homePath, safeTarget } from './redirect'
 import { loginSchema, type LoginValues } from './schemas'
 import { useSignIn } from './use-auth'
 
@@ -30,8 +30,8 @@ export function LoginForm() {
   const onSubmit = handleSubmit(async (values) => {
     setFormError(null)
     try {
-      await signIn.mutateAsync({ body: values })
-      router.history.push(safeTarget(redirect))
+      const { user } = await signIn.mutateAsync({ body: values })
+      router.history.push(safeTarget(redirect, homePath(user)))
     } catch (error) {
       setFormError(
         applyApiError(error, setError, ['email', 'password'], {

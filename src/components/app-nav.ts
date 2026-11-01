@@ -30,17 +30,6 @@ export type NavEntry = NavItem | NavSection
 export const isNavSection = (entry: NavEntry): entry is NavSection => 'children' in entry
 
 export const appNav: NavEntry[] = [
-  { to: '/app', label: 'account', icon: UserRound, exact: true },
-  {
-    label: 'myRestaurant',
-    icon: Store,
-    userOnly: true,
-    children: [
-      { to: '/restaurant', label: 'restaurantProfile', icon: Store, exact: true },
-      { to: '/restaurant/stats', label: 'stats', icon: ChartColumn },
-      { to: '/restaurant/ads', label: 'ads', icon: Megaphone },
-    ],
-  },
   {
     label: 'admin',
     icon: ShieldCheck,
@@ -54,6 +43,17 @@ export const appNav: NavEntry[] = [
       { to: '/admin/content', label: 'content', icon: ListChecks },
       { to: '/admin/ad-packages', label: 'adPackages', icon: Megaphone },
       { to: '/admin/mascots', label: 'mascots', icon: PawPrint },
+    ],
+  },
+  { to: '/app', label: 'account', icon: UserRound, exact: true },
+  {
+    label: 'myRestaurant',
+    icon: Store,
+    userOnly: true,
+    children: [
+      { to: '/restaurant', label: 'restaurantProfile', icon: Store, exact: true },
+      { to: '/restaurant/stats', label: 'stats', icon: ChartColumn },
+      { to: '/restaurant/ads', label: 'ads', icon: Megaphone },
     ],
   },
 ]

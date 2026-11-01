@@ -1,5 +1,6 @@
 import { redirect } from '@tanstack/react-router'
 import { useSessionStore } from '@/lib/session-store'
+import { homePath } from './redirect'
 
 export function requireUser(href: string) {
   if (!useSessionStore.getState().user) {
@@ -21,5 +22,6 @@ export function requireOwner(href: string) {
 }
 
 export function redirectIfSignedIn() {
-  if (useSessionStore.getState().user) throw redirect({ to: '/app' })
+  const { user } = useSessionStore.getState()
+  if (user) throw redirect({ to: homePath(user) })
 }
