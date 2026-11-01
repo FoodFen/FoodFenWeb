@@ -310,6 +310,17 @@
       "happy": "Happy",
       "confused": "Confused"
     },
+    "stateHints": {
+      "idle": "The default, and the stand-in for a state with no image",
+      "hungry": "Mealtime has come and no meal is logged",
+      "thirsty": "Water intake is behind the day's target",
+      "eating": "Right after a meal is logged",
+      "drinking": "Right after water is logged",
+      "exercising": "Right after an activity is logged",
+      "thinking": "While the AI is replying in chat",
+      "happy": "When the AI has finished replying in chat",
+      "confused": "When the AI chat fails"
+    },
     "dialog": {
       "createTitle": "Add mascot",
       "editTitle": "Edit mascot",

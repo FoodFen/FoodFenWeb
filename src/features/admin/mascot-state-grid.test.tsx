@@ -44,3 +44,9 @@ test('one file dropped on a tile goes to that tile, not by its name', () => {
   expect(assign).toHaveBeenCalledTimes(1)
   expect(assign).toHaveBeenCalledWith('hungry', file)
 })
+
+test('each tile says when the app shows its state', () => {
+  renderGrid()
+
+  expect(screen.getByText('Đến giờ ăn mà chưa ghi bữa')).toBeInTheDocument()
+})

@@ -300,6 +300,17 @@
       "happy": "Vui",
       "confused": "Bối rối"
     },
+    "stateHints": {
+      "idle": "Mặc định, và thay cho trạng thái chưa có ảnh",
+      "hungry": "Đến giờ ăn mà chưa ghi bữa",
+      "thirsty": "Uống nước chậm hơn mục tiêu trong ngày",
+      "eating": "Ngay sau khi ghi món ăn",
+      "drinking": "Ngay sau khi ghi nước uống",
+      "exercising": "Ngay sau khi ghi hoạt động",
+      "thinking": "Khi AI đang trả lời trong chat",
+      "happy": "Khi AI trả lời xong trong chat",
+      "confused": "Khi chat với AI bị lỗi"
+    },
     "dialog": {
       "createTitle": "Thêm linh vật",
       "editTitle": "Sửa linh vật",

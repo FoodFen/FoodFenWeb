@@ -97,6 +97,9 @@ export function MascotStateTile({ state, url, idleUrl, slot, onFile, onRemove }:
         )}
       </div>
       <p className="text-center text-sm font-medium">{label}</p>
+      <p className="text-muted-foreground text-center text-xs">
+        {t(`mascots.stateHints.${state}`)}
+      </p>
       {slot?.error && (
         <p role="alert" className="text-destructive flex items-start gap-1 text-xs">
           <CircleAlert className="mt-0.5 size-3 shrink-0" aria-hidden />
