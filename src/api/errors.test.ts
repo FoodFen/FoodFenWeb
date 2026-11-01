@@ -16,6 +16,11 @@ test('uses the message and field errors sent by the BE', () => {
   })
 })
 
+test('exposes the error code of the body', () => {
+  expect(parseApiError(failure(409, { error: 'mascot_id_taken' })).code).toBe('mascot_id_taken')
+  expect(parseApiError(failure(409, { message: 'x' })).code).toBeUndefined()
+})
+
 test('falls back to a message for the status when the body has none', () => {
   expect(parseApiError(failure(429)).message).toContain('quá nhanh')
 })

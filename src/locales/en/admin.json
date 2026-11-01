@@ -209,7 +209,12 @@
     "dishesApproved_one": "{{count}} dish approved",
     "dishesApproved_other": "{{count}} dishes approved",
     "adPackageCreated": "Ad package added",
-    "adPackageUpdated": "Ad package updated"
+    "adPackageUpdated": "Ad package updated",
+    "mascotCreated": "Mascot added",
+    "mascotUpdated": "Mascot updated",
+    "mascotShown": "Mascot shown",
+    "mascotHidden": "Mascot hidden",
+    "mascotDeleted": "Mascot deleted"
   },
   "payments": {
     "title": "Transactions",
@@ -253,6 +258,108 @@
     "provider": {
       "payos": "PayOS",
       "momo": "MoMo"
+    }
+  },
+  "mascots": {
+    "title": "Mascots",
+    "description": "The art the mobile app shows comes from these images. Mascots without any art show as Fen. Default, Sprout, Berry and Chili are drawn by the app until you upload art.",
+    "add": "Add mascot",
+    "editNamed": "Edit {{name}}",
+    "deleteNamed": "Delete {{name}}",
+    "hideNamed": "Hide {{name}}",
+    "activeNamed": "Show {{name}}",
+    "free": "Free",
+    "coins": "{{value}} coins",
+    "usage": "{{owners}} / {{equipped}}",
+    "empty": {
+      "title": "No mascots yet",
+      "hint": "Press Add mascot to create the first one."
+    },
+    "columns": {
+      "art": "Art",
+      "name": "Name",
+      "id": "ID",
+      "price": "Price",
+      "usage": "Owned / equipped",
+      "active": "Shown"
+    },
+    "locks": {
+      "default": "The default mascot is always shown",
+      "noIdle": "Add an idle image to show it"
+    },
+    "confirm": {
+      "deleteTitle": "Delete {{name}}?",
+      "deleteBody": "This can't be undone.",
+      "deleteAction": "Delete",
+      "hideTitle": "Hide {{name}}?",
+      "hideBody_one": "{{count}} person is using it; they will switch back to Fen.",
+      "hideBody_other": "{{count}} people are using it; they will switch back to Fen.",
+      "hideAction": "Hide",
+      "repriceTitle": "Make it paid?",
+      "repriceBody": "People who have not got this mascot yet will lose access; people already using it keep it.",
+      "repriceAction": "Save"
+    },
+    "states": {
+      "idle": "Idle",
+      "hungry": "Hungry",
+      "thirsty": "Thirsty",
+      "eating": "Eating",
+      "drinking": "Drinking",
+      "exercising": "Exercising",
+      "thinking": "Thinking",
+      "happy": "Happy",
+      "confused": "Confused"
+    },
+    "dialog": {
+      "createTitle": "Add mascot",
+      "editTitle": "Edit mascot",
+      "createDescription": "New mascots are drafts: nobody sees them until you switch Shown on in the table.",
+      "editDescription": "A state without its own image uses the idle one.",
+      "name": "Name",
+      "id": "ID",
+      "idHint": "Lowercase letters, digits, - and _. It cannot change after creating.",
+      "idLocked": "The ID cannot change.",
+      "coinCost": "Price (coins)",
+      "coinCostDefault": "The default mascot is always free",
+      "save": "Save"
+    },
+    "grid": {
+      "hint": "Drop several images here: a file named like a state (happy.png) is assigned on its own.",
+      "bulk": "Upload many images",
+      "unmatched": "These images could not be matched by file name. Pick a state for each one.",
+      "assign": "Assign {{name}} to a state",
+      "pickState": "Pick a state",
+      "formatHint": "PNG or WebP with a transparent background, up to 5 MB. Animated WebP works too."
+    },
+    "tile": {
+      "pick": "Choose the image for {{state}}",
+      "remove": "Remove the {{state}} image",
+      "usesIdle": "Uses the idle image",
+      "uploading": "Uploading"
+    },
+    "bodyColor": {
+      "label": "Mascot background color",
+      "useDefault": "Default color",
+      "defaultHint": "Follows the app theme",
+      "pick": "Pick a color",
+      "hex": "Color code"
+    },
+    "preview": {
+      "fen": "Fen"
+    },
+    "validation": {
+      "idFormat": "The ID is lowercase letters, digits, - and _, up to 32 characters",
+      "nameLength": "The name is 1 to 40 characters",
+      "coinCostRange": "The price is a whole number from 0 to 1,000,000",
+      "imageType": "Only PNG or WebP images",
+      "bodyColor": "Use a #RRGGBB color code",
+      "imageSize": "Images can be up to 5 MB"
+    },
+    "errors": {
+      "mascot_id_taken": "Another mascot already uses this ID",
+      "mascot_in_use": "Someone owns or uses this mascot. Hide it instead of deleting.",
+      "mascot_default_locked": "The default mascot is always shown, free and cannot be deleted",
+      "mascot_missing_idle_image": "A mascot needs an idle image before it can be shown"
     }
   }
 }

@@ -4,11 +4,13 @@ import { isAxiosError } from 'axios'
 export type ApiFailure = {
   status?: number
   message: string
+  /** Machine-readable `error` code from the body, e.g. `mascot_id_taken`. */
+  code?: string
   /** Field name (camelCase, as sent by the BE) to its error message. */
   fields: Record<string, string>
 }
 
-type ErrorBody = { message?: string; errors?: Record<string, string> }
+type ErrorBody = { message?: string; error?: string; errors?: Record<string, string> }
 
 // Fallback texts live in the `errors` namespace; a message sent by the BE always wins.
 const byStatus = {
@@ -32,6 +34,7 @@ export function parseApiError(error: unknown): ApiFailure {
   return {
     status,
     message: response.data?.message ?? t(fallback),
+    code: response.data?.error,
     fields: response.data?.errors ?? {},
   }
 }

@@ -3,6 +3,7 @@ import {
   ChartColumn,
   Megaphone,
   ListChecks,
+  PawPrint,
   Receipt,
   ShieldCheck,
   Store,
@@ -52,6 +53,7 @@ export const appNav: NavEntry[] = [
       { to: '/admin/users', label: 'users', icon: Users },
       { to: '/admin/content', label: 'content', icon: ListChecks },
       { to: '/admin/ad-packages', label: 'adPackages', icon: Megaphone },
+      { to: '/admin/mascots', label: 'mascots', icon: PawPrint },
     ],
   },
 ]

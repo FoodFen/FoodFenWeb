@@ -202,7 +202,12 @@
     "dishTakenDown": "Đã gỡ món",
     "dishesApproved_other": "Đã duyệt {{count}} món",
     "adPackageCreated": "Đã thêm gói quảng cáo",
-    "adPackageUpdated": "Đã cập nhật gói quảng cáo"
+    "adPackageUpdated": "Đã cập nhật gói quảng cáo",
+    "mascotCreated": "Đã thêm linh vật",
+    "mascotUpdated": "Đã cập nhật linh vật",
+    "mascotShown": "Đã hiển thị linh vật",
+    "mascotHidden": "Đã ẩn linh vật",
+    "mascotDeleted": "Đã xóa linh vật"
   },
   "payments": {
     "title": "Giao dịch",
@@ -244,6 +249,107 @@
     "provider": {
       "payos": "PayOS",
       "momo": "MoMo"
+    }
+  },
+  "mascots": {
+    "title": "Linh vật",
+    "description": "Ảnh ứng dụng hiển thị lấy từ các ảnh ở đây. Linh vật chưa có ảnh sẽ hiện là Fen. Mặc định, Sprout, Berry và Chili do ứng dụng tự vẽ cho đến khi bạn tải ảnh lên.",
+    "add": "Thêm linh vật",
+    "editNamed": "Sửa {{name}}",
+    "deleteNamed": "Xóa {{name}}",
+    "hideNamed": "Ẩn {{name}}",
+    "activeNamed": "Hiển thị {{name}}",
+    "free": "Miễn phí",
+    "coins": "{{value}} xu",
+    "usage": "{{owners}} / {{equipped}}",
+    "empty": {
+      "title": "Chưa có linh vật nào",
+      "hint": "Nhấn Thêm linh vật để tạo linh vật đầu tiên."
+    },
+    "columns": {
+      "art": "Ảnh",
+      "name": "Tên",
+      "id": "Mã",
+      "price": "Giá",
+      "usage": "Đã mua / đang dùng",
+      "active": "Hiển thị"
+    },
+    "locks": {
+      "default": "Linh vật mặc định luôn hiển thị",
+      "noIdle": "Thêm ảnh idle để hiển thị"
+    },
+    "confirm": {
+      "deleteTitle": "Xóa {{name}}?",
+      "deleteBody": "Không thể hoàn tác.",
+      "deleteAction": "Xóa",
+      "hideTitle": "Ẩn {{name}}?",
+      "hideBody_other": "{{count}} người đang dùng; họ sẽ chuyển về Fen.",
+      "hideAction": "Ẩn",
+      "repriceTitle": "Chuyển sang có phí?",
+      "repriceBody": "Người chưa mua sẽ mất linh vật này; người đang dùng vẫn giữ.",
+      "repriceAction": "Lưu"
+    },
+    "states": {
+      "idle": "Mặc định",
+      "hungry": "Đói",
+      "thirsty": "Khát",
+      "eating": "Đang ăn",
+      "drinking": "Đang uống",
+      "exercising": "Tập luyện",
+      "thinking": "Suy nghĩ",
+      "happy": "Vui",
+      "confused": "Bối rối"
+    },
+    "dialog": {
+      "createTitle": "Thêm linh vật",
+      "editTitle": "Sửa linh vật",
+      "createDescription": "Linh vật mới là bản nháp: người dùng chưa thấy cho đến khi bạn bật Hiển thị trong bảng.",
+      "editDescription": "Trạng thái nào chưa có ảnh sẽ dùng ảnh mặc định (idle).",
+      "name": "Tên",
+      "id": "Mã",
+      "idHint": "Chữ thường, số, - và _. Không đổi được sau khi tạo.",
+      "idLocked": "Mã không đổi được.",
+      "coinCost": "Giá (xu)",
+      "coinCostDefault": "Linh vật mặc định luôn miễn phí",
+      "save": "Lưu"
+    },
+    "grid": {
+      "hint": "Kéo thả nhiều ảnh vào đây: tên tệp trùng tên trạng thái (happy.png) sẽ tự gán.",
+      "bulk": "Tải nhiều ảnh",
+      "unmatched": "Các ảnh này chưa gán được theo tên tệp. Chọn trạng thái cho từng ảnh.",
+      "assign": "Gán {{name}} vào trạng thái",
+      "pickState": "Chọn trạng thái",
+      "formatHint": "PNG hoặc WebP nền trong suốt, tối đa 5 MB. WebP động cũng được."
+    },
+    "tile": {
+      "pick": "Chọn ảnh cho trạng thái {{state}}",
+      "remove": "Xóa ảnh trạng thái {{state}}",
+      "usesIdle": "Dùng ảnh idle",
+      "uploading": "Đang tải ảnh lên"
+    },
+    "bodyColor": {
+      "label": "Màu nền linh vật",
+      "useDefault": "Màu mặc định",
+      "defaultHint": "Theo giao diện của ứng dụng",
+      "pick": "Chọn màu",
+      "hex": "Mã màu"
+    },
+    "preview": {
+      "fen": "Fen"
+    },
+    "validation": {
+      "idFormat": "Mã gồm chữ thường, số, - và _, tối đa 32 ký tự",
+      "nameLength": "Tên dài từ 1 đến 40 ký tự",
+      "coinCostRange": "Giá là số nguyên từ 0 đến 1.000.000",
+      "imageType": "Chỉ nhận ảnh PNG hoặc WebP",
+      "bodyColor": "Mã màu dạng #RRGGBB",
+      "imageSize": "Ảnh tối đa 5 MB"
+    },
+    "errors": {
+      "mascot_id_taken": "Mã này đã có linh vật khác dùng",
+      "mascot_in_use": "Đã có người mua hoặc đang dùng linh vật này. Hãy ẩn thay vì xóa.",
+      "mascot_default_locked": "Linh vật mặc định luôn hiển thị, miễn phí và không xóa được",
+      "mascot_missing_idle_image": "Linh vật cần ảnh idle trước khi hiển thị"
     }
   }
 }
