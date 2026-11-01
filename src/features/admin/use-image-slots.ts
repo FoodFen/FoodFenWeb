@@ -2,7 +2,8 @@ import type { MascotState } from '@/api/generated'
 import { parseApiError } from '@/api/errors'
 import i18n from '@/i18n'
 import { useState } from 'react'
-import { validateImageFile } from './mascot-files'
+import { fitsImageSize, isImageType } from './mascot-files'
+import { resizeImage } from './resize-image'
 import { useUploadMascotImage } from './use-mascots'
 
 /** Upload progress of one state's tile. */
@@ -18,11 +19,15 @@ export function useImageSlots(onUploaded: (state: MascotState, url: string) => v
   const setSlot = (state: MascotState, slot: Slot) => setSlots((all) => ({ ...all, [state]: slot }))
 
   const assign = async (state: MascotState, file: File) => {
-    const problem = validateImageFile(file)
-    if (problem) return setSlot(state, { error: i18n.t(`admin:mascots.validation.${problem}`) })
+    const reject = (problem: 'imageType' | 'imageUnreadable' | 'imageSize') =>
+      setSlot(state, { error: i18n.t(`admin:mascots.validation.${problem}`) })
+    if (!isImageType(file)) return reject('imageType')
     setSlot(state, { pending: true })
     try {
-      const { url } = await upload.mutateAsync({ body: { image: file } })
+      const image = await resizeImage(file).catch(() => null)
+      if (!image) return reject('imageUnreadable')
+      if (!fitsImageSize(image)) return reject('imageSize')
+      const { url } = await upload.mutateAsync({ body: { image } })
       onUploaded(state, url)
       setSlot(state, {})
     } catch (error) {

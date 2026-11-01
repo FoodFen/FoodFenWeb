@@ -343,7 +343,8 @@
       "coinCostRange": "Giá là số nguyên từ 0 đến 1.000.000",
       "imageType": "Chỉ nhận ảnh PNG hoặc WebP",
       "bodyColor": "Mã màu dạng #RRGGBB",
-      "imageSize": "Ảnh tối đa 5 MB"
+      "imageSize": "Ảnh tối đa 5 MB",
+      "imageUnreadable": "Không đọc được ảnh này"
     },
     "errors": {
       "mascot_id_taken": "Mã này đã có linh vật khác dùng",

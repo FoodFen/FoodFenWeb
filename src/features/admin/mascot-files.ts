@@ -11,8 +11,8 @@ export function stateFromFilename(filename: string): MascotState | null {
   return MASCOT_STATES.find((state) => state === name) ?? null
 }
 
-/** Key under `admin:mascots.validation` of what is wrong with the file, or null when it is fine. */
-export function validateImageFile(file: File) {
-  if (!IMAGE_TYPES.includes(file.type)) return 'imageType'
-  return file.size > MAX_BYTES ? 'imageSize' : null
-}
+/** True for the formats the admin may pick; checked before resizing, which may change the format. */
+export const isImageType = (file: File) => IMAGE_TYPES.includes(file.type)
+
+/** True when the file fits the upload limit; checked after resizing. */
+export const fitsImageSize = (file: File) => file.size <= MAX_BYTES

@@ -353,7 +353,8 @@
       "coinCostRange": "The price is a whole number from 0 to 1,000,000",
       "imageType": "Only PNG or WebP images",
       "bodyColor": "Use a #RRGGBB color code",
-      "imageSize": "Images can be up to 5 MB"
+      "imageSize": "Images can be up to 5 MB",
+      "imageUnreadable": "This image could not be read"
     },
     "errors": {
       "mascot_id_taken": "Another mascot already uses this ID",
