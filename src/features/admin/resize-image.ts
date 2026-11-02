@@ -26,7 +26,7 @@ export async function resizeImage(file: File, max = 1024): Promise<File> {
 
     // Safari ignores webp and hands back a PNG, so the blob's own type decides the extension.
     const blob = await new Promise<Blob | null>((resolve) =>
-      canvas.toBlob(resolve, 'image/webp', 0.9),
+      canvas.toBlob(resolve, 'image/webp', 1),
     )
     if (!blob) throw new Error('could not encode image')
     const name = file.name.replace(/\.[^.]*$/, '')
