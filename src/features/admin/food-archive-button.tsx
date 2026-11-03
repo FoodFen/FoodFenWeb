@@ -1,13 +1,13 @@
+import type { AdminFoodResponse } from '@/api/generated'
 import { ConfirmDialog } from '@/components/confirm-dialog'
 import { Button } from '@/components/ui/button'
 import { Archive, ArchiveRestore } from 'lucide-react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import type { AdminFoodDetail } from './food-types'
 import { useArchiveFood, useUnarchiveFood } from './use-foods'
 
 /** Archives the food (hidden from the app, kept in the catalog) or brings it back, after a confirmation. */
-export function FoodArchiveButton({ food }: { food: AdminFoodDetail }) {
+export function FoodArchiveButton({ food }: { food: AdminFoodResponse }) {
   const { t } = useTranslation('admin')
   const [open, setOpen] = useState(false)
   const archive = useArchiveFood()
@@ -28,7 +28,9 @@ export function FoodArchiveButton({ food }: { food: AdminFoodDetail }) {
         description={t(`foods.${key}.body`)}
         confirmLabel={t(`foods.${key}.action`)}
         busy={action.isPending}
-        onConfirm={() => action.mutate(food.slug, { onSettled: () => setOpen(false) })}
+        onConfirm={() =>
+          action.mutate({ path: { slug: food.slug } }, { onSettled: () => setOpen(false) })
+        }
       />
     </>
   )

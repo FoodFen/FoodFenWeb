@@ -1,6 +1,6 @@
+import type { FoodMissStatus } from '@/api/generated'
 import { z } from 'zod'
 import { foodCategories } from './food-categories'
-import type { FoodMissStatus } from './food-types'
 
 export const foodTabs = ['catalog', 'misses'] as const
 export type FoodTab = (typeof foodTabs)[number]

@@ -1,12 +1,13 @@
+import type { FoodMissResponse, FoodMissStatus } from '@/api/generated'
 import { renderRoutes } from '@/test/render-routes'
 import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { FoodMissesTable } from './food-misses-table'
 import { foodSearchSchema } from './food-search'
-import type { FoodMiss, FoodMissStatus } from './food-types'
 
-const miss = (patch: Partial<FoodMiss>): FoodMiss => ({
+const miss = (patch: Partial<FoodMissResponse>): FoodMissResponse => ({
   id: 'm1',
+  key: 'banh trang tron',
   name: 'bánh tráng trộn',
   language: 'vi',
   count: 4,
@@ -19,7 +20,7 @@ const miss = (patch: Partial<FoodMiss>): FoodMiss => ({
 
 const handlers = { onAdd: vi.fn(), onIgnore: vi.fn(), onReopen: vi.fn() }
 
-const renderTable = (rows: FoodMiss[], status: FoodMissStatus = 'open') =>
+const renderTable = (rows: FoodMissResponse[], status: FoodMissStatus = 'open') =>
   renderRoutes(
     [
       {

@@ -4,8 +4,8 @@ import { type DefaultError, type InfiniteData, infiniteQueryOptions, queryOption
 import type { AxiosError } from 'axios';
 
 import { client } from '../client.gen';
-import { analyzeImageAiFoodAnalyzeImagePost, analyzeTextAiFoodAnalyzeTextPost, cancelPaymentPaymentsOrderCodeCancelPost, createActivityLogActivityLogsPost, createAdCheckoutRestaurantsMineAdsCheckoutPost, createAdPackageAdminAdPackagesPost, createCheckoutPaymentsCheckoutPost, createDailyGoalDailyGoalsPost, createDishRestaurantsMineDishesPost, createFoodEntryFoodEntriesPost, createMascotAdminMascotsPost, createRestaurantRestaurantsPost, createWaterLogWaterLogsPost, createWeightLogWeightLogsPost, dashboardAdminDashboardGet, deleteDishRestaurantsMineDishesDishIdDelete, deleteFoodEntryFoodEntriesEntryIdDelete, deleteMascotAdminMascotsMascotIdDelete, deleteWaterLogWaterLogsLogIdDelete, equipMascotMascotsEquippedPut, getDailyQuizQuizzesDailyGet, getFoodEntryFoodEntriesEntryIdGet, getMascotsMascotsGet, getMyAdsRestaurantsMineAdsGet, getMyRestaurantRestaurantsMineGet, getMySubscriptionSubscriptionsMeGet, getPaymentPaymentsOrderCodeGet, getPublicRestaurantRestaurantsRestaurantIdGet, getQuestsQuestsGet, getQuizQuizzesQuizIdGet, getQuotaAiFoodQuotaGet, getRestaurantAdminRestaurantsRestaurantIdGet, listActivityLogsActivityLogsGet, listAdPackagesAdminAdPackagesGet, listCoinBundlesCoinsBundlesGet, listCoinTransactionsCoinsTransactionsGet, listDailyGoalsDailyGoalsGet, listDishesDishesGet, listFoodEntriesFoodEntriesGet, listMascotsAdminMascotsGet, listMessagesChatMessagesGet, listMyDishesRestaurantsMineDishesGet, listMyPaymentsRestaurantsMinePaymentsGet, listPaymentsAdminPaymentsGet, listPlansPaymentsPlansGet, listQuestsAdminQuestsGet, listQuizzesAdminQuizzesGet, listRestaurantsAdminRestaurantsGet, listTopicsQuizzesTopicsGet, listUsersAdminUsersGet, listWaterLogsWaterLogsGet, listWeightLogsWeightLogsGet, meAuthMeGet, momoWebhookPaymentsWebhookMomoPost, type Options, passwordResetAuthPasswordResetPost, paymentWebhookPaymentsWebhookPost, purchaseMascotMascotsMascotIdPurchasePost, redeemCoinsCoinsRedeemPost, refreshAuthRefreshPost, resendVerificationAuthResendVerificationPost, resetPasswordAuthResetPasswordPost, reviewDishAdminDishesDishIdReviewPost, reviewRestaurantAdminRestaurantsRestaurantIdReviewPost, sendMessageChatMessagesPost, signInAuthSignInPost, signOutAuthSignOutPost, signUpAuthSignUpPost, socialSignInAuthSocialPost, startPracticeQuizQuizzesPracticePost, submitQuizQuizzesQuizIdSubmitPost, updateActivityLogActivityLogsLogIdPatch, updateAdPackageAdminAdPackagesPackageIdPatch, updateDishRestaurantsMineDishesDishIdPatch, updateFoodEntryFoodEntriesEntryIdPatch, updateMascotAdminMascotsMascotIdPatch, updateMyProfileUsersMePatch, updateMyRestaurantRestaurantsMinePatch, updateWaterLogWaterLogsLogIdPatch, uploadImageAdminImagesPost, uploadImageRestaurantsMineImagesPost, upsertStreakStreakPost, verifyEmailAuthVerifyEmailGet } from '../sdk.gen';
-import type { AnalyzeImageAiFoodAnalyzeImagePostData, AnalyzeImageAiFoodAnalyzeImagePostError, AnalyzeImageAiFoodAnalyzeImagePostResponse, AnalyzeTextAiFoodAnalyzeTextPostData, AnalyzeTextAiFoodAnalyzeTextPostError, AnalyzeTextAiFoodAnalyzeTextPostResponse, CancelPaymentPaymentsOrderCodeCancelPostData, CancelPaymentPaymentsOrderCodeCancelPostError, CancelPaymentPaymentsOrderCodeCancelPostResponse, CreateActivityLogActivityLogsPostData, CreateActivityLogActivityLogsPostError, CreateActivityLogActivityLogsPostResponse, CreateAdCheckoutRestaurantsMineAdsCheckoutPostData, CreateAdCheckoutRestaurantsMineAdsCheckoutPostError, CreateAdCheckoutRestaurantsMineAdsCheckoutPostResponse, CreateAdPackageAdminAdPackagesPostData, CreateAdPackageAdminAdPackagesPostError, CreateAdPackageAdminAdPackagesPostResponse, CreateCheckoutPaymentsCheckoutPostData, CreateCheckoutPaymentsCheckoutPostError, CreateCheckoutPaymentsCheckoutPostResponse, CreateDailyGoalDailyGoalsPostData, CreateDailyGoalDailyGoalsPostError, CreateDailyGoalDailyGoalsPostResponse, CreateDishRestaurantsMineDishesPostData, CreateDishRestaurantsMineDishesPostError, CreateDishRestaurantsMineDishesPostResponse, CreateFoodEntryFoodEntriesPostData, CreateFoodEntryFoodEntriesPostError, CreateFoodEntryFoodEntriesPostResponse, CreateMascotAdminMascotsPostData, CreateMascotAdminMascotsPostError, CreateMascotAdminMascotsPostResponse, CreateRestaurantRestaurantsPostData, CreateRestaurantRestaurantsPostError, CreateRestaurantRestaurantsPostResponse, CreateWaterLogWaterLogsPostData, CreateWaterLogWaterLogsPostError, CreateWaterLogWaterLogsPostResponse, CreateWeightLogWeightLogsPostData, CreateWeightLogWeightLogsPostError, CreateWeightLogWeightLogsPostResponse, DashboardAdminDashboardGetData, DashboardAdminDashboardGetError, DashboardAdminDashboardGetResponse, DeleteDishRestaurantsMineDishesDishIdDeleteData, DeleteDishRestaurantsMineDishesDishIdDeleteError, DeleteDishRestaurantsMineDishesDishIdDeleteResponse, DeleteFoodEntryFoodEntriesEntryIdDeleteData, DeleteFoodEntryFoodEntriesEntryIdDeleteError, DeleteFoodEntryFoodEntriesEntryIdDeleteResponse, DeleteMascotAdminMascotsMascotIdDeleteData, DeleteMascotAdminMascotsMascotIdDeleteError, DeleteMascotAdminMascotsMascotIdDeleteResponse, DeleteWaterLogWaterLogsLogIdDeleteData, DeleteWaterLogWaterLogsLogIdDeleteError, DeleteWaterLogWaterLogsLogIdDeleteResponse, EquipMascotMascotsEquippedPutData, EquipMascotMascotsEquippedPutError, EquipMascotMascotsEquippedPutResponse, GetDailyQuizQuizzesDailyGetData, GetDailyQuizQuizzesDailyGetError, GetDailyQuizQuizzesDailyGetResponse, GetFoodEntryFoodEntriesEntryIdGetData, GetFoodEntryFoodEntriesEntryIdGetError, GetFoodEntryFoodEntriesEntryIdGetResponse, GetMascotsMascotsGetData, GetMascotsMascotsGetResponse, GetMyAdsRestaurantsMineAdsGetData, GetMyAdsRestaurantsMineAdsGetResponse, GetMyRestaurantRestaurantsMineGetData, GetMyRestaurantRestaurantsMineGetResponse, GetMySubscriptionSubscriptionsMeGetData, GetMySubscriptionSubscriptionsMeGetResponse, GetPaymentPaymentsOrderCodeGetData, GetPaymentPaymentsOrderCodeGetError, GetPaymentPaymentsOrderCodeGetResponse, GetPublicRestaurantRestaurantsRestaurantIdGetData, GetPublicRestaurantRestaurantsRestaurantIdGetError, GetPublicRestaurantRestaurantsRestaurantIdGetResponse, GetQuestsQuestsGetData, GetQuestsQuestsGetError, GetQuestsQuestsGetResponse, GetQuizQuizzesQuizIdGetData, GetQuizQuizzesQuizIdGetError, GetQuizQuizzesQuizIdGetResponse, GetQuotaAiFoodQuotaGetData, GetQuotaAiFoodQuotaGetError, GetQuotaAiFoodQuotaGetResponse, GetRestaurantAdminRestaurantsRestaurantIdGetData, GetRestaurantAdminRestaurantsRestaurantIdGetError, GetRestaurantAdminRestaurantsRestaurantIdGetResponse, ListActivityLogsActivityLogsGetData, ListActivityLogsActivityLogsGetError, ListActivityLogsActivityLogsGetResponse, ListAdPackagesAdminAdPackagesGetData, ListAdPackagesAdminAdPackagesGetResponse, ListCoinBundlesCoinsBundlesGetData, ListCoinBundlesCoinsBundlesGetResponse, ListCoinTransactionsCoinsTransactionsGetData, ListCoinTransactionsCoinsTransactionsGetError, ListCoinTransactionsCoinsTransactionsGetResponse, ListDailyGoalsDailyGoalsGetData, ListDailyGoalsDailyGoalsGetResponse, ListDishesDishesGetData, ListDishesDishesGetError, ListDishesDishesGetResponse, ListFoodEntriesFoodEntriesGetData, ListFoodEntriesFoodEntriesGetError, ListFoodEntriesFoodEntriesGetResponse, ListMascotsAdminMascotsGetData, ListMascotsAdminMascotsGetResponse, ListMessagesChatMessagesGetData, ListMessagesChatMessagesGetError, ListMessagesChatMessagesGetResponse, ListMyDishesRestaurantsMineDishesGetData, ListMyDishesRestaurantsMineDishesGetResponse, ListMyPaymentsRestaurantsMinePaymentsGetData, ListMyPaymentsRestaurantsMinePaymentsGetError, ListMyPaymentsRestaurantsMinePaymentsGetResponse, ListPaymentsAdminPaymentsGetData, ListPaymentsAdminPaymentsGetError, ListPaymentsAdminPaymentsGetResponse, ListPlansPaymentsPlansGetData, ListPlansPaymentsPlansGetResponse, ListQuestsAdminQuestsGetData, ListQuestsAdminQuestsGetResponse, ListQuizzesAdminQuizzesGetData, ListQuizzesAdminQuizzesGetResponse, ListRestaurantsAdminRestaurantsGetData, ListRestaurantsAdminRestaurantsGetError, ListRestaurantsAdminRestaurantsGetResponse, ListTopicsQuizzesTopicsGetData, ListTopicsQuizzesTopicsGetResponse, ListUsersAdminUsersGetData, ListUsersAdminUsersGetError, ListUsersAdminUsersGetResponse, ListWaterLogsWaterLogsGetData, ListWaterLogsWaterLogsGetError, ListWaterLogsWaterLogsGetResponse, ListWeightLogsWeightLogsGetData, ListWeightLogsWeightLogsGetError, ListWeightLogsWeightLogsGetResponse, MeAuthMeGetData, MeAuthMeGetResponse, MomoWebhookPaymentsWebhookMomoPostData, MomoWebhookPaymentsWebhookMomoPostResponse, PasswordResetAuthPasswordResetPostData, PasswordResetAuthPasswordResetPostError, PasswordResetAuthPasswordResetPostResponse, PaymentWebhookPaymentsWebhookPostData, PaymentWebhookPaymentsWebhookPostResponse, PurchaseMascotMascotsMascotIdPurchasePostData, PurchaseMascotMascotsMascotIdPurchasePostError, PurchaseMascotMascotsMascotIdPurchasePostResponse, RedeemCoinsCoinsRedeemPostData, RedeemCoinsCoinsRedeemPostError, RedeemCoinsCoinsRedeemPostResponse, RefreshAuthRefreshPostData, RefreshAuthRefreshPostError, RefreshAuthRefreshPostResponse, ResendVerificationAuthResendVerificationPostData, ResendVerificationAuthResendVerificationPostError, ResendVerificationAuthResendVerificationPostResponse, ResetPasswordAuthResetPasswordPostData, ResetPasswordAuthResetPasswordPostError, ResetPasswordAuthResetPasswordPostResponse, ReviewDishAdminDishesDishIdReviewPostData, ReviewDishAdminDishesDishIdReviewPostError, ReviewDishAdminDishesDishIdReviewPostResponse, ReviewRestaurantAdminRestaurantsRestaurantIdReviewPostData, ReviewRestaurantAdminRestaurantsRestaurantIdReviewPostError, ReviewRestaurantAdminRestaurantsRestaurantIdReviewPostResponse, SendMessageChatMessagesPostData, SendMessageChatMessagesPostError, SignInAuthSignInPostData, SignInAuthSignInPostError, SignInAuthSignInPostResponse, SignOutAuthSignOutPostData, SignOutAuthSignOutPostError, SignOutAuthSignOutPostResponse, SignUpAuthSignUpPostData, SignUpAuthSignUpPostError, SignUpAuthSignUpPostResponse, SocialSignInAuthSocialPostData, SocialSignInAuthSocialPostError, SocialSignInAuthSocialPostResponse, StartPracticeQuizQuizzesPracticePostData, StartPracticeQuizQuizzesPracticePostError, StartPracticeQuizQuizzesPracticePostResponse, SubmitQuizQuizzesQuizIdSubmitPostData, SubmitQuizQuizzesQuizIdSubmitPostError, SubmitQuizQuizzesQuizIdSubmitPostResponse, UpdateActivityLogActivityLogsLogIdPatchData, UpdateActivityLogActivityLogsLogIdPatchError, UpdateActivityLogActivityLogsLogIdPatchResponse, UpdateAdPackageAdminAdPackagesPackageIdPatchData, UpdateAdPackageAdminAdPackagesPackageIdPatchError, UpdateAdPackageAdminAdPackagesPackageIdPatchResponse, UpdateDishRestaurantsMineDishesDishIdPatchData, UpdateDishRestaurantsMineDishesDishIdPatchError, UpdateDishRestaurantsMineDishesDishIdPatchResponse, UpdateFoodEntryFoodEntriesEntryIdPatchData, UpdateFoodEntryFoodEntriesEntryIdPatchError, UpdateFoodEntryFoodEntriesEntryIdPatchResponse, UpdateMascotAdminMascotsMascotIdPatchData, UpdateMascotAdminMascotsMascotIdPatchError, UpdateMascotAdminMascotsMascotIdPatchResponse, UpdateMyProfileUsersMePatchData, UpdateMyProfileUsersMePatchError, UpdateMyProfileUsersMePatchResponse, UpdateMyRestaurantRestaurantsMinePatchData, UpdateMyRestaurantRestaurantsMinePatchError, UpdateMyRestaurantRestaurantsMinePatchResponse, UpdateWaterLogWaterLogsLogIdPatchData, UpdateWaterLogWaterLogsLogIdPatchError, UpdateWaterLogWaterLogsLogIdPatchResponse, UploadImageAdminImagesPostData, UploadImageAdminImagesPostError, UploadImageAdminImagesPostResponse, UploadImageRestaurantsMineImagesPostData, UploadImageRestaurantsMineImagesPostError, UploadImageRestaurantsMineImagesPostResponse, UpsertStreakStreakPostData, UpsertStreakStreakPostError, UpsertStreakStreakPostResponse, VerifyEmailAuthVerifyEmailGetData, VerifyEmailAuthVerifyEmailGetError, VerifyEmailAuthVerifyEmailGetResponse } from '../types.gen';
+import { analyzeImageAiFoodAnalyzeImagePost, analyzeTextAiFoodAnalyzeTextPost, archiveFoodAdminFoodsSlugArchivePost, cancelPaymentPaymentsOrderCodeCancelPost, createActivityLogActivityLogsPost, createAdCheckoutRestaurantsMineAdsCheckoutPost, createAdPackageAdminAdPackagesPost, createCheckoutPaymentsCheckoutPost, createDailyGoalDailyGoalsPost, createDishRestaurantsMineDishesPost, createFoodAdminFoodsPost, createFoodEntryFoodEntriesPost, createMascotAdminMascotsPost, createRestaurantRestaurantsPost, createWaterLogWaterLogsPost, createWeightLogWeightLogsPost, dashboardAdminDashboardGet, deleteDishRestaurantsMineDishesDishIdDelete, deleteFoodEntryFoodEntriesEntryIdDelete, deleteMascotAdminMascotsMascotIdDelete, deleteWaterLogWaterLogsLogIdDelete, equipMascotMascotsEquippedPut, getDailyQuizQuizzesDailyGet, getFoodAdminFoodsSlugGet, getFoodEntryFoodEntriesEntryIdGet, getMascotsMascotsGet, getMyAdsRestaurantsMineAdsGet, getMyRestaurantRestaurantsMineGet, getMySubscriptionSubscriptionsMeGet, getPaymentPaymentsOrderCodeGet, getPublicRestaurantRestaurantsRestaurantIdGet, getQuestsQuestsGet, getQuizQuizzesQuizIdGet, getQuotaAiFoodQuotaGet, getRestaurantAdminRestaurantsRestaurantIdGet, ignoreFoodMissAdminFoodMissesMissIdIgnorePost, listActivityLogsActivityLogsGet, listAdPackagesAdminAdPackagesGet, listCoinBundlesCoinsBundlesGet, listCoinTransactionsCoinsTransactionsGet, listDailyGoalsDailyGoalsGet, listDishesDishesGet, listFoodChangesAdminFoodsSlugChangesGet, listFoodEntriesFoodEntriesGet, listFoodMissesAdminFoodMissesGet, listFoodsAdminFoodsGet, listMascotsAdminMascotsGet, listMessagesChatMessagesGet, listMyDishesRestaurantsMineDishesGet, listMyPaymentsRestaurantsMinePaymentsGet, listPaymentsAdminPaymentsGet, listPlansPaymentsPlansGet, listQuestsAdminQuestsGet, listQuizzesAdminQuizzesGet, listRestaurantsAdminRestaurantsGet, listTopicsQuizzesTopicsGet, listUsersAdminUsersGet, listWaterLogsWaterLogsGet, listWeightLogsWeightLogsGet, meAuthMeGet, momoWebhookPaymentsWebhookMomoPost, type Options, passwordResetAuthPasswordResetPost, paymentWebhookPaymentsWebhookPost, purchaseMascotMascotsMascotIdPurchasePost, redeemCoinsCoinsRedeemPost, refreshAuthRefreshPost, reopenFoodMissAdminFoodMissesMissIdReopenPost, resendVerificationAuthResendVerificationPost, resetPasswordAuthResetPasswordPost, reviewDishAdminDishesDishIdReviewPost, reviewRestaurantAdminRestaurantsRestaurantIdReviewPost, sendMessageChatMessagesPost, signInAuthSignInPost, signOutAuthSignOutPost, signUpAuthSignUpPost, socialSignInAuthSocialPost, startPracticeQuizQuizzesPracticePost, submitQuizQuizzesQuizIdSubmitPost, unarchiveFoodAdminFoodsSlugUnarchivePost, updateActivityLogActivityLogsLogIdPatch, updateAdPackageAdminAdPackagesPackageIdPatch, updateDishRestaurantsMineDishesDishIdPatch, updateFoodAdminFoodsSlugPatch, updateFoodEntryFoodEntriesEntryIdPatch, updateMascotAdminMascotsMascotIdPatch, updateMyProfileUsersMePatch, updateMyRestaurantRestaurantsMinePatch, updateWaterLogWaterLogsLogIdPatch, uploadImageAdminImagesPost, uploadImageRestaurantsMineImagesPost, upsertStreakStreakPost, verifyEmailAuthVerifyEmailGet } from '../sdk.gen';
+import type { AnalyzeImageAiFoodAnalyzeImagePostData, AnalyzeImageAiFoodAnalyzeImagePostError, AnalyzeImageAiFoodAnalyzeImagePostResponse, AnalyzeTextAiFoodAnalyzeTextPostData, AnalyzeTextAiFoodAnalyzeTextPostError, AnalyzeTextAiFoodAnalyzeTextPostResponse, ArchiveFoodAdminFoodsSlugArchivePostData, ArchiveFoodAdminFoodsSlugArchivePostError, ArchiveFoodAdminFoodsSlugArchivePostResponse, CancelPaymentPaymentsOrderCodeCancelPostData, CancelPaymentPaymentsOrderCodeCancelPostError, CancelPaymentPaymentsOrderCodeCancelPostResponse, CreateActivityLogActivityLogsPostData, CreateActivityLogActivityLogsPostError, CreateActivityLogActivityLogsPostResponse, CreateAdCheckoutRestaurantsMineAdsCheckoutPostData, CreateAdCheckoutRestaurantsMineAdsCheckoutPostError, CreateAdCheckoutRestaurantsMineAdsCheckoutPostResponse, CreateAdPackageAdminAdPackagesPostData, CreateAdPackageAdminAdPackagesPostError, CreateAdPackageAdminAdPackagesPostResponse, CreateCheckoutPaymentsCheckoutPostData, CreateCheckoutPaymentsCheckoutPostError, CreateCheckoutPaymentsCheckoutPostResponse, CreateDailyGoalDailyGoalsPostData, CreateDailyGoalDailyGoalsPostError, CreateDailyGoalDailyGoalsPostResponse, CreateDishRestaurantsMineDishesPostData, CreateDishRestaurantsMineDishesPostError, CreateDishRestaurantsMineDishesPostResponse, CreateFoodAdminFoodsPostData, CreateFoodAdminFoodsPostError, CreateFoodAdminFoodsPostResponse, CreateFoodEntryFoodEntriesPostData, CreateFoodEntryFoodEntriesPostError, CreateFoodEntryFoodEntriesPostResponse, CreateMascotAdminMascotsPostData, CreateMascotAdminMascotsPostError, CreateMascotAdminMascotsPostResponse, CreateRestaurantRestaurantsPostData, CreateRestaurantRestaurantsPostError, CreateRestaurantRestaurantsPostResponse, CreateWaterLogWaterLogsPostData, CreateWaterLogWaterLogsPostError, CreateWaterLogWaterLogsPostResponse, CreateWeightLogWeightLogsPostData, CreateWeightLogWeightLogsPostError, CreateWeightLogWeightLogsPostResponse, DashboardAdminDashboardGetData, DashboardAdminDashboardGetError, DashboardAdminDashboardGetResponse, DeleteDishRestaurantsMineDishesDishIdDeleteData, DeleteDishRestaurantsMineDishesDishIdDeleteError, DeleteDishRestaurantsMineDishesDishIdDeleteResponse, DeleteFoodEntryFoodEntriesEntryIdDeleteData, DeleteFoodEntryFoodEntriesEntryIdDeleteError, DeleteFoodEntryFoodEntriesEntryIdDeleteResponse, DeleteMascotAdminMascotsMascotIdDeleteData, DeleteMascotAdminMascotsMascotIdDeleteError, DeleteMascotAdminMascotsMascotIdDeleteResponse, DeleteWaterLogWaterLogsLogIdDeleteData, DeleteWaterLogWaterLogsLogIdDeleteError, DeleteWaterLogWaterLogsLogIdDeleteResponse, EquipMascotMascotsEquippedPutData, EquipMascotMascotsEquippedPutError, EquipMascotMascotsEquippedPutResponse, GetDailyQuizQuizzesDailyGetData, GetDailyQuizQuizzesDailyGetError, GetDailyQuizQuizzesDailyGetResponse, GetFoodAdminFoodsSlugGetData, GetFoodAdminFoodsSlugGetError, GetFoodAdminFoodsSlugGetResponse, GetFoodEntryFoodEntriesEntryIdGetData, GetFoodEntryFoodEntriesEntryIdGetError, GetFoodEntryFoodEntriesEntryIdGetResponse, GetMascotsMascotsGetData, GetMascotsMascotsGetResponse, GetMyAdsRestaurantsMineAdsGetData, GetMyAdsRestaurantsMineAdsGetResponse, GetMyRestaurantRestaurantsMineGetData, GetMyRestaurantRestaurantsMineGetResponse, GetMySubscriptionSubscriptionsMeGetData, GetMySubscriptionSubscriptionsMeGetResponse, GetPaymentPaymentsOrderCodeGetData, GetPaymentPaymentsOrderCodeGetError, GetPaymentPaymentsOrderCodeGetResponse, GetPublicRestaurantRestaurantsRestaurantIdGetData, GetPublicRestaurantRestaurantsRestaurantIdGetError, GetPublicRestaurantRestaurantsRestaurantIdGetResponse, GetQuestsQuestsGetData, GetQuestsQuestsGetError, GetQuestsQuestsGetResponse, GetQuizQuizzesQuizIdGetData, GetQuizQuizzesQuizIdGetError, GetQuizQuizzesQuizIdGetResponse, GetQuotaAiFoodQuotaGetData, GetQuotaAiFoodQuotaGetError, GetQuotaAiFoodQuotaGetResponse, GetRestaurantAdminRestaurantsRestaurantIdGetData, GetRestaurantAdminRestaurantsRestaurantIdGetError, GetRestaurantAdminRestaurantsRestaurantIdGetResponse, IgnoreFoodMissAdminFoodMissesMissIdIgnorePostData, IgnoreFoodMissAdminFoodMissesMissIdIgnorePostError, IgnoreFoodMissAdminFoodMissesMissIdIgnorePostResponse, ListActivityLogsActivityLogsGetData, ListActivityLogsActivityLogsGetError, ListActivityLogsActivityLogsGetResponse, ListAdPackagesAdminAdPackagesGetData, ListAdPackagesAdminAdPackagesGetResponse, ListCoinBundlesCoinsBundlesGetData, ListCoinBundlesCoinsBundlesGetResponse, ListCoinTransactionsCoinsTransactionsGetData, ListCoinTransactionsCoinsTransactionsGetError, ListCoinTransactionsCoinsTransactionsGetResponse, ListDailyGoalsDailyGoalsGetData, ListDailyGoalsDailyGoalsGetResponse, ListDishesDishesGetData, ListDishesDishesGetError, ListDishesDishesGetResponse, ListFoodChangesAdminFoodsSlugChangesGetData, ListFoodChangesAdminFoodsSlugChangesGetError, ListFoodChangesAdminFoodsSlugChangesGetResponse, ListFoodEntriesFoodEntriesGetData, ListFoodEntriesFoodEntriesGetError, ListFoodEntriesFoodEntriesGetResponse, ListFoodMissesAdminFoodMissesGetData, ListFoodMissesAdminFoodMissesGetError, ListFoodMissesAdminFoodMissesGetResponse, ListFoodsAdminFoodsGetData, ListFoodsAdminFoodsGetError, ListFoodsAdminFoodsGetResponse, ListMascotsAdminMascotsGetData, ListMascotsAdminMascotsGetResponse, ListMessagesChatMessagesGetData, ListMessagesChatMessagesGetError, ListMessagesChatMessagesGetResponse, ListMyDishesRestaurantsMineDishesGetData, ListMyDishesRestaurantsMineDishesGetResponse, ListMyPaymentsRestaurantsMinePaymentsGetData, ListMyPaymentsRestaurantsMinePaymentsGetError, ListMyPaymentsRestaurantsMinePaymentsGetResponse, ListPaymentsAdminPaymentsGetData, ListPaymentsAdminPaymentsGetError, ListPaymentsAdminPaymentsGetResponse, ListPlansPaymentsPlansGetData, ListPlansPaymentsPlansGetResponse, ListQuestsAdminQuestsGetData, ListQuestsAdminQuestsGetResponse, ListQuizzesAdminQuizzesGetData, ListQuizzesAdminQuizzesGetResponse, ListRestaurantsAdminRestaurantsGetData, ListRestaurantsAdminRestaurantsGetError, ListRestaurantsAdminRestaurantsGetResponse, ListTopicsQuizzesTopicsGetData, ListTopicsQuizzesTopicsGetResponse, ListUsersAdminUsersGetData, ListUsersAdminUsersGetError, ListUsersAdminUsersGetResponse, ListWaterLogsWaterLogsGetData, ListWaterLogsWaterLogsGetError, ListWaterLogsWaterLogsGetResponse, ListWeightLogsWeightLogsGetData, ListWeightLogsWeightLogsGetError, ListWeightLogsWeightLogsGetResponse, MeAuthMeGetData, MeAuthMeGetResponse, MomoWebhookPaymentsWebhookMomoPostData, MomoWebhookPaymentsWebhookMomoPostResponse, PasswordResetAuthPasswordResetPostData, PasswordResetAuthPasswordResetPostError, PasswordResetAuthPasswordResetPostResponse, PaymentWebhookPaymentsWebhookPostData, PaymentWebhookPaymentsWebhookPostResponse, PurchaseMascotMascotsMascotIdPurchasePostData, PurchaseMascotMascotsMascotIdPurchasePostError, PurchaseMascotMascotsMascotIdPurchasePostResponse, RedeemCoinsCoinsRedeemPostData, RedeemCoinsCoinsRedeemPostError, RedeemCoinsCoinsRedeemPostResponse, RefreshAuthRefreshPostData, RefreshAuthRefreshPostError, RefreshAuthRefreshPostResponse, ReopenFoodMissAdminFoodMissesMissIdReopenPostData, ReopenFoodMissAdminFoodMissesMissIdReopenPostError, ReopenFoodMissAdminFoodMissesMissIdReopenPostResponse, ResendVerificationAuthResendVerificationPostData, ResendVerificationAuthResendVerificationPostError, ResendVerificationAuthResendVerificationPostResponse, ResetPasswordAuthResetPasswordPostData, ResetPasswordAuthResetPasswordPostError, ResetPasswordAuthResetPasswordPostResponse, ReviewDishAdminDishesDishIdReviewPostData, ReviewDishAdminDishesDishIdReviewPostError, ReviewDishAdminDishesDishIdReviewPostResponse, ReviewRestaurantAdminRestaurantsRestaurantIdReviewPostData, ReviewRestaurantAdminRestaurantsRestaurantIdReviewPostError, ReviewRestaurantAdminRestaurantsRestaurantIdReviewPostResponse, SendMessageChatMessagesPostData, SendMessageChatMessagesPostError, SignInAuthSignInPostData, SignInAuthSignInPostError, SignInAuthSignInPostResponse, SignOutAuthSignOutPostData, SignOutAuthSignOutPostError, SignOutAuthSignOutPostResponse, SignUpAuthSignUpPostData, SignUpAuthSignUpPostError, SignUpAuthSignUpPostResponse, SocialSignInAuthSocialPostData, SocialSignInAuthSocialPostError, SocialSignInAuthSocialPostResponse, StartPracticeQuizQuizzesPracticePostData, StartPracticeQuizQuizzesPracticePostError, StartPracticeQuizQuizzesPracticePostResponse, SubmitQuizQuizzesQuizIdSubmitPostData, SubmitQuizQuizzesQuizIdSubmitPostError, SubmitQuizQuizzesQuizIdSubmitPostResponse, UnarchiveFoodAdminFoodsSlugUnarchivePostData, UnarchiveFoodAdminFoodsSlugUnarchivePostError, UnarchiveFoodAdminFoodsSlugUnarchivePostResponse, UpdateActivityLogActivityLogsLogIdPatchData, UpdateActivityLogActivityLogsLogIdPatchError, UpdateActivityLogActivityLogsLogIdPatchResponse, UpdateAdPackageAdminAdPackagesPackageIdPatchData, UpdateAdPackageAdminAdPackagesPackageIdPatchError, UpdateAdPackageAdminAdPackagesPackageIdPatchResponse, UpdateDishRestaurantsMineDishesDishIdPatchData, UpdateDishRestaurantsMineDishesDishIdPatchError, UpdateDishRestaurantsMineDishesDishIdPatchResponse, UpdateFoodAdminFoodsSlugPatchData, UpdateFoodAdminFoodsSlugPatchError, UpdateFoodAdminFoodsSlugPatchResponse, UpdateFoodEntryFoodEntriesEntryIdPatchData, UpdateFoodEntryFoodEntriesEntryIdPatchError, UpdateFoodEntryFoodEntriesEntryIdPatchResponse, UpdateMascotAdminMascotsMascotIdPatchData, UpdateMascotAdminMascotsMascotIdPatchError, UpdateMascotAdminMascotsMascotIdPatchResponse, UpdateMyProfileUsersMePatchData, UpdateMyProfileUsersMePatchError, UpdateMyProfileUsersMePatchResponse, UpdateMyRestaurantRestaurantsMinePatchData, UpdateMyRestaurantRestaurantsMinePatchError, UpdateMyRestaurantRestaurantsMinePatchResponse, UpdateWaterLogWaterLogsLogIdPatchData, UpdateWaterLogWaterLogsLogIdPatchError, UpdateWaterLogWaterLogsLogIdPatchResponse, UploadImageAdminImagesPostData, UploadImageAdminImagesPostError, UploadImageAdminImagesPostResponse, UploadImageRestaurantsMineImagesPostData, UploadImageRestaurantsMineImagesPostError, UploadImageRestaurantsMineImagesPostResponse, UpsertStreakStreakPostData, UpsertStreakStreakPostError, UpsertStreakStreakPostResponse, VerifyEmailAuthVerifyEmailGetData, VerifyEmailAuthVerifyEmailGetError, VerifyEmailAuthVerifyEmailGetResponse } from '../types.gen';
 
 /**
  * Sign Up
@@ -1739,6 +1739,261 @@ export const uploadImageAdminImagesPostMutation = (options?: Partial<Options<Upl
     const mutationOptions: UseMutationOptions<UploadImageAdminImagesPostResponse, AxiosError<UploadImageAdminImagesPostError>, Options<UploadImageAdminImagesPostData>> = {
         mutationFn: async (fnOptions) => {
             const { data } = await uploadImageAdminImagesPost({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
+export const listFoodsAdminFoodsGetQueryKey = (options?: Options<ListFoodsAdminFoodsGetData>) => createQueryKey('listFoodsAdminFoodsGet', options);
+
+/**
+ * List Foods
+ *
+ * ``q`` matches the name, English name, an alias or the slug (accent- and case-insensitive); ``archived=true``
+ * lists only archived foods. Sorted by name. ``cursor`` is opaque: pass back the previous page's ``nextCursor``.
+ */
+export const listFoodsAdminFoodsGetOptions = (options?: Options<ListFoodsAdminFoodsGetData>) => queryOptions<ListFoodsAdminFoodsGetResponse, AxiosError<ListFoodsAdminFoodsGetError>, ListFoodsAdminFoodsGetResponse, ReturnType<typeof listFoodsAdminFoodsGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await listFoodsAdminFoodsGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: listFoodsAdminFoodsGetQueryKey(options)
+});
+
+export const listFoodsAdminFoodsGetInfiniteQueryKey = (options?: Options<ListFoodsAdminFoodsGetData>): QueryKey<Options<ListFoodsAdminFoodsGetData>> => createQueryKey('listFoodsAdminFoodsGet', options, true);
+
+/**
+ * List Foods
+ *
+ * ``q`` matches the name, English name, an alias or the slug (accent- and case-insensitive); ``archived=true``
+ * lists only archived foods. Sorted by name. ``cursor`` is opaque: pass back the previous page's ``nextCursor``.
+ */
+export const listFoodsAdminFoodsGetInfiniteOptions = (options?: Options<ListFoodsAdminFoodsGetData>) => {
+    const opts = infiniteQueryOptions<ListFoodsAdminFoodsGetResponse, AxiosError<ListFoodsAdminFoodsGetError>, InfiniteData<ListFoodsAdminFoodsGetResponse>, QueryKey<Options<ListFoodsAdminFoodsGetData>>, string | null | Pick<QueryKey<Options<ListFoodsAdminFoodsGetData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
+    // @ts-ignore
+    {
+        queryFn: async ({ pageParam, queryKey, signal }) => {
+            // @ts-ignore
+            const page: Pick<QueryKey<Options<ListFoodsAdminFoodsGetData>>[0], 'body' | 'headers' | 'path' | 'query'> = typeof pageParam === 'object' ? pageParam : {
+                query: {
+                    cursor: pageParam
+                }
+            };
+            const params = createInfiniteParams(queryKey, page);
+            const { data } = await listFoodsAdminFoodsGet({
+                ...options,
+                ...params,
+                signal,
+                throwOnError: true
+            });
+            return data;
+        },
+        queryKey: listFoodsAdminFoodsGetInfiniteQueryKey(options)
+    });
+    return opts as Omit<typeof opts, 'initialData'>;
+};
+
+/**
+ * Create Food
+ *
+ * 409 ``food_name_taken`` when any food (archived too) has the same name once accents and case are ignored.
+ * ``missId`` marks that unmatched name resolved; an unknown or not-open one is ignored.
+ */
+export const createFoodAdminFoodsPostMutation = (options?: Partial<Options<CreateFoodAdminFoodsPostData>>): UseMutationOptions<CreateFoodAdminFoodsPostResponse, AxiosError<CreateFoodAdminFoodsPostError>, Options<CreateFoodAdminFoodsPostData>> => {
+    const mutationOptions: UseMutationOptions<CreateFoodAdminFoodsPostResponse, AxiosError<CreateFoodAdminFoodsPostError>, Options<CreateFoodAdminFoodsPostData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await createFoodAdminFoodsPost({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
+export const getFoodAdminFoodsSlugGetQueryKey = (options: Options<GetFoodAdminFoodsSlugGetData>) => createQueryKey('getFoodAdminFoodsSlugGet', options);
+
+/**
+ * Get Food
+ */
+export const getFoodAdminFoodsSlugGetOptions = (options: Options<GetFoodAdminFoodsSlugGetData>) => queryOptions<GetFoodAdminFoodsSlugGetResponse, AxiosError<GetFoodAdminFoodsSlugGetError>, GetFoodAdminFoodsSlugGetResponse, ReturnType<typeof getFoodAdminFoodsSlugGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getFoodAdminFoodsSlugGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getFoodAdminFoodsSlugGetQueryKey(options)
+});
+
+/**
+ * Update Food
+ */
+export const updateFoodAdminFoodsSlugPatchMutation = (options?: Partial<Options<UpdateFoodAdminFoodsSlugPatchData>>): UseMutationOptions<UpdateFoodAdminFoodsSlugPatchResponse, AxiosError<UpdateFoodAdminFoodsSlugPatchError>, Options<UpdateFoodAdminFoodsSlugPatchData>> => {
+    const mutationOptions: UseMutationOptions<UpdateFoodAdminFoodsSlugPatchResponse, AxiosError<UpdateFoodAdminFoodsSlugPatchError>, Options<UpdateFoodAdminFoodsSlugPatchData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await updateFoodAdminFoodsSlugPatch({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
+/**
+ * Archive Food
+ *
+ * Idempotent: a change row only when the state flips.
+ */
+export const archiveFoodAdminFoodsSlugArchivePostMutation = (options?: Partial<Options<ArchiveFoodAdminFoodsSlugArchivePostData>>): UseMutationOptions<ArchiveFoodAdminFoodsSlugArchivePostResponse, AxiosError<ArchiveFoodAdminFoodsSlugArchivePostError>, Options<ArchiveFoodAdminFoodsSlugArchivePostData>> => {
+    const mutationOptions: UseMutationOptions<ArchiveFoodAdminFoodsSlugArchivePostResponse, AxiosError<ArchiveFoodAdminFoodsSlugArchivePostError>, Options<ArchiveFoodAdminFoodsSlugArchivePostData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await archiveFoodAdminFoodsSlugArchivePost({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
+/**
+ * Unarchive Food
+ *
+ * 409 ``food_name_taken`` while another active food has the same name.
+ */
+export const unarchiveFoodAdminFoodsSlugUnarchivePostMutation = (options?: Partial<Options<UnarchiveFoodAdminFoodsSlugUnarchivePostData>>): UseMutationOptions<UnarchiveFoodAdminFoodsSlugUnarchivePostResponse, AxiosError<UnarchiveFoodAdminFoodsSlugUnarchivePostError>, Options<UnarchiveFoodAdminFoodsSlugUnarchivePostData>> => {
+    const mutationOptions: UseMutationOptions<UnarchiveFoodAdminFoodsSlugUnarchivePostResponse, AxiosError<UnarchiveFoodAdminFoodsSlugUnarchivePostError>, Options<UnarchiveFoodAdminFoodsSlugUnarchivePostData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await unarchiveFoodAdminFoodsSlugUnarchivePost({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
+export const listFoodChangesAdminFoodsSlugChangesGetQueryKey = (options: Options<ListFoodChangesAdminFoodsSlugChangesGetData>) => createQueryKey('listFoodChangesAdminFoodsSlugChangesGet', options);
+
+/**
+ * List Food Changes
+ *
+ * Newest first, with the admin's email and the before / after snapshots (``before`` null for a create).
+ */
+export const listFoodChangesAdminFoodsSlugChangesGetOptions = (options: Options<ListFoodChangesAdminFoodsSlugChangesGetData>) => queryOptions<ListFoodChangesAdminFoodsSlugChangesGetResponse, AxiosError<ListFoodChangesAdminFoodsSlugChangesGetError>, ListFoodChangesAdminFoodsSlugChangesGetResponse, ReturnType<typeof listFoodChangesAdminFoodsSlugChangesGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await listFoodChangesAdminFoodsSlugChangesGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: listFoodChangesAdminFoodsSlugChangesGetQueryKey(options)
+});
+
+export const listFoodMissesAdminFoodMissesGetQueryKey = (options?: Options<ListFoodMissesAdminFoodMissesGetData>) => createQueryKey('listFoodMissesAdminFoodMissesGet', options);
+
+/**
+ * List Food Misses
+ *
+ * Names the AI could not match, most frequent first. ``existingFood`` is the active food that already answers
+ * to the name (computed now, not stored). ``cursor`` is opaque: pass back the previous page's ``nextCursor``.
+ */
+export const listFoodMissesAdminFoodMissesGetOptions = (options?: Options<ListFoodMissesAdminFoodMissesGetData>) => queryOptions<ListFoodMissesAdminFoodMissesGetResponse, AxiosError<ListFoodMissesAdminFoodMissesGetError>, ListFoodMissesAdminFoodMissesGetResponse, ReturnType<typeof listFoodMissesAdminFoodMissesGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await listFoodMissesAdminFoodMissesGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: listFoodMissesAdminFoodMissesGetQueryKey(options)
+});
+
+export const listFoodMissesAdminFoodMissesGetInfiniteQueryKey = (options?: Options<ListFoodMissesAdminFoodMissesGetData>): QueryKey<Options<ListFoodMissesAdminFoodMissesGetData>> => createQueryKey('listFoodMissesAdminFoodMissesGet', options, true);
+
+/**
+ * List Food Misses
+ *
+ * Names the AI could not match, most frequent first. ``existingFood`` is the active food that already answers
+ * to the name (computed now, not stored). ``cursor`` is opaque: pass back the previous page's ``nextCursor``.
+ */
+export const listFoodMissesAdminFoodMissesGetInfiniteOptions = (options?: Options<ListFoodMissesAdminFoodMissesGetData>) => {
+    const opts = infiniteQueryOptions<ListFoodMissesAdminFoodMissesGetResponse, AxiosError<ListFoodMissesAdminFoodMissesGetError>, InfiniteData<ListFoodMissesAdminFoodMissesGetResponse>, QueryKey<Options<ListFoodMissesAdminFoodMissesGetData>>, string | null | Pick<QueryKey<Options<ListFoodMissesAdminFoodMissesGetData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
+    // @ts-ignore
+    {
+        queryFn: async ({ pageParam, queryKey, signal }) => {
+            // @ts-ignore
+            const page: Pick<QueryKey<Options<ListFoodMissesAdminFoodMissesGetData>>[0], 'body' | 'headers' | 'path' | 'query'> = typeof pageParam === 'object' ? pageParam : {
+                query: {
+                    cursor: pageParam
+                }
+            };
+            const params = createInfiniteParams(queryKey, page);
+            const { data } = await listFoodMissesAdminFoodMissesGet({
+                ...options,
+                ...params,
+                signal,
+                throwOnError: true
+            });
+            return data;
+        },
+        queryKey: listFoodMissesAdminFoodMissesGetInfiniteQueryKey(options)
+    });
+    return opts as Omit<typeof opts, 'initialData'>;
+};
+
+/**
+ * Ignore Food Miss
+ */
+export const ignoreFoodMissAdminFoodMissesMissIdIgnorePostMutation = (options?: Partial<Options<IgnoreFoodMissAdminFoodMissesMissIdIgnorePostData>>): UseMutationOptions<IgnoreFoodMissAdminFoodMissesMissIdIgnorePostResponse, AxiosError<IgnoreFoodMissAdminFoodMissesMissIdIgnorePostError>, Options<IgnoreFoodMissAdminFoodMissesMissIdIgnorePostData>> => {
+    const mutationOptions: UseMutationOptions<IgnoreFoodMissAdminFoodMissesMissIdIgnorePostResponse, AxiosError<IgnoreFoodMissAdminFoodMissesMissIdIgnorePostError>, Options<IgnoreFoodMissAdminFoodMissesMissIdIgnorePostData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await ignoreFoodMissAdminFoodMissesMissIdIgnorePost({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
+/**
+ * Reopen Food Miss
+ */
+export const reopenFoodMissAdminFoodMissesMissIdReopenPostMutation = (options?: Partial<Options<ReopenFoodMissAdminFoodMissesMissIdReopenPostData>>): UseMutationOptions<ReopenFoodMissAdminFoodMissesMissIdReopenPostResponse, AxiosError<ReopenFoodMissAdminFoodMissesMissIdReopenPostError>, Options<ReopenFoodMissAdminFoodMissesMissIdReopenPostData>> => {
+    const mutationOptions: UseMutationOptions<ReopenFoodMissAdminFoodMissesMissIdReopenPostResponse, AxiosError<ReopenFoodMissAdminFoodMissesMissIdReopenPostError>, Options<ReopenFoodMissAdminFoodMissesMissIdReopenPostData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await reopenFoodMissAdminFoodMissesMissIdReopenPost({
                 ...options,
                 ...fnOptions,
                 throwOnError: true

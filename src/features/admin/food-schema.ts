@@ -1,11 +1,11 @@
+import type { AdminFoodResponse, CreateFoodRequest, UpdateFoodRequest } from '@/api/generated'
 import { parseDecimal, parseWhole } from '@/lib/number-input'
 import { z } from 'zod'
 import { foodCategories } from './food-categories'
-import type { AdminFoodDetail, FoodBody } from './food-types'
 
 // Form fields stay strings (what inputs hold); `toFoodBody` turns them into numbers. Limits mirror
 // the BE: name 1 to 120, 20 aliases of 1 to 80, kcal 0 to 900, macros 0 to 100 g and at most 100 g
-// together, 1 to 10 servings of 1 to 5000 g with exactly one default.
+// together, 1 to 10 servings of 1 to 5000 whole grams with exactly one default.
 const v = (key: string) => `admin:foods.validation.${key}`
 
 export const MACRO_SUM_ERROR = v('macroSum')
@@ -24,10 +24,7 @@ const serving = z.object({
   grams: z
     .string()
     .trim()
-    .refine((text) => {
-      const grams = parseDecimal(text)
-      return grams > 0 && grams <= 5000
-    }, v('servingGrams')),
+    .refine((text) => inRange(parseWhole(text), 1, 5000), v('servingGrams')),
   default: z.boolean(),
 })
 
@@ -82,7 +79,7 @@ export const newFoodValues = ({ name = '', nameEn = '' }: FoodPrefill = {}): Foo
   servings: [{ label: '100 g', grams: '100', default: true }],
 })
 
-export const toFoodValues = (food: AdminFoodDetail): FoodValues => ({
+export const toFoodValues = (food: AdminFoodResponse): FoodValues => ({
   name: food.name,
   nameEn: food.nameEn ?? '',
   aliases: [...food.aliases],
@@ -100,7 +97,7 @@ export const toFoodValues = (food: AdminFoodDetail): FoodValues => ({
 })
 
 /** Request body for create. Empty fiber is "not tracked" (`null`), a typed `0` stays `0`. */
-export const toFoodBody = (values: FoodValues): FoodBody => ({
+export const toFoodBody = (values: FoodValues): CreateFoodRequest => ({
   name: values.name,
   nameEn: values.nameEn || null,
   aliases: values.aliases,
@@ -110,11 +107,11 @@ export const toFoodBody = (values: FoodValues): FoodBody => ({
   proteinG: parseDecimal(values.proteinG),
   fatG: parseDecimal(values.fatG),
   fiberG: values.fiberG === '' ? null : parseDecimal(values.fiberG),
-  servings: values.servings.map((row) => ({ ...row, grams: parseDecimal(row.grams) })),
+  servings: values.servings.map((row) => ({ ...row, grams: parseWhole(row.grams) })),
 })
 
 /** PATCH body: only the fields whose form value differs from `original`, so an untouched number is never sent. */
-export function toFoodPatch(values: FoodValues, original: FoodValues): Partial<FoodBody> {
+export function toFoodPatch(values: FoodValues, original: FoodValues): UpdateFoodRequest {
   const body = toFoodBody(values)
   return Object.fromEntries(
     (Object.keys(values) as (keyof FoodValues)[])

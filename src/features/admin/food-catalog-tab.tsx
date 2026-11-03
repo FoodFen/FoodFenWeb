@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { FoodCatalogTable } from './food-catalog-table'
 import { FoodCatalogToolbar } from './food-catalog-toolbar'
 import { FoodPagedList } from './food-paged-list'
@@ -12,6 +13,7 @@ type Props = {
 }
 
 export function FoodCatalogTab({ search, onChange, onOpen, onAdd }: Props) {
+  const { t } = useTranslation('admin')
   const { q, category, verified, archived } = search
   const list = useAdminFoods({ q, category, verified, archived })
   const filtered = !!q || category !== undefined || verified !== undefined || archived === true
@@ -19,7 +21,11 @@ export function FoodCatalogTab({ search, onChange, onOpen, onAdd }: Props) {
   return (
     <div className="space-y-6">
       <FoodCatalogToolbar search={search} onChange={onChange} onAdd={onAdd} />
-      <FoodPagedList list={list}>
+      <FoodPagedList
+        list={list}
+        rowsOf={(page) => page.foods}
+        totalLabel={(count) => t('foods.total', { count })}
+      >
         {(rows) => <FoodCatalogTable rows={rows} filtered={filtered} onOpen={onOpen} />}
       </FoodPagedList>
     </div>

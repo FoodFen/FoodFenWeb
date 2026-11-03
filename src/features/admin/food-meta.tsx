@@ -1,9 +1,9 @@
+import type { AdminFoodResponse } from '@/api/generated'
 import { Badge } from '@/components/ui/badge'
 import { useTranslation } from 'react-i18next'
-import type { AdminFoodDetail } from './food-types'
 
 /** What the admin should know before editing: the slug (never changes), the source and the last editor. */
-export function FoodMeta({ food }: { food: AdminFoodDetail }) {
+export function FoodMeta({ food }: { food: AdminFoodResponse }) {
   const { t } = useTranslation('admin')
   return (
     <div className="space-y-1 text-sm">

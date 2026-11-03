@@ -1,9 +1,9 @@
+import type { AdminFoodRowResponse } from '@/api/generated'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { FoodCatalogTable } from './food-catalog-table'
-import type { AdminFood } from './food-types'
 
-const food = (patch: Partial<AdminFood>): AdminFood => ({
+const food = (patch: Partial<AdminFoodRowResponse>): AdminFoodRowResponse => ({
   slug: 'pho-bo',
   name: 'Phở bò',
   nameEn: null,

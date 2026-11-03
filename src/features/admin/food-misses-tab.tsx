@@ -1,10 +1,10 @@
+import type { FoodMissStatus } from '@/api/generated'
 import { Button } from '@/components/ui/button'
 import { useTranslation } from 'react-i18next'
 import { FoodMissesTable } from './food-misses-table'
 import { FoodPagedList } from './food-paged-list'
 import type { FoodPrefill } from './food-schema'
 import { missStatuses } from './food-search'
-import type { FoodMissStatus } from './food-types'
 import { useFoodMisses, useIgnoreMiss, useReopenMiss } from './use-food-misses'
 
 type Props = {
@@ -39,14 +39,18 @@ export function FoodMissesTab({ status, onStatus, onAdd }: Props) {
           </Button>
         ))}
       </div>
-      <FoodPagedList list={list}>
+      <FoodPagedList
+        list={list}
+        rowsOf={(page) => page.misses}
+        totalLabel={(count) => t('foods.misses.total', { count })}
+      >
         {(rows) => (
           <FoodMissesTable
             rows={rows}
             status={status}
             onAdd={onAdd}
-            onIgnore={(id) => ignore.mutate(id)}
-            onReopen={(id) => reopen.mutate(id)}
+            onIgnore={(id) => ignore.mutate({ path: { miss_id: id } })}
+            onReopen={(id) => reopen.mutate({ path: { miss_id: id } })}
           />
         )}
       </FoodPagedList>

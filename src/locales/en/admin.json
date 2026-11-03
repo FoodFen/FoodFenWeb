@@ -385,6 +385,8 @@
     "description": "The food catalog the AI looks nutrition up in, and the foods it did not recognise.",
     "add": "Add food",
     "loadMore": "Load more",
+    "total_one": "{{count}} food",
+    "total_other": "{{count}} foods",
     "searchPlaceholder": "Food name or alias",
     "searchLabel": "Search foods",
     "tabs": {
@@ -481,7 +483,7 @@
       "macroRange": "Enter a number from 0 to 100",
       "macroSum": "Carbs, protein and fat cannot add up to more than 100 g",
       "servingLabel": "A serving name must be 1 to 40 characters",
-      "servingGrams": "Grams must be above 0 and at most 5000",
+      "servingGrams": "Grams must be a whole number from 1 to 5000",
       "servingsCount": "Add 1 to 10 servings",
       "servingDefault": "Choose exactly one default serving"
     },
@@ -525,6 +527,8 @@
       "archived": "Archived"
     },
     "misses": {
+      "total_one": "{{count}} name",
+      "total_other": "{{count}} names",
       "statusFilter": "Filter by status",
       "status": {
         "open": "Open",

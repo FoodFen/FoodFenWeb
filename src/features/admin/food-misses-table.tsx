@@ -1,3 +1,4 @@
+import type { FoodMissResponse, FoodMissStatus } from '@/api/generated'
 import { EmptyState } from '@/components/empty-state'
 import { Badge, badgeVariants } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -14,10 +15,9 @@ import { Link } from '@tanstack/react-router'
 import { Plus, RotateCcw, Sparkles, X } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import type { FoodPrefill } from './food-schema'
-import type { FoodMiss, FoodMissStatus } from './food-types'
 
 type Props = {
-  rows: FoodMiss[]
+  rows: FoodMissResponse[]
   status: FoodMissStatus
   onAdd: (prefill: FoodPrefill) => void
   onIgnore: (id: string) => void
@@ -25,7 +25,7 @@ type Props = {
 }
 
 /** The miss's text lands in the field of the language it was typed in. */
-const prefillOf = ({ id, name, language }: FoodMiss): FoodPrefill =>
+const prefillOf = ({ id, name, language }: FoodMissResponse): FoodPrefill =>
   language === 'vi' ? { missId: id, name } : { missId: id, nameEn: name }
 
 export function FoodMissesTable({ rows, status, onAdd, onIgnore, onReopen }: Props) {

@@ -1,3 +1,4 @@
+import type { AdminFoodResponse } from '@/api/generated'
 import { fieldProps } from '@/components/field-props'
 import { FormError, SubmitButton } from '@/components/form-parts'
 import { FormField } from '@/components/form-field'
@@ -21,12 +22,11 @@ import {
   type FoodValues,
 } from './food-schema'
 import { FoodServingsField } from './food-servings-field'
-import type { AdminFoodDetail } from './food-types'
 import { useSaveFood } from './use-foods'
 
 type Props = {
   /** The food being edited; `null` creates a new one. */
-  food: AdminFoodDetail | null
+  food: AdminFoodResponse | null
   prefill?: FoodPrefill
   onDone: () => void
 }

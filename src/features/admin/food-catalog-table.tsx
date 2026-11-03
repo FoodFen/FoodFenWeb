@@ -1,3 +1,4 @@
+import type { AdminFoodRowResponse } from '@/api/generated'
 import { EmptyState } from '@/components/empty-state'
 import { Badge } from '@/components/ui/badge'
 import {
@@ -11,10 +12,9 @@ import {
 import { formatDate, formatNumber } from '@/lib/format'
 import { BadgeCheck, SearchX, UtensilsCrossed } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
-import type { AdminFood } from './food-types'
 
 type Props = {
-  rows: AdminFood[]
+  rows: AdminFoodRowResponse[]
   /** A search or filter is active, so an empty list means no match rather than an empty catalog. */
   filtered: boolean
   onOpen: (slug: string) => void

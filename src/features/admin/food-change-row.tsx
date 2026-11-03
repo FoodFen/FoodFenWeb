@@ -1,8 +1,8 @@
+import type { FoodChangeResponse } from '@/api/generated'
 import { formatDateTime } from '@/lib/format'
 import type { TFunction } from 'i18next'
 import { useTranslation } from 'react-i18next'
-import { diffFood, isFoodField } from './food-diff'
-import type { FoodChange } from './food-types'
+import { diffFood } from './food-diff'
 
 const isServing = (value: unknown): value is { label: string; grams: number } =>
   typeof value === 'object' && value !== null && 'label' in value && 'grams' in value
@@ -20,7 +20,7 @@ function formatValue(value: unknown, t: TFunction<'admin'>) {
   return String(value)
 }
 
-export function FoodChangeRow({ change }: { change: FoodChange }) {
+export function FoodChangeRow({ change }: { change: FoodChangeResponse }) {
   const { t } = useTranslation('admin')
   const diffs = change.action === 'update' ? diffFood(change.before, change.after) : []
 
@@ -42,7 +42,7 @@ export function FoodChangeRow({ change }: { change: FoodChange }) {
         <ul className="text-muted-foreground space-y-0.5">
           {diffs.map(({ field, before, after }) => (
             <li key={field}>
-              {isFoodField(field) ? t(`foods.fields.${field}`) : field}: {formatValue(before, t)}
+              {t(`foods.fields.${field}`)}: {formatValue(before, t)}
               {' → '}
               {formatValue(after, t)}
             </li>

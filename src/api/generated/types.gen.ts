@@ -86,6 +86,152 @@ export type AdPackageResponse = {
 };
 
 /**
+ * AdminFoodListResponse
+ */
+export type AdminFoodListResponse = {
+    /**
+     * Foods
+     */
+    foods: Array<AdminFoodRowResponse>;
+    /**
+     * Total
+     */
+    total: number;
+    /**
+     * Nextcursor
+     */
+    nextCursor: string | null;
+};
+
+/**
+ * AdminFoodResponse
+ */
+export type AdminFoodResponse = {
+    /**
+     * Slug
+     */
+    slug: string;
+    /**
+     * Name
+     */
+    name: string;
+    /**
+     * Nameen
+     */
+    nameEn: string | null;
+    category: FoodCategory;
+    sourceKind: FoodSourceKind;
+    /**
+     * Sourceref
+     */
+    sourceRef: string | null;
+    /**
+     * Verified
+     */
+    verified: boolean;
+    /**
+     * Kcal
+     */
+    kcal: number;
+    /**
+     * Carbsg
+     */
+    carbsG: number;
+    /**
+     * Proteing
+     */
+    proteinG: number;
+    /**
+     * Fatg
+     */
+    fatG: number;
+    /**
+     * Fiberg
+     */
+    fiberG: number | null;
+    /**
+     * Archived
+     */
+    archived: boolean;
+    /**
+     * Updatedat
+     */
+    updatedAt: string;
+    /**
+     * Aliases
+     */
+    aliases: Array<string>;
+    /**
+     * Servings
+     */
+    servings: Array<FoodServing>;
+    /**
+     * Createdat
+     */
+    createdAt: string;
+    /**
+     * Updatedbyemail
+     */
+    updatedByEmail: string | null;
+};
+
+/**
+ * AdminFoodRowResponse
+ */
+export type AdminFoodRowResponse = {
+    /**
+     * Slug
+     */
+    slug: string;
+    /**
+     * Name
+     */
+    name: string;
+    /**
+     * Nameen
+     */
+    nameEn: string | null;
+    category: FoodCategory;
+    sourceKind: FoodSourceKind;
+    /**
+     * Sourceref
+     */
+    sourceRef: string | null;
+    /**
+     * Verified
+     */
+    verified: boolean;
+    /**
+     * Kcal
+     */
+    kcal: number;
+    /**
+     * Carbsg
+     */
+    carbsG: number;
+    /**
+     * Proteing
+     */
+    proteinG: number;
+    /**
+     * Fatg
+     */
+    fatG: number;
+    /**
+     * Fiberg
+     */
+    fiberG: number | null;
+    /**
+     * Archived
+     */
+    archived: boolean;
+    /**
+     * Updatedat
+     */
+    updatedAt: string;
+};
+
+/**
  * AdminMascotResponse
  */
 export type AdminMascotResponse = {
@@ -880,6 +1026,55 @@ export type CreateFoodEntryRequest = {
 };
 
 /**
+ * CreateFoodRequest
+ *
+ * The entity enforces every limit (422); the wire only fixes types.
+ */
+export type CreateFoodRequest = {
+    /**
+     * Name
+     */
+    name: string;
+    /**
+     * Nameen
+     */
+    nameEn?: string | null;
+    /**
+     * Aliases
+     */
+    aliases?: Array<string>;
+    category: FoodCategory;
+    /**
+     * Kcal
+     */
+    kcal: number;
+    /**
+     * Carbsg
+     */
+    carbsG: number;
+    /**
+     * Proteing
+     */
+    proteinG: number;
+    /**
+     * Fatg
+     */
+    fatG: number;
+    /**
+     * Fiberg
+     */
+    fiberG?: number | null;
+    /**
+     * Servings
+     */
+    servings: Array<FoodServing>;
+    /**
+     * Missid
+     */
+    missId?: string | null;
+};
+
+/**
  * CreateIngredientRequest
  */
 export type CreateIngredientRequest = {
@@ -1243,6 +1438,20 @@ export type EquipMascotResponse = {
 };
 
 /**
+ * ExistingFood
+ */
+export type ExistingFood = {
+    /**
+     * Slug
+     */
+    slug: string;
+    /**
+     * Name
+     */
+    name: string;
+};
+
+/**
  * FoodAnalysisResponse
  */
 export type FoodAnalysisResponse = {
@@ -1258,6 +1467,37 @@ export type FoodAnalysisResponse = {
      * Imageurl
      */
     imageUrl: string | null;
+};
+
+/**
+ * FoodCategory
+ */
+export type FoodCategory = 'an-vat' | 'banh-mi' | 'bun-tron' | 'che-trang-mieng' | 'chien-nuong' | 'com' | 'do-uong' | 'mon-man' | 'mon-nuoc' | 'nguyen-lieu' | 'rau-chay' | 'trai-cay';
+
+/**
+ * FoodChangeAction
+ */
+export type FoodChangeAction = 'create' | 'update' | 'archive' | 'unarchive';
+
+/**
+ * FoodChangeResponse
+ */
+export type FoodChangeResponse = {
+    /**
+     * Id
+     */
+    id: string;
+    action: FoodChangeAction;
+    /**
+     * Adminemail
+     */
+    adminEmail: string | null;
+    /**
+     * Createdat
+     */
+    createdAt: string;
+    before: FoodSnapshot | null;
+    after: FoodSnapshot;
 };
 
 /**
@@ -1316,6 +1556,144 @@ export type FoodEntryResponse = {
      */
     ingredients: Array<IngredientResponse>;
 };
+
+/**
+ * FoodMissListResponse
+ */
+export type FoodMissListResponse = {
+    /**
+     * Misses
+     */
+    misses: Array<FoodMissResponse>;
+    /**
+     * Total
+     */
+    total: number;
+    /**
+     * Nextcursor
+     */
+    nextCursor: string | null;
+};
+
+/**
+ * FoodMissResponse
+ */
+export type FoodMissResponse = {
+    /**
+     * Id
+     */
+    id: string;
+    /**
+     * Key
+     */
+    key: string;
+    /**
+     * Name
+     */
+    name: string;
+    /**
+     * Language
+     */
+    language: string;
+    /**
+     * Count
+     */
+    count: number;
+    /**
+     * Firstseenat
+     */
+    firstSeenAt: string;
+    /**
+     * Lastseenat
+     */
+    lastSeenAt: string;
+    status: FoodMissStatus;
+    existingFood: ExistingFood | null;
+};
+
+/**
+ * FoodMissStatus
+ *
+ * An AI-unmatched food name: ``open`` until an admin ignores it or adds the food (``resolved``).
+ */
+export type FoodMissStatus = 'open' | 'ignored' | 'resolved';
+
+/**
+ * FoodServing
+ */
+export type FoodServing = {
+    /**
+     * Label
+     */
+    label: string;
+    /**
+     * Grams
+     */
+    grams: number;
+    /**
+     * Default
+     */
+    default: boolean;
+};
+
+/**
+ * FoodSnapshot
+ */
+export type FoodSnapshot = {
+    /**
+     * Name
+     */
+    name: string;
+    /**
+     * Nameen
+     */
+    nameEn: string | null;
+    /**
+     * Aliases
+     */
+    aliases: Array<string>;
+    category: FoodCategory;
+    /**
+     * Kcal
+     */
+    kcal: number;
+    /**
+     * Carbsg
+     */
+    carbsG: number;
+    /**
+     * Proteing
+     */
+    proteinG: number;
+    /**
+     * Fatg
+     */
+    fatG: number;
+    /**
+     * Fiberg
+     */
+    fiberG: number | null;
+    /**
+     * Servings
+     */
+    servings: Array<FoodServing>;
+    sourceKind: FoodSourceKind;
+    /**
+     * Sourceref
+     */
+    sourceRef: string | null;
+    /**
+     * Archived
+     */
+    archived: boolean;
+};
+
+/**
+ * FoodSourceKind
+ *
+ * Where a catalog food's numbers come from. `legacy` = unverified (no source reference).
+ */
+export type FoodSourceKind = 'nin' | 'usda' | 'recipe' | 'label' | 'team' | 'legacy';
 
 /**
  * Gender
@@ -1420,6 +1798,23 @@ export type IngredientSuggestionResponse = {
      * Confidence
      */
     confidence: number;
+    /**
+     * Catalogfoodid
+     */
+    catalogFoodId: string | null;
+    /**
+     * Catalogname
+     */
+    catalogName: string | null;
+    /**
+     * Verified
+     */
+    verified: boolean;
+    /**
+     * Sourceref
+     */
+    sourceRef: string | null;
+    per100g: Per100gResponse | null;
 };
 
 /**
@@ -1700,6 +2095,32 @@ export type PaymentResponse = {
  * PaymentStatus
  */
 export type PaymentStatus = 'pending' | 'paid' | 'cancelled' | 'expired' | 'failed';
+
+/**
+ * Per100gResponse
+ */
+export type Per100gResponse = {
+    /**
+     * Kcal
+     */
+    kcal: number;
+    /**
+     * Carbsg
+     */
+    carbsG: number;
+    /**
+     * Proteing
+     */
+    proteinG: number;
+    /**
+     * Fatg
+     */
+    fatG: number;
+    /**
+     * Fiberg
+     */
+    fiberG: number | null;
+};
 
 /**
  * PlanResponse
@@ -2639,6 +3060,52 @@ export type UpdateFoodEntryRequest = {
      * Loggedon
      */
     loggedOn?: string | null;
+};
+
+/**
+ * UpdateFoodRequest
+ *
+ * Partial: an absent (or null) field is left as is. ``name_en`` and ``fiber_g`` are the exception: an
+ * explicit ``null`` clears them.
+ */
+export type UpdateFoodRequest = {
+    /**
+     * Name
+     */
+    name?: string | null;
+    /**
+     * Nameen
+     */
+    nameEn?: string | null;
+    /**
+     * Aliases
+     */
+    aliases?: Array<string> | null;
+    category?: FoodCategory | null;
+    /**
+     * Kcal
+     */
+    kcal?: number | null;
+    /**
+     * Carbsg
+     */
+    carbsG?: number | null;
+    /**
+     * Proteing
+     */
+    proteinG?: number | null;
+    /**
+     * Fatg
+     */
+    fatG?: number | null;
+    /**
+     * Fiberg
+     */
+    fiberG?: number | null;
+    /**
+     * Servings
+     */
+    servings?: Array<FoodServing> | null;
 };
 
 /**
@@ -5191,3 +5658,325 @@ export type UploadImageAdminImagesPostResponses = {
 };
 
 export type UploadImageAdminImagesPostResponse = UploadImageAdminImagesPostResponses[keyof UploadImageAdminImagesPostResponses];
+
+export type ListFoodsAdminFoodsGetData = {
+    body?: never;
+    path?: never;
+    query?: {
+        /**
+         * Q
+         */
+        q?: string | null;
+        /**
+         * Category
+         */
+        category?: FoodCategory | null;
+        /**
+         * Verified
+         */
+        verified?: boolean | null;
+        /**
+         * Archived
+         */
+        archived?: boolean;
+        /**
+         * Cursor
+         */
+        cursor?: string | null;
+        /**
+         * Limit
+         */
+        limit?: number;
+    };
+    url: '/admin/foods';
+};
+
+export type ListFoodsAdminFoodsGetErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type ListFoodsAdminFoodsGetError = ListFoodsAdminFoodsGetErrors[keyof ListFoodsAdminFoodsGetErrors];
+
+export type ListFoodsAdminFoodsGetResponses = {
+    /**
+     * Successful Response
+     */
+    200: AdminFoodListResponse;
+};
+
+export type ListFoodsAdminFoodsGetResponse = ListFoodsAdminFoodsGetResponses[keyof ListFoodsAdminFoodsGetResponses];
+
+export type CreateFoodAdminFoodsPostData = {
+    body: CreateFoodRequest;
+    path?: never;
+    query?: never;
+    url: '/admin/foods';
+};
+
+export type CreateFoodAdminFoodsPostErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type CreateFoodAdminFoodsPostError = CreateFoodAdminFoodsPostErrors[keyof CreateFoodAdminFoodsPostErrors];
+
+export type CreateFoodAdminFoodsPostResponses = {
+    /**
+     * Successful Response
+     */
+    201: AdminFoodResponse;
+};
+
+export type CreateFoodAdminFoodsPostResponse = CreateFoodAdminFoodsPostResponses[keyof CreateFoodAdminFoodsPostResponses];
+
+export type GetFoodAdminFoodsSlugGetData = {
+    body?: never;
+    path: {
+        /**
+         * Slug
+         */
+        slug: string;
+    };
+    query?: never;
+    url: '/admin/foods/{slug}';
+};
+
+export type GetFoodAdminFoodsSlugGetErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type GetFoodAdminFoodsSlugGetError = GetFoodAdminFoodsSlugGetErrors[keyof GetFoodAdminFoodsSlugGetErrors];
+
+export type GetFoodAdminFoodsSlugGetResponses = {
+    /**
+     * Successful Response
+     */
+    200: AdminFoodResponse;
+};
+
+export type GetFoodAdminFoodsSlugGetResponse = GetFoodAdminFoodsSlugGetResponses[keyof GetFoodAdminFoodsSlugGetResponses];
+
+export type UpdateFoodAdminFoodsSlugPatchData = {
+    body: UpdateFoodRequest;
+    path: {
+        /**
+         * Slug
+         */
+        slug: string;
+    };
+    query?: never;
+    url: '/admin/foods/{slug}';
+};
+
+export type UpdateFoodAdminFoodsSlugPatchErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type UpdateFoodAdminFoodsSlugPatchError = UpdateFoodAdminFoodsSlugPatchErrors[keyof UpdateFoodAdminFoodsSlugPatchErrors];
+
+export type UpdateFoodAdminFoodsSlugPatchResponses = {
+    /**
+     * Successful Response
+     */
+    200: AdminFoodResponse;
+};
+
+export type UpdateFoodAdminFoodsSlugPatchResponse = UpdateFoodAdminFoodsSlugPatchResponses[keyof UpdateFoodAdminFoodsSlugPatchResponses];
+
+export type ArchiveFoodAdminFoodsSlugArchivePostData = {
+    body?: never;
+    path: {
+        /**
+         * Slug
+         */
+        slug: string;
+    };
+    query?: never;
+    url: '/admin/foods/{slug}/archive';
+};
+
+export type ArchiveFoodAdminFoodsSlugArchivePostErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type ArchiveFoodAdminFoodsSlugArchivePostError = ArchiveFoodAdminFoodsSlugArchivePostErrors[keyof ArchiveFoodAdminFoodsSlugArchivePostErrors];
+
+export type ArchiveFoodAdminFoodsSlugArchivePostResponses = {
+    /**
+     * Successful Response
+     */
+    200: AdminFoodResponse;
+};
+
+export type ArchiveFoodAdminFoodsSlugArchivePostResponse = ArchiveFoodAdminFoodsSlugArchivePostResponses[keyof ArchiveFoodAdminFoodsSlugArchivePostResponses];
+
+export type UnarchiveFoodAdminFoodsSlugUnarchivePostData = {
+    body?: never;
+    path: {
+        /**
+         * Slug
+         */
+        slug: string;
+    };
+    query?: never;
+    url: '/admin/foods/{slug}/unarchive';
+};
+
+export type UnarchiveFoodAdminFoodsSlugUnarchivePostErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type UnarchiveFoodAdminFoodsSlugUnarchivePostError = UnarchiveFoodAdminFoodsSlugUnarchivePostErrors[keyof UnarchiveFoodAdminFoodsSlugUnarchivePostErrors];
+
+export type UnarchiveFoodAdminFoodsSlugUnarchivePostResponses = {
+    /**
+     * Successful Response
+     */
+    200: AdminFoodResponse;
+};
+
+export type UnarchiveFoodAdminFoodsSlugUnarchivePostResponse = UnarchiveFoodAdminFoodsSlugUnarchivePostResponses[keyof UnarchiveFoodAdminFoodsSlugUnarchivePostResponses];
+
+export type ListFoodChangesAdminFoodsSlugChangesGetData = {
+    body?: never;
+    path: {
+        /**
+         * Slug
+         */
+        slug: string;
+    };
+    query?: never;
+    url: '/admin/foods/{slug}/changes';
+};
+
+export type ListFoodChangesAdminFoodsSlugChangesGetErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type ListFoodChangesAdminFoodsSlugChangesGetError = ListFoodChangesAdminFoodsSlugChangesGetErrors[keyof ListFoodChangesAdminFoodsSlugChangesGetErrors];
+
+export type ListFoodChangesAdminFoodsSlugChangesGetResponses = {
+    /**
+     * Response List Food Changes Admin Foods  Slug  Changes Get
+     *
+     * Successful Response
+     */
+    200: Array<FoodChangeResponse>;
+};
+
+export type ListFoodChangesAdminFoodsSlugChangesGetResponse = ListFoodChangesAdminFoodsSlugChangesGetResponses[keyof ListFoodChangesAdminFoodsSlugChangesGetResponses];
+
+export type ListFoodMissesAdminFoodMissesGetData = {
+    body?: never;
+    path?: never;
+    query?: {
+        status?: FoodMissStatus;
+        /**
+         * Cursor
+         */
+        cursor?: string | null;
+        /**
+         * Limit
+         */
+        limit?: number;
+    };
+    url: '/admin/food-misses';
+};
+
+export type ListFoodMissesAdminFoodMissesGetErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type ListFoodMissesAdminFoodMissesGetError = ListFoodMissesAdminFoodMissesGetErrors[keyof ListFoodMissesAdminFoodMissesGetErrors];
+
+export type ListFoodMissesAdminFoodMissesGetResponses = {
+    /**
+     * Successful Response
+     */
+    200: FoodMissListResponse;
+};
+
+export type ListFoodMissesAdminFoodMissesGetResponse = ListFoodMissesAdminFoodMissesGetResponses[keyof ListFoodMissesAdminFoodMissesGetResponses];
+
+export type IgnoreFoodMissAdminFoodMissesMissIdIgnorePostData = {
+    body?: never;
+    path: {
+        /**
+         * Miss Id
+         */
+        miss_id: string;
+    };
+    query?: never;
+    url: '/admin/food-misses/{miss_id}/ignore';
+};
+
+export type IgnoreFoodMissAdminFoodMissesMissIdIgnorePostErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type IgnoreFoodMissAdminFoodMissesMissIdIgnorePostError = IgnoreFoodMissAdminFoodMissesMissIdIgnorePostErrors[keyof IgnoreFoodMissAdminFoodMissesMissIdIgnorePostErrors];
+
+export type IgnoreFoodMissAdminFoodMissesMissIdIgnorePostResponses = {
+    /**
+     * Successful Response
+     */
+    200: FoodMissResponse;
+};
+
+export type IgnoreFoodMissAdminFoodMissesMissIdIgnorePostResponse = IgnoreFoodMissAdminFoodMissesMissIdIgnorePostResponses[keyof IgnoreFoodMissAdminFoodMissesMissIdIgnorePostResponses];
+
+export type ReopenFoodMissAdminFoodMissesMissIdReopenPostData = {
+    body?: never;
+    path: {
+        /**
+         * Miss Id
+         */
+        miss_id: string;
+    };
+    query?: never;
+    url: '/admin/food-misses/{miss_id}/reopen';
+};
+
+export type ReopenFoodMissAdminFoodMissesMissIdReopenPostErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type ReopenFoodMissAdminFoodMissesMissIdReopenPostError = ReopenFoodMissAdminFoodMissesMissIdReopenPostErrors[keyof ReopenFoodMissAdminFoodMissesMissIdReopenPostErrors];
+
+export type ReopenFoodMissAdminFoodMissesMissIdReopenPostResponses = {
+    /**
+     * Successful Response
+     */
+    200: FoodMissResponse;
+};
+
+export type ReopenFoodMissAdminFoodMissesMissIdReopenPostResponse = ReopenFoodMissAdminFoodMissesMissIdReopenPostResponses[keyof ReopenFoodMissAdminFoodMissesMissIdReopenPostResponses];

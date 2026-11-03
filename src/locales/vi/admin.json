@@ -375,6 +375,7 @@
     "description": "Danh mục món ăn mà AI dùng để tra dinh dưỡng, và những món AI chưa nhận ra.",
     "add": "Thêm món",
     "loadMore": "Tải thêm",
+    "total_other": "{{count}} món",
     "searchPlaceholder": "Tên món hoặc tên gọi khác",
     "searchLabel": "Tìm món",
     "tabs": {
@@ -471,7 +472,7 @@
       "macroRange": "Nhập số từ 0 đến 100",
       "macroSum": "Tinh bột, đạm và béo cộng lại không được quá 100 g",
       "servingLabel": "Tên khẩu phần dài từ 1 đến 40 ký tự",
-      "servingGrams": "Số gam lớn hơn 0 và tối đa 5000",
+      "servingGrams": "Số gam là số nguyên từ 1 đến 5000",
       "servingsCount": "Cần từ 1 đến 10 khẩu phần",
       "servingDefault": "Chọn đúng một khẩu phần mặc định"
     },
@@ -515,6 +516,7 @@
       "archived": "Lưu trữ"
     },
     "misses": {
+      "total_other": "{{count}} tên",
       "statusFilter": "Lọc theo trạng thái",
       "status": {
         "open": "Chưa xử lý",

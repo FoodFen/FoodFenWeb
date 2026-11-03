@@ -21,6 +21,7 @@ test('an empty fiber is not tracked (null) and a typed 0 stays 0', () => {
 
 test('an empty English name becomes null and decimals accept a comma', () => {
   const body = toFoodBody(valid)
+  expect(body.servings).toEqual([{ label: '100 g', grams: 100, default: true }])
   expect(body.nameEn).toBeNull()
   expect(body.carbsG).toBe(12.5)
 })
@@ -41,7 +42,7 @@ test('kcal is a whole number from 0 to 900', () => {
   expect(parse({ kcal: '' }).success).toBe(false)
 })
 
-test('servings need exactly one default and 1 to 10 rows of positive grams', () => {
+test('servings need exactly one default and 1 to 10 rows of whole grams from 1 to 5000', () => {
   const row = { label: '1 bát', grams: '250', default: false }
   expect(
     message({
@@ -59,6 +60,10 @@ test('servings need exactly one default and 1 to 10 rows of positive grams', () 
   expect(message({ servings: [{ ...row, default: true, grams: '5001' }] })).toBe(
     'admin:foods.validation.servingGrams',
   )
+  expect(message({ servings: [{ ...row, default: true, grams: '12.5' }] })).toBe(
+    'admin:foods.validation.servingGrams',
+  )
+  expect(parse({ servings: [{ ...row, default: true, grams: '5000' }] }).success).toBe(true)
   const eleven = Array.from({ length: 11 }, (_, i) => ({ ...row, default: i === 0 }))
   expect(message({ servings: eleven })).toBe('admin:foods.validation.servingsCount')
 })

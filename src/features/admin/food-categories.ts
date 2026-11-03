@@ -1,4 +1,4 @@
-import type { FoodCategory } from './food-types'
+import type { FoodCategory } from '@/api/generated'
 
 export const foodCategories = [
   'an-vat',

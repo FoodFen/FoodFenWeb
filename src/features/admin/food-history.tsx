@@ -28,11 +28,11 @@ export function FoodHistory({ slug }: { slug: string }) {
           <Skeleton className="h-24 w-full" aria-busy />
         ) : changes.isError ? (
           <QueryError error={changes.error} onRetry={() => void changes.refetch()} />
-        ) : changes.data.items.length === 0 ? (
+        ) : changes.data.length === 0 ? (
           <p className="text-muted-foreground py-3 text-sm">{t('foods.history.none')}</p>
         ) : (
           <ul className="divide-y">
-            {changes.data.items.map((change) => (
+            {changes.data.map((change) => (
               <FoodChangeRow key={change.id} change={change} />
             ))}
           </ul>
