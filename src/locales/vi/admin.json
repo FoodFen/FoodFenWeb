@@ -207,7 +207,13 @@
     "mascotUpdated": "Đã cập nhật linh vật",
     "mascotShown": "Đã hiển thị linh vật",
     "mascotHidden": "Đã ẩn linh vật",
-    "mascotDeleted": "Đã xóa linh vật"
+    "mascotDeleted": "Đã xóa linh vật",
+    "foodCreated": "Đã thêm món",
+    "foodUpdated": "Đã cập nhật món",
+    "foodArchived": "Đã lưu trữ món",
+    "foodUnarchived": "Đã bỏ lưu trữ món",
+    "missIgnored": "Đã bỏ qua món này",
+    "missReopened": "Đã mở lại món này"
   },
   "payments": {
     "title": "Giao dịch",
@@ -362,6 +368,176 @@
       "mascot_in_use": "Đã có người mua hoặc đang dùng linh vật này. Hãy ẩn thay vì xóa.",
       "mascot_default_locked": "Linh vật mặc định luôn hiển thị, miễn phí và không xóa được",
       "mascot_missing_idle_image": "Linh vật cần ảnh idle trước khi hiển thị"
+    }
+  },
+  "foods": {
+    "title": "Thức ăn",
+    "description": "Danh mục món ăn mà AI dùng để tra dinh dưỡng, và những món AI chưa nhận ra.",
+    "add": "Thêm món",
+    "loadMore": "Tải thêm",
+    "searchPlaceholder": "Tên món hoặc tên gọi khác",
+    "searchLabel": "Tìm món",
+    "tabs": {
+      "catalog": "Danh mục",
+      "misses": "AI chưa nhận ra"
+    },
+    "filters": {
+      "category": "Nhóm",
+      "source": "Nguồn",
+      "any": "Tất cả",
+      "archived": "Xem món đã lưu trữ",
+      "verified": {
+        "yes": "Có nguồn",
+        "no": "Chưa có nguồn"
+      }
+    },
+    "columns": {
+      "name": "Món",
+      "category": "Nhóm",
+      "kcal": "kcal/100 g",
+      "source": "Nguồn",
+      "updated": "Cập nhật"
+    },
+    "empty": {
+      "title": "Chưa có món nào",
+      "hint": "Bấm Thêm món để tạo món đầu tiên."
+    },
+    "noMatch": {
+      "title": "Không có món phù hợp",
+      "hint": "Thử đổi từ khóa hoặc bỏ bớt bộ lọc."
+    },
+    "categories": {
+      "an-vat": "Ăn vặt",
+      "banh-mi": "Bánh mì",
+      "bun-tron": "Bún trộn",
+      "che-trang-mieng": "Chè & tráng miệng",
+      "chien-nuong": "Chiên & nướng",
+      "com": "Cơm",
+      "do-uong": "Đồ uống",
+      "mon-man": "Món mặn",
+      "mon-nuoc": "Món nước",
+      "nguyen-lieu": "Nguyên liệu",
+      "rau-chay": "Rau & món chay",
+      "trai-cay": "Trái cây"
+    },
+    "sources": {
+      "nin": "Viện Dinh dưỡng (NIN)",
+      "usda": "USDA",
+      "recipe": "Công thức",
+      "label": "Nhãn bao bì",
+      "team": "FoodFen team",
+      "legacy": "Chưa có nguồn"
+    },
+    "archivedBadge": "Đã lưu trữ",
+    "dialog": {
+      "createTitle": "Thêm món",
+      "createDescription": "Số liệu dinh dưỡng tính trên 100 g.",
+      "editTitle": "Sửa món",
+      "editDescription": "Số liệu dinh dưỡng tính trên 100 g.",
+      "source": "Nguồn: {{source}}",
+      "updatedBy": "sửa lần cuối bởi {{email}}"
+    },
+    "form": {
+      "name": "Tên món",
+      "nameEn": "Tên tiếng Anh",
+      "aliases": "Tên gọi khác",
+      "aliasesHint": "Nhấn Enter hoặc dấu phẩy để thêm, tối đa {{max}} tên.",
+      "removeAlias": "Xóa tên {{alias}}",
+      "category": "Nhóm",
+      "kcal": "Calo (kcal)",
+      "carbsG": "Tinh bột (g)",
+      "proteinG": "Đạm (g)",
+      "fatG": "Béo (g)",
+      "fiberG": "Chất xơ (g)",
+      "fiberHint": "Để trống nếu chưa theo dõi chất xơ.",
+      "servings": "Khẩu phần",
+      "servingDefault": "Khẩu phần mặc định",
+      "servingLabelNamed": "Tên khẩu phần {{n}}",
+      "servingGramsNamed": "Số gam của khẩu phần {{n}}",
+      "servingDefaultNamed": "Đặt khẩu phần {{n}} làm mặc định",
+      "removeServing": "Xóa khẩu phần {{n}}",
+      "addServing": "Thêm khẩu phần",
+      "sourceNotice": "Đổi bất kỳ số liệu nào sẽ chuyển nguồn của món sang FoodFen team.",
+      "save": "Lưu"
+    },
+    "validation": {
+      "nameLength": "Tên dài từ 1 đến 120 ký tự",
+      "nameEnLength": "Tên tiếng Anh tối đa 120 ký tự",
+      "nameTaken": "Đã có món khác dùng tên này",
+      "aliasLength": "Mỗi tên gọi khác dài từ 1 đến 80 ký tự",
+      "aliasesMax": "Tối đa 20 tên gọi khác",
+      "category": "Chọn nhóm cho món",
+      "kcal": "Calo là số nguyên từ 0 đến 900",
+      "macroRange": "Nhập số từ 0 đến 100",
+      "macroSum": "Tinh bột, đạm và béo cộng lại không được quá 100 g",
+      "servingLabel": "Tên khẩu phần dài từ 1 đến 40 ký tự",
+      "servingGrams": "Số gam lớn hơn 0 và tối đa 5000",
+      "servingsCount": "Cần từ 1 đến 10 khẩu phần",
+      "servingDefault": "Chọn đúng một khẩu phần mặc định"
+    },
+    "archive": {
+      "action": "Lưu trữ",
+      "title": "Lưu trữ {{name}}?",
+      "body": "Món sẽ không còn được AI gợi ý, nhưng vẫn nằm trong danh mục và có thể bỏ lưu trữ sau."
+    },
+    "unarchive": {
+      "action": "Bỏ lưu trữ",
+      "title": "Bỏ lưu trữ {{name}}?",
+      "body": "Món sẽ được AI gợi ý trở lại."
+    },
+    "history": {
+      "title": "Lịch sử",
+      "none": "Chưa có thay đổi nào.",
+      "empty": "trống",
+      "yes": "có",
+      "no": "không",
+      "deletedAdmin": "Quản trị viên đã bị xoá"
+    },
+    "actions": {
+      "create": "đã thêm món",
+      "update": "đã cập nhật",
+      "archive": "đã lưu trữ",
+      "unarchive": "đã bỏ lưu trữ"
+    },
+    "fields": {
+      "name": "Tên",
+      "nameEn": "Tên tiếng Anh",
+      "aliases": "Tên gọi khác",
+      "category": "Nhóm",
+      "kcal": "Calo",
+      "carbsG": "Tinh bột",
+      "proteinG": "Đạm",
+      "fatG": "Béo",
+      "fiberG": "Chất xơ",
+      "servings": "Khẩu phần",
+      "sourceKind": "Nguồn",
+      "sourceRef": "Mã nguồn",
+      "archived": "Lưu trữ"
+    },
+    "misses": {
+      "statusFilter": "Lọc theo trạng thái",
+      "status": {
+        "open": "Chưa xử lý",
+        "ignored": "Đã bỏ qua",
+        "resolved": "Đã thêm"
+      },
+      "columns": {
+        "name": "Món AI không nhận ra",
+        "count": "Số lần",
+        "lastSeen": "Lần cuối"
+      },
+      "existing": "Đã có trong danh mục: {{name}}",
+      "addNamed": "Thêm món {{name}}",
+      "ignore": "Bỏ qua",
+      "ignoreNamed": "Bỏ qua {{name}}",
+      "reopen": "Mở lại",
+      "reopenNamed": "Mở lại {{name}}",
+      "empty": {
+        "title": "Không có món nào",
+        "open": "AI đã nhận ra hết những gì người dùng nhập.",
+        "ignored": "Chưa bỏ qua món nào.",
+        "resolved": "Chưa có món nào được thêm từ danh sách này."
+      }
     }
   }
 }

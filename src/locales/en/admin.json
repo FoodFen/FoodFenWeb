@@ -214,7 +214,13 @@
     "mascotUpdated": "Mascot updated",
     "mascotShown": "Mascot shown",
     "mascotHidden": "Mascot hidden",
-    "mascotDeleted": "Mascot deleted"
+    "mascotDeleted": "Mascot deleted",
+    "foodCreated": "Food added",
+    "foodUpdated": "Food updated",
+    "foodArchived": "Food archived",
+    "foodUnarchived": "Food unarchived",
+    "missIgnored": "Ignored",
+    "missReopened": "Reopened"
   },
   "payments": {
     "title": "Transactions",
@@ -372,6 +378,176 @@
       "mascot_in_use": "Someone owns or uses this mascot. Hide it instead of deleting.",
       "mascot_default_locked": "The default mascot is always shown, free and cannot be deleted",
       "mascot_missing_idle_image": "A mascot needs an idle image before it can be shown"
+    }
+  },
+  "foods": {
+    "title": "Foods",
+    "description": "The food catalog the AI looks nutrition up in, and the foods it did not recognise.",
+    "add": "Add food",
+    "loadMore": "Load more",
+    "searchPlaceholder": "Food name or alias",
+    "searchLabel": "Search foods",
+    "tabs": {
+      "catalog": "Catalog",
+      "misses": "Not recognised by AI"
+    },
+    "filters": {
+      "category": "Category",
+      "source": "Source",
+      "any": "All",
+      "archived": "Show archived foods",
+      "verified": {
+        "yes": "Has a source",
+        "no": "No source"
+      }
+    },
+    "columns": {
+      "name": "Food",
+      "category": "Category",
+      "kcal": "kcal/100 g",
+      "source": "Source",
+      "updated": "Updated"
+    },
+    "empty": {
+      "title": "No foods yet",
+      "hint": "Choose Add food to create the first one."
+    },
+    "noMatch": {
+      "title": "No matching foods",
+      "hint": "Try another keyword or remove a filter."
+    },
+    "categories": {
+      "an-vat": "Snacks",
+      "banh-mi": "Bánh mì",
+      "bun-tron": "Mixed noodles",
+      "che-trang-mieng": "Desserts",
+      "chien-nuong": "Fried & grilled",
+      "com": "Rice dishes",
+      "do-uong": "Drinks",
+      "mon-man": "Savoury dishes",
+      "mon-nuoc": "Noodle soups",
+      "nguyen-lieu": "Ingredients",
+      "rau-chay": "Vegetables & vegetarian",
+      "trai-cay": "Fruit"
+    },
+    "sources": {
+      "nin": "National Institute of Nutrition (NIN)",
+      "usda": "USDA",
+      "recipe": "Recipe",
+      "label": "Package label",
+      "team": "FoodFen team",
+      "legacy": "No source"
+    },
+    "archivedBadge": "Archived",
+    "dialog": {
+      "createTitle": "Add food",
+      "createDescription": "Nutrition values are per 100 g.",
+      "editTitle": "Edit food",
+      "editDescription": "Nutrition values are per 100 g.",
+      "source": "Source: {{source}}",
+      "updatedBy": "last edited by {{email}}"
+    },
+    "form": {
+      "name": "Name",
+      "nameEn": "English name",
+      "aliases": "Other names",
+      "aliasesHint": "Press Enter or a comma to add, up to {{max}} names.",
+      "removeAlias": "Remove {{alias}}",
+      "category": "Category",
+      "kcal": "Calories (kcal)",
+      "carbsG": "Carbs (g)",
+      "proteinG": "Protein (g)",
+      "fatG": "Fat (g)",
+      "fiberG": "Fiber (g)",
+      "fiberHint": "Leave empty if fiber is not tracked.",
+      "servings": "Servings",
+      "servingDefault": "Default serving",
+      "servingLabelNamed": "Name of serving {{n}}",
+      "servingGramsNamed": "Grams of serving {{n}}",
+      "servingDefaultNamed": "Make serving {{n}} the default",
+      "removeServing": "Remove serving {{n}}",
+      "addServing": "Add serving",
+      "sourceNotice": "Changing any value moves this food's source to FoodFen team.",
+      "save": "Save"
+    },
+    "validation": {
+      "nameLength": "The name must be 1 to 120 characters",
+      "nameEnLength": "The English name can be up to 120 characters",
+      "nameTaken": "Another food already uses this name",
+      "aliasLength": "Each alias must be 1 to 80 characters",
+      "aliasesMax": "Up to 20 aliases",
+      "category": "Choose a category",
+      "kcal": "Calories must be a whole number from 0 to 900",
+      "macroRange": "Enter a number from 0 to 100",
+      "macroSum": "Carbs, protein and fat cannot add up to more than 100 g",
+      "servingLabel": "A serving name must be 1 to 40 characters",
+      "servingGrams": "Grams must be above 0 and at most 5000",
+      "servingsCount": "Add 1 to 10 servings",
+      "servingDefault": "Choose exactly one default serving"
+    },
+    "archive": {
+      "action": "Archive",
+      "title": "Archive {{name}}?",
+      "body": "The AI will stop suggesting this food, but it stays in the catalog and can be unarchived later."
+    },
+    "unarchive": {
+      "action": "Unarchive",
+      "title": "Unarchive {{name}}?",
+      "body": "The AI will suggest this food again."
+    },
+    "history": {
+      "title": "History",
+      "none": "No changes yet.",
+      "empty": "empty",
+      "yes": "yes",
+      "no": "no",
+      "deletedAdmin": "Deleted admin"
+    },
+    "actions": {
+      "create": "created the food",
+      "update": "updated it",
+      "archive": "archived it",
+      "unarchive": "unarchived it"
+    },
+    "fields": {
+      "name": "Name",
+      "nameEn": "English name",
+      "aliases": "Other names",
+      "category": "Category",
+      "kcal": "Calories",
+      "carbsG": "Carbs",
+      "proteinG": "Protein",
+      "fatG": "Fat",
+      "fiberG": "Fiber",
+      "servings": "Servings",
+      "sourceKind": "Source",
+      "sourceRef": "Source reference",
+      "archived": "Archived"
+    },
+    "misses": {
+      "statusFilter": "Filter by status",
+      "status": {
+        "open": "Open",
+        "ignored": "Ignored",
+        "resolved": "Resolved"
+      },
+      "columns": {
+        "name": "Food the AI missed",
+        "count": "Times",
+        "lastSeen": "Last seen"
+      },
+      "existing": "Already in catalog: {{name}}",
+      "addNamed": "Add {{name}}",
+      "ignore": "Ignore",
+      "ignoreNamed": "Ignore {{name}}",
+      "reopen": "Reopen",
+      "reopenNamed": "Reopen {{name}}",
+      "empty": {
+        "title": "Nothing here",
+        "open": "The AI recognised everything people typed.",
+        "ignored": "Nothing has been ignored.",
+        "resolved": "No food has been added from this list yet."
+      }
     }
   }
 }

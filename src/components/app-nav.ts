@@ -1,5 +1,6 @@
 import type { ParseKeys } from 'i18next'
 import {
+  Apple,
   ChartColumn,
   Megaphone,
   ListChecks,
@@ -42,6 +43,7 @@ export const appNav: NavEntry[] = [
       { to: '/admin/users', label: 'users', icon: Users },
       { to: '/admin/content', label: 'content', icon: ListChecks },
       { to: '/admin/ad-packages', label: 'adPackages', icon: Megaphone },
+      { to: '/admin/foods', label: 'foods', icon: Apple },
       { to: '/admin/mascots', label: 'mascots', icon: PawPrint },
     ],
   },
