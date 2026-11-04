@@ -12,14 +12,22 @@ export function FoodArchiveButton({ food }: { food: AdminFoodResponse }) {
   const [open, setOpen] = useState(false)
   const archive = useArchiveFood()
   const unarchive = useUnarchiveFood()
-  const action = food.archived ? unarchive : archive
-  const key = food.archived ? 'unarchive' : 'archive'
+  // Frozen when the confirm opens, so the refetch after the request cannot turn it into the opposite action.
+  const [key, setKey] = useState<'archive' | 'unarchive'>('archive')
+  const action = key === 'unarchive' ? unarchive : archive
 
   return (
     <>
-      <Button variant="outline" className="h-11 px-4" onClick={() => setOpen(true)}>
+      <Button
+        variant="outline"
+        className="h-11 px-4"
+        onClick={() => {
+          setKey(food.archived ? 'unarchive' : 'archive')
+          setOpen(true)
+        }}
+      >
         {food.archived ? <ArchiveRestore aria-hidden /> : <Archive aria-hidden />}
-        {t(`foods.${key}.action`)}
+        {t(food.archived ? 'foods.unarchive.action' : 'foods.archive.action')}
       </Button>
       <ConfirmDialog
         open={open}

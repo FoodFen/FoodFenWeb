@@ -91,16 +91,25 @@ export function useSaveFood(editing: AdminFoodResponse | null) {
   }
 }
 
+/**
+ * Archive and unarchive do not wait for the refetch: their confirm closes when the request settles, and a
+ * refetch in between would flip `archived` under a dialog that is still open.
+ */
+function useRefreshInBackground() {
+  const refresh = useRefreshFoods()
+  return (food: AdminFoodResponse) => void refresh(food)
+}
+
 export const useArchiveFood = () =>
   useMutation({
     ...archiveFoodAdminFoodsSlugArchivePostMutation(),
-    onSuccess: useRefreshFoods(),
+    onSuccess: useRefreshInBackground(),
     meta: { success: 'admin:toast.foodArchived' },
   })
 
 export const useUnarchiveFood = () =>
   useMutation({
     ...unarchiveFoodAdminFoodsSlugUnarchivePostMutation(),
-    onSuccess: useRefreshFoods(),
+    onSuccess: useRefreshInBackground(),
     meta: { success: 'admin:toast.foodUnarchived' },
   })

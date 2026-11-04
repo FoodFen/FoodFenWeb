@@ -9,13 +9,14 @@ import { foodSchema } from './food-schema'
 const MAX = 20
 const aliasSchema = foodSchema.shape.aliases.element
 
-type Props = { value: string[]; onChange: (value: string[]) => void }
+type Props = { value: string[]; onChange: (value: string[]) => void; serverError?: string }
 
 /** Other names people type for the food: Enter or a comma turns the text into a removable chip. */
-export function FoodAliasesField({ value, onChange }: Props) {
+export function FoodAliasesField({ value, onChange, serverError }: Props) {
   const { t } = useTranslation('admin')
   const [text, setText] = useState('')
-  const [error, setError] = useState<string>()
+  const [typedError, setError] = useState<string>()
+  const error = typedError ?? serverError
   const hint = t('foods.form.aliasesHint', { max: MAX })
 
   const add = () => {

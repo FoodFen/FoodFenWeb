@@ -53,7 +53,7 @@ export function FoodForm({ food, prefill, onDone }: Props) {
       await save(values, prefill?.missId)
       onDone()
     } catch (error) {
-      setFormError(applyFoodError(error, setError))
+      setFormError(applyFoodError(error, setError, values.servings.length))
     }
   })
 
@@ -79,7 +79,13 @@ export function FoodForm({ food, prefill, onDone }: Props) {
         <Controller
           control={control}
           name="aliases"
-          render={({ field }) => <FoodAliasesField value={field.value} onChange={field.onChange} />}
+          render={({ field, fieldState }) => (
+            <FoodAliasesField
+              value={field.value}
+              onChange={field.onChange}
+              serverError={fieldState.error?.message}
+            />
+          )}
         />
         <FormField id="category" label={t('foods.form.category')} error={errors.category?.message}>
           <select

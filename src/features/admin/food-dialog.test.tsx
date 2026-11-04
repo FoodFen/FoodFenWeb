@@ -223,3 +223,52 @@ test('the history lists who changed what, once opened', async () => {
   expect(screen.queryByText(/^Tinh bột:/)).not.toBeInTheDocument()
   expect(screen.getByText('a@x.vn')).toBeInTheDocument()
 })
+
+test('the history shows the source and category by name, the source ref as is', async () => {
+  renderDialog()
+  await kcal()
+  listChanges.mockResolvedValueOnce({
+    data: [
+      {
+        id: 'c3',
+        adminEmail: 'a@x.vn',
+        action: 'update',
+        createdAt: '2026-10-11T09:00:00Z',
+        before: snapshot({ sourceKind: 'recipe', sourceRef: 'nin:1001', category: 'mon-nuoc' }),
+        after: snapshot({ sourceKind: 'team', sourceRef: 'team', category: 'com' }),
+      },
+    ],
+  } as never)
+
+  await userEvent.click(screen.getByRole('button', { name: 'Lịch sử' }))
+
+  expect(await screen.findByText('Nguồn: Công thức → FoodFen team')).toBeInTheDocument()
+  expect(screen.getByText('Món nước → Cơm', { exact: false })).toBeInTheDocument()
+  expect(screen.getByText(/nin:1001 → team/)).toBeInTheDocument()
+})
+
+test('nested 422 errors land on the servings row, the aliases and the form when they have no field', async () => {
+  const onClose = renderDialog()
+  const field = await kcal()
+
+  updateFood.mockRejectedValueOnce(
+    failure(422, {
+      message: 'validation failed',
+      errors: {
+        kcal: 'Calo sai',
+        'servings.0.grams': 'Gram sai',
+        'aliases.1': 'Tên gọi sai',
+        'servings.5.grams': 'Dòng lạ',
+      },
+    }),
+  )
+  await userEvent.clear(field)
+  await userEvent.type(field, '360')
+  await userEvent.click(screen.getByRole('button', { name: 'Lưu' }))
+
+  expect(await screen.findByText('Calo sai')).toBeInTheDocument()
+  expect(screen.getByText('Gram sai')).toBeInTheDocument()
+  expect(screen.getByText('Tên gọi sai')).toBeInTheDocument()
+  expect(screen.getByText(/Dòng lạ/)).toBeInTheDocument()
+  expect(onClose).not.toHaveBeenCalled()
+})

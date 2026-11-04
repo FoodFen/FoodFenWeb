@@ -1,4 +1,9 @@
-import type { FoodChangeResponse } from '@/api/generated'
+import type {
+  FoodCategory,
+  FoodChangeResponse,
+  FoodSnapshot,
+  FoodSourceKind,
+} from '@/api/generated'
 import { formatDateTime } from '@/lib/format'
 import type { TFunction } from 'i18next'
 import { useTranslation } from 'react-i18next'
@@ -8,7 +13,13 @@ const isServing = (value: unknown): value is { label: string; grams: number } =>
   typeof value === 'object' && value !== null && 'label' in value && 'grams' in value
 
 /** One snapshot value as text: nothing is "empty", lists are joined, servings read "1 bát (250 g)". */
-function formatValue(value: unknown, t: TFunction<'admin'>) {
+function formatValue(field: keyof FoodSnapshot, value: unknown, t: TFunction<'admin'>) {
+  if (field === 'category' && typeof value === 'string') {
+    return t(`foods.categories.${value as FoodCategory}`)
+  }
+  if (field === 'sourceKind' && typeof value === 'string') {
+    return t(`foods.sources.${value as FoodSourceKind}`)
+  }
   if (value === null || (Array.isArray(value) && value.length === 0))
     return t('foods.history.empty')
   if (typeof value === 'boolean') return t(value ? 'foods.history.yes' : 'foods.history.no')
@@ -42,9 +53,9 @@ export function FoodChangeRow({ change }: { change: FoodChangeResponse }) {
         <ul className="text-muted-foreground space-y-0.5">
           {diffs.map(({ field, before, after }) => (
             <li key={field}>
-              {t(`foods.fields.${field}`)}: {formatValue(before, t)}
+              {t(`foods.fields.${field}`)}: {formatValue(field, before, t)}
               {' → '}
-              {formatValue(after, t)}
+              {formatValue(field, after, t)}
             </li>
           ))}
         </ul>
