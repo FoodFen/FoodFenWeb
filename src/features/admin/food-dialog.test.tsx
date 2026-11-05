@@ -272,3 +272,37 @@ test('nested 422 errors land on the servings row, the aliases and the form when 
   expect(screen.getByText(/Dòng lạ/)).toBeInTheDocument()
   expect(onClose).not.toHaveBeenCalled()
 })
+
+const saveFailing = async (body: object) => {
+  renderDialog()
+  const field = await kcal()
+  updateFood.mockRejectedValueOnce(failure(422, { message: 'English only', ...body }))
+  await userEvent.clear(field)
+  await userEvent.type(field, '360')
+  await userEvent.click(screen.getByRole('button', { name: 'Lưu' }))
+}
+
+test.each([
+  ['kcal_out_of_range', 'kcal', 'Calo là số nguyên từ 0 đến 900'],
+  ['serving_grams_out_of_range', 'servings.0.grams', 'Số gam là số nguyên từ 1 đến 5000'],
+  ['too_many_aliases', 'aliases', 'Tối đa 20 tên gọi khác'],
+  ['servings_need_one_default', 'servings', 'Chọn đúng một khẩu phần mặc định'],
+  ['macros_sum_over_100', undefined, 'Tinh bột, đạm và béo cộng lại không được quá 100 g'],
+])('translates the BE code %s on its field', async (code, field, text) => {
+  await saveFailing({ code, field })
+
+  expect(await screen.findByText(text)).toBeInTheDocument()
+  expect(screen.queryByText('English only')).not.toBeInTheDocument()
+})
+
+test('a code whose field has no input is shown on the form', async () => {
+  await saveFailing({ code: 'slug_invalid', field: 'slug' })
+
+  expect(await screen.findByText(/Không lưu được món này/)).toBeInTheDocument()
+})
+
+test('an unknown code keeps the BE message', async () => {
+  await saveFailing({ code: 'brand_new_rule', field: 'kcal' })
+
+  expect(await screen.findByText('English only')).toBeInTheDocument()
+})

@@ -474,7 +474,8 @@
       "servingLabel": "Tên khẩu phần dài từ 1 đến 40 ký tự",
       "servingGrams": "Số gam là số nguyên từ 1 đến 5000",
       "servingsCount": "Cần từ 1 đến 10 khẩu phần",
-      "servingDefault": "Chọn đúng một khẩu phần mặc định"
+      "servingDefault": "Chọn đúng một khẩu phần mặc định",
+      "generic": "Không lưu được món này. Hãy kiểm tra lại số liệu hoặc báo cho đội kỹ thuật"
     },
     "archive": {
       "action": "Lưu trữ",

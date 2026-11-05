@@ -21,6 +21,14 @@ test('exposes the error code of the body', () => {
   expect(parseApiError(failure(409, { message: 'x' })).code).toBeUndefined()
 })
 
+test('reads the code and field of a catalog-food 422', () => {
+  const result = parseApiError(
+    failure(422, { message: 'x', code: 'serving_grams_out_of_range', field: 'servings.1.grams' }),
+  )
+  expect(result.code).toBe('serving_grams_out_of_range')
+  expect(result.field).toBe('servings.1.grams')
+})
+
 test('falls back to a message for the status when the body has none', () => {
   expect(parseApiError(failure(429)).message).toContain('quá nhanh')
 })

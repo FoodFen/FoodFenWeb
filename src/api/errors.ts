@@ -4,13 +4,21 @@ import { isAxiosError } from 'axios'
 export type ApiFailure = {
   status?: number
   message: string
-  /** Machine-readable `error` code from the body, e.g. `mascot_id_taken`. */
+  /** Machine-readable code from the body (`error`, or `code` on catalog-food 422s), e.g. `mascot_id_taken`. */
   code?: string
+  /** The one field a `code` is about (camelCase, nested as `servings.1.grams`), when the BE names it. */
+  field?: string
   /** Field name (camelCase, as sent by the BE) to its error message. */
   fields: Record<string, string>
 }
 
-type ErrorBody = { message?: string; error?: string; errors?: Record<string, string> }
+type ErrorBody = {
+  message?: string
+  error?: string
+  code?: string
+  field?: string
+  errors?: Record<string, string>
+}
 
 // Fallback texts live in the `errors` namespace; a message sent by the BE always wins.
 const byStatus = {
@@ -34,7 +42,8 @@ export function parseApiError(error: unknown): ApiFailure {
   return {
     status,
     message: response.data?.message ?? t(fallback),
-    code: response.data?.error,
+    code: response.data?.error ?? response.data?.code,
+    field: response.data?.field,
     fields: response.data?.errors ?? {},
   }
 }
